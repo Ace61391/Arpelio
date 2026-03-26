@@ -1,0 +1,84 @@
+{
+  "instrument": {
+    "id": "euphonium",
+    "name": "Euphonium",
+    "full_name": "Euphonium / Baritone Horn",
+    "family": "brass",
+    "subfamily": "valved-brass",
+    "mechanism": "valves",
+    "transposition": "C",
+    "concert_pitch_offset": 0,
+    "clef": "bass",
+    "clef_alternates": ["treble"],
+    "range": {
+      "low": { "written": "E2", "concert": "E2" },
+      "high": { "written": "Bb4", "concert": "Bb4" },
+      "beginner_low": { "written": "Bb2", "concert": "Bb2" },
+      "beginner_high": { "written": "F4", "concert": "F4" }
+    },
+    "registers": [
+      { "name": "Low", "range": ["E2", "Bb2"], "description": "Below staff. Uses all valve combinations." },
+      { "name": "Mid", "range": ["B2", "F4"], "description": "Primary range. Staff and above." },
+      { "name": "High", "range": ["F#4", "Bb4"], "description": "Upper register. Requires developed embouchure." }
+    ],
+    "octaves": [
+      { "name": "Low register", "range": ["E2", "Bb2"], "label": "E2 to B♭2" },
+      { "name": "Mid register", "range": ["B2", "F4"], "label": "B2 to F4" },
+      { "name": "High register", "range": ["F#4", "Bb4"], "label": "F♯4 to B♭4" }
+    ],
+    "chart_types": {
+      "basic": { "status": "complete", "notes": "Bass clef, concert pitch, 3-valve fingerings. 31 notes." },
+      "alternates": { "status": "not_started", "notes": "4th valve and treble clef Bb transposition planned" },
+      "trills": { "status": "not_started", "notes": null },
+      "tremolos": { "status": "not_applicable", "notes": null }
+    },
+    "key_system": null,
+    "valve_count": 3,
+    "notes": "Euphonium reads concert pitch in bass clef (non-transposing). Same valve combinations as trumpet. Treble clef (TC) euphonium parts are transposed to Bb like trumpet — our data can derive TC notation from the trumpet data. 4th valve (compensating) extends range and improves intonation — Phase 2."
+  },
+  "diagram": {
+    "type": "valves",
+    "orientation": "horizontal",
+    "notation_format": "Valve numbers",
+    "elements": [
+      { "id": "valve-1", "type": "valve", "label": "1", "description": "First valve" },
+      { "id": "valve-2", "type": "valve", "label": "2", "description": "Second valve" },
+      { "id": "valve-3", "type": "valve", "label": "3", "description": "Third valve" }
+    ]
+  },
+  "fingerings": [
+    {"note":{"written":"E2","concert":"E2","midi":40,"frequency":82.41,"enharmonic":"Fb2","display":"E","display_with_octave":"E2"},"register":"Low","octave":"Low register","primary":{"elements":["valve-1","valve-2","valve-3"],"description":"All three valves","valve_notation":"123","text_notation":"1-2-3"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":["Very sharp without 3rd valve slide extension"],"practice_tips":["Extend 3rd valve slide."],"intonation_tendency":"sharp"}},
+    {"note":{"written":"F2","concert":"F2","midi":41,"frequency":87.31,"enharmonic":"E#2","display":"F","display_with_octave":"F2"},"register":"Low","octave":"Low register","primary":{"elements":["valve-1","valve-3"],"description":"First and third valves","valve_notation":"13","text_notation":"1-3"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":["Extend 3rd valve slide slightly."],"intonation_tendency":"sharp"}},
+    {"note":{"written":"F#2","concert":"F#2","midi":42,"frequency":92.5,"enharmonic":"Gb2","display":"F♯/G♭","display_with_octave":"F♯2/G♭2"},"register":"Low","octave":"Low register","primary":{"elements":["valve-2","valve-3"],"description":"Second and third valves","valve_notation":"23","text_notation":"2-3"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G2","concert":"G2","midi":43,"frequency":98.0,"enharmonic":null,"display":"G","display_with_octave":"G2"},"register":"Low","octave":"Low register","primary":{"elements":["valve-1","valve-2"],"description":"First and second valves","valve_notation":"12","text_notation":"1-2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G#2","concert":"G#2","midi":44,"frequency":103.83,"enharmonic":"Ab2","display":"G♯/A♭","display_with_octave":"G♯2/A♭2"},"register":"Low","octave":"Low register","primary":{"elements":["valve-1"],"description":"First valve only","valve_notation":"1","text_notation":"1"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"A2","concert":"A2","midi":45,"frequency":110.0,"enharmonic":null,"display":"A","display_with_octave":"A2"},"register":"Low","octave":"Low register","primary":{"elements":["valve-2"],"description":"Second valve only","valve_notation":"2","text_notation":"2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"Bb2","concert":"Bb2","midi":46,"frequency":116.54,"enharmonic":"A#2","display":"B♭","display_with_octave":"B♭2"},"register":"Low","octave":"Low register","primary":{"elements":[],"description":"Open (no valves)","valve_notation":"0","text_notation":"Open"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["Fundamental Bb. First note many students learn."],"intonation_tendency":null}},
+
+    {"note":{"written":"B2","concert":"B2","midi":47,"frequency":123.47,"enharmonic":"Cb3","display":"B","display_with_octave":"B2"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-1","valve-2","valve-3"],"description":"All three valves","valve_notation":"123","text_notation":"1-2-3"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":"sharp"}},
+    {"note":{"written":"C3","concert":"C3","midi":48,"frequency":130.81,"enharmonic":"B#2","display":"C","display_with_octave":"C3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-1","valve-3"],"description":"First and third valves","valve_notation":"13","text_notation":"1-3"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":"sharp"}},
+    {"note":{"written":"C#3","concert":"C#3","midi":49,"frequency":138.59,"enharmonic":"Db3","display":"C♯/D♭","display_with_octave":"C♯3/D♭3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-2","valve-3"],"description":"Second and third valves","valve_notation":"23","text_notation":"2-3"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"D3","concert":"D3","midi":50,"frequency":146.83,"enharmonic":null,"display":"D","display_with_octave":"D3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-1","valve-2"],"description":"First and second valves","valve_notation":"12","text_notation":"1-2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"D#3","concert":"D#3","midi":51,"frequency":155.56,"enharmonic":"Eb3","display":"D♯/E♭","display_with_octave":"D♯3/E♭3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-1"],"description":"First valve only","valve_notation":"1","text_notation":"1"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"E3","concert":"E3","midi":52,"frequency":164.81,"enharmonic":"Fb3","display":"E","display_with_octave":"E3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-2"],"description":"Second valve only","valve_notation":"2","text_notation":"2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"F3","concert":"F3","midi":53,"frequency":174.61,"enharmonic":"E#3","display":"F","display_with_octave":"F3"},"register":"Mid","octave":"Mid register","primary":{"elements":[],"description":"Open (no valves)","valve_notation":"0","text_notation":"Open"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["3rd partial open."],"intonation_tendency":null}},
+    {"note":{"written":"F#3","concert":"F#3","midi":54,"frequency":185.0,"enharmonic":"Gb3","display":"F♯/G♭","display_with_octave":"F♯3/G♭3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-2","valve-3"],"description":"Second and third valves","valve_notation":"23","text_notation":"2-3"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G3","concert":"G3","midi":55,"frequency":196.0,"enharmonic":null,"display":"G","display_with_octave":"G3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-1","valve-2"],"description":"First and second valves","valve_notation":"12","text_notation":"1-2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G#3","concert":"G#3","midi":56,"frequency":207.65,"enharmonic":"Ab3","display":"G♯/A♭","display_with_octave":"G♯3/A♭3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-1"],"description":"First valve only","valve_notation":"1","text_notation":"1"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"A3","concert":"A3","midi":57,"frequency":220.0,"enharmonic":null,"display":"A","display_with_octave":"A3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-2"],"description":"Second valve only","valve_notation":"2","text_notation":"2"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"Bb3","concert":"Bb3","midi":58,"frequency":233.08,"enharmonic":"A#3","display":"B♭","display_with_octave":"B♭3"},"register":"Mid","octave":"Mid register","primary":{"elements":[],"description":"Open (no valves)","valve_notation":"0","text_notation":"Open"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["4th partial open. Concert Bb."],"intonation_tendency":null}},
+    {"note":{"written":"B3","concert":"B3","midi":59,"frequency":246.94,"enharmonic":"Cb4","display":"B","display_with_octave":"B3"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-1","valve-2"],"description":"First and second valves","valve_notation":"12","text_notation":"1-2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"C4","concert":"C4","midi":60,"frequency":261.63,"enharmonic":"B#3","display":"C","display_with_octave":"C4"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-1"],"description":"First valve only","valve_notation":"1","text_notation":"1"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["Middle C."],"intonation_tendency":null}},
+    {"note":{"written":"C#4","concert":"C#4","midi":61,"frequency":277.18,"enharmonic":"Db4","display":"C♯/D♭","display_with_octave":"C♯4/D♭4"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-2"],"description":"Second valve only","valve_notation":"2","text_notation":"2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"D4","concert":"D4","midi":62,"frequency":293.66,"enharmonic":null,"display":"D","display_with_octave":"D4"},"register":"Mid","octave":"Mid register","primary":{"elements":[],"description":"Open (no valves)","valve_notation":"0","text_notation":"Open"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["5th partial open."],"intonation_tendency":null}},
+    {"note":{"written":"D#4","concert":"D#4","midi":63,"frequency":311.13,"enharmonic":"Eb4","display":"D♯/E♭","display_with_octave":"D♯4/E♭4"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-2"],"description":"Second valve only","valve_notation":"2","text_notation":"2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"E4","concert":"E4","midi":64,"frequency":329.63,"enharmonic":"Fb4","display":"E","display_with_octave":"E4"},"register":"Mid","octave":"Mid register","primary":{"elements":["valve-1"],"description":"First valve only","valve_notation":"1","text_notation":"1"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"F4","concert":"F4","midi":65,"frequency":349.23,"enharmonic":"E#4","display":"F","display_with_octave":"F4"},"register":"Mid","octave":"Mid register","primary":{"elements":[],"description":"Open (no valves)","valve_notation":"0","text_notation":"Open"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["6th partial open."],"intonation_tendency":null}},
+
+    {"note":{"written":"F#4","concert":"F#4","midi":66,"frequency":369.99,"enharmonic":"Gb4","display":"F♯/G♭","display_with_octave":"F♯4/G♭4"},"register":"High","octave":"High register","primary":{"elements":["valve-2"],"description":"Second valve only","valve_notation":"2","text_notation":"2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G4","concert":"G4","midi":67,"frequency":392.0,"enharmonic":null,"display":"G","display_with_octave":"G4"},"register":"High","octave":"High register","primary":{"elements":["valve-1"],"description":"First valve only","valve_notation":"1","text_notation":"1"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G#4","concert":"G#4","midi":68,"frequency":415.3,"enharmonic":"Ab4","display":"G♯/A♭","display_with_octave":"G♯4/A♭4"},"register":"High","octave":"High register","primary":{"elements":["valve-2","valve-3"],"description":"Second and third valves","valve_notation":"23","text_notation":"2-3"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"A4","concert":"A4","midi":69,"frequency":440.0,"enharmonic":null,"display":"A","display_with_octave":"A4"},"register":"High","octave":"High register","primary":{"elements":["valve-1","valve-2"],"description":"First and second valves","valve_notation":"12","text_notation":"1-2"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":["A=440Hz tuning note."],"intonation_tendency":null}},
+    {"note":{"written":"Bb4","concert":"Bb4","midi":70,"frequency":466.16,"enharmonic":"A#4","display":"B♭","display_with_octave":"B♭4"},"register":"High","octave":"High register","primary":{"elements":["valve-1"],"description":"First valve only","valve_notation":"1","text_notation":"1"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":["7th partial open Bb is very flat — use valve 1"],"practice_tips":["Use 1st valve, NOT open. Typical upper limit for intermediate."],"intonation_tendency":null}}
+  ]
+}

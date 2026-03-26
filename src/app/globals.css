@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f8f9fb;
+  --bg-subtle: #f1f3f6;
+  --bg-dark: #1a1d23;
+  --text: #1a1d23;
+  --text-2: #4a5060;
+  --text-3: #7a8294;
+  --accent: #4f6df5;
+  --accent-hover: #3d5be3;
+  --accent-light: #eef1fe;
+  --warm: #d4a843;
+  --border: #e5e8ed;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  --hole-filled: #1a1d23;
+  --hole-empty: #ffffff;
+  --hole-stroke: #c0c4cc;
+  --staff-line: #b0b5c0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease both;
+}

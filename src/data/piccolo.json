@@ -1,0 +1,1579 @@
+{
+  "instrument": {
+    "id": "piccolo",
+    "name": "Piccolo",
+    "full_name": "C Piccolo",
+    "family": "woodwind",
+    "subfamily": "open-hole",
+    "mechanism": "keys",
+    "transposition": "C",
+    "concert_pitch_offset": 12,
+    "clef": "treble",
+    "clef_alternates": [],
+    "range": {
+      "low": {
+        "written": "C4",
+        "concert": "C5"
+      },
+      "high": {
+        "written": "C7",
+        "concert": "C8"
+      },
+      "beginner_low": {
+        "written": "C4",
+        "concert": "C5"
+      },
+      "beginner_high": {
+        "written": "D5",
+        "concert": "D6"
+      }
+    },
+    "registers": [
+      {
+        "name": "1st octave",
+        "range": [
+          "B3",
+          "C#5"
+        ],
+        "description": "Lowest register. Rich, warm tone. B3 requires B-foot joint."
+      },
+      {
+        "name": "2nd octave",
+        "range": [
+          "D5",
+          "C#6"
+        ],
+        "description": "Middle register. Brightest, most projecting. Overblown from 1st octave."
+      },
+      {
+        "name": "3rd octave",
+        "range": [
+          "D6",
+          "C7"
+        ],
+        "description": "Highest standard register. Requires strong air support and embouchure control."
+      }
+    ],
+    "octaves": [
+      {
+        "name": "1st octave",
+        "range": [
+          "C4",
+          "C#5"
+        ],
+        "label": "C4 to C♯5"
+      },
+      {
+        "name": "2nd octave",
+        "range": [
+          "D5",
+          "C#6"
+        ],
+        "label": "D5 to C♯6"
+      },
+      {
+        "name": "3rd octave",
+        "range": [
+          "D6",
+          "C7"
+        ],
+        "label": "D6 to C7"
+      }
+    ],
+    "chart_types": {
+      "basic": {
+        "status": "complete",
+        "notes": "Same fingerings as concert flute. Octave transposition (+12). No B foot. Derived from flute.json."
+      },
+      "alternates": {
+        "status": "not_started",
+        "notes": "Open-G# variant and soprano/alto/bass alternates planned"
+      },
+      "trills": {
+        "status": "not_started",
+        "notes": "Half-step and whole-step trill fingerings"
+      },
+      "tremolos": {
+        "status": "not_started",
+        "notes": "Major and minor third tremolos"
+      }
+    },
+    "key_system": "boehm",
+    "valve_count": null,
+    "notes": "Piccolo uses IDENTICAL fingerings to concert flute. Sounds one octave higher than written (offset +12). Same Boehm system, closed-G#. Does not have B foot (range starts at C4 written = C5 concert). Some 3rd/4th octave fingerings differ slightly — Phase 2."
+  },
+  "diagram": {
+    "type": "keys",
+    "orientation": "horizontal",
+    "notation_format": "T LLL|RRR Foot",
+    "elements": [
+      {
+        "id": "thumb",
+        "type": "thumb_key",
+        "label": "T",
+        "hand": "left",
+        "description": "Left thumb — Bb thumb key lever"
+      },
+      {
+        "id": "L1",
+        "type": "covered_key",
+        "label": "1",
+        "hand": "left",
+        "description": "Left index finger key"
+      },
+      {
+        "id": "L2",
+        "type": "covered_key",
+        "label": "2",
+        "hand": "left",
+        "description": "Left middle finger key"
+      },
+      {
+        "id": "L3",
+        "type": "covered_key",
+        "label": "3",
+        "hand": "left",
+        "description": "Left ring finger key"
+      },
+      {
+        "id": "G#",
+        "type": "lever_key",
+        "label": "G#",
+        "hand": "left",
+        "description": "G# lever key (left pinky)"
+      },
+      {
+        "id": "R1",
+        "type": "covered_key",
+        "label": "1",
+        "hand": "right",
+        "description": "Right index finger key"
+      },
+      {
+        "id": "R2",
+        "type": "covered_key",
+        "label": "2",
+        "hand": "right",
+        "description": "Right middle finger key"
+      },
+      {
+        "id": "R3",
+        "type": "covered_key",
+        "label": "3",
+        "hand": "right",
+        "description": "Right ring finger key"
+      },
+      {
+        "id": "Eb",
+        "type": "lever_key",
+        "label": "Eb",
+        "hand": "right",
+        "description": "D# (Eb) foot key — right pinky. Held for most notes."
+      },
+      {
+        "id": "C#",
+        "type": "lever_key",
+        "label": "C#",
+        "hand": "right",
+        "description": "C# foot key"
+      },
+      {
+        "id": "C",
+        "type": "lever_key",
+        "label": "C",
+        "hand": "right",
+        "description": "Low C foot key"
+      },
+      {
+        "id": "B",
+        "type": "lever_key",
+        "label": "B",
+        "hand": "right",
+        "description": "Low B foot key (B-foot only)"
+      },
+      {
+        "id": "Bb",
+        "type": "lever_key",
+        "label": "Bb",
+        "hand": "left",
+        "description": "Bb side lever (thumb Bb)"
+      },
+      {
+        "id": "trill1",
+        "type": "lever_key",
+        "label": "Tr1",
+        "hand": "left",
+        "description": "First trill key (between L1 and L2)"
+      },
+      {
+        "id": "trill2",
+        "type": "lever_key",
+        "label": "Tr2",
+        "hand": "left",
+        "description": "Second trill key (between L2 and L3)"
+      },
+      {
+        "id": "D#-trill",
+        "type": "lever_key",
+        "label": "D#tr",
+        "hand": "right",
+        "description": "D# trill key"
+      }
+    ]
+  },
+  "fingerings": [
+    {
+      "note": {
+        "written": "C4",
+        "concert": "C5",
+        "midi": 60,
+        "frequency": 523.25,
+        "enharmonic": "B#3",
+        "display": "C",
+        "display_with_octave": "C4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "C"
+        ],
+        "description": "All keys closed + C foot key",
+        "valve_notation": null,
+        "text_notation": "T 123|123 C"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [
+          "Lowest note on C-foot flutes"
+        ],
+        "practice_tips": [
+          "Requires full, warm air stream for clear tone."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C#4",
+        "concert": "C#5",
+        "midi": 61,
+        "frequency": 554.37,
+        "enharmonic": "Db4",
+        "display": "C♯/D♭",
+        "display_with_octave": "C♯4/D♭4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "C#"
+        ],
+        "description": "All keys closed + C# foot key",
+        "valve_notation": null,
+        "text_notation": "T 123|123 C#"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D4",
+        "concert": "D5",
+        "midi": 62,
+        "frequency": 587.33,
+        "enharmonic": null,
+        "display": "D",
+        "display_with_octave": "D4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "description": "All main keys closed, no foot keys",
+        "valve_notation": null,
+        "text_notation": "T 123|123"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "D# key should NOT be held for this note"
+        ],
+        "practice_tips": [
+          "One of the first notes many students learn. Keep D# key up."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D#4",
+        "concert": "D#5",
+        "midi": 63,
+        "frequency": 622.25,
+        "enharmonic": "Eb4",
+        "display": "D♯/E♭",
+        "display_with_octave": "D♯4/E♭4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "Eb"
+        ],
+        "description": "All main keys closed + Eb foot key",
+        "valve_notation": null,
+        "text_notation": "T 123|123 Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same as D4 but add the Eb (D#) foot key."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "E4",
+        "concert": "E5",
+        "midi": 64,
+        "frequency": 659.26,
+        "enharmonic": "Fb4",
+        "display": "E",
+        "display_with_octave": "E4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "Eb"
+        ],
+        "description": "Right ring finger open + Eb foot key",
+        "valve_notation": null,
+        "text_notation": "T 123|12- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Forgetting to hold Eb key"
+        ],
+        "practice_tips": [
+          "Lift only R3 from D4. Eb key stays down from here on."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F4",
+        "concert": "F5",
+        "midi": 65,
+        "frequency": 698.46,
+        "enharmonic": "E#4",
+        "display": "F",
+        "display_with_octave": "F4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "Eb"
+        ],
+        "description": "Right middle and ring open + Eb",
+        "valve_notation": null,
+        "text_notation": "T 123|1-- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F#4",
+        "concert": "F#5",
+        "midi": 66,
+        "frequency": 739.99,
+        "enharmonic": "Gb4",
+        "display": "F♯/G♭",
+        "display_with_octave": "F♯4/G♭4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R3",
+          "Eb"
+        ],
+        "description": "Right index and middle open, ring closed + Eb",
+        "valve_notation": null,
+        "text_notation": "T 123|--3 Eb"
+      },
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "L3",
+            "R2",
+            "Eb"
+          ],
+          "description": "Middle finger instead of ring",
+          "valve_notation": null,
+          "text_notation": "T 123|-2- Eb",
+          "use_case": "trill",
+          "trill_from": "E4"
+        }
+      ],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [
+          "Using wrong right-hand finger"
+        ],
+        "practice_tips": [
+          "Standard fingering uses R3 (ring finger). Alternate with R2 is for E4 trill."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G4",
+        "concert": "G5",
+        "midi": 67,
+        "frequency": 783.99,
+        "enharmonic": null,
+        "display": "G",
+        "display_with_octave": "G4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "Eb"
+        ],
+        "description": "Left hand all closed, right hand all open + Eb",
+        "valve_notation": null,
+        "text_notation": "T 123|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Common beginner note. All right hand fingers are lifted."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G#4",
+        "concert": "G#5",
+        "midi": 68,
+        "frequency": 830.61,
+        "enharmonic": "Ab4",
+        "display": "G♯/A♭",
+        "display_with_octave": "G♯4/A♭4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "G#",
+          "Eb"
+        ],
+        "description": "G4 fingering + G# lever key (left pinky)",
+        "valve_notation": null,
+        "text_notation": "T 123 G#|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [
+          "Forgetting the G# lever key"
+        ],
+        "practice_tips": [
+          "G# key is operated by the left pinky."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "A4",
+        "concert": "A5",
+        "midi": 69,
+        "frequency": 880.0,
+        "enharmonic": null,
+        "display": "A",
+        "display_with_octave": "A4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "Eb"
+        ],
+        "description": "Left ring finger open, right all open + Eb",
+        "valve_notation": null,
+        "text_notation": "T 12-|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Tuning note A=440Hz. Good for checking intonation."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "A#4",
+        "concert": "A#5",
+        "midi": 70,
+        "frequency": 932.33,
+        "enharmonic": "Bb4",
+        "display": "A♯/B♭",
+        "display_with_octave": "A♯4/B♭4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "R1",
+          "Eb"
+        ],
+        "description": "Forked fingering — index fingers both hands",
+        "valve_notation": null,
+        "text_notation": "T 1--|1-- Eb"
+      },
+      "alternates": [
+        {
+          "elements": [
+            "Bb",
+            "L1",
+            "Eb"
+          ],
+          "description": "Bb thumb lever + L1",
+          "valve_notation": null,
+          "text_notation": "Bb 1--|--- Eb",
+          "use_case": "facility",
+          "trill_from": null
+        },
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "Bb",
+            "Eb"
+          ],
+          "description": "Thumb Bb lever trill fingering",
+          "valve_notation": null,
+          "text_notation": "T 1--|Bb--- Eb",
+          "use_case": "trill",
+          "trill_from": "B4"
+        }
+      ],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Using wrong Bb fingering for the context"
+        ],
+        "practice_tips": [
+          "Primary (forked) fingering is standard. Bb lever alt useful in passages without B4/B5."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "B4",
+        "concert": "B5",
+        "midi": 71,
+        "frequency": 987.77,
+        "enharmonic": "Cb5",
+        "display": "B",
+        "display_with_octave": "B4"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "L1",
+          "Eb"
+        ],
+        "description": "Left index only + Eb (thumb OFF Bb lever)",
+        "valve_notation": null,
+        "text_notation": "1--|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Confusing with Bb4 fingering"
+        ],
+        "practice_tips": [
+          "Thumb lifts OFF the Bb lever. Only L1 and Eb key held. Different from Bb4 where R1 is also held."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C5",
+        "concert": "C6",
+        "midi": 72,
+        "frequency": 1046.5,
+        "enharmonic": "B#4",
+        "display": "C",
+        "display_with_octave": "C5"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "L1",
+          "Eb"
+        ],
+        "description": "Left index only (thumb OFF) + Eb",
+        "valve_notation": null,
+        "text_notation": "1--|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Forgetting to lift thumb off"
+        ],
+        "practice_tips": [
+          "Thumb comes OFF the Bb lever. Only L1 and Eb key held."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C#5",
+        "concert": "C#6",
+        "midi": 73,
+        "frequency": 1108.73,
+        "enharmonic": "Db5",
+        "display": "C♯/D♭",
+        "display_with_octave": "C♯5/D♭5"
+      },
+      "register": "1st octave",
+      "octave": "1st octave",
+      "primary": {
+        "elements": [
+          "Eb"
+        ],
+        "description": "All keys open except Eb foot key",
+        "valve_notation": null,
+        "text_notation": "---|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [
+          "Tone can be thin with so many keys open"
+        ],
+        "practice_tips": [
+          "Highest note of the 1st octave. Focus on strong, supported air."
+        ],
+        "intonation_tendency": "sharp"
+      }
+    },
+    {
+      "note": {
+        "written": "D5",
+        "concert": "D6",
+        "midi": 74,
+        "frequency": 1174.66,
+        "enharmonic": null,
+        "display": "D",
+        "display_with_octave": "D5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "description": "Thumb + skip L1, rest closed (no Eb)",
+        "valve_notation": null,
+        "text_notation": "T -23|123"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Accidentally including L1",
+          "Forgetting to change air angle for 2nd octave"
+        ],
+        "practice_tips": [
+          "First note of 2nd octave. Requires faster air and slightly different embouchure angle than 1st octave D4."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D#5",
+        "concert": "D#6",
+        "midi": 75,
+        "frequency": 1244.51,
+        "enharmonic": "Eb5",
+        "display": "D♯/E♭",
+        "display_with_octave": "D♯5/E♭5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "Eb"
+        ],
+        "description": "D5 fingering + Eb foot key",
+        "valve_notation": null,
+        "text_notation": "T -23|123 Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "E5",
+        "concert": "E6",
+        "midi": 76,
+        "frequency": 1318.51,
+        "enharmonic": "Fb5",
+        "display": "E",
+        "display_with_octave": "E5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "Eb"
+        ],
+        "description": "Same as E4 (overblown)",
+        "valve_notation": null,
+        "text_notation": "T 123|12- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Playing E4 instead — need faster air"
+        ],
+        "practice_tips": [
+          "Same fingering as E4 but overblown to 2nd octave."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F5",
+        "concert": "F6",
+        "midi": 77,
+        "frequency": 1396.91,
+        "enharmonic": "E#5",
+        "display": "F",
+        "display_with_octave": "F5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "Eb"
+        ],
+        "description": "Same as F4 (overblown)",
+        "valve_notation": null,
+        "text_notation": "T 123|1-- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as F4, overblown."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F#5",
+        "concert": "F#6",
+        "midi": 78,
+        "frequency": 1479.98,
+        "enharmonic": "Gb5",
+        "display": "F♯/G♭",
+        "display_with_octave": "F♯5/G♭5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R3",
+          "Eb"
+        ],
+        "description": "Same as F#4 (overblown)",
+        "valve_notation": null,
+        "text_notation": "T 123|--3 Eb"
+      },
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "L3",
+            "R2",
+            "Eb"
+          ],
+          "description": "Middle finger instead of ring",
+          "valve_notation": null,
+          "text_notation": "T 123|-2- Eb",
+          "use_case": "trill",
+          "trill_from": "E5"
+        }
+      ],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as F#4, overblown."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G5",
+        "concert": "G6",
+        "midi": 79,
+        "frequency": 1567.98,
+        "enharmonic": null,
+        "display": "G",
+        "display_with_octave": "G5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "Eb"
+        ],
+        "description": "Same as G4 (overblown)",
+        "valve_notation": null,
+        "text_notation": "T 123|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as G4, overblown."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G#5",
+        "concert": "G#6",
+        "midi": 80,
+        "frequency": 1661.22,
+        "enharmonic": "Ab5",
+        "display": "G♯/A♭",
+        "display_with_octave": "G♯5/A♭5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "G#",
+          "Eb"
+        ],
+        "description": "Same as G#4 (overblown)",
+        "valve_notation": null,
+        "text_notation": "T 123 G#|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as G#4, overblown."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "A5",
+        "concert": "A6",
+        "midi": 81,
+        "frequency": 1760.0,
+        "enharmonic": null,
+        "display": "A",
+        "display_with_octave": "A5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "Eb"
+        ],
+        "description": "Same as A4 (overblown)",
+        "valve_notation": null,
+        "text_notation": "T 12-|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as A4, overblown. A5=880Hz."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "A#5",
+        "concert": "A#6",
+        "midi": 82,
+        "frequency": 1864.66,
+        "enharmonic": "Bb5",
+        "display": "A♯/B♭",
+        "display_with_octave": "A♯5/B♭5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "R1",
+          "Eb"
+        ],
+        "description": "Same as Bb4 (overblown)",
+        "valve_notation": null,
+        "text_notation": "T 1--|1-- Eb"
+      },
+      "alternates": [
+        {
+          "elements": [
+            "Bb",
+            "L1",
+            "Eb"
+          ],
+          "description": "Bb lever alternate",
+          "valve_notation": null,
+          "text_notation": "Bb 1--|--- Eb",
+          "use_case": "facility",
+          "trill_from": null
+        },
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "Bb",
+            "Eb"
+          ],
+          "description": "Trill fingering with B5",
+          "valve_notation": null,
+          "text_notation": "T 1--|Bb--- Eb",
+          "use_case": "trill",
+          "trill_from": "B5"
+        }
+      ],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same forked fingering as Bb4, overblown. Bb lever alt useful in passages without B4 or B5."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "B5",
+        "concert": "B6",
+        "midi": 83,
+        "frequency": 1975.53,
+        "enharmonic": "Cb6",
+        "display": "B",
+        "display_with_octave": "B5"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "L1",
+          "Eb"
+        ],
+        "description": "Left index only + Eb (thumb OFF, overblown from B4)",
+        "valve_notation": null,
+        "text_notation": "1--|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as B4, overblown."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C6",
+        "concert": "C7",
+        "midi": 84,
+        "frequency": 2093.0,
+        "enharmonic": "B#5",
+        "display": "C",
+        "display_with_octave": "C6"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "L1",
+          "Eb"
+        ],
+        "description": "Same as C5 (overblown)",
+        "valve_notation": null,
+        "text_notation": "1--|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as C5, overblown."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C#6",
+        "concert": "C#7",
+        "midi": 85,
+        "frequency": 2217.46,
+        "enharmonic": "Db6",
+        "display": "C♯/D♭",
+        "display_with_octave": "C♯6/D♭6"
+      },
+      "register": "2nd octave",
+      "octave": "2nd octave",
+      "primary": {
+        "elements": [
+          "Eb"
+        ],
+        "description": "All keys open except Eb (same as C#5, overblown)",
+        "valve_notation": null,
+        "text_notation": "---|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Highest note of 2nd octave. Same fingering as C#5."
+        ],
+        "intonation_tendency": "sharp"
+      }
+    },
+    {
+      "note": {
+        "written": "D6",
+        "concert": "D7",
+        "midi": 86,
+        "frequency": 2349.32,
+        "enharmonic": null,
+        "display": "D",
+        "display_with_octave": "D6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L2",
+          "L3",
+          "Eb"
+        ],
+        "description": "Thumb + L2 + L3 + Eb (different from lower Ds)",
+        "valve_notation": null,
+        "text_notation": "T -23|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [
+          "Using 1st or 2nd octave D fingering — will not speak in 3rd octave"
+        ],
+        "practice_tips": [
+          "3rd octave fingerings diverge from lower octaves. This is NOT the same as D4 or D5."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D#6",
+        "concert": "D#7",
+        "midi": 87,
+        "frequency": 2489.02,
+        "enharmonic": "Eb6",
+        "display": "D♯/E♭",
+        "display_with_octave": "D♯6/E♭6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "G#",
+          "R1",
+          "R2",
+          "R3",
+          "Eb"
+        ],
+        "description": "Nearly all keys closed + G# lever",
+        "valve_notation": null,
+        "text_notation": "T 123 G#|123 Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Very different fingering from lower Eb notes."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "E6",
+        "concert": "E7",
+        "midi": 88,
+        "frequency": 2637.02,
+        "enharmonic": "Fb6",
+        "display": "E",
+        "display_with_octave": "E6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "R1",
+          "R2",
+          "Eb"
+        ],
+        "description": "L3 and R3 open",
+        "valve_notation": null,
+        "text_notation": "T 12-|12- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F6",
+        "concert": "F7",
+        "midi": 89,
+        "frequency": 2793.83,
+        "enharmonic": "E#6",
+        "display": "F",
+        "display_with_octave": "F6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L3",
+          "R1",
+          "Eb"
+        ],
+        "description": "Skip L2, skip R2 and R3",
+        "valve_notation": null,
+        "text_notation": "T 1-3|1-- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F#6",
+        "concert": "F#7",
+        "midi": 90,
+        "frequency": 2959.96,
+        "enharmonic": "Gb6",
+        "display": "F♯/G♭",
+        "display_with_octave": "F♯6/G♭6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "Bb",
+          "L1",
+          "L3",
+          "R3",
+          "Eb"
+        ],
+        "description": "Bb thumb lever + L1 + L3 + R3 + Eb",
+        "valve_notation": null,
+        "text_notation": "Bb 1-3|--3 Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Uses Bb thumb lever instead of regular thumb key."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G6",
+        "concert": "G7",
+        "midi": 91,
+        "frequency": 3135.96,
+        "enharmonic": null,
+        "display": "G",
+        "display_with_octave": "G6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "L1",
+          "L2",
+          "L3",
+          "Eb"
+        ],
+        "description": "Left hand closed (no thumb) + Eb",
+        "valve_notation": null,
+        "text_notation": "123|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Thumb OFF. Very different from lower G fingerings."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G#6",
+        "concert": "G#7",
+        "midi": 92,
+        "frequency": 3322.44,
+        "enharmonic": "Ab6",
+        "display": "G♯/A♭",
+        "display_with_octave": "G♯6/A♭6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "L2",
+          "L3",
+          "G#",
+          "Eb"
+        ],
+        "description": "L2 + L3 + G# lever + Eb (no thumb, no L1)",
+        "valve_notation": null,
+        "text_notation": "-23 G#|--- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "A6",
+        "concert": "A7",
+        "midi": 93,
+        "frequency": 3520.0,
+        "enharmonic": null,
+        "display": "A",
+        "display_with_octave": "A6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L2",
+          "R1",
+          "Eb"
+        ],
+        "description": "Thumb + L2 + R1 + Eb",
+        "valve_notation": null,
+        "text_notation": "T -2-|1-- Eb"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Very different fingering from lower A notes. Requires excellent air support."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "A#6",
+        "concert": "A#7",
+        "midi": 94,
+        "frequency": 3729.31,
+        "enharmonic": "Bb6",
+        "display": "A♯/B♭",
+        "display_with_octave": "A♯6/B♭6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "thumb",
+          "R1",
+          "D#-trill"
+        ],
+        "description": "Thumb + R1 + D# trill key",
+        "valve_notation": null,
+        "text_notation": "T ---|1 D#tr"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Uses the D# trill key — an unusual key for most students."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "B6",
+        "concert": "B7",
+        "midi": 95,
+        "frequency": 3951.07,
+        "enharmonic": "Cb7",
+        "display": "B",
+        "display_with_octave": "B6"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "Bb",
+          "L1",
+          "L3",
+          "D#-trill"
+        ],
+        "description": "Bb lever + L1 + L3 + D# trill key (no Eb foot key)",
+        "valve_notation": null,
+        "text_notation": "Bb 1-3|-- D#tr"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Complex fingering. Very high register — advanced players only."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C7",
+        "concert": "C8",
+        "midi": 96,
+        "frequency": 4186.01,
+        "enharmonic": "B#6",
+        "display": "C",
+        "display_with_octave": "C7"
+      },
+      "register": "3rd octave",
+      "octave": "3rd octave",
+      "primary": {
+        "elements": [
+          "L1",
+          "L2",
+          "L3",
+          "G#",
+          "R1"
+        ],
+        "description": "L1+L2+L3+G#+R1 (C-foot version)",
+        "valve_notation": null,
+        "text_notation": "123 G#|1--"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Highest standard note. Requires very fast, focused air stream. B-foot flutes may use a slightly different fingering."
+        ],
+        "intonation_tendency": null
+      }
+    }
+  ]
+}

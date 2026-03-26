@@ -1,0 +1,1629 @@
+{
+  "instrument": {
+    "id": "bass-clarinet",
+    "name": "Bass Clarinet",
+    "full_name": "B-flat Bass Clarinet",
+    "family": "woodwind",
+    "subfamily": "single-reed",
+    "mechanism": "keys",
+    "transposition": "Bb",
+    "concert_pitch_offset": -14,
+    "clef": "treble",
+    "clef_alternates": [],
+    "range": {
+      "low": {
+        "written": "D3",
+        "concert": "C2"
+      },
+      "high": {
+        "written": "G6",
+        "concert": "F5"
+      },
+      "beginner_low": {
+        "written": "E3",
+        "concert": "D2"
+      },
+      "beginner_high": {
+        "written": "C6",
+        "concert": "A#4"
+      }
+    },
+    "registers": [
+      {
+        "name": "Chalumeau",
+        "range": [
+          "E3",
+          "Bb4"
+        ],
+        "description": "Lowest register. Dark, warm, rich tone. No register key."
+      },
+      {
+        "name": "Clarion",
+        "range": [
+          "B4",
+          "C6"
+        ],
+        "description": "Middle register. Bright, clear, projecting. Register key engaged. Overblows at the 12th from chalumeau."
+      },
+      {
+        "name": "Altissimo",
+        "range": [
+          "C#6",
+          "G6"
+        ],
+        "description": "Highest standard register. Brilliant, penetrating. Advanced fingerings."
+      }
+    ],
+    "octaves": [
+      {
+        "name": "Chalumeau",
+        "range": [
+          "E3",
+          "Bb4"
+        ],
+        "label": "E3 to B♭4"
+      },
+      {
+        "name": "Clarion",
+        "range": [
+          "B4",
+          "C6"
+        ],
+        "label": "B4 to C6"
+      },
+      {
+        "name": "Altissimo",
+        "range": [
+          "C#6",
+          "G6"
+        ],
+        "label": "C♯6 to G6"
+      }
+    ],
+    "chart_types": {
+      "basic": {
+        "status": "complete",
+        "notes": "Same fingerings as Bb clarinet. Transposition offset -14 (major 9th down). Extended low range not yet added. Derived from bb-clarinet.json."
+      },
+      "alternates": {
+        "status": "not_started",
+        "notes": null
+      },
+      "trills": {
+        "status": "not_started",
+        "notes": null
+      },
+      "tremolos": {
+        "status": "not_applicable",
+        "notes": "Not standard chart type for clarinet"
+      }
+    },
+    "key_system": "boehm",
+    "valve_count": null,
+    "notes": "Bass clarinet uses the same fingerings as Bb soprano clarinet for the clarion and above. The chalumeau extends lower (to written Eb3 or C3 on models with extended range). Transposition is Bb but sounds an octave lower than soprano clarinet (offset -14, major 9th down). Treble clef. Derived from bb-clarinet.json."
+  },
+  "diagram": {
+    "type": "keys",
+    "orientation": "horizontal",
+    "notation_format": "[R] T LLL|RRR [pinky keys]",
+    "elements": [
+      {
+        "id": "register",
+        "type": "thumb_key",
+        "label": "R",
+        "hand": "left",
+        "description": "Register key (left thumb, back)"
+      },
+      {
+        "id": "thumb",
+        "type": "tone_hole",
+        "label": "T",
+        "hand": "left",
+        "description": "Thumb hole (left thumb, back)"
+      },
+      {
+        "id": "L1",
+        "type": "tone_hole",
+        "label": "1",
+        "hand": "left",
+        "description": "Left index finger hole"
+      },
+      {
+        "id": "A-key",
+        "type": "lever_key",
+        "label": "A",
+        "hand": "left",
+        "description": "A key (left index side lever)"
+      },
+      {
+        "id": "L2",
+        "type": "tone_hole",
+        "label": "2",
+        "hand": "left",
+        "description": "Left middle finger hole"
+      },
+      {
+        "id": "L3",
+        "type": "tone_hole",
+        "label": "3",
+        "hand": "left",
+        "description": "Left ring finger hole"
+      },
+      {
+        "id": "L4-Eb",
+        "type": "lever_key",
+        "label": "Eb",
+        "hand": "left",
+        "description": "Left pinky Ab/Eb spatula key"
+      },
+      {
+        "id": "L4-C",
+        "type": "lever_key",
+        "label": "C",
+        "hand": "left",
+        "description": "Left pinky F/C spatula key"
+      },
+      {
+        "id": "L4-Cs",
+        "type": "lever_key",
+        "label": "C#",
+        "hand": "left",
+        "description": "Left pinky F#/C# spatula key"
+      },
+      {
+        "id": "L4-E",
+        "type": "lever_key",
+        "label": "E",
+        "hand": "left",
+        "description": "Left pinky E/B spatula key"
+      },
+      {
+        "id": "R1",
+        "type": "tone_hole",
+        "label": "1",
+        "hand": "right",
+        "description": "Right index finger hole"
+      },
+      {
+        "id": "R2",
+        "type": "tone_hole",
+        "label": "2",
+        "hand": "right",
+        "description": "Right middle finger hole"
+      },
+      {
+        "id": "R3",
+        "type": "tone_hole",
+        "label": "3",
+        "hand": "right",
+        "description": "Right ring finger hole"
+      },
+      {
+        "id": "R4-Eb",
+        "type": "lever_key",
+        "label": "Eb",
+        "hand": "right",
+        "description": "Right pinky Ab/Eb key"
+      },
+      {
+        "id": "R4-C",
+        "type": "lever_key",
+        "label": "C",
+        "hand": "right",
+        "description": "Right pinky F/C key"
+      },
+      {
+        "id": "R4-Cs",
+        "type": "lever_key",
+        "label": "C#",
+        "hand": "right",
+        "description": "Right pinky F#/C# key"
+      },
+      {
+        "id": "R4-E",
+        "type": "lever_key",
+        "label": "E",
+        "hand": "right",
+        "description": "Right pinky E/B key"
+      },
+      {
+        "id": "G#",
+        "type": "lever_key",
+        "label": "G#",
+        "hand": "right",
+        "description": "G#/Ab key (right hand)"
+      }
+    ]
+  },
+  "fingerings": [
+    {
+      "note": {
+        "written": "E3",
+        "concert": "D2",
+        "midi": 52,
+        "frequency": 73.42,
+        "enharmonic": "Fb3",
+        "display": "E",
+        "display_with_octave": "E3"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "R4-E"
+        ],
+        "description": "All holes closed + right E/B key",
+        "valve_notation": null,
+        "text_notation": "T 123|123 E"
+      },
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "L3",
+            "L4-E",
+            "R1",
+            "R2",
+            "R3"
+          ],
+          "description": "Left E/B key instead of right",
+          "valve_notation": null,
+          "text_notation": "T 123 E|123",
+          "use_case": "facility",
+          "trill_from": null
+        }
+      ],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Forgetting the pinky E/B key"
+        ],
+        "practice_tips": [
+          "Lowest standard note. Use either left or right pinky E/B key depending on context."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F3",
+        "concert": "D#2",
+        "midi": 53,
+        "frequency": 77.78,
+        "enharmonic": "E#3",
+        "display": "F",
+        "display_with_octave": "F3"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "R4-C"
+        ],
+        "description": "All holes closed + right F/C key",
+        "valve_notation": null,
+        "text_notation": "T 123|123 F"
+      },
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "L3",
+            "L4-C",
+            "R1",
+            "R2",
+            "R3"
+          ],
+          "description": "Left F/C key instead",
+          "valve_notation": null,
+          "text_notation": "T 123 F|123",
+          "use_case": "facility",
+          "trill_from": null
+        }
+      ],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Use left or right pinky depending on context."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F#3",
+        "concert": "E2",
+        "midi": 54,
+        "frequency": 82.41,
+        "enharmonic": "Gb3",
+        "display": "F♯/G♭",
+        "display_with_octave": "F♯3/G♭3"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R4-Cs",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "description": "All holes + right F#/C# key",
+        "valve_notation": null,
+        "text_notation": "T 123 F#|123"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Use left or right pinky F#/C# key."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G3",
+        "concert": "F2",
+        "midi": 55,
+        "frequency": 87.31,
+        "enharmonic": null,
+        "display": "G",
+        "display_with_octave": "G3"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "description": "All holes closed, no pinky keys",
+        "valve_notation": null,
+        "text_notation": "T 123|123"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Simplest full fingering — all six tone holes plus thumb."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G#3",
+        "concert": "F#2",
+        "midi": 56,
+        "frequency": 92.5,
+        "enharmonic": "Ab3",
+        "display": "G♯/A♭",
+        "display_with_octave": "G♯3/A♭3"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "G#"
+        ],
+        "description": "All holes + G# key",
+        "valve_notation": null,
+        "text_notation": "T 123|123 G#"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "A3",
+        "concert": "G2",
+        "midi": 57,
+        "frequency": 98.0,
+        "enharmonic": null,
+        "display": "A",
+        "display_with_octave": "A3"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2"
+        ],
+        "description": "Right ring finger open",
+        "valve_notation": null,
+        "text_notation": "T 123|12-"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "Bb3",
+        "concert": "G#2",
+        "midi": 58,
+        "frequency": 103.83,
+        "enharmonic": "A#3",
+        "display": "B♭/A♯",
+        "display_with_octave": "B♭3/A♯3"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1"
+        ],
+        "description": "Right middle and ring open",
+        "valve_notation": null,
+        "text_notation": "T 123|1--"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Concert Ab — very common note."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "B3",
+        "concert": "A2",
+        "midi": 59,
+        "frequency": 110.0,
+        "enharmonic": "Cb4",
+        "display": "B",
+        "display_with_octave": "B3"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R2"
+        ],
+        "description": "Fork fingering — skip R1, press R2",
+        "valve_notation": null,
+        "text_notation": "T 123|-2-"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Accidentally pressing R1 (that gives Bb)"
+        ],
+        "practice_tips": [
+          "'Forked' fingering — R1 is UP, R2 is DOWN."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C4",
+        "concert": "A#2",
+        "midi": 60,
+        "frequency": 116.54,
+        "enharmonic": "B#3",
+        "display": "C",
+        "display_with_octave": "C4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "description": "Left hand only, all closed",
+        "valve_notation": null,
+        "text_notation": "T 123|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Written C = concert Bb. Common tuning note."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C#4",
+        "concert": "B2",
+        "midi": 61,
+        "frequency": 123.47,
+        "enharmonic": "Db4",
+        "display": "C♯/D♭",
+        "display_with_octave": "C♯4/D♭4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "L4-Cs"
+        ],
+        "description": "Left hand closed + left C# key",
+        "valve_notation": null,
+        "text_notation": "T 123 C#|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D4",
+        "concert": "C3",
+        "midi": 62,
+        "frequency": 130.81,
+        "enharmonic": null,
+        "display": "D",
+        "display_with_octave": "D4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2"
+        ],
+        "description": "Left ring finger open",
+        "valve_notation": null,
+        "text_notation": "T 12-|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Concert middle C."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D#4",
+        "concert": "C#3",
+        "midi": 63,
+        "frequency": 138.59,
+        "enharmonic": "Eb4",
+        "display": "D♯/E♭",
+        "display_with_octave": "D♯4/E♭4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1",
+          "L2",
+          "R1"
+        ],
+        "description": "D4 + right index finger (side Eb mechanism)",
+        "valve_notation": null,
+        "text_notation": "T 12-|1--"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [
+          "Confusing with the A-key Eb trill fingering"
+        ],
+        "practice_tips": [
+          "WFG notation: T 12-|4--- indicates the side key mechanism."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "E4",
+        "concert": "D3",
+        "midi": 64,
+        "frequency": 146.83,
+        "enharmonic": "Fb4",
+        "display": "E",
+        "display_with_octave": "E4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb",
+          "L1"
+        ],
+        "description": "Thumb + left index only",
+        "valve_notation": null,
+        "text_notation": "T 1--|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F4",
+        "concert": "D#3",
+        "midi": 65,
+        "frequency": 155.56,
+        "enharmonic": "E#4",
+        "display": "F",
+        "display_with_octave": "F4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "thumb"
+        ],
+        "description": "Thumb hole only — all fingers off",
+        "valve_notation": null,
+        "text_notation": "T ---|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Unclear tone with only thumb down"
+        ],
+        "practice_tips": [
+          "One of the 'throat tones' — can sound thin. Focus on air support."
+        ],
+        "intonation_tendency": "flat"
+      }
+    },
+    {
+      "note": {
+        "written": "F#4",
+        "concert": "E3",
+        "midi": 66,
+        "frequency": 164.81,
+        "enharmonic": "Gb4",
+        "display": "F♯/G♭",
+        "display_with_octave": "F♯4/G♭4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "L1"
+        ],
+        "description": "Left index only — thumb OFF",
+        "valve_notation": null,
+        "text_notation": "1--|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Forgetting to lift thumb"
+        ],
+        "practice_tips": [
+          "Throat tone. Thumb comes OFF."
+        ],
+        "intonation_tendency": "flat"
+      }
+    },
+    {
+      "note": {
+        "written": "G4",
+        "concert": "F3",
+        "midi": 67,
+        "frequency": 174.61,
+        "enharmonic": null,
+        "display": "G",
+        "display_with_octave": "G4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [],
+        "description": "All keys open — open G",
+        "valve_notation": null,
+        "text_notation": "---|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Open G — no keys pressed at all. Throat tone."
+        ],
+        "intonation_tendency": "sharp"
+      }
+    },
+    {
+      "note": {
+        "written": "G#4",
+        "concert": "F#3",
+        "midi": 68,
+        "frequency": 185.0,
+        "enharmonic": "Ab4",
+        "display": "G♯/A♭",
+        "display_with_octave": "G♯4/A♭4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "G#"
+        ],
+        "description": "G# side key only",
+        "valve_notation": null,
+        "text_notation": "G# ---|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "A4",
+        "concert": "G3",
+        "midi": 69,
+        "frequency": 196.0,
+        "enharmonic": null,
+        "display": "A",
+        "display_with_octave": "A4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "A-key"
+        ],
+        "description": "A key (left index side lever)",
+        "valve_notation": null,
+        "text_notation": "A ---|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "A key is the side lever operated by the left index finger."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "Bb4",
+        "concert": "G#3",
+        "midi": 70,
+        "frequency": 207.65,
+        "enharmonic": "A#4",
+        "display": "B♭/A♯",
+        "display_with_octave": "B♭4/A♯4"
+      },
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
+      "primary": {
+        "elements": [
+          "register",
+          "A-key"
+        ],
+        "description": "Register key + A key",
+        "valve_notation": null,
+        "text_notation": "R A ---|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "Confusing the register key + A combination"
+        ],
+        "practice_tips": [
+          "Top of the chalumeau register. 'The break' to clarion begins here."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "B4",
+        "concert": "A3",
+        "midi": 71,
+        "frequency": 220.0,
+        "enharmonic": "Cb5",
+        "display": "B",
+        "display_with_octave": "B4"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "R4-E"
+        ],
+        "description": "Register key + chalumeau E3 fingering (overblows 12th)",
+        "valve_notation": null,
+        "text_notation": "R T 123|123 E"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [
+          "'The break' — moving from Bb4 to B4 requires completely resetting fingers"
+        ],
+        "practice_tips": [
+          "Same fingering as E3 + register key. The clarinet overblows a 12th, so E→B."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C5",
+        "concert": "A#3",
+        "midi": 72,
+        "frequency": 233.08,
+        "enharmonic": "B#4",
+        "display": "C",
+        "display_with_octave": "C5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "R4-C"
+        ],
+        "description": "Register key + chalumeau F3 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 123|123 F"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as F3 + register key. F→C (a 12th up)."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C#5",
+        "concert": "B3",
+        "midi": 73,
+        "frequency": 246.94,
+        "enharmonic": "Db5",
+        "display": "C♯/D♭",
+        "display_with_octave": "C♯5/D♭5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R4-Cs",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "description": "Register key + chalumeau F#3 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 123 F#|123"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as F#3 + register key."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D5",
+        "concert": "C4",
+        "midi": 74,
+        "frequency": 261.63,
+        "enharmonic": null,
+        "display": "D",
+        "display_with_octave": "D5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "description": "Register key + all holes closed",
+        "valve_notation": null,
+        "text_notation": "R T 123|123"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as G3 + register key. G→D (a 12th up)."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D#5",
+        "concert": "C#4",
+        "midi": 75,
+        "frequency": 277.18,
+        "enharmonic": "Eb5",
+        "display": "D♯/E♭",
+        "display_with_octave": "D♯5/E♭5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2",
+          "R3",
+          "G#"
+        ],
+        "description": "Register key + G#3 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 123|123 G#"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as G#3 + register key."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "E5",
+        "concert": "D4",
+        "midi": 76,
+        "frequency": 293.66,
+        "enharmonic": "Fb5",
+        "display": "E",
+        "display_with_octave": "E5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1",
+          "R2"
+        ],
+        "description": "Register key + A3 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 123|12-"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fingering as A3 + register key. A→E (a 12th)."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F5",
+        "concert": "D#4",
+        "midi": 77,
+        "frequency": 311.13,
+        "enharmonic": "E#5",
+        "display": "F",
+        "display_with_octave": "F5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R1"
+        ],
+        "description": "Register key + Bb3 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 123|1--"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Same as Bb3 + register key. Bb→F (a 12th)."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F#5",
+        "concert": "E4",
+        "midi": 78,
+        "frequency": 329.63,
+        "enharmonic": "Gb5",
+        "display": "F♯/G♭",
+        "display_with_octave": "F♯5/G♭5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "R2"
+        ],
+        "description": "Register key + B3 fingering (fork)",
+        "valve_notation": null,
+        "text_notation": "R T 123|-2-"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same fork fingering as B3 + register key. B→F# (a 12th)."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G5",
+        "concert": "F4",
+        "midi": 79,
+        "frequency": 349.23,
+        "enharmonic": null,
+        "display": "G",
+        "display_with_octave": "G5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "description": "Register key + C4 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 123|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Same as C4 + register key. C→G (a 12th)."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G#5",
+        "concert": "F#4",
+        "midi": 80,
+        "frequency": 369.99,
+        "enharmonic": "Ab5",
+        "display": "G♯/A♭",
+        "display_with_octave": "G♯5/A♭5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "L3",
+          "L4-Cs"
+        ],
+        "description": "Register key + C#4 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 123 C#|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same as C#4 + register key."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "A5",
+        "concert": "G4",
+        "midi": 81,
+        "frequency": 392.0,
+        "enharmonic": null,
+        "display": "A",
+        "display_with_octave": "A5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2"
+        ],
+        "description": "Register key + D4 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 12-|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": true,
+        "common_errors": [],
+        "practice_tips": [
+          "Same as D4 + register key. D→A (a 12th)."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "Bb5",
+        "concert": "G#4",
+        "midi": 82,
+        "frequency": 415.3,
+        "enharmonic": "A#5",
+        "display": "B♭/A♯",
+        "display_with_octave": "B♭5/A♯5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1",
+          "L2",
+          "R1"
+        ],
+        "description": "Register key + Eb4 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 12-|1--"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same as Eb4 + register key."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "B5",
+        "concert": "A4",
+        "midi": 83,
+        "frequency": 440.0,
+        "enharmonic": "Cb6",
+        "display": "B",
+        "display_with_octave": "B5"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb",
+          "L1"
+        ],
+        "description": "Register key + E4 fingering",
+        "valve_notation": null,
+        "text_notation": "R T 1--|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same as E4 + register key. E→B (a 12th)."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C6",
+        "concert": "A#4",
+        "midi": 84,
+        "frequency": 466.16,
+        "enharmonic": "B#5",
+        "display": "C",
+        "display_with_octave": "C6"
+      },
+      "register": "Clarion",
+      "octave": "Clarion",
+      "primary": {
+        "elements": [
+          "register",
+          "thumb"
+        ],
+        "description": "Register key + F4 fingering (thumb only)",
+        "valve_notation": null,
+        "text_notation": "R T ---|---"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Same as F4 + register key. Top of clarion register."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C#6",
+        "concert": "B4",
+        "midi": 85,
+        "frequency": 493.88,
+        "enharmonic": "Db6",
+        "display": "C♯/D♭",
+        "display_with_octave": "C♯6/D♭6"
+      },
+      "register": "Altissimo",
+      "octave": "Altissimo",
+      "primary": {
+        "elements": [
+          "register",
+          "L2",
+          "L3",
+          "R1",
+          "R2"
+        ],
+        "description": "Skip L1, add R1+R2",
+        "valve_notation": null,
+        "text_notation": "R -23|12-"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Altissimo register begins. Fingerings diverge from chalumeau+register pattern."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D6",
+        "concert": "C5",
+        "midi": 86,
+        "frequency": 523.25,
+        "enharmonic": null,
+        "display": "D",
+        "display_with_octave": "D6"
+      },
+      "register": "Altissimo",
+      "octave": "Altissimo",
+      "primary": {
+        "elements": [
+          "register",
+          "L2",
+          "L3",
+          "R1",
+          "G#"
+        ],
+        "description": "Skip L1, R1+G# key",
+        "valve_notation": null,
+        "text_notation": "R -23|1-- G#"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "D#6",
+        "concert": "C#5",
+        "midi": 87,
+        "frequency": 554.37,
+        "enharmonic": "Eb6",
+        "display": "D♯/E♭",
+        "display_with_octave": "D♯6/E♭6"
+      },
+      "register": "Altissimo",
+      "octave": "Altissimo",
+      "primary": {
+        "elements": [
+          "register",
+          "L2",
+          "L3",
+          "R1",
+          "R3",
+          "G#"
+        ],
+        "description": "R1+R3+G# (skip R2)",
+        "valve_notation": null,
+        "text_notation": "R -23|1-3 G#"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "E6",
+        "concert": "D5",
+        "midi": 88,
+        "frequency": 587.33,
+        "enharmonic": "Fb6",
+        "display": "E",
+        "display_with_octave": "E6"
+      },
+      "register": "Altissimo",
+      "octave": "Altissimo",
+      "primary": {
+        "elements": [
+          "register",
+          "L2",
+          "L3",
+          "G#"
+        ],
+        "description": "L2+L3+G#, no right hand",
+        "valve_notation": null,
+        "text_notation": "R -23|--- G#"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F6",
+        "concert": "D#5",
+        "midi": 89,
+        "frequency": 622.25,
+        "enharmonic": "E#6",
+        "display": "F",
+        "display_with_octave": "F6"
+      },
+      "register": "Altissimo",
+      "octave": "Altissimo",
+      "primary": {
+        "elements": [
+          "register",
+          "L2",
+          "L3",
+          "L4-Cs",
+          "G#"
+        ],
+        "description": "L2+L3+C# key+G#",
+        "valve_notation": null,
+        "text_notation": "R -23 C#|--- G#"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "F#6",
+        "concert": "E5",
+        "midi": 90,
+        "frequency": 659.26,
+        "enharmonic": "Gb6",
+        "display": "F♯/G♭",
+        "display_with_octave": "F♯6/G♭6"
+      },
+      "register": "Altissimo",
+      "octave": "Altissimo",
+      "primary": {
+        "elements": [
+          "register",
+          "L2",
+          "G#"
+        ],
+        "description": "L2+G# only",
+        "valve_notation": null,
+        "text_notation": "R -2-|--- G#"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "G6",
+        "concert": "F5",
+        "midi": 91,
+        "frequency": 698.46,
+        "enharmonic": null,
+        "display": "G",
+        "display_with_octave": "G6"
+      },
+      "register": "Altissimo",
+      "octave": "Altissimo",
+      "primary": {
+        "elements": [
+          "register",
+          "L2",
+          "R1",
+          "R2",
+          "G#"
+        ],
+        "description": "L2+R1+R2+G#",
+        "valve_notation": null,
+        "text_notation": "R -2-|12- G#"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Highest standard note. Requires excellent air support and embouchure control."
+        ],
+        "intonation_tendency": null
+      }
+    }
+  ]
+}

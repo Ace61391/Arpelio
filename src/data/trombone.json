@@ -1,0 +1,88 @@
+{
+  "instrument": {
+    "id": "trombone",
+    "name": "Trombone",
+    "full_name": "Tenor Trombone",
+    "family": "brass",
+    "subfamily": "slide-brass",
+    "mechanism": "slide",
+    "transposition": "C",
+    "concert_pitch_offset": 0,
+    "clef": "bass",
+    "clef_alternates": ["tenor"],
+    "range": {
+      "low": { "written": "E2", "concert": "E2" },
+      "high": { "written": "Bb4", "concert": "Bb4" },
+      "beginner_low": { "written": "F2", "concert": "F2" },
+      "beginner_high": { "written": "Bb3", "concert": "Bb3" }
+    },
+    "registers": [
+      { "name": "Low", "range": ["E2", "Bb2"], "description": "Below staff. Partials 2 of each position." },
+      { "name": "Mid", "range": ["B2", "F3"], "description": "Partial 3 range. Staff and below." },
+      { "name": "Upper", "range": ["F#3", "Bb4"], "description": "Partials 4-8. On and above staff. Primary range." }
+    ],
+    "octaves": [
+      { "name": "Low register", "range": ["E2", "Bb2"], "label": "E2 to B♭2" },
+      { "name": "Mid register", "range": ["B2", "F3"], "label": "B2 to F3" },
+      { "name": "Upper register", "range": ["F#3", "Bb4"], "label": "F♯3 to B♭4" }
+    ],
+    "chart_types": {
+      "basic": { "status": "complete", "notes": "Full range, 7 slide positions, no F trigger. Concert pitch bass clef." },
+      "alternates": { "status": "not_started", "notes": "F trigger positions planned" },
+      "trills": { "status": "not_applicable", "notes": null },
+      "tremolos": { "status": "not_applicable", "notes": null }
+    },
+    "key_system": null,
+    "valve_count": null,
+    "notes": "Trombone reads concert pitch in bass clef (non-transposing). Slide positions 1-7 are analogous to brass valve combinations. Tenor clef used in advanced literature. F-trigger (attachment) extends range and provides alternate positions — Phase 2."
+  },
+  "diagram": {
+    "type": "slide",
+    "orientation": "horizontal",
+    "notation_format": "Position number (1-7)",
+    "elements": [
+      { "id": "pos-1", "type": "slide_position", "label": "1", "description": "Slide all the way in" },
+      { "id": "pos-2", "type": "slide_position", "label": "2", "description": "~3.5 inches out" },
+      { "id": "pos-3", "type": "slide_position", "label": "3", "description": "~7 inches out" },
+      { "id": "pos-4", "type": "slide_position", "label": "4", "description": "~10.5 inches out" },
+      { "id": "pos-5", "type": "slide_position", "label": "5", "description": "~16 inches out" },
+      { "id": "pos-6", "type": "slide_position", "label": "6", "description": "~21.5 inches out" },
+      { "id": "pos-7", "type": "slide_position", "label": "7", "description": "Slide fully extended" }
+    ]
+  },
+  "fingerings": [
+    {"note":{"written":"E2","concert":"E2","midi":40,"frequency":82.41,"enharmonic":"Fb2","display":"E","display_with_octave":"E2"},"register":"Low","octave":"Low register","primary":{"elements":["pos-7"],"description":"7th position","valve_notation":null,"text_notation":"7th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":["Slide may not extend far enough"],"practice_tips":["Lowest standard note. Full slide extension."],"intonation_tendency":null}},
+    {"note":{"written":"F2","concert":"F2","midi":41,"frequency":87.31,"enharmonic":"E#2","display":"F","display_with_octave":"F2"},"register":"Low","octave":"Low register","primary":{"elements":["pos-6"],"description":"6th position","valve_notation":null,"text_notation":"6th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"F#2","concert":"F#2","midi":42,"frequency":92.5,"enharmonic":"Gb2","display":"F♯/G♭","display_with_octave":"F♯2/G♭2"},"register":"Low","octave":"Low register","primary":{"elements":["pos-5"],"description":"5th position","valve_notation":null,"text_notation":"5th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G2","concert":"G2","midi":43,"frequency":98.0,"enharmonic":null,"display":"G","display_with_octave":"G2"},"register":"Low","octave":"Low register","primary":{"elements":["pos-4"],"description":"4th position","valve_notation":null,"text_notation":"4th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G#2","concert":"G#2","midi":44,"frequency":103.83,"enharmonic":"Ab2","display":"G♯/A♭","display_with_octave":"G♯2/A♭2"},"register":"Low","octave":"Low register","primary":{"elements":["pos-3"],"description":"3rd position","valve_notation":null,"text_notation":"3rd"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"A2","concert":"A2","midi":45,"frequency":110.0,"enharmonic":null,"display":"A","display_with_octave":"A2"},"register":"Low","octave":"Low register","primary":{"elements":["pos-2"],"description":"2nd position","valve_notation":null,"text_notation":"2nd"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"Bb2","concert":"Bb2","midi":46,"frequency":116.54,"enharmonic":"A#2","display":"B♭","display_with_octave":"B♭2"},"register":"Low","octave":"Low register","primary":{"elements":["pos-1"],"description":"1st position","valve_notation":null,"text_notation":"1st"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":["Bb2 is the fundamental of 1st position (partial 2)."],"intonation_tendency":null}},
+
+    {"note":{"written":"B2","concert":"B2","midi":47,"frequency":123.47,"enharmonic":"Cb3","display":"B","display_with_octave":"B2"},"register":"Mid","octave":"Mid register","primary":{"elements":["pos-7"],"description":"7th position","valve_notation":null,"text_notation":"7th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"C3","concert":"C3","midi":48,"frequency":130.81,"enharmonic":"B#2","display":"C","display_with_octave":"C3"},"register":"Mid","octave":"Mid register","primary":{"elements":["pos-6"],"description":"6th position","valve_notation":null,"text_notation":"6th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"C#3","concert":"C#3","midi":49,"frequency":138.59,"enharmonic":"Db3","display":"C♯/D♭","display_with_octave":"C♯3/D♭3"},"register":"Mid","octave":"Mid register","primary":{"elements":["pos-5"],"description":"5th position","valve_notation":null,"text_notation":"5th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"D3","concert":"D3","midi":50,"frequency":146.83,"enharmonic":null,"display":"D","display_with_octave":"D3"},"register":"Mid","octave":"Mid register","primary":{"elements":["pos-4"],"description":"4th position","valve_notation":null,"text_notation":"4th"},"alternates":[{"elements":["pos-1"],"description":"1st position (partial 3)","valve_notation":null,"text_notation":"1st","use_case":"facility","trill_from":null}],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":["Can also be played in 1st position (partial 3) — often preferred."],"intonation_tendency":null}},
+    {"note":{"written":"D#3","concert":"D#3","midi":51,"frequency":155.56,"enharmonic":"Eb3","display":"D♯/E♭","display_with_octave":"D♯3/E♭3"},"register":"Mid","octave":"Mid register","primary":{"elements":["pos-3"],"description":"3rd position","valve_notation":null,"text_notation":"3rd"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"E3","concert":"E3","midi":52,"frequency":164.81,"enharmonic":"Fb3","display":"E","display_with_octave":"E3"},"register":"Mid","octave":"Mid register","primary":{"elements":["pos-2"],"description":"2nd position","valve_notation":null,"text_notation":"2nd"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"F3","concert":"F3","midi":53,"frequency":174.61,"enharmonic":"E#3","display":"F","display_with_octave":"F3"},"register":"Mid","octave":"Mid register","primary":{"elements":["pos-1"],"description":"1st position","valve_notation":null,"text_notation":"1st"},"alternates":[{"elements":["pos-6"],"description":"6th position (partial 3)","valve_notation":null,"text_notation":"6th","use_case":"facility","trill_from":null}],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["1st position is preferred. 6th position is partial 3 alternate."],"intonation_tendency":null}},
+
+    {"note":{"written":"F#3","concert":"F#3","midi":54,"frequency":185.0,"enharmonic":"Gb3","display":"F♯/G♭","display_with_octave":"F♯3/G♭3"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-5"],"description":"5th position","valve_notation":null,"text_notation":"5th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G3","concert":"G3","midi":55,"frequency":196.0,"enharmonic":null,"display":"G","display_with_octave":"G3"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-4"],"description":"4th position","valve_notation":null,"text_notation":"4th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G#3","concert":"G#3","midi":56,"frequency":207.65,"enharmonic":"Ab3","display":"G♯/A♭","display_with_octave":"G♯3/A♭3"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-3"],"description":"3rd position","valve_notation":null,"text_notation":"3rd"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"A3","concert":"A3","midi":57,"frequency":220.0,"enharmonic":null,"display":"A","display_with_octave":"A3"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-2"],"description":"2nd position","valve_notation":null,"text_notation":"2nd"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"Bb3","concert":"Bb3","midi":58,"frequency":233.08,"enharmonic":"A#3","display":"B♭","display_with_octave":"B♭3"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-1"],"description":"1st position","valve_notation":null,"text_notation":"1st"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["First note many beginners learn. Concert Bb."],"intonation_tendency":null}},
+    {"note":{"written":"B3","concert":"B3","midi":59,"frequency":246.94,"enharmonic":"Cb4","display":"B","display_with_octave":"B3"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-7"],"description":"7th position","valve_notation":null,"text_notation":"7th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"C4","concert":"C4","midi":60,"frequency":261.63,"enharmonic":"B#3","display":"C","display_with_octave":"C4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-6"],"description":"6th position","valve_notation":null,"text_notation":"6th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":["Middle C."],"intonation_tendency":null}},
+    {"note":{"written":"C#4","concert":"C#4","midi":61,"frequency":277.18,"enharmonic":"Db4","display":"C♯/D♭","display_with_octave":"C♯4/D♭4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-5"],"description":"5th position","valve_notation":null,"text_notation":"5th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"D4","concert":"D4","midi":62,"frequency":293.66,"enharmonic":null,"display":"D","display_with_octave":"D4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-4"],"description":"4th position","valve_notation":null,"text_notation":"4th"},"alternates":[{"elements":["pos-1"],"description":"1st position (partial 5)","valve_notation":null,"text_notation":"1st","use_case":"facility","trill_from":null}],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["1st position (partial 5) often preferred over 4th."],"intonation_tendency":null}},
+    {"note":{"written":"D#4","concert":"D#4","midi":63,"frequency":311.13,"enharmonic":"Eb4","display":"D♯/E♭","display_with_octave":"D♯4/E♭4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-3"],"description":"3rd position","valve_notation":null,"text_notation":"3rd"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"E4","concert":"E4","midi":64,"frequency":329.63,"enharmonic":"Fb4","display":"E","display_with_octave":"E4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-2"],"description":"2nd position","valve_notation":null,"text_notation":"2nd"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"F4","concert":"F4","midi":65,"frequency":349.23,"enharmonic":"E#4","display":"F","display_with_octave":"F4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-1"],"description":"1st position","valve_notation":null,"text_notation":"1st"},"alternates":[],"pedagogy":{"beginner_note":true,"common_errors":[],"practice_tips":["Partial 4 of 1st position."],"intonation_tendency":null}},
+    {"note":{"written":"F#4","concert":"F#4","midi":66,"frequency":369.99,"enharmonic":"Gb4","display":"F♯/G♭","display_with_octave":"F♯4/G♭4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-5"],"description":"5th position","valve_notation":null,"text_notation":"5th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G4","concert":"G4","midi":67,"frequency":392.0,"enharmonic":null,"display":"G","display_with_octave":"G4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-4"],"description":"4th position","valve_notation":null,"text_notation":"4th"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"G#4","concert":"G#4","midi":68,"frequency":415.3,"enharmonic":"Ab4","display":"G♯/A♭","display_with_octave":"G♯4/A♭4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-3"],"description":"3rd position","valve_notation":null,"text_notation":"3rd"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":[],"intonation_tendency":null}},
+    {"note":{"written":"A4","concert":"A4","midi":69,"frequency":440.0,"enharmonic":null,"display":"A","display_with_octave":"A4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-2"],"description":"2nd position","valve_notation":null,"text_notation":"2nd"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":["A440 — tuning note."],"intonation_tendency":null}},
+    {"note":{"written":"Bb4","concert":"Bb4","midi":70,"frequency":466.16,"enharmonic":"A#4","display":"B♭","display_with_octave":"B♭4"},"register":"Upper","octave":"Upper register","primary":{"elements":["pos-1"],"description":"1st position","valve_notation":null,"text_notation":"1st"},"alternates":[],"pedagogy":{"beginner_note":false,"common_errors":[],"practice_tips":["High Bb — partial 6 of 1st position. Typical upper limit for intermediate players."],"intonation_tendency":null}}
+  ]
+}
