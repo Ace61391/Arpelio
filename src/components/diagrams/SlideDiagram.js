@@ -12,7 +12,7 @@ export default function SlideDiagram({ elements = [], size = 'md', blank = false
       if (m) pos = parseInt(m[1]);
     });
   }
-  const w = size === 'lg' ? 460 : size === 'sm' ? 140 : 260;
+  const w = size === 'lg' ? 460 : size === 'sm' ? 140 : '100%';
   const fillW = blank ? 0 : (POS_X[pos] || 50);
 
   return (

@@ -16,7 +16,7 @@ export default function RecorderDiagram({ elements = [], size = 'md', blank = fa
       if (HALF_MAP[e] !== undefined) holes[HALF_MAP[e]] = 'half';
     });
   }
-  const w = size === 'lg' ? 180 : size === 'sm' ? 55 : 100;
+  const w = size === 'lg' ? 180 : size === 'sm' ? 55 : '100%';
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 180 480" style={{display:'block'}}>

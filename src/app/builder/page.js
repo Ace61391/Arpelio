@@ -205,21 +205,21 @@ function BuilderInner() {
             {/* Notes grid — 3 per row for readability */}
             <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3">
               {selectedFingerings.map((f, idx) => (
-                <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-5 flex flex-col items-center gap-3 print:border-gray-400 print:rounded-lg print:p-4">
+                <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-5 flex flex-col items-center gap-3 print:border-gray-400 print:rounded-lg print:p-4 overflow-hidden">
                   <span className="text-xs text-[#b0b5c0] font-mono">{idx + 1}.</span>
 
                   {mode === 'reference' && (
                     <>
                       <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
                       <StaffNote note={f.note.written} clef={clef} width={64} />
-                      <FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" />
+                      <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
                       <div className="font-mono text-xs text-[#b0b5c0]">{f.primary.text_notation}</div>
                     </>
                   )}
 
                   {mode === 'identify' && (
                     <>
-                      <FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" />
+                      <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
                       <div className="font-mono text-xs text-[#b0b5c0]">{f.primary.text_notation}</div>
                       {showAnswerKey ? (
                         <div className="text-base font-bold text-accent">{f.note.display}</div>
@@ -234,9 +234,9 @@ function BuilderInner() {
                       <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
                       <StaffNote note={f.note.written} clef={clef} width={64} />
                       {showAnswerKey ? (
-                        <FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" />
+                        <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
                       ) : (
-                        <FingeringDiagram instrumentId={instrumentId} elements={[]} size="md" blank={true} />
+                        <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={[]} size="md" blank={true} /></div>
                       )}
                     </>
                   )}
@@ -259,7 +259,34 @@ function BuilderInner() {
       <style jsx global>{`
         @media print {
           nav, footer, .print\\:hidden { display: none !important; }
-          body { background: white !important; }
+          body { background: white !important; margin: 0 !important; padding: 0 !important; }
+          
+          /* Force page setup */
+          @page { margin: 0.5in; size: letter portrait; }
+          
+          /* Remove all screen-only styling */
+          .border, .rounded-2xl, .shadow-lg { border: none !important; box-shadow: none !important; border-radius: 0 !important; }
+          
+          /* Grid fits page width */
+          .print\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
+          
+          /* Cards get thin borders for print */
+          .print\\:border-gray-400 { border: 1px solid #999 !important; }
+          .print\\:rounded-lg { border-radius: 8px !important; }
+          .print\\:p-4 { padding: 12px !important; }
+          
+          /* Prevent cards from breaking across pages */
+          .grid > div { break-inside: avoid; page-break-inside: avoid; }
+          
+          /* SVGs scale to fit their containers */
+          svg { max-width: 100% !important; height: auto !important; }
+          
+          /* Keep the preview area clean */
+          .print\\:border-none { border: none !important; }
+          .print\\:rounded-none { border-radius: 0 !important; }
+          .print\\:p-0 { padding: 0 !important; }
+          .print\\:border-black { border-color: #000 !important; }
+          .print\\:border-gray-300 { border-color: #ccc !important; }
         }
       `}</style>
     </>

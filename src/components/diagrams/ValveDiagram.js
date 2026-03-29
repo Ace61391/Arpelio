@@ -9,7 +9,7 @@ export default function ValveDiagram({ elements = [], size = 'md', blank = false
     if (elements.includes('valve-2')) valves[1] = true;
     if (elements.includes('valve-3')) valves[2] = true;
   }
-  const w = size === 'lg' ? 340 : size === 'sm' ? 120 : 200;
+  const w = size === 'lg' ? 340 : size === 'sm' ? 120 : '100%';
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 340 120" style={{display:'block'}}>

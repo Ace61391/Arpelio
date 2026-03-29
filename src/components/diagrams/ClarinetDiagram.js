@@ -15,7 +15,7 @@ export default function ClarinetDiagram({ elements = [], size = 'md', blank = fa
   const pressed = new Set();
   if (!blank) elements.forEach(e => { if (DATA_TO_ID[e]) pressed.add(DATA_TO_ID[e]); });
   const c = id => pressed.has(id) ? 'pressed' : 'open';
-  const w = size === 'lg' ? 338 : size === 'sm' ? 65 : 170;
+  const w = size === 'lg' ? 338 : size === 'sm' ? 65 : '100%';
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 338 858" style={{display:'block'}}>

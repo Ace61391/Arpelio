@@ -16,7 +16,7 @@ export default function FluteDiagram({ elements = [], size = 'md', blank = false
   const pressed = new Set();
   if (!blank) elements.forEach(e => { if (DATA_TO_ID[e]) pressed.add(DATA_TO_ID[e]); });
   const c = id => pressed.has(id) ? 'pressed' : 'open';
-  const w = size === 'lg' ? 820 : size === 'sm' ? 160 : 410;
+  const w = size === 'lg' ? 820 : size === 'sm' ? 160 : '100%';
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 820 355" style={{display:'block'}}>
