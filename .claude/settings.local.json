@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/mlhfa/OneDrive/Desktop/Arpelio/$HOME/OneDrive/Desktop/**)",
+      "Bash(tar -xzf \"$HOME/Downloads/arpelio-sprint2-final.tar.gz\" --strip-components=1)",
+      "Bash(tar -xzf \"$HOME/Downloads/arpelio-sprint2-final.tar.gz\")"
+    ]
+  }
+}
