@@ -18,7 +18,7 @@ export default function SlideDiagram({ elements = [], size = 'md', blank = false
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 460 100" style={{display:'block'}}>
       <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}`}</style>
-      <rect fill="#F3F3F3" x="0" y="0" width="460" height="100"/>
+      <rect fill="none" x="0" y="0" width="460" height="100"/>
       <rect className="open" x="20" y="20" width="420" height="40" rx="20"/>
       {!blank && <rect className="pressed" x="20" y="20" width={fillW} height="40" rx="20"/>}
       {[1,2,3,4,5,6,7].map(p => (

@@ -20,7 +20,7 @@ export default function ClarinetDiagram({ elements = [], size = 'md', blank = fa
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 338 858" style={{display:'block'}}>
       <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:2.5;stroke-linecap:round}`}</style>
-      <rect fill="#F3F3F3" x="0" y="0" width="338" height="858"/>
+      <rect fill="none" x="0" y="0" width="338" height="858"/>
 
       <ellipse className={c('OCTAVE')} cx="138.9563" cy="88.777634" rx="16.542416" ry="34.739075"/>
       <path className={c('THUMB')} d="m 70.213369,100.90874 c 7.007988,37.82959 -6.007326,69.66195 -13.417738,69.66195 -7.410412,0 -20.886381,-31.92061 -13.417738,-69.66195 7.613477,-38.473238 14.995574,-73.237706 13.417738,-69.66196 -0.745607,1.689721 6.488012,32.254834 13.417738,69.66196 z"/>

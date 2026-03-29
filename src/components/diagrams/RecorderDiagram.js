@@ -23,10 +23,10 @@ export default function RecorderDiagram({ elements = [], size = 'md', blank = fa
       <defs>
         <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.half{fill:url(#hg);stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:2.5;stroke-linecap:round}`}</style>
         <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="50%" stopColor="#000"/><stop offset="50%" stopColor="#F3F3F3"/>
+          <stop offset="50%" stopColor="#000"/><stop offset="50%" stopColor="#fff"/>
         </linearGradient>
       </defs>
-      <rect fill="#F3F3F3" x="0" y="0" width="180" height="480"/>
+      <rect fill="none" x="0" y="0" width="180" height="480"/>
       <circle className={thumb} cx="60" cy="50" r="20"/>
       <line className="divider" x1="55" y1="85" x2="125" y2="85"/>
       <circle className={holes[0]} cx="90" cy="120" r="22"/>

@@ -21,7 +21,7 @@ export default function SaxDiagram({ elements = [], size = 'md', blank = false }
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 394 759" style={{display:'block'}}>
       <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:2.5;stroke-linecap:round}`}</style>
-      <rect fill="#F3F3F3" x="0" y="0" width="394" height="759"/>
+      <rect fill="none" x="0" y="0" width="394" height="759"/>
 
       <ellipse className={c('OCTAVE')} cx="182" cy="50" rx="30" ry="15" transform="rotate(-20,182,50)"/>
       <ellipse className={c('PALM_D')} cx="305" cy="80" rx="16" ry="40" transform="rotate(-15,305,80)"/>

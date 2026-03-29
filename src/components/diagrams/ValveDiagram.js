@@ -14,7 +14,7 @@ export default function ValveDiagram({ elements = [], size = 'md', blank = false
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 340 120" style={{display:'block'}}>
       <style>{`.open{fill:none;stroke:#000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}`}</style>
-      <rect fill="#F3F3F3" x="0" y="0" width="340" height="120"/>
+      <rect fill="none" x="0" y="0" width="340" height="120"/>
       {[0,1,2].map(i => (
         <g key={i}>
           <circle className={valves[i] ? 'pressed' : 'open'} cx={70 + i * 100} cy="60" r="35"/>

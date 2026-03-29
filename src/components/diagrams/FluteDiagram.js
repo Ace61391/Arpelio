@@ -21,7 +21,7 @@ export default function FluteDiagram({ elements = [], size = 'md', blank = false
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 820 355" style={{display:'block'}}>
       <style>{`.open{fill:none;stroke:#000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:3;stroke-linecap:round}`}</style>
-      <rect fill="#F3F3F3" x="0" y="0" width="820" height="355"/>
+      <rect fill="none" x="0" y="0" width="820" height="355"/>
       <line className="divider" x1="329" y1="124" x2="329" y2="186"/>
 
       <circle className={c('LH1')} cx="93" cy="156" r="31"/>

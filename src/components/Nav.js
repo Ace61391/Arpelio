@@ -8,7 +8,7 @@ export default function Nav() {
   return (
     <nav className="px-6 md:px-8 py-4 flex items-center justify-between max-w-[1160px] mx-auto sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#e5e8ed]">
       <Link href="/" className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-white font-extrabold text-base">A</div>
+        <img src="/logo.svg" alt="Arpelio" className="w-8 h-8 rounded-lg" />
         <span className="text-xl font-extrabold text-[#1a1d23] tracking-tight">Arpelio</span>
       </Link>
       <div className="flex items-center gap-5 md:gap-7">
