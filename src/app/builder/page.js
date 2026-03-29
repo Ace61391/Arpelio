@@ -202,41 +202,41 @@ function BuilderInner() {
               <p className="text-xs text-[#b0b5c0] mt-1">Name: __________________ Period: ____ Date: ________</p>
             </div>
 
-            {/* Notes grid */}
-            <div className={`grid gap-4 ${mode === 'fill' ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'}`}>
+            {/* Notes grid — 3 per row for readability */}
+            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3">
               {selectedFingerings.map((f, idx) => (
-                <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-4 flex flex-col items-center gap-2 print:border-gray-400 print:rounded-lg">
+                <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-5 flex flex-col items-center gap-3 print:border-gray-400 print:rounded-lg print:p-4">
                   <span className="text-xs text-[#b0b5c0] font-mono">{idx + 1}.</span>
 
                   {mode === 'reference' && (
                     <>
-                      <div className="text-lg font-bold text-[#1a1d23]">{f.note.display}</div>
-                      <StaffNote note={f.note.written} clef={clef} width={48} />
-                      <FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="sm" />
-                      <div className="font-mono text-[9px] text-[#b0b5c0]">{f.primary.text_notation}</div>
+                      <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
+                      <StaffNote note={f.note.written} clef={clef} width={64} />
+                      <FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" />
+                      <div className="font-mono text-xs text-[#b0b5c0]">{f.primary.text_notation}</div>
                     </>
                   )}
 
                   {mode === 'identify' && (
                     <>
-                      <FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="sm" />
-                      <div className="font-mono text-[9px] text-[#b0b5c0]">{f.primary.text_notation}</div>
+                      <FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" />
+                      <div className="font-mono text-xs text-[#b0b5c0]">{f.primary.text_notation}</div>
                       {showAnswerKey ? (
-                        <div className="text-sm font-bold text-accent">{f.note.display}</div>
+                        <div className="text-base font-bold text-accent">{f.note.display}</div>
                       ) : (
-                        <div className="border-b-2 border-[#b0b5c0] w-16 h-6 mt-1" />
+                        <div className="border-b-2 border-[#b0b5c0] w-20 h-6 mt-1" />
                       )}
                     </>
                   )}
 
                   {mode === 'fill' && (
                     <>
-                      <div className="text-lg font-bold text-[#1a1d23]">{f.note.display}</div>
-                      <StaffNote note={f.note.written} clef={clef} width={48} />
+                      <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
+                      <StaffNote note={f.note.written} clef={clef} width={64} />
                       {showAnswerKey ? (
-                        <FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="sm" />
+                        <FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" />
                       ) : (
-                        <FingeringDiagram instrumentId={instrumentId} elements={[]} size="sm" blank={true} />
+                        <FingeringDiagram instrumentId={instrumentId} elements={[]} size="md" blank={true} />
                       )}
                     </>
                   )}

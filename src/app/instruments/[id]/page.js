@@ -106,7 +106,7 @@ export default function InstrumentPage() {
           <span className="text-xs text-[#b0b5c0] self-center ml-2">{filteredNotes.length} notes</span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {filteredNotes.map(f => {
             const isSelected = selectedNote === f.note.written;
             return (
@@ -117,7 +117,7 @@ export default function InstrumentPage() {
                 }`}>
                 <div className="text-lg font-bold text-[#1a1d23]">{f.note.display}</div>
                 <StaffNote note={f.note.written} clef={clef} width={52} />
-                <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="sm" />
+                <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="md" />
                 <div className="font-mono text-[10px] text-[#7a8294] text-center">{f.primary.text_notation}</div>
               </div>
             );
