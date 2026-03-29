@@ -9,6 +9,7 @@ function InstrumentCard({ inst }) {
   const fingerings = getFingeringsForInstrument(inst.id);
   const beginner = fingerings.filter(f => f.pedagogy?.beginner_note);
   const samples = (beginner.length >= 2 ? beginner : fingerings).slice(0, 2);
+  const isHorizontal = inst.id === 'flute' || inst.id === 'piccolo' || inst.id === 'trombone';
 
   return (
     <Link href={`/instruments/${inst.id}`}
@@ -23,11 +24,13 @@ function InstrumentCard({ inst }) {
         </div>
       </div>
       {samples.length > 0 && (
-        <div className="flex gap-4 justify-center items-start my-2 flex-1">
+        <div className={`${isHorizontal ? 'flex flex-col gap-3' : 'flex gap-4 justify-center'} items-center my-2 flex-1`}>
           {samples.map((f, i) => (
             <div key={i} className="flex flex-col items-center gap-1">
               <span className="text-xs font-bold text-[#1a1d23]">{f.note.display}</span>
-              <FingeringDiagram instrumentId={inst.id} elements={f.primary.elements} size="sm" />
+              <div className={isHorizontal ? 'overflow-x-auto max-w-full' : ''}>
+                <FingeringDiagram instrumentId={inst.id} elements={f.primary.elements} size="sm" />
+              </div>
               <span className="text-[9px] text-[#b0b5c0] font-mono">{f.primary.text_notation}</span>
             </div>
           ))}

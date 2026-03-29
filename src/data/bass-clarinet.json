@@ -61,7 +61,7 @@
           "E3",
           "Bb4"
         ],
-        "label": "E3 to B♭4"
+        "label": "E3 to B\u266d4"
       },
       {
         "name": "Clarion",
@@ -77,7 +77,7 @@
           "C#6",
           "G6"
         ],
-        "label": "C♯6 to G6"
+        "label": "C\u266f6 to G6"
       }
     ],
     "chart_types": {
@@ -355,8 +355,8 @@
         "midi": 54,
         "frequency": 82.41,
         "enharmonic": "Gb3",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯3/G♭3"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f3/G\u266d3"
       },
       "register": "Chalumeau",
       "octave": "Chalumeau",
@@ -416,7 +416,7 @@
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "Simplest full fingering — all six tone holes plus thumb."
+          "Simplest full fingering \u2014 all six tone holes plus thumb."
         ],
         "intonation_tendency": null
       }
@@ -428,8 +428,8 @@
         "midi": 56,
         "frequency": 92.5,
         "enharmonic": "Ab3",
-        "display": "G♯/A♭",
-        "display_with_octave": "G♯3/A♭3"
+        "display": "G\u266f/A\u266d",
+        "display_with_octave": "G\u266f3/A\u266d3"
       },
       "register": "Chalumeau",
       "octave": "Chalumeau",
@@ -496,8 +496,8 @@
         "midi": 58,
         "frequency": 103.83,
         "enharmonic": "A#3",
-        "display": "B♭/A♯",
-        "display_with_octave": "B♭3/A♯3"
+        "display": "B\u266d/A\u266f",
+        "display_with_octave": "B\u266d3/A\u266f3"
       },
       "register": "Chalumeau",
       "octave": "Chalumeau",
@@ -518,7 +518,7 @@
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "Concert Ab — very common note."
+          "Concert Ab \u2014 very common note."
         ],
         "intonation_tendency": null
       }
@@ -543,7 +543,7 @@
           "L3",
           "R2"
         ],
-        "description": "Fork fingering — skip R1, press R2",
+        "description": "Fork fingering \u2014 skip R1, press R2",
         "valve_notation": null,
         "text_notation": "T 123|-2-"
       },
@@ -554,7 +554,7 @@
           "Accidentally pressing R1 (that gives Bb)"
         ],
         "practice_tips": [
-          "'Forked' fingering — R1 is UP, R2 is DOWN."
+          "'Forked' fingering \u2014 R1 is UP, R2 is DOWN."
         ],
         "intonation_tendency": null
       }
@@ -599,8 +599,8 @@
         "midi": 61,
         "frequency": 123.47,
         "enharmonic": "Db4",
-        "display": "C♯/D♭",
-        "display_with_octave": "C♯4/D♭4"
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f4/D\u266d4"
       },
       "register": "Chalumeau",
       "octave": "Chalumeau",
@@ -663,8 +663,8 @@
         "midi": 63,
         "frequency": 138.59,
         "enharmonic": "Eb4",
-        "display": "D♯/E♭",
-        "display_with_octave": "D♯4/E♭4"
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f4/E\u266d4"
       },
       "register": "Chalumeau",
       "octave": "Chalumeau",
@@ -736,7 +736,7 @@
         "elements": [
           "thumb"
         ],
-        "description": "Thumb hole only — all fingers off",
+        "description": "Thumb hole only \u2014 all fingers off",
         "valve_notation": null,
         "text_notation": "T ---|---"
       },
@@ -747,7 +747,7 @@
           "Unclear tone with only thumb down"
         ],
         "practice_tips": [
-          "One of the 'throat tones' — can sound thin. Focus on air support."
+          "One of the 'throat tones' \u2014 can sound thin. Focus on air support."
         ],
         "intonation_tendency": "flat"
       }
@@ -759,8 +759,8 @@
         "midi": 66,
         "frequency": 164.81,
         "enharmonic": "Gb4",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯4/G♭4"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f4/G\u266d4"
       },
       "register": "Chalumeau",
       "octave": "Chalumeau",
@@ -768,7 +768,7 @@
         "elements": [
           "L1"
         ],
-        "description": "Left index only — thumb OFF",
+        "description": "Left index only \u2014 thumb OFF",
         "valve_notation": null,
         "text_notation": "1--|---"
       },
@@ -798,16 +798,16 @@
       "octave": "Chalumeau",
       "primary": {
         "elements": [],
-        "description": "All keys open — open G",
+        "description": "All keys open \u2014 open G",
         "valve_notation": null,
-        "text_notation": "---|---"
+        "text_notation": "Open"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "Open G — no keys pressed at all. Throat tone."
+          "Open G \u2014 no keys pressed at all. Throat tone."
         ],
         "intonation_tendency": "sharp"
       }
@@ -819,8 +819,8 @@
         "midi": 68,
         "frequency": 185.0,
         "enharmonic": "Ab4",
-        "display": "G♯/A♭",
-        "display_with_octave": "G♯4/A♭4"
+        "display": "G\u266f/A\u266d",
+        "display_with_octave": "G\u266f4/A\u266d4"
       },
       "register": "Chalumeau",
       "octave": "Chalumeau",
@@ -877,11 +877,11 @@
         "midi": 70,
         "frequency": 207.65,
         "enharmonic": "A#4",
-        "display": "B♭/A♯",
-        "display_with_octave": "B♭4/A♯4"
+        "display": "B\u266d/A\u266f",
+        "display_with_octave": "B\u266d4/A\u266f4"
       },
-      "register": "Chalumeau",
-      "octave": "Chalumeau",
+      "register": "Clarion",
+      "octave": "Clarion",
       "primary": {
         "elements": [
           "register",
@@ -935,10 +935,10 @@
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [
-          "'The break' — moving from Bb4 to B4 requires completely resetting fingers"
+          "'The break' \u2014 moving from Bb4 to B4 requires completely resetting fingers"
         ],
         "practice_tips": [
-          "Same fingering as E3 + register key. The clarinet overblows a 12th, so E→B."
+          "Same fingering as E3 + register key. The clarinet overblows a 12th, so E\u2192B."
         ],
         "intonation_tendency": null
       }
@@ -976,7 +976,7 @@
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "Same fingering as F3 + register key. F→C (a 12th up)."
+          "Same fingering as F3 + register key. F\u2192C (a 12th up)."
         ],
         "intonation_tendency": null
       }
@@ -988,8 +988,8 @@
         "midi": 73,
         "frequency": 246.94,
         "enharmonic": "Db5",
-        "display": "C♯/D♭",
-        "display_with_octave": "C♯5/D♭5"
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f5/D\u266d5"
       },
       "register": "Clarion",
       "octave": "Clarion",
@@ -1051,7 +1051,7 @@
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "Same fingering as G3 + register key. G→D (a 12th up)."
+          "Same fingering as G3 + register key. G\u2192D (a 12th up)."
         ],
         "intonation_tendency": null
       }
@@ -1063,8 +1063,8 @@
         "midi": 75,
         "frequency": 277.18,
         "enharmonic": "Eb5",
-        "display": "D♯/E♭",
-        "display_with_octave": "D♯5/E♭5"
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f5/E\u266d5"
       },
       "register": "Clarion",
       "octave": "Clarion",
@@ -1125,7 +1125,7 @@
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "Same fingering as A3 + register key. A→E (a 12th)."
+          "Same fingering as A3 + register key. A\u2192E (a 12th)."
         ],
         "intonation_tendency": null
       }
@@ -1160,7 +1160,7 @@
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "Same as Bb3 + register key. Bb→F (a 12th)."
+          "Same as Bb3 + register key. Bb\u2192F (a 12th)."
         ],
         "intonation_tendency": null
       }
@@ -1172,8 +1172,8 @@
         "midi": 78,
         "frequency": 329.63,
         "enharmonic": "Gb5",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯5/G♭5"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f5/G\u266d5"
       },
       "register": "Clarion",
       "octave": "Clarion",
@@ -1195,7 +1195,7 @@
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Same fork fingering as B3 + register key. B→F# (a 12th)."
+          "Same fork fingering as B3 + register key. B\u2192F# (a 12th)."
         ],
         "intonation_tendency": null
       }
@@ -1229,7 +1229,7 @@
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "Same as C4 + register key. C→G (a 12th)."
+          "Same as C4 + register key. C\u2192G (a 12th)."
         ],
         "intonation_tendency": null
       }
@@ -1241,8 +1241,8 @@
         "midi": 80,
         "frequency": 369.99,
         "enharmonic": "Ab5",
-        "display": "G♯/A♭",
-        "display_with_octave": "G♯5/A♭5"
+        "display": "G\u266f/A\u266d",
+        "display_with_octave": "G\u266f5/A\u266d5"
       },
       "register": "Clarion",
       "octave": "Clarion",
@@ -1297,7 +1297,7 @@
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "Same as D4 + register key. D→A (a 12th)."
+          "Same as D4 + register key. D\u2192A (a 12th)."
         ],
         "intonation_tendency": null
       }
@@ -1309,8 +1309,8 @@
         "midi": 82,
         "frequency": 415.3,
         "enharmonic": "A#5",
-        "display": "B♭/A♯",
-        "display_with_octave": "B♭5/A♯5"
+        "display": "B\u266d/A\u266f",
+        "display_with_octave": "B\u266d5/A\u266f5"
       },
       "register": "Clarion",
       "octave": "Clarion",
@@ -1363,7 +1363,7 @@
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Same as E4 + register key. E→B (a 12th)."
+          "Same as E4 + register key. E\u2192B (a 12th)."
         ],
         "intonation_tendency": null
       }
@@ -1406,8 +1406,8 @@
         "midi": 85,
         "frequency": 493.88,
         "enharmonic": "Db6",
-        "display": "C♯/D♭",
-        "display_with_octave": "C♯6/D♭6"
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f6/D\u266d6"
       },
       "register": "Altissimo",
       "octave": "Altissimo",
@@ -1472,8 +1472,8 @@
         "midi": 87,
         "frequency": 554.37,
         "enharmonic": "Eb6",
-        "display": "D♯/E♭",
-        "display_with_octave": "D♯6/E♭6"
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f6/E\u266d6"
       },
       "register": "Altissimo",
       "octave": "Altissimo",
@@ -1568,8 +1568,8 @@
         "midi": 90,
         "frequency": 659.26,
         "enharmonic": "Gb6",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯6/G♭6"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f6/G\u266d6"
       },
       "register": "Altissimo",
       "octave": "Altissimo",

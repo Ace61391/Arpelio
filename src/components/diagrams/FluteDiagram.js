@@ -1,64 +1,48 @@
 'use client';
 
-export default function FluteDiagram({ elements = [], size = 'md', blank = false }) {
-  const keys = {};
-  ['thumb', 'L1', 'L2', 'L3', 'G#', 'R1', 'R2', 'R3', 'Bb', 'B', 'C', 'C#', 'Eb', 'D#-trill'].forEach(k => keys[k] = false);
-  if (!blank) elements.forEach(e => { if (e in keys) keys[e] = true; });
+// LOCKED TEMPLATE from flute_locked_16_template_v3.svg
+// DO NOT modify any geometry, paths, coordinates, or stroke widths
+// Only class toggles between "open" and "pressed"
 
-  const F = '#1a1d23', E = '#ffffff', S = '#b0b5c0', BG = '#f8f9fb', L = '#7a8294';
-  const fc = on => on ? F : E;
-  const tc = on => on ? '#fff' : L;
-  const scale = size === 'lg' ? 1.2 : size === 'sm' ? 0.7 : 1;
-  const y = 50;
+const DATA_TO_ID = {
+  'thumb': 'THUMB', 'L1': 'LH1', 'L2': 'LH2', 'L3': 'LH3',
+  'G#': 'LH_AUX_1', 'Bb': 'LH_AUX_2',
+  'R1': 'RH1', 'R2': 'RH2', 'R3': 'RH3',
+  'D#-trill': 'RH_AUX_1', 'Eb': 'RH_PINKY_MAIN',
+  'C#': 'RH_PINKY_BAR_1', 'C': 'RH_PINKY_BAR_2', 'B': 'RH_PINKY_LOWER',
+};
+
+export default function FluteDiagram({ elements = [], size = 'md', blank = false }) {
+  const pressed = new Set();
+  if (!blank) elements.forEach(e => { if (DATA_TO_ID[e]) pressed.add(DATA_TO_ID[e]); });
+  const c = id => pressed.has(id) ? 'pressed' : 'open';
+  const w = size === 'lg' ? 820 : size === 'sm' ? 160 : 410;
 
   return (
-    <svg width={Math.round(340 * scale)} viewBox="0 0 340 100" style={{ display: 'block' }}>
-      <line x1="15" y1={y} x2="325" y2={y} stroke={S} strokeWidth={0.5} />
+    <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 820 355" style={{display:'block'}}>
+      <style>{`.open{fill:none;stroke:#000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:3;stroke-linecap:round}`}</style>
+      <rect fill="#F3F3F3" x="0" y="0" width="820" height="355"/>
+      <line className="divider" x1="329" y1="124" x2="329" y2="186"/>
 
-      <ellipse cx={30} cy={y - 20} rx={9} ry={6} fill={fc(keys.thumb)} stroke={S} strokeWidth={1} />
-      <text x={30} y={y - 18} textAnchor="middle" fontSize="7" fill={tc(keys.thumb)} fontFamily="system-ui" fontWeight="500">T</text>
+      <circle className={c('LH1')} cx="93" cy="156" r="31"/>
+      <circle className={c('LH2')} cx="183" cy="156" r="31"/>
+      <circle className={c('LH3')} cx="273" cy="156" r="31"/>
+      <circle className={c('RH1')} cx="385" cy="156" r="31"/>
+      <circle className={c('RH2')} cx="475" cy="156" r="31"/>
+      <circle className={c('RH3')} cx="565" cy="156" r="31"/>
 
-      {[{ x: 60, k: 'L1', l: '1' }, { x: 92, k: 'L2', l: '2' }, { x: 124, k: 'L3', l: '3' }].map(({ x, k, l }) => (
-        <g key={k}>
-          <circle cx={x} cy={y} r={11} fill={fc(keys[k])} stroke={S} strokeWidth={1.2} />
-          <text x={x} y={y + 3} textAnchor="middle" fontSize="9" fill={tc(keys[k])} fontFamily="system-ui" fontWeight="600">{l}</text>
-        </g>
-      ))}
+      <path className={c('THUMB')} d="M252 50 C238 50 230 58 230 70 C230 84 242 94 260 94 L288 94 C292 94 294 92 294 88 L294 76 C294 60 280 50 252 50 Z"/>
+      <g transform="rotate(90, 93, 226)"><path className={c('LH_AUX_1')} d="M86 211 C76 211 73 218 73 226 C73 236 80 241 92 241 C107 241 113 234 113 225 C113 215 105 211 86 211 Z"/></g>
+      <path className={c('LH_AUX_2')} d="M144 215 C136 217 130 224 130 231 C130 242 140 248 158 249 L195 249 C219 249 230 241 230 231 C230 220 218 213 193 213 L163 213 C154 213 148 214 144 215 Z"/>
 
-      <rect x={130} y={y + 16} width={18} height={10} rx={4} fill={fc(keys['G#'])} stroke={S} strokeWidth={1} />
-      <text x={139} y={y + 23} textAnchor="middle" fontSize="6" fill={tc(keys['G#'])} fontFamily="system-ui" fontWeight="500">G#</text>
+      <ellipse className={c('RH_AUX_1')} cx="347" cy="221" rx="9" ry="16"/>
+      <ellipse className="open" cx="430" cy="210" rx="9" ry="16"/>
+      <ellipse className="open" cx="520" cy="210" rx="9" ry="16"/>
 
-      <line x1={148} y1={y - 16} x2={148} y2={y + 16} stroke={S} strokeWidth={0.6} />
-
-      <ellipse cx={162} cy={y - 18} rx={7} ry={5} fill={fc(keys.Bb)} stroke={S} strokeWidth={0.8} />
-      <text x={162} y={y - 16} textAnchor="middle" fontSize="5" fill={tc(keys.Bb)} fontFamily="system-ui">Bb</text>
-
-      {[{ x: 172, k: 'R1', l: '1' }, { x: 204, k: 'R2', l: '2' }, { x: 236, k: 'R3', l: '3' }].map(({ x, k, l }) => (
-        <g key={k}>
-          <circle cx={x} cy={y} r={11} fill={fc(keys[k])} stroke={S} strokeWidth={1.2} />
-          <text x={x} y={y + 3} textAnchor="middle" fontSize="9" fill={tc(keys[k])} fontFamily="system-ui" fontWeight="600">{l}</text>
-        </g>
-      ))}
-
-      <ellipse cx={220} cy={y - 18} rx={7} ry={5} fill={fc(keys['D#-trill'])} stroke={S} strokeWidth={0.8} />
-      <text x={220} y={y - 16} textAnchor="middle" fontSize="5" fill={tc(keys['D#-trill'])} fontFamily="system-ui">D#</text>
-
-      <line x1={252} y1={y - 12} x2={252} y2={y + 12} stroke={S} strokeWidth={0.5} strokeDasharray="2 2" />
-
-      <circle cx={268} cy={y} r={8} fill={fc(keys.Eb)} stroke={S} strokeWidth={1} />
-      <text x={268} y={y + 2} textAnchor="middle" fontSize="6" fill={tc(keys.Eb)} fontFamily="system-ui" fontWeight="500">Eb</text>
-
-      <ellipse cx={288} cy={y - 8} rx={7} ry={6} fill={fc(keys['C#'])} stroke={S} strokeWidth={0.8} />
-      <text x={288} y={y - 6} textAnchor="middle" fontSize="5" fill={tc(keys['C#'])} fontFamily="system-ui">C#</text>
-      <ellipse cx={288} cy={y + 8} rx={7} ry={6} fill={fc(keys.C)} stroke={S} strokeWidth={0.8} />
-      <text x={288} y={y + 10} textAnchor="middle" fontSize="5" fill={tc(keys.C)} fontFamily="system-ui">C</text>
-
-      <ellipse cx={308} cy={y} rx={7} ry={6} fill={fc(keys.B)} stroke={S} strokeWidth={0.8} />
-      <text x={308} y={y + 2} textAnchor="middle" fontSize="6" fill={tc(keys.B)} fontFamily="system-ui" fontWeight="500">B</text>
-
-      <text x={92} y={92} textAnchor="middle" fontSize="7" fill={L} fontFamily="system-ui">Left hand</text>
-      <text x={204} y={92} textAnchor="middle" fontSize="7" fill={L} fontFamily="system-ui">Right hand</text>
-      <text x={288} y={92} textAnchor="middle" fontSize="7" fill={L} fontFamily="system-ui">Foot</text>
+      <path className={c('RH_PINKY_MAIN')} d="M648 195 C643 195 640 191 638 184 C636 174 636 162 638 150 C640 142 643 134 647 130 C649 128 652 128 654 131 C656 135 656 142 656 150 L656 180 C656 189 655 194 651 195 Z"/>
+      <rect className={c('RH_PINKY_BAR_1')} x="681" y="127" width="36" height="10" rx="5" ry="5"/>
+      <rect className={c('RH_PINKY_BAR_2')} x="681" y="149" width="36" height="10" rx="5" ry="5"/>
+      <path className={c('RH_PINKY_LOWER')} d="M694 168 C685 168 681 174 681 181 C681 189 688 195 700 195 L712 195 C724 195 729 189 729 181 C729 173 724 168 712 168 Z"/>
     </svg>
   );
 }

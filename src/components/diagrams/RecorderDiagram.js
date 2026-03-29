@@ -1,46 +1,42 @@
 'use client';
 
+// LOCKED TEMPLATE from recorder_locked_template_v1.svg
+
+const HOLE_MAP = { L1: 0, L2: 1, L3: 2, R1: 3, R2: 4, R3: 5, R4: 6 };
+const HALF_MAP = { 'R3-half': 5, 'R4-half': 6 };
+
 export default function RecorderDiagram({ elements = [], size = 'md', blank = false }) {
-  const holes = [false, false, false, false, false, false, false];
-  let thumb = 'off';
+  const holes = ['open','open','open','open','open','open','open'];
+  let thumb = 'open';
   if (!blank) {
     elements.forEach(e => {
-      if (e === 'thumb') thumb = 'full';
+      if (e === 'thumb') thumb = 'pressed';
       if (e === 'thumb-half') thumb = 'half';
-      const map = { L1: 0, L2: 1, L3: 2, R1: 3, R2: 4, R3: 5, R4: 6 };
-      if (map[e] !== undefined) holes[map[e]] = true;
+      if (HOLE_MAP[e] !== undefined) holes[HOLE_MAP[e]] = 'pressed';
+      if (HALF_MAP[e] !== undefined) holes[HALF_MAP[e]] = 'half';
     });
   }
-
-  const F = '#1a1d23', E = '#ffffff', S = '#b0b5c0', BG = '#f8f9fb', L = '#7a8294';
-  const scale = size === 'lg' ? 1.2 : size === 'sm' ? 0.7 : 1;
+  const w = size === 'lg' ? 180 : size === 'sm' ? 55 : 100;
 
   return (
-    <svg width={Math.round(70 * scale)} viewBox="0 0 70 260" style={{ display: 'block' }}>
+    <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 180 480" style={{display:'block'}}>
       <defs>
-        <linearGradient id="recHalf" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="50%" stopColor={F} /><stop offset="50%" stopColor={E} />
+        <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.half{fill:url(#hg);stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:2.5;stroke-linecap:round}`}</style>
+        <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="50%" stopColor="#000"/><stop offset="50%" stopColor="#F3F3F3"/>
         </linearGradient>
       </defs>
-      <rect x={19} y={8} width={32} height={240} rx={16} fill={BG} stroke={S} strokeWidth={0.8} />
-      <rect x={27} y={16} width={16} height={12} rx={4}
-        fill={thumb === 'full' ? F : thumb === 'half' ? 'url(#recHalf)' : E}
-        stroke={thumb === 'half' ? '#4f6df5' : S} strokeWidth={1.2} />
-      <text x={50} y={25} fontSize="8" fill={L} fontFamily="system-ui" fontWeight="500">T</text>
-      <line x1={25} y1={36} x2={45} y2={36} stroke={S} strokeWidth={0.4} strokeDasharray="2 2" />
-      {[0, 1, 2].map(i => (
-        <g key={i}>
-          <circle cx={35} cy={52 + i * 26} r={9} fill={holes[i] ? F : E} stroke={S} strokeWidth={1.2} />
-          <text x={52} y={55 + i * 26} fontSize="8" fill={L} fontFamily="system-ui">{i + 1}</text>
-        </g>
-      ))}
-      <line x1={21} y1={117} x2={49} y2={117} stroke={S} strokeWidth={0.8} />
-      {[3, 4, 5, 6].map(i => (
-        <g key={i}>
-          <circle cx={35} cy={130 + (i - 3) * 26} r={9} fill={holes[i] ? F : E} stroke={S} strokeWidth={1.2} />
-          <text x={52} y={133 + (i - 3) * 26} fontSize="8" fill={L} fontFamily="system-ui">{i + 1}</text>
-        </g>
-      ))}
+      <rect fill="#F3F3F3" x="0" y="0" width="180" height="480"/>
+      <circle className={thumb} cx="60" cy="50" r="20"/>
+      <line className="divider" x1="55" y1="85" x2="125" y2="85"/>
+      <circle className={holes[0]} cx="90" cy="120" r="22"/>
+      <circle className={holes[1]} cx="90" cy="175" r="22"/>
+      <circle className={holes[2]} cx="90" cy="230" r="22"/>
+      <line className="divider" x1="55" y1="265" x2="125" y2="265"/>
+      <circle className={holes[3]} cx="90" cy="300" r="20"/>
+      <circle className={holes[4]} cx="90" cy="350" r="20"/>
+      <circle className={holes[5]} cx="90" cy="395" r="18"/>
+      <circle className={holes[6]} cx="90" cy="435" r="16"/>
     </svg>
   );
 }

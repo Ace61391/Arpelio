@@ -1,57 +1,59 @@
 'use client';
 
-export default function ClarinetDiagram({ elements = [], size = 'md', blank = false }) {
-  const keys = {};
-  ['register', 'thumb', 'L1', 'L2', 'L3', 'R1', 'R2', 'R3', 'G#', 'A-key', 'L4-Cs', 'R4-C', 'R4-Cs', 'R4-E'].forEach(k => keys[k] = false);
-  if (!blank) elements.forEach(e => { if (e in keys) keys[e] = true; });
+// LOCKED TEMPLATE from clarinet-locked-template-v1.svg (Mason's Inkscape traces)
+// DO NOT modify any geometry, paths, coordinates, or stroke widths
 
-  const F = '#1a1d23', E = '#ffffff', S = '#b0b5c0', BG = '#f8f9fb', L = '#7a8294';
-  const fc = on => on ? F : E;
-  const tc = on => on ? '#fff' : L;
-  const scale = size === 'lg' ? 1.2 : size === 'sm' ? 0.7 : 1;
-  const cx = 42;
+const DATA_TO_ID = {
+  'register': 'OCTAVE', 'thumb': 'THUMB', 'A-key': 'REGISTER_KEY',
+  'L1': 'LH1', 'L2': 'LH2', 'L3': 'LH3',
+  'G#': 'LH_PINKY_G_SHARP', 'L4-Cs': 'LH_PINKY_C_SHARP',
+  'R1': 'RH1', 'R2': 'RH2', 'R3': 'RH3',
+  'R4-E': 'LH_PINKY_B', 'R4-C': 'LH_PINKY_Bb', 'R4-Cs': 'SIDE_KEY_1',
+};
+
+export default function ClarinetDiagram({ elements = [], size = 'md', blank = false }) {
+  const pressed = new Set();
+  if (!blank) elements.forEach(e => { if (DATA_TO_ID[e]) pressed.add(DATA_TO_ID[e]); });
+  const c = id => pressed.has(id) ? 'pressed' : 'open';
+  const w = size === 'lg' ? 338 : size === 'sm' ? 65 : 170;
 
   return (
-    <svg width={Math.round(100 * scale)} viewBox="0 0 100 280" style={{ display: 'block' }}>
-      <rect x={cx - 14} y={8} width={28} height={255} rx={14} fill={BG} stroke={S} strokeWidth={0.8} />
+    <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 338 858" style={{display:'block'}}>
+      <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:2.5;stroke-linecap:round}`}</style>
+      <rect fill="#F3F3F3" x="0" y="0" width="338" height="858"/>
 
-      <rect x={8} y={12} width={18} height={11} rx={4} fill={fc(keys.register)} stroke={S} strokeWidth={1} />
-      <text x={17} y={20} textAnchor="middle" fontSize="6" fill={tc(keys.register)} fontFamily="system-ui" fontWeight="500">Reg</text>
+      <ellipse className={c('OCTAVE')} cx="138.9563" cy="88.777634" rx="16.542416" ry="34.739075"/>
+      <path className={c('THUMB')} d="m 70.213369,100.90874 c 7.007988,37.82959 -6.007326,69.66195 -13.417738,69.66195 -7.410412,0 -20.886381,-31.92061 -13.417738,-69.66195 7.613477,-38.473238 14.995574,-73.237706 13.417738,-69.66196 -0.745607,1.689721 6.488012,32.254834 13.417738,69.66196 z"/>
+      <path className={c('REGISTER_KEY')} d="m 214.3162,107.5257 c 5.36976,42.88798 -4.28371,54.15327 -14.15296,53.85476 -11.35531,-0.34346 -25.46154,-26.45575 -13.41774,-52.75193 16.64403,-36.340232 -20.53206,-77.027994 2.75707,-64.883034 7.51772,3.920387 20.93176,32.77598 24.81363,63.780204 z"/>
 
-      <rect x={10} y={30} width={14} height={14} rx={4} fill={fc(keys.thumb)} stroke={S} strokeWidth={1} />
-      <text x={17} y={40} textAnchor="middle" fontSize="7" fill={tc(keys.thumb)} fontFamily="system-ui" fontWeight="600">T</text>
+      <circle className={c('LH1')} cx="139" cy="171.33162" r="29"/>
+      <circle className={c('LH2')} cx="57.102825" cy="215.55785" r="29"/>
+      <circle className={c('LH3')} cx="139" cy="262.52185" r="29"/>
 
-      {[{ y: 58, k: 'L1', l: '1' }, { y: 88, k: 'L2', l: '2' }, { y: 118, k: 'L3', l: '3' }].map(({ y, k, l }) => (
-        <g key={k}>
-          <circle cx={cx} cy={y} r={10} fill={fc(keys[k])} stroke={S} strokeWidth={1.2} />
-          <text x={cx} y={y + 3} textAnchor="middle" fontSize="9" fill={tc(keys[k])} fontFamily="system-ui" fontWeight="600">{l}</text>
-        </g>
-      ))}
+      <ellipse className={c('SIDE_KEY_1')} cx="107.14288" cy="337.52231" rx="37.421284" ry="5.3115134" transform="matrix(0.97281585,-0.23158006,0.2324928,0.97259812,0,0)"/>
 
-      <rect x={68} y={72} width={18} height={10} rx={4} fill={fc(keys['G#'])} stroke={S} strokeWidth={0.8} />
-      <text x={77} y={79} textAnchor="middle" fontSize="6" fill={tc(keys['G#'])} fontFamily="system-ui">G#</text>
+      <ellipse className={c('LH_PINKY_G_SHARP')} cx="68.299484" cy="381.76352" rx="16.358612" ry="8.8226223"/>
+      <ellipse className={c('LH_PINKY_C_SHARP')} cx="68.682518" cy="405.8252" rx="16.358612" ry="8.8226223"/>
+      <ellipse className={c('LH_PINKY_B')} cx="67.823906" cy="430.47043" rx="16.358612" ry="8.8226223"/>
+      <ellipse className={c('LH_PINKY_Bb')} cx="68.137535" cy="456.42416" rx="16.358612" ry="8.8226223"/>
 
-      <rect x={68} y={86} width={18} height={10} rx={4} fill={fc(keys['A-key'])} stroke={S} strokeWidth={0.8} />
-      <text x={77} y={93} textAnchor="middle" fontSize="6" fill={tc(keys['A-key'])} fontFamily="system-ui">A</text>
+      <circle className={c('RH1')} cx="139" cy="352.49612" r="29"/>
+      <path className={c('SIDE_UPPER')} d="m 222.03599,397.7532 c -0.50885,6.76479 -8.22061,15.4375 -30.32777,9.55785 -22.20588,-5.90592 -34.00426,-5.49744 -34.00386,-9.55785 4e-4,-4.0605 15.61206,-3.55447 34.00386,-7.35218 21.29214,-4.3966 30.80122,1.05788 30.32777,7.35218 z"/>
+      <line className="divider" x1="110.3" y1="418.5" x2="167.3" y2="418.5"/>
 
-      <rect x={6} y={132} width={18} height={10} rx={4} fill={fc(keys['L4-Cs'])} stroke={S} strokeWidth={0.8} />
-      <text x={15} y={139} textAnchor="middle" fontSize="5" fill={tc(keys['L4-Cs'])} fontFamily="system-ui">C#</text>
+      <circle className={c('RH2')} cx="139" cy="483.79434" r="29"/>
+      <ellipse className="open" cx="144.35934" cy="486.4281" rx="27.938303" ry="12.131105" transform="rotate(-13.08148)"/>
+      <path className="open" d="m 219.09512,496.82391 c 0,27.71291 3.85909,58.93303 -5.14653,60.47173 -7.33399,1.25308 -7.03439,-30.41964 -21.32134,-56.79564 -13.19916,-24.36776 3.73021,-53.85476 12.86633,-53.85475 9.13612,1e-5 13.60154,22.46576 13.60154,50.17866 z"/>
+      <path className="open" d="m 254.38561,506.56555 c -5.79475,20.04445 -19.09032,46.19122 -22.97558,48.15682 -6.97469,3.52857 -5.33034,-25.21499 -5.33034,-48.15682 0,-22.94183 2.6604,-41.90746 10.47687,-41.90745 7.81646,-10e-6 24.20051,19.86812 17.82905,41.90745 z"/>
+      <ellipse className="open" cx="244.38393" cy="575.25623" rx="34.18766" ry="8.0874033" transform="rotate(13.538116)"/>
 
-      <line x1={cx - 18} y1={150} x2={cx + 18} y2={150} stroke={S} strokeWidth={0.8} />
+      <circle className={c('RH3')} cx="139" cy="576" r="29"/>
+      <circle className="open" cx="139" cy="664.85345" r="29"/>
 
-      {[{ y: 168, k: 'R1', l: '1' }, { y: 198, k: 'R2', l: '2' }, { y: 228, k: 'R3', l: '3' }].map(({ y, k, l }) => (
-        <g key={k}>
-          <circle cx={cx} cy={y} r={10} fill={fc(keys[k])} stroke={S} strokeWidth={1.2} />
-          <text x={cx} y={y + 3} textAnchor="middle" fontSize="9" fill={tc(keys[k])} fontFamily="system-ui" fontWeight="600">{l}</text>
-        </g>
-      ))}
-
-      <rect x={6} y={248} width={18} height={10} rx={4} fill={fc(keys['R4-E'])} stroke={S} strokeWidth={0.8} />
-      <text x={15} y={255} textAnchor="middle" fontSize="6" fill={tc(keys['R4-E'])} fontFamily="system-ui">E</text>
-      <rect x={28} y={248} width={18} height={10} rx={4} fill={fc(keys['R4-C'])} stroke={S} strokeWidth={0.8} />
-      <text x={37} y={255} textAnchor="middle" fontSize="6" fill={tc(keys['R4-C'])} fontFamily="system-ui">C</text>
-      <rect x={50} y={248} width={18} height={10} rx={4} fill={fc(keys['R4-Cs'])} stroke={S} strokeWidth={0.8} />
-      <text x={59} y={255} textAnchor="middle" fontSize="5" fill={tc(keys['R4-Cs'])} fontFamily="system-ui">C#</text>
+      <ellipse className="open" cx="353.53809" cy="642.53223" rx="41.907455" ry="15.255784" transform="rotate(18.639353)"/>
+      <ellipse className="open" cx="307.1553" cy="658.04291" rx="41.907455" ry="15.255784" transform="rotate(18.639353)"/>
+      <ellipse className="open" cx="369.29614" cy="685.42151" rx="41.907455" ry="15.255784" transform="rotate(18.639353)"/>
+      <ellipse className="open" cx="325.09189" cy="701.04523" rx="41.907455" ry="15.255784" transform="rotate(18.639353)"/>
     </svg>
   );
 }

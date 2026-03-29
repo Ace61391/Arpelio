@@ -61,7 +61,7 @@
           "Bb3",
           "C#5"
         ],
-        "label": "B♭3 to C♯5"
+        "label": "B\u266d3 to C\u266f5"
       },
       {
         "name": "2nd octave",
@@ -69,7 +69,7 @@
           "D5",
           "C#6"
         ],
-        "label": "D5 to C♯6"
+        "label": "D5 to C\u266f6"
       },
       {
         "name": "Palm keys",
@@ -77,7 +77,7 @@
           "D6",
           "F#6"
         ],
-        "label": "D6 to F♯6"
+        "label": "D6 to F\u266f6"
       }
     ],
     "chart_types": {
@@ -264,8 +264,8 @@
         "midi": 58,
         "frequency": 103.83,
         "enharmonic": "A#3",
-        "display": "B♭",
-        "display_with_octave": "B♭3"
+        "display": "B\u266d",
+        "display_with_octave": "B\u266d3"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -370,8 +370,8 @@
         "midi": 61,
         "frequency": 123.47,
         "enharmonic": "Db4",
-        "display": "C♯/D♭",
-        "display_with_octave": "C♯4/D♭4"
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f4/D\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -440,8 +440,8 @@
         "midi": 63,
         "frequency": 138.59,
         "enharmonic": "Eb4",
-        "display": "D♯/E♭",
-        "display_with_octave": "D♯4/E♭4"
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f4/E\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -537,8 +537,8 @@
         "midi": 66,
         "frequency": 164.81,
         "enharmonic": "Gb4",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯4/G♭4"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f4/G\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -549,7 +549,7 @@
           "L3",
           "R2"
         ],
-        "description": "Fork fingering — skip R1, press R2",
+        "description": "Fork fingering \u2014 skip R1, press R2",
         "valve_notation": null,
         "text_notation": "123|-2-"
       },
@@ -583,7 +583,7 @@
           "L2",
           "L3"
         ],
-        "description": "Left hand only — all three fingers",
+        "description": "Left hand only \u2014 all three fingers",
         "valve_notation": null,
         "text_notation": "123|---"
       },
@@ -602,8 +602,8 @@
         "midi": 68,
         "frequency": 185.0,
         "enharmonic": "Ab4",
-        "display": "G♯/A♭",
-        "display_with_octave": "G♯4/A♭4"
+        "display": "G\u266f/A\u266d",
+        "display_with_octave": "G\u266f4/A\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -664,8 +664,8 @@
         "midi": 70,
         "frequency": 207.65,
         "enharmonic": "A#4",
-        "display": "B♭/A♯",
-        "display_with_octave": "B♭4/A♯4"
+        "display": "B\u266d/A\u266f",
+        "display_with_octave": "B\u266d4/A\u266f4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -685,7 +685,7 @@
             "L1",
             "bis"
           ],
-          "description": "Bis key Bb — L1 rolls to bis",
+          "description": "Bis key Bb \u2014 L1 rolls to bis",
           "valve_notation": null,
           "text_notation": "1 Bis--|---",
           "use_case": "facility",
@@ -770,8 +770,8 @@
         "midi": 73,
         "frequency": 246.94,
         "enharmonic": "Db5",
-        "display": "C♯/D♭",
-        "display_with_octave": "C♯5/D♭5"
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f5/D\u266d5"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -779,7 +779,7 @@
         "elements": [],
         "description": "All keys open",
         "valve_notation": null,
-        "text_notation": "---|---"
+        "text_notation": "Open"
       },
       "alternates": [],
       "pedagogy": {
@@ -834,8 +834,8 @@
         "midi": 75,
         "frequency": 277.18,
         "enharmonic": "Eb5",
-        "display": "D♯/E♭",
-        "display_with_octave": "D♯5/E♭5"
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f5/E\u266d5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -934,8 +934,8 @@
         "midi": 78,
         "frequency": 329.63,
         "enharmonic": "Gb5",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯5/G♭5"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f5/G\u266d5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -997,8 +997,8 @@
         "midi": 80,
         "frequency": 369.99,
         "enharmonic": "Ab5",
-        "display": "G♯/A♭",
-        "display_with_octave": "G♯5/A♭5"
+        "display": "G\u266f/A\u266d",
+        "display_with_octave": "G\u266f5/A\u266d5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -1059,8 +1059,8 @@
         "midi": 82,
         "frequency": 415.3,
         "enharmonic": "A#5",
-        "display": "B♭/A♯",
-        "display_with_octave": "B♭5/A♯5"
+        "display": "B\u266d/A\u266f",
+        "display_with_octave": "B\u266d5/A\u266f5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -1163,8 +1163,8 @@
         "midi": 85,
         "frequency": 493.88,
         "enharmonic": "Db6",
-        "display": "C♯/D♭",
-        "display_with_octave": "C♯6/D♭6"
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f6/D\u266d6"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -1172,7 +1172,7 @@
         "elements": [
           "octave"
         ],
-        "description": "Octave key only — all else open",
+        "description": "Octave key only \u2014 all else open",
         "valve_notation": null,
         "text_notation": "O ---|---"
       },
@@ -1224,8 +1224,8 @@
         "midi": 87,
         "frequency": 554.37,
         "enharmonic": "Eb6",
-        "display": "D♯/E♭",
-        "display_with_octave": "D♯6/E♭6"
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f6/E\u266d6"
       },
       "register": "Palm keys",
       "octave": "Palm keys",
@@ -1323,8 +1323,8 @@
         "midi": 90,
         "frequency": 659.26,
         "enharmonic": "Gb6",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯6/G♭6"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f6/G\u266d6"
       },
       "register": "Palm keys",
       "octave": "Palm keys",

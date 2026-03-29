@@ -1,38 +1,33 @@
 'use client';
 
+// LOCKED TEMPLATE from trombone_locked_template_v1.svg
+
+const POS_X = { 1: 50, 2: 112, 3: 174, 4: 236, 5: 298, 6: 360, 7: 422 };
+
 export default function SlideDiagram({ elements = [], size = 'md', blank = false }) {
-  let pos = blank ? 0 : 1;
+  let pos = 1;
   if (!blank) {
     elements.forEach(e => {
       const m = e.match?.(/pos-(\d)/);
       if (m) pos = parseInt(m[1]);
     });
   }
-
-  const F = '#1a1d23', S = '#b0b5c0', BG = '#f8f9fb', L = '#7a8294', A = '#4f6df5';
-  const scale = size === 'lg' ? 1.2 : size === 'sm' ? 0.7 : 1;
-  const w = 180;
-  const pct = pos > 0 ? (pos - 1) / 6 : 0;
+  const w = size === 'lg' ? 460 : size === 'sm' ? 140 : 260;
+  const fillW = blank ? 0 : (POS_X[pos] || 50);
 
   return (
-    <svg width={Math.round(w * scale)} viewBox={`0 0 ${w} 55`} style={{ display: 'block' }}>
-      <rect x={8} y={8} width={w - 16} height={32} rx={16} fill={BG} stroke={S} strokeWidth={1} />
-      {pos > 0 && (
-        <rect x={8} y={8} width={Math.max(32, (w - 16) * (0.1 + pct * 0.9))} height={32} rx={16} fill={F} />
-      )}
-      {pos > 0 && (
-        <text x={w / 2} y={28} textAnchor="middle" fontSize="15" fill="#fff" fontFamily="system-ui" fontWeight="700" style={{ mixBlendMode: 'difference' }}>{pos}</text>
-      )}
-      {blank && (
-        <text x={w / 2} y={28} textAnchor="middle" fontSize="12" fill={L} fontFamily="system-ui">?</text>
-      )}
-      {[1, 2, 3, 4, 5, 6, 7].map(p => {
-        const x = 8 + (w - 16) * (0.1 + ((p - 1) / 6) * 0.9);
-        return (
-          <text key={p} x={x} y={52} textAnchor="middle" fontSize="9"
-            fill={p === pos ? A : L} fontWeight={p === pos ? '700' : '400'} fontFamily="system-ui">{p}</text>
-        );
-      })}
+    <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 460 100" style={{display:'block'}}>
+      <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}`}</style>
+      <rect fill="#F3F3F3" x="0" y="0" width="460" height="100"/>
+      <rect className="open" x="20" y="20" width="420" height="40" rx="20"/>
+      {!blank && <rect className="pressed" x="20" y="20" width={fillW} height="40" rx="20"/>}
+      {[1,2,3,4,5,6,7].map(p => (
+        <g key={p}>
+          <line x1={POS_X[p]} y1="65" x2={POS_X[p]} y2="75" stroke="#000" strokeWidth={p === pos && !blank ? 2 : 1}/>
+          <text x={POS_X[p]} y="90" textAnchor="middle" fontSize="14" fontFamily="system-ui"
+            fontWeight={p === pos && !blank ? '700' : '400'} fill="#000">{p}</text>
+        </g>
+      ))}
     </svg>
   );
 }

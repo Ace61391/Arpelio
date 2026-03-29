@@ -100,7 +100,7 @@
     },
     "key_system": "english",
     "valve_count": null,
-    "notes": "Alto (treble) recorder in F. Same finger patterns as soprano recorder but all notes sound a 4th lower. Non-transposing — reads at concert pitch. Range F4–G6. Same English (Baroque) fingering system. Derived from soprano-recorder.json with note names shifted up a perfect 4th."
+    "notes": "Alto (treble) recorder in F. Same finger patterns as soprano recorder but all notes sound a 4th lower. Non-transposing \u2014 reads at concert pitch. Range F4\u2013G6. Same English (Baroque) fingering system. Derived from soprano-recorder.json with note names shifted up a perfect 4th."
   },
   "diagram": {
     "type": "holes",
@@ -212,8 +212,8 @@
         "midi": 66,
         "frequency": 369.99,
         "enharmonic": "Gb4",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯/G♭4"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f/G\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -226,11 +226,11 @@
           "R1",
           "R2",
           "R3",
-          "R4"
+          "R4-half"
         ],
-        "description": "All holes covered (same as C4 — partial hole lift on R4)",
+        "description": "All holes covered (same as C4 \u2014 partial hole lift on R4) (hole partially shaded)",
         "valve_notation": null,
-        "text_notation": "T 123|4567̲"
+        "text_notation": "T 123|456(7)"
       },
       "alternates": [],
       "pedagogy": {
@@ -285,8 +285,8 @@
         "midi": 68,
         "frequency": 415.3,
         "enharmonic": "Ab4",
-        "display": "G♯/A♭",
-        "display_with_octave": "G♯/A♭4"
+        "display": "G\u266f/A\u266d",
+        "display_with_octave": "G\u266f/A\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -298,11 +298,11 @@
           "L3",
           "R1",
           "R2",
-          "R3"
+          "R3-half"
         ],
-        "description": "Same as D4 with lower double-hole half covered",
+        "description": "Same as D4 with lower double-hole half covered (hole partially shaded)",
         "valve_notation": null,
-        "text_notation": "T 123|456̲-"
+        "text_notation": "T 123|45(6)-"
       },
       "alternates": [],
       "pedagogy": {
@@ -356,8 +356,8 @@
         "midi": 70,
         "frequency": 466.16,
         "enharmonic": "Bb4",
-        "display": "B♭/A♯",
-        "display_with_octave": "B♭/A♯4"
+        "display": "B\u266d/A\u266f",
+        "display_with_octave": "B\u266d/A\u266f4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -371,7 +371,7 @@
           "R3",
           "R4"
         ],
-        "description": "Fork fingering — hole 5 open, holes 6+7 closed",
+        "description": "Fork fingering \u2014 hole 5 open, holes 6+7 closed",
         "valve_notation": null,
         "text_notation": "T 123|4-67"
       },
@@ -464,8 +464,8 @@
         "midi": 73,
         "frequency": 554.37,
         "enharmonic": "Db5",
-        "display": "C♯/D♭",
-        "display_with_octave": "C♯/D♭5"
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f/D\u266d5"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -529,8 +529,8 @@
         "midi": 75,
         "frequency": 622.25,
         "enharmonic": "Eb5",
-        "display": "D♯/E♭",
-        "display_with_octave": "D♯/E♭5"
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f/E\u266d5"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -640,8 +640,8 @@
         "midi": 78,
         "frequency": 739.99,
         "enharmonic": "Gb5",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯/G♭5"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f/G\u266d5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -682,7 +682,7 @@
         "elements": [
           "L2"
         ],
-        "description": "Left middle finger only — no thumb",
+        "description": "Left middle finger only \u2014 no thumb",
         "valve_notation": null,
         "text_notation": "-2-|----"
       },
@@ -703,8 +703,8 @@
         "midi": 80,
         "frequency": 830.61,
         "enharmonic": "Ab5",
-        "display": "G♯/A♭",
-        "display_with_octave": "G♯/A♭5"
+        "display": "G\u266f/A\u266d",
+        "display_with_octave": "G\u266f/A\u266d5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -759,7 +759,7 @@
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [
-          "Not pinching thumb enough — note won't speak"
+          "Not pinching thumb enough \u2014 note won't speak"
         ],
         "practice_tips": [
           "From here up, the thumb is HALF-COVERED (pinched). Roll thumb slightly to create a small opening. Same finger pattern as E4."
@@ -774,8 +774,8 @@
         "midi": 82,
         "frequency": 932.33,
         "enharmonic": "Bb5",
-        "display": "B♭/A♯",
-        "display_with_octave": "B♭/A♯5"
+        "display": "B\u266d/A\u266f",
+        "display_with_octave": "B\u266d/A\u266f5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -874,8 +874,8 @@
         "midi": 85,
         "frequency": 1108.73,
         "enharmonic": "Db6",
-        "display": "C♯/D♭",
-        "display_with_octave": "C♯/D♭6"
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f/D\u266d6"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -937,8 +937,8 @@
         "midi": 87,
         "frequency": 1244.51,
         "enharmonic": "Eb6",
-        "display": "D♯/E♭",
-        "display_with_octave": "D♯/E♭6"
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f/E\u266d6"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -1025,7 +1025,7 @@
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "3rd octave — advanced. Requires strong, focused air stream."
+          "3rd octave \u2014 advanced. Requires strong, focused air stream."
         ],
         "intonation_tendency": null
       }
@@ -1037,8 +1037,8 @@
         "midi": 90,
         "frequency": 1479.98,
         "enharmonic": "Gb6",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯/G♭6"
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f/G\u266d6"
       },
       "register": "3rd octave",
       "octave": "3rd octave",
