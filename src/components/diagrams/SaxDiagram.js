@@ -13,7 +13,7 @@ export default function SaxDiagram({ elements = [], size = 'md', blank = false }
   const cx = 48;
 
   return (
-    <svg width={Math.round(110 * scale)} viewBox="0 0 110 300" style={{ display: 'block' }}>
+    <svg width={Math.round(140 * scale)} viewBox="0 0 140 300" style={{ display: 'block' }}>
       <rect x={cx - 16} y={18} width={32} height={250} rx={16} fill={BG} stroke={S} strokeWidth={0.8} />
 
       <ellipse cx={cx} cy={14} rx={10} ry={6} fill={fc(keys.octave)} stroke={S} strokeWidth={1} />
@@ -33,15 +33,19 @@ export default function SaxDiagram({ elements = [], size = 'md', blank = false }
         </g>
       ))}
 
-      <rect x={74} y={104} width={22} height={11} rx={4} fill={fc(keys['G#'])} stroke={S} strokeWidth={0.8} />
-      <text x={85} y={112} textAnchor="middle" fontSize="6" fill={tc(keys['G#'])} fontFamily="system-ui" fontWeight="500">G#</text>
+      {/* G# side key with leader line */}
+      <line x1={cx + 16} y1={110} x2={100} y2={110} stroke={S} strokeWidth={0.6} strokeDasharray="2,2" />
+      <rect x={102} y={104} width={24} height={11} rx={4} fill={fc(keys['G#'])} stroke={S} strokeWidth={0.8} />
+      <text x={114} y={112} textAnchor="middle" fontSize="6" fill={tc(keys['G#'])} fontFamily="system-ui" fontWeight="500">G#</text>
 
       <line x1={cx - 20} y1={132} x2={cx + 20} y2={132} stroke={S} strokeWidth={0.8} />
 
+      {/* Side keys with leader lines */}
       {[{ y: 146, k: 'side-E', l: 'E' }, { y: 160, k: 'side-Bb', l: 'Bb' }, { y: 174, k: 'side-F#', l: 'F#' }].map(({ y, k, l }) => (
         <g key={k}>
-          <rect x={74} y={y} width={22} height={10} rx={4} fill={fc(keys[k])} stroke={S} strokeWidth={0.8} />
-          <text x={85} y={y + 7} textAnchor="middle" fontSize="5.5" fill={tc(keys[k])} fontFamily="system-ui" fontWeight="500">{l}</text>
+          <line x1={cx + 16} y1={y + 5} x2={100} y2={y + 5} stroke={S} strokeWidth={0.6} strokeDasharray="2,2" />
+          <rect x={102} y={y} width={24} height={10} rx={4} fill={fc(keys[k])} stroke={S} strokeWidth={0.8} />
+          <text x={114} y={y + 7} textAnchor="middle" fontSize="5.5" fill={tc(keys[k])} fontFamily="system-ui" fontWeight="500">{l}</text>
         </g>
       ))}
 

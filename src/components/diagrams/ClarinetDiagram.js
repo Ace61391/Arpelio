@@ -12,7 +12,7 @@ export default function ClarinetDiagram({ elements = [], size = 'md', blank = fa
   const cx = 42;
 
   return (
-    <svg width={Math.round(100 * scale)} viewBox="0 0 100 280" style={{ display: 'block' }}>
+    <svg width={Math.round(130 * scale)} viewBox="0 0 130 280" style={{ display: 'block' }}>
       <rect x={cx - 14} y={8} width={28} height={255} rx={14} fill={BG} stroke={S} strokeWidth={0.8} />
 
       <rect x={8} y={12} width={18} height={11} rx={4} fill={fc(keys.register)} stroke={S} strokeWidth={1} />
@@ -28,11 +28,15 @@ export default function ClarinetDiagram({ elements = [], size = 'md', blank = fa
         </g>
       ))}
 
-      <rect x={68} y={72} width={18} height={10} rx={4} fill={fc(keys['G#'])} stroke={S} strokeWidth={0.8} />
-      <text x={77} y={79} textAnchor="middle" fontSize="6" fill={tc(keys['G#'])} fontFamily="system-ui">G#</text>
+      {/* G# side key with leader line */}
+      <line x1={cx + 14} y1={77} x2={90} y2={77} stroke={S} strokeWidth={0.6} strokeDasharray="2,2" />
+      <rect x={92} y={72} width={22} height={10} rx={4} fill={fc(keys['G#'])} stroke={S} strokeWidth={0.8} />
+      <text x={103} y={79} textAnchor="middle" fontSize="6" fill={tc(keys['G#'])} fontFamily="system-ui">G#</text>
 
-      <rect x={68} y={86} width={18} height={10} rx={4} fill={fc(keys['A-key'])} stroke={S} strokeWidth={0.8} />
-      <text x={77} y={93} textAnchor="middle" fontSize="6" fill={tc(keys['A-key'])} fontFamily="system-ui">A</text>
+      {/* A side key with leader line */}
+      <line x1={cx + 14} y1={91} x2={90} y2={91} stroke={S} strokeWidth={0.6} strokeDasharray="2,2" />
+      <rect x={92} y={86} width={22} height={10} rx={4} fill={fc(keys['A-key'])} stroke={S} strokeWidth={0.8} />
+      <text x={103} y={93} textAnchor="middle" fontSize="6" fill={tc(keys['A-key'])} fontFamily="system-ui">A</text>
 
       <rect x={6} y={132} width={18} height={10} rx={4} fill={fc(keys['L4-Cs'])} stroke={S} strokeWidth={0.8} />
       <text x={15} y={139} textAnchor="middle" fontSize="5" fill={tc(keys['L4-Cs'])} fontFamily="system-ui">C#</text>

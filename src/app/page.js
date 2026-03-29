@@ -23,7 +23,7 @@ function InstrumentCard({ inst }) {
         </div>
       </div>
       {samples.length > 0 && (
-        <div className="flex gap-4 justify-center items-start my-2 flex-1">
+        <div className={`${['flute', 'piccolo'].includes(inst.id) ? 'flex flex-col gap-3' : 'flex gap-4'} justify-center items-center my-2 flex-1`}>
           {samples.map((f, i) => (
             <div key={i} className="flex flex-col items-center gap-1">
               <span className="text-xs font-bold text-[#1a1d23]">{f.note.display}</span>
