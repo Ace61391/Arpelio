@@ -1,8 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(tar -xzf ~/Downloads/arpelio-sprint2-final.tar.gz --strip-components=1)",
-      "Bash(tar -xzf ~/Downloads/arpelio-sprint2-final.tar.gz)",
+      "Bash(tar -xzf \"$HOME/Downloads/arpelio-sprint2-final\\(1\\).tar.gz\" --strip-components=1)",
+      "Bash(tar -xzf \"$HOME/Downloads/arpelio-sprint2-final\\(1\\).tar.gz\")",
+      "Bash(tar -xzf \"$HOME/Downloads/arpelio-sprint2-final \\(1\\).tar.gz\" --strip-components=1)",
+      "Bash(tar -xzf \"$HOME/Downloads/arpelio-sprint2-final \\(1\\).tar.gz\")",
       "Bash(git add:*)"
     ]
   }

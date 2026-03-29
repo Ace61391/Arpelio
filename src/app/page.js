@@ -52,7 +52,7 @@ export default function Home() {
       {/* Hero */}
       <section className="px-8 pt-16 pb-14 text-center max-w-[1160px] mx-auto">
         <div className="inline-block bg-accent-light rounded-full px-4 py-1.5 text-sm font-semibold text-accent mb-6">
-          14 instruments · 484 verified fingerings · 100% free
+          9 instruments · 300+ verified fingerings · 100% free
         </div>
         <h1 className="text-4xl md:text-[48px] font-extrabold leading-[1.12] tracking-tight text-[#1a1d23] max-w-[680px] mx-auto mb-5">
           Fingering charts and worksheets for every band instrument
@@ -130,7 +130,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-3 gap-8">
             {[
-              { n: '1', t: 'Pick instrument', d: 'Select from 14 band instruments' },
+              { n: '1', t: 'Pick instrument', d: 'Select from 9 band instruments' },
               { n: '2', t: 'Choose notes', d: 'By octave, scale, or custom selection' },
               { n: '3', t: 'Download PDF', d: 'Reference chart or quiz worksheet' },
             ].map(s => (

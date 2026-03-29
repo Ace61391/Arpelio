@@ -7,15 +7,10 @@ import ClarinetDiagram from './diagrams/ClarinetDiagram';
 import SaxDiagram from './diagrams/SaxDiagram';
 
 const DIAGRAM_MAP = {
-  'soprano-recorder': 'recorder',
-  'alto-recorder': 'recorder',
+  'recorder': 'recorder',
   'flute': 'flute',
-  'piccolo': 'flute',
-  'bb-clarinet': 'clarinet',
-  'bass-clarinet': 'clarinet',
-  'alto-saxophone': 'saxophone',
-  'tenor-saxophone': 'saxophone',
-  'baritone-saxophone': 'saxophone',
+  'clarinet': 'clarinet',
+  'saxophone': 'saxophone',
   'bb-trumpet': 'valve',
   'french-horn': 'valve',
   'euphonium': 'valve',

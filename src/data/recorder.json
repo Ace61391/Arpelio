@@ -1,8 +1,8 @@
 {
   "instrument": {
-    "id": "alto-recorder",
-    "name": "Alto Recorder",
-    "full_name": "Alto (Treble) Recorder in F (English/Baroque Fingering)",
+    "id": "recorder",
+    "name": "Recorder",
+    "full_name": "Soprano Recorder in C (English/Baroque Fingering)",
     "family": "woodwind",
     "subfamily": "fipple-flute",
     "mechanism": "holes",
@@ -12,78 +12,78 @@
     "clef_alternates": [],
     "range": {
       "low": {
-        "written": "F4",
-        "concert": "F4"
+        "written": "C4",
+        "concert": "C4"
       },
       "high": {
-        "written": "G6",
-        "concert": "G6"
+        "written": "D6",
+        "concert": "D6"
       },
       "beginner_low": {
-        "written": "F4",
-        "concert": "F4"
+        "written": "C4",
+        "concert": "C4"
       },
       "beginner_high": {
-        "written": "G5",
-        "concert": "G5"
+        "written": "D5",
+        "concert": "D5"
       }
     },
     "registers": [
       {
         "name": "1st octave",
         "range": [
-          "F4",
-          "E5"
+          "C4",
+          "B4"
         ],
-        "description": "Low register. Thumb fully covers hole."
+        "description": "Low register. Thumb fully covers hole. Gentle air."
       },
       {
         "name": "2nd octave",
         "range": [
-          "F5",
-          "E6"
+          "C5",
+          "B5"
         ],
-        "description": "Middle register. Thumb half-hole from A5 up."
+        "description": "Middle register. Thumb half-hole (pinched) from E5 up. Faster air."
       },
       {
         "name": "3rd octave",
         "range": [
-          "F6",
-          "G6"
+          "C6",
+          "D6"
         ],
-        "description": "High register. Cross-fingerings."
+        "description": "High register. Advanced. Thumb pinched, cross-fingerings."
       }
     ],
     "octaves": [
       {
         "name": "1st octave",
         "range": [
-          "F4",
-          "E5"
+          "C4",
+          "B4"
         ],
-        "label": "F4 to E5"
+        "label": "C4 to B4"
       },
       {
         "name": "2nd octave",
         "range": [
-          "F5",
-          "E6"
+          "C5",
+          "B5"
         ],
-        "label": "F5 to E6"
+        "label": "C5 to B5"
       },
       {
         "name": "3rd octave",
         "range": [
-          "F6",
-          "G6"
+          "C6",
+          "D6"
         ],
-        "label": "F6 to G6"
+        "label": "C6 to D6"
       }
     ],
     "chart_types": {
       "basic": {
         "status": "complete",
-        "notes": "Same fingerings as soprano recorder. Notes shifted up a P4. English fingering. Derived from soprano-recorder.json."
+        "notes": "English (Baroque) fingering system. 27 notes across 3 octaves. Verified against WFG."
       },
       "alternates": {
         "status": "not_started",
@@ -100,7 +100,7 @@
     },
     "key_system": "english",
     "valve_count": null,
-    "notes": "Alto (treble) recorder in F. Same finger patterns as soprano recorder but all notes sound a 4th lower. Non-transposing \u2014 reads at concert pitch. Range F4\u2013G6. Same English (Baroque) fingering system. Derived from soprano-recorder.json with note names shifted up a perfect 4th."
+    "notes": "Soprano recorder in C is the standard elementary school instrument. Non-transposing (concert pitch, treble clef). English (Baroque) fingering is the professional standard and most common system worldwide. German fingering differs only for F and Bb \u2014 it simplifies those notes but makes F# and Bb harder. WFG covers both; our data uses English. The same fingerings apply to all C recorders (soprano, tenor, great bass). For F recorders (sopranino, alto, bass), the same fingering patterns apply but the note names are transposed up a 4th."
   },
   "diagram": {
     "type": "holes",
@@ -168,13 +168,13 @@
   "fingerings": [
     {
       "note": {
-        "written": "F4",
-        "concert": "F4",
-        "midi": 65,
-        "frequency": 349.23,
-        "enharmonic": null,
-        "display": "F",
-        "display_with_octave": "F4"
+        "written": "C4",
+        "concert": "C4",
+        "midi": 60,
+        "frequency": 261.63,
+        "enharmonic": "B#3",
+        "display": "C",
+        "display_with_octave": "C4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -207,13 +207,13 @@
     },
     {
       "note": {
-        "written": "F#4",
-        "concert": "F#4",
-        "midi": 66,
-        "frequency": 369.99,
-        "enharmonic": "Gb4",
-        "display": "F\u266f/G\u266d",
-        "display_with_octave": "F\u266f/G\u266d4"
+        "written": "C#4",
+        "concert": "C#4",
+        "midi": 61,
+        "frequency": 277.18,
+        "enharmonic": "Db4",
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f4/D\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -244,13 +244,13 @@
     },
     {
       "note": {
-        "written": "G4",
-        "concert": "G4",
-        "midi": 67,
-        "frequency": 392.0,
+        "written": "D4",
+        "concert": "D4",
+        "midi": 62,
+        "frequency": 293.66,
         "enharmonic": null,
-        "display": "G",
-        "display_with_octave": "G4"
+        "display": "D",
+        "display_with_octave": "D4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -280,13 +280,13 @@
     },
     {
       "note": {
-        "written": "G#4",
-        "concert": "G#4",
-        "midi": 68,
-        "frequency": 415.3,
-        "enharmonic": "Ab4",
-        "display": "G\u266f/A\u266d",
-        "display_with_octave": "G\u266f/A\u266d4"
+        "written": "D#4",
+        "concert": "D#4",
+        "midi": 63,
+        "frequency": 311.13,
+        "enharmonic": "Eb4",
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f4/E\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -316,13 +316,13 @@
     },
     {
       "note": {
-        "written": "A4",
-        "concert": "A4",
-        "midi": 69,
-        "frequency": 440.0,
+        "written": "E4",
+        "concert": "E4",
+        "midi": 64,
+        "frequency": 329.63,
         "enharmonic": null,
-        "display": "A",
-        "display_with_octave": "A4"
+        "display": "E",
+        "display_with_octave": "E4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -351,13 +351,13 @@
     },
     {
       "note": {
-        "written": "A#4",
-        "concert": "A#4",
-        "midi": 70,
-        "frequency": 466.16,
-        "enharmonic": "Bb4",
-        "display": "B\u266d/A\u266f",
-        "display_with_octave": "B\u266d/A\u266f4"
+        "written": "F4",
+        "concert": "F4",
+        "midi": 65,
+        "frequency": 349.23,
+        "enharmonic": null,
+        "display": "F",
+        "display_with_octave": "F4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -389,13 +389,13 @@
     },
     {
       "note": {
-        "written": "B4",
-        "concert": "B4",
-        "midi": 71,
-        "frequency": 493.88,
-        "enharmonic": null,
-        "display": "B",
-        "display_with_octave": "B4"
+        "written": "F#4",
+        "concert": "F#4",
+        "midi": 66,
+        "frequency": 369.99,
+        "enharmonic": "Gb4",
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f4/G\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -426,13 +426,13 @@
     },
     {
       "note": {
-        "written": "C5",
-        "concert": "C5",
-        "midi": 72,
-        "frequency": 523.25,
+        "written": "G4",
+        "concert": "G4",
+        "midi": 67,
+        "frequency": 392.0,
         "enharmonic": null,
-        "display": "C",
-        "display_with_octave": "C5"
+        "display": "G",
+        "display_with_octave": "G4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -459,13 +459,13 @@
     },
     {
       "note": {
-        "written": "C#5",
-        "concert": "C#5",
-        "midi": 73,
-        "frequency": 554.37,
-        "enharmonic": "Db5",
-        "display": "C\u266f/D\u266d",
-        "display_with_octave": "C\u266f/D\u266d5"
+        "written": "G#4",
+        "concert": "G#4",
+        "midi": 68,
+        "frequency": 415.3,
+        "enharmonic": "Ab4",
+        "display": "G\u266f/A\u266d",
+        "display_with_octave": "G\u266f4/A\u266d4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -492,13 +492,13 @@
     },
     {
       "note": {
-        "written": "D5",
-        "concert": "D5",
-        "midi": 74,
-        "frequency": 587.33,
+        "written": "A4",
+        "concert": "A4",
+        "midi": 69,
+        "frequency": 440.0,
         "enharmonic": null,
-        "display": "D",
-        "display_with_octave": "D5"
+        "display": "A",
+        "display_with_octave": "A4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -524,13 +524,13 @@
     },
     {
       "note": {
-        "written": "D#5",
-        "concert": "D#5",
-        "midi": 75,
-        "frequency": 622.25,
-        "enharmonic": "Eb5",
-        "display": "D\u266f/E\u266d",
-        "display_with_octave": "D\u266f/E\u266d5"
+        "written": "Bb4",
+        "concert": "Bb4",
+        "midi": 70,
+        "frequency": 466.16,
+        "enharmonic": "A#4",
+        "display": "B\u266d/A\u266f",
+        "display_with_octave": "B\u266d4/A\u266f4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -559,13 +559,13 @@
     },
     {
       "note": {
-        "written": "E5",
-        "concert": "E5",
-        "midi": 76,
-        "frequency": 659.26,
-        "enharmonic": null,
-        "display": "E",
-        "display_with_octave": "E5"
+        "written": "B4",
+        "concert": "B4",
+        "midi": 71,
+        "frequency": 493.88,
+        "enharmonic": "Cb5",
+        "display": "B",
+        "display_with_octave": "B4"
       },
       "register": "1st octave",
       "octave": "1st octave",
@@ -602,13 +602,13 @@
     },
     {
       "note": {
-        "written": "F5",
-        "concert": "F5",
-        "midi": 77,
-        "frequency": 698.46,
-        "enharmonic": null,
-        "display": "F",
-        "display_with_octave": "F5"
+        "written": "C5",
+        "concert": "C5",
+        "midi": 72,
+        "frequency": 523.25,
+        "enharmonic": "B#4",
+        "display": "C",
+        "display_with_octave": "C5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -635,13 +635,13 @@
     },
     {
       "note": {
-        "written": "F#5",
-        "concert": "F#5",
-        "midi": 78,
-        "frequency": 739.99,
-        "enharmonic": "Gb5",
-        "display": "F\u266f/G\u266d",
-        "display_with_octave": "F\u266f/G\u266d5"
+        "written": "C#5",
+        "concert": "C#5",
+        "midi": 73,
+        "frequency": 554.37,
+        "enharmonic": "Db5",
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f5/D\u266d5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -668,13 +668,13 @@
     },
     {
       "note": {
-        "written": "G5",
-        "concert": "G5",
-        "midi": 79,
-        "frequency": 783.99,
+        "written": "D5",
+        "concert": "D5",
+        "midi": 74,
+        "frequency": 587.33,
         "enharmonic": null,
-        "display": "G",
-        "display_with_octave": "G5"
+        "display": "D",
+        "display_with_octave": "D5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -698,13 +698,13 @@
     },
     {
       "note": {
-        "written": "G#5",
-        "concert": "G#5",
-        "midi": 80,
-        "frequency": 830.61,
-        "enharmonic": "Ab5",
-        "display": "G\u266f/A\u266d",
-        "display_with_octave": "G\u266f/A\u266d5"
+        "written": "D#5",
+        "concert": "D#5",
+        "midi": 75,
+        "frequency": 622.25,
+        "enharmonic": "Eb5",
+        "display": "D\u266f/E\u266d",
+        "display_with_octave": "D\u266f5/E\u266d5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -732,13 +732,13 @@
     },
     {
       "note": {
-        "written": "A5",
-        "concert": "A5",
-        "midi": 81,
-        "frequency": 880.0,
+        "written": "E5",
+        "concert": "E5",
+        "midi": 76,
+        "frequency": 659.26,
         "enharmonic": null,
-        "display": "A",
-        "display_with_octave": "A5"
+        "display": "E",
+        "display_with_octave": "E5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -769,13 +769,13 @@
     },
     {
       "note": {
-        "written": "A#5",
-        "concert": "A#5",
-        "midi": 82,
-        "frequency": 932.33,
-        "enharmonic": "Bb5",
-        "display": "B\u266d/A\u266f",
-        "display_with_octave": "B\u266d/A\u266f5"
+        "written": "F5",
+        "concert": "F5",
+        "midi": 77,
+        "frequency": 698.46,
+        "enharmonic": null,
+        "display": "F",
+        "display_with_octave": "F5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -804,13 +804,13 @@
     },
     {
       "note": {
-        "written": "B5",
-        "concert": "B5",
-        "midi": 83,
-        "frequency": 987.77,
-        "enharmonic": null,
-        "display": "B",
-        "display_with_octave": "B5"
+        "written": "F#5",
+        "concert": "F#5",
+        "midi": 78,
+        "frequency": 739.99,
+        "enharmonic": "Gb5",
+        "display": "F\u266f/G\u266d",
+        "display_with_octave": "F\u266f5/G\u266d5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -836,13 +836,13 @@
     },
     {
       "note": {
-        "written": "C6",
-        "concert": "C6",
-        "midi": 84,
-        "frequency": 1046.5,
+        "written": "G5",
+        "concert": "G5",
+        "midi": 79,
+        "frequency": 783.99,
         "enharmonic": null,
-        "display": "C",
-        "display_with_octave": "C6"
+        "display": "G",
+        "display_with_octave": "G5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -869,13 +869,13 @@
     },
     {
       "note": {
-        "written": "C#6",
-        "concert": "C#6",
-        "midi": 85,
-        "frequency": 1108.73,
-        "enharmonic": "Db6",
-        "display": "C\u266f/D\u266d",
-        "display_with_octave": "C\u266f/D\u266d6"
+        "written": "G#5",
+        "concert": "G#5",
+        "midi": 80,
+        "frequency": 830.61,
+        "enharmonic": "Ab5",
+        "display": "G\u266f/A\u266d",
+        "display_with_octave": "G\u266f5/A\u266d5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -900,13 +900,13 @@
     },
     {
       "note": {
-        "written": "D6",
-        "concert": "D6",
-        "midi": 86,
-        "frequency": 1174.66,
+        "written": "A5",
+        "concert": "A5",
+        "midi": 81,
+        "frequency": 880.0,
         "enharmonic": null,
-        "display": "D",
-        "display_with_octave": "D6"
+        "display": "A",
+        "display_with_octave": "A5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -932,13 +932,13 @@
     },
     {
       "note": {
-        "written": "D#6",
-        "concert": "D#6",
-        "midi": 87,
-        "frequency": 1244.51,
-        "enharmonic": "Eb6",
-        "display": "D\u266f/E\u266d",
-        "display_with_octave": "D\u266f/E\u266d6"
+        "written": "Bb5",
+        "concert": "Bb5",
+        "midi": 82,
+        "frequency": 932.33,
+        "enharmonic": "A#5",
+        "display": "B\u266d/A\u266f",
+        "display_with_octave": "B\u266d5/A\u266f5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -967,13 +967,13 @@
     },
     {
       "note": {
-        "written": "E6",
-        "concert": "E6",
-        "midi": 88,
-        "frequency": 1318.51,
-        "enharmonic": null,
-        "display": "E",
-        "display_with_octave": "E6"
+        "written": "B5",
+        "concert": "B5",
+        "midi": 83,
+        "frequency": 987.77,
+        "enharmonic": "Cb6",
+        "display": "B",
+        "display_with_octave": "B5"
       },
       "register": "2nd octave",
       "octave": "2nd octave",
@@ -999,13 +999,13 @@
     },
     {
       "note": {
-        "written": "F6",
-        "concert": "F6",
-        "midi": 89,
-        "frequency": 1396.91,
-        "enharmonic": null,
-        "display": "F",
-        "display_with_octave": "F6"
+        "written": "C6",
+        "concert": "C6",
+        "midi": 84,
+        "frequency": 1046.5,
+        "enharmonic": "B#5",
+        "display": "C",
+        "display_with_octave": "C6"
       },
       "register": "3rd octave",
       "octave": "3rd octave",
@@ -1032,13 +1032,13 @@
     },
     {
       "note": {
-        "written": "F#6",
-        "concert": "F#6",
-        "midi": 90,
-        "frequency": 1479.98,
-        "enharmonic": "Gb6",
-        "display": "F\u266f/G\u266d",
-        "display_with_octave": "F\u266f/G\u266d6"
+        "written": "C#6",
+        "concert": "C#6",
+        "midi": 85,
+        "frequency": 1108.73,
+        "enharmonic": "Db6",
+        "display": "C\u266f/D\u266d",
+        "display_with_octave": "C\u266f6/D\u266d6"
       },
       "register": "3rd octave",
       "octave": "3rd octave",
@@ -1066,13 +1066,13 @@
     },
     {
       "note": {
-        "written": "G6",
-        "concert": "G6",
-        "midi": 91,
-        "frequency": 1567.98,
+        "written": "D6",
+        "concert": "D6",
+        "midi": 86,
+        "frequency": 1174.66,
         "enharmonic": null,
-        "display": "G",
-        "display_with_octave": "G6"
+        "display": "D",
+        "display_with_octave": "D6"
       },
       "register": "3rd octave",
       "octave": "3rd octave",
