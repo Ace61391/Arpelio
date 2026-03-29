@@ -5,8 +5,8 @@
 // Only class toggles between "open" and "pressed"
 
 const DATA_TO_ID = {
-  'thumb': 'THUMB', 'L1': 'LH1', 'L2': 'LH2', 'L3': 'LH3',
-  'G#': 'LH_AUX_1', 'Bb': 'LH_AUX_2',
+  'thumb': 'LH_AUX_2', 'L1': 'LH1', 'L2': 'LH2', 'L3': 'LH3',
+  'G#': 'LH_AUX_1', 'Bb': 'THUMB',
   'R1': 'RH1', 'R2': 'RH2', 'R3': 'RH3',
   'D#-trill': 'RH_AUX_1', 'Eb': 'RH_PINKY_MAIN',
   'C#': 'RH_PINKY_BAR_1', 'C': 'RH_PINKY_BAR_2', 'B': 'RH_PINKY_LOWER',

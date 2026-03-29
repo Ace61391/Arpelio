@@ -1,8 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(tar -xzf \"$HOME/Downloads/arpelio-v5.tar.gz\" --strip-components=1)",
-      "Bash(tar -xzf \"$HOME/Downloads/arpelio-v5.tar.gz\")",
       "Bash(git add:*)"
     ]
   }
