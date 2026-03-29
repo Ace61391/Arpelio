@@ -1,72 +1,46 @@
 'use client';
 
-export default function RecorderDiagram({ elements = [], interactive = false, onToggle, size = 'md' }) {
-  const s = size === 'lg' ? 20 : size === 'md' ? 16 : 12;
-  const gap = size === 'lg' ? 8 : size === 'md' ? 6 : 4;
-  const thumbS = s * 0.8;
-
-  // Parse elements to determine hole states
-  const holeMap = { L1: 0, L2: 1, L3: 2, R1: 3, R2: 4, R3: 5, R4: 6 };
-  const holes = [0, 0, 0, 0, 0, 0, 0];
+export default function RecorderDiagram({ elements = [], size = 'md', blank = false }) {
+  const holes = [false, false, false, false, false, false, false];
   let thumb = 'off';
+  if (!blank) {
+    elements.forEach(e => {
+      if (e === 'thumb') thumb = 'full';
+      if (e === 'thumb-half') thumb = 'half';
+      const map = { L1: 0, L2: 1, L3: 2, R1: 3, R2: 4, R3: 5, R4: 6 };
+      if (map[e] !== undefined) holes[map[e]] = true;
+    });
+  }
 
-  elements.forEach(e => {
-    if (e === 'thumb') thumb = 'full';
-    else if (e === 'thumb-half') thumb = 'half';
-    else if (holeMap[e] !== undefined) holes[holeMap[e]] = 1;
-  });
-
-  const filled = '#1a1d23';
-  const empty = '#ffffff';
-  const stroke = '#c0c4cc';
-  const interactiveStroke = '#4f6df5';
+  const F = '#1a1d23', E = '#ffffff', S = '#b0b5c0', BG = '#f8f9fb', L = '#7a8294';
+  const scale = size === 'lg' ? 1.2 : size === 'sm' ? 0.7 : 1;
 
   return (
-    <div className="flex flex-col items-center" style={{ gap }}>
-      {/* Thumb (square with rounded corners) */}
-      <div
-        onClick={interactive ? () => onToggle?.('thumb') : undefined}
-        className={interactive ? 'cursor-pointer' : ''}
-        style={{
-          width: thumbS, height: thumbS * 0.75, borderRadius: 3,
-          border: `1.5px solid ${thumb === 'half' ? '#4f6df5' : interactive ? interactiveStroke : stroke}`,
-          background: thumb === 'full' ? filled : thumb === 'half' ? `linear-gradient(180deg, ${filled} 50%, ${empty} 50%)` : empty,
-          transition: 'all 0.15s',
-        }}
-      />
-      <div style={{ width: 1, height: 4, background: '#e5e8ed' }} />
-      {/* Left hand holes */}
+    <svg width={Math.round(70 * scale)} viewBox="0 0 70 260" style={{ display: 'block' }}>
+      <defs>
+        <linearGradient id="recHalf" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="50%" stopColor={F} /><stop offset="50%" stopColor={E} />
+        </linearGradient>
+      </defs>
+      <rect x={19} y={8} width={32} height={240} rx={16} fill={BG} stroke={S} strokeWidth={0.8} />
+      <rect x={27} y={16} width={16} height={12} rx={4}
+        fill={thumb === 'full' ? F : thumb === 'half' ? 'url(#recHalf)' : E}
+        stroke={thumb === 'half' ? '#4f6df5' : S} strokeWidth={1.2} />
+      <text x={50} y={25} fontSize="8" fill={L} fontFamily="system-ui" fontWeight="500">T</text>
+      <line x1={25} y1={36} x2={45} y2={36} stroke={S} strokeWidth={0.4} strokeDasharray="2 2" />
       {[0, 1, 2].map(i => (
-        <div
-          key={`L${i}`}
-          onClick={interactive ? () => onToggle?.(i) : undefined}
-          className={interactive ? 'cursor-pointer' : ''}
-          style={{
-            width: s, height: s, borderRadius: '50%',
-            border: `1.5px solid ${interactive ? interactiveStroke : stroke}`,
-            background: holes[i] ? filled : empty,
-            transition: 'all 0.15s',
-            boxShadow: holes[i] ? 'inset 0 1px 2px rgba(0,0,0,0.2)' : 'none',
-          }}
-        />
+        <g key={i}>
+          <circle cx={35} cy={52 + i * 26} r={9} fill={holes[i] ? F : E} stroke={S} strokeWidth={1.2} />
+          <text x={52} y={55 + i * 26} fontSize="8" fill={L} fontFamily="system-ui">{i + 1}</text>
+        </g>
       ))}
-      {/* Hand divider */}
-      <div style={{ width: s * 1.5, height: 1, background: '#e5e8ed' }} />
-      {/* Right hand holes */}
+      <line x1={21} y1={117} x2={49} y2={117} stroke={S} strokeWidth={0.8} />
       {[3, 4, 5, 6].map(i => (
-        <div
-          key={`R${i}`}
-          onClick={interactive ? () => onToggle?.(i) : undefined}
-          className={interactive ? 'cursor-pointer' : ''}
-          style={{
-            width: s, height: s, borderRadius: '50%',
-            border: `1.5px solid ${interactive ? interactiveStroke : stroke}`,
-            background: holes[i] ? filled : empty,
-            transition: 'all 0.15s',
-            boxShadow: holes[i] ? 'inset 0 1px 2px rgba(0,0,0,0.2)' : 'none',
-          }}
-        />
+        <g key={i}>
+          <circle cx={35} cy={130 + (i - 3) * 26} r={9} fill={holes[i] ? F : E} stroke={S} strokeWidth={1.2} />
+          <text x={52} y={133 + (i - 3) * 26} fontSize="8" fill={L} fontFamily="system-ui">{i + 1}</text>
+        </g>
       ))}
-    </div>
+    </svg>
   );
 }

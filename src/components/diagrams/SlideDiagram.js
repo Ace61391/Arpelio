@@ -1,66 +1,38 @@
 'use client';
 
-export default function SlideDiagram({ elements = [], interactive = false, onToggle, size = 'md' }) {
-  const w = size === 'lg' ? 180 : size === 'md' ? 140 : 100;
-  const h = size === 'lg' ? 36 : size === 'md' ? 28 : 20;
+export default function SlideDiagram({ elements = [], size = 'md', blank = false }) {
+  let pos = blank ? 0 : 1;
+  if (!blank) {
+    elements.forEach(e => {
+      const m = e.match?.(/pos-(\d)/);
+      if (m) pos = parseInt(m[1]);
+    });
+  }
 
-  // Parse slide position from elements
-  let position = 1;
-  elements.forEach(e => {
-    const match = e.match?.(/position-(\d)/);
-    if (match) position = parseInt(match[1]);
-    // Also handle text_notation format
-    if (typeof e === 'string' && /^[1-7]$/.test(e)) position = parseInt(e);
-  });
-
-  const positions = [1, 2, 3, 4, 5, 6, 7];
-  const slidePercent = (position - 1) / 6;
+  const F = '#1a1d23', S = '#b0b5c0', BG = '#f8f9fb', L = '#7a8294', A = '#4f6df5';
+  const scale = size === 'lg' ? 1.2 : size === 'sm' ? 0.7 : 1;
+  const w = 180;
+  const pct = pos > 0 ? (pos - 1) / 6 : 0;
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      {/* Slide bar */}
-      <div style={{
-        width: w, height: h, borderRadius: h / 2,
-        border: '1.5px solid #c0c4cc',
-        background: '#f8f9fb',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        {/* Fill to position */}
-        <div style={{
-          position: 'absolute', left: 0, top: 0, bottom: 0,
-          width: `${14 + slidePercent * 86}%`,
-          background: 'linear-gradient(90deg, #1a1d23 0%, #4a5060 100%)',
-          borderRadius: h / 2,
-          transition: 'width 0.2s ease',
-        }} />
-        {/* Position number */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: h * 0.5, fontWeight: 700, color: '#fff',
-          fontFamily: '"JetBrains Mono", monospace',
-          mixBlendMode: 'difference',
-        }}>
-          {position}
-        </div>
-      </div>
-      {/* Position markers */}
-      <div className="flex" style={{ width: w, justifyContent: 'space-between', padding: '0 4px' }}>
-        {positions.map(p => (
-          <div
-            key={p}
-            onClick={interactive ? () => onToggle?.(p) : undefined}
-            className={interactive ? 'cursor-pointer' : ''}
-            style={{
-              fontSize: 9, fontWeight: p === position ? 700 : 400,
-              color: p === position ? '#4f6df5' : '#b0b5c0',
-              fontFamily: '"JetBrains Mono", monospace',
-              transition: 'all 0.15s',
-            }}
-          >{p}</div>
-        ))}
-      </div>
-    </div>
+    <svg width={Math.round(w * scale)} viewBox={`0 0 ${w} 55`} style={{ display: 'block' }}>
+      <rect x={8} y={8} width={w - 16} height={32} rx={16} fill={BG} stroke={S} strokeWidth={1} />
+      {pos > 0 && (
+        <rect x={8} y={8} width={Math.max(32, (w - 16) * (0.1 + pct * 0.9))} height={32} rx={16} fill={F} />
+      )}
+      {pos > 0 && (
+        <text x={w / 2} y={28} textAnchor="middle" fontSize="15" fill="#fff" fontFamily="system-ui" fontWeight="700" style={{ mixBlendMode: 'difference' }}>{pos}</text>
+      )}
+      {blank && (
+        <text x={w / 2} y={28} textAnchor="middle" fontSize="12" fill={L} fontFamily="system-ui">?</text>
+      )}
+      {[1, 2, 3, 4, 5, 6, 7].map(p => {
+        const x = 8 + (w - 16) * (0.1 + ((p - 1) / 6) * 0.9);
+        return (
+          <text key={p} x={x} y={52} textAnchor="middle" fontSize="9"
+            fill={p === pos ? A : L} fontWeight={p === pos ? '700' : '400'} fontFamily="system-ui">{p}</text>
+        );
+      })}
+    </svg>
   );
 }
