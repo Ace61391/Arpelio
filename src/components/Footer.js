@@ -18,6 +18,9 @@ export default function Footer() {
           <Link href="/builder" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
             Worksheet Builder
           </Link>
+          <Link href="/faq" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
+            FAQ & Help
+          </Link>
         </div>
       </div>
       <div className="max-w-[1160px] mx-auto mt-6 pt-6 border-t border-[#2a2d35] flex justify-between flex-wrap gap-3">
