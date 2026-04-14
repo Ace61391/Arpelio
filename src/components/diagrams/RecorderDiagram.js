@@ -40,7 +40,7 @@ export default function RecorderDiagram({ elements = [], size = 'md', blank = fa
           <stop offset="50%" stopColor="#000"/><stop offset="50%" stopColor="#fff"/>
         </linearGradient>
       </defs>
-      <circle className={thumb} cx="60" cy="40" r="14"/>
+      <circle className={thumb} cx="60" cy="40" r="10"/>
       <line className="divider" x1="50" y1="68" x2="120" y2="68"/>
       <circle className={holes[0]} cx="90" cy="100" r="17"/>
       <circle className={holes[1]} cx="90" cy="148" r="17"/>
@@ -58,8 +58,8 @@ export default function RecorderDiagram({ elements = [], size = 'md', blank = fa
         </>
       ) : (
         <>
-          <circle className={holes[5]} cx="90" cy="347" r="14"/>
-          <circle className={holes[6]} cx="90" cy="385" r="13"/>
+          <circle className={holes[5]} cx="90" cy="347" r="16"/>
+          <circle className={holes[6]} cx="90" cy="385" r="16"/>
         </>
       )}
     </svg>
