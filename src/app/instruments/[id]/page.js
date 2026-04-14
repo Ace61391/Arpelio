@@ -119,7 +119,7 @@ export default function InstrumentPage() {
                   isSelected ? 'border-accent shadow-md' : 'border-[#e5e8ed] hover:border-[#d0d4dc]'
                 }`}>
                 <div className="text-3xl font-extrabold text-[#1a1d23]">{f.note.display}</div>
-                <StaffNote note={f.note.written} clef={clef} width={80} />
+                <StaffNote note={f.note.written} clef={clef} width={110} />
                 <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="md" />
                 <div className="font-mono text-2xl text-[#7a8294] text-center">{f.primary.text_notation}</div>
               </div>
