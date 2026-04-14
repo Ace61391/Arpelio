@@ -225,7 +225,7 @@ export default function KeyReference({ instrumentId }) {
   return (
     <div className="border border-[#e5e8ed] rounded-card p-5 mb-8 bg-white">
       <h3 className="text-sm font-bold text-[#4a5060] mb-3 text-center">Key Reference</h3>
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-xs mx-auto">
         <Component />
       </div>
     </div>
