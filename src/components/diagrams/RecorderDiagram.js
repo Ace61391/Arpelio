@@ -58,8 +58,8 @@ export default function RecorderDiagram({ elements = [], size = 'md', blank = fa
         </>
       ) : (
         <>
-          <circle className={holes[5]} cx="90" cy="347" r="16"/>
-          <circle className={holes[6]} cx="90" cy="385" r="16"/>
+          <circle className={holes[5]} cx="90" cy="350" r="16"/>
+          <circle className={holes[6]} cx="90" cy="395" r="16"/>
         </>
       )}
     </svg>

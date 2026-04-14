@@ -153,8 +153,8 @@ function RecorderReference() {
       <line className="divider" x1="50" y1="228" x2="120" y2="228"/>
       <circle className="open" cx="90" cy="260" r="16"/>
       <circle className="open" cx="90" cy="305" r="16"/>
-      <circle className="open" cx="90" cy="347" r="16"/>
-      <circle className="open" cx="90" cy="385" r="16"/>
+      <circle className="open" cx="90" cy="350" r="16"/>
+      <circle className="open" cx="90" cy="395" r="16"/>
 
       <text style={LABEL_STYLE} x="82" y="44" textAnchor="start">  Thumb</text>
       <text style={LABEL_STYLE} x="118" y="104" textAnchor="start">LH1</text>
@@ -162,8 +162,8 @@ function RecorderReference() {
       <text style={LABEL_STYLE} x="118" y="200" textAnchor="start">LH3</text>
       <text style={LABEL_STYLE} x="118" y="264" textAnchor="start">RH1</text>
       <text style={LABEL_STYLE} x="118" y="309" textAnchor="start">RH2</text>
-      <text style={LABEL_STYLE} x="118" y="351" textAnchor="start">RH3</text>
-      <text style={LABEL_STYLE} x="118" y="389" textAnchor="start">RH4</text>
+      <text style={LABEL_STYLE} x="118" y="354" textAnchor="start">RH3</text>
+      <text style={LABEL_STYLE} x="118" y="399" textAnchor="start">RH4</text>
     </svg>
   );
 }
