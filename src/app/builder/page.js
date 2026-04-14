@@ -237,27 +237,21 @@ function BuilderInner() {
         {/* Preview area */}
         {showPreview && selectedFingerings.length > 0 && (
           <div ref={previewRef} className="border border-[#e5e8ed] rounded-2xl p-8 bg-white print:border-none print:rounded-none print:p-0">
-            {/* Logo header */}
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <img src="/logo.svg" alt="Arpelio" className="h-6 w-6" />
-              <span className="text-sm font-bold text-[#1a1d23]">Arpelio</span>
-            </div>
-            {/* Header */}
-            <div className="text-center mb-6 pb-4 border-b border-[#e5e8ed]">
-              <h2 className="text-2xl font-extrabold text-[#1a1d23]">
-                {title || `${instMeta?.name || ''} ${mode === 'reference' ? 'Fingering Chart' : mode === 'identify' ? 'Fingering Quiz — Identify the Note' : 'Fingering Quiz — Fill the Chart'}`}
-              </h2>
-              {schoolName && <p className="text-sm text-[#7a8294] mt-1">{schoolName}</p>}
-              <p className="text-xs text-[#b0b5c0] mt-1">Name: __________________ Period: ____ Date: ________</p>
-            </div>
-
             {/* Pages — 6 cards each (2 rows of 3) */}
             {pages.map((pageCards, pageIdx) => (
-              <div key={pageIdx} data-pdf-page className={`bg-white ${pageIdx > 0 ? 'mt-8 pt-6 border-t-2 border-dashed border-[#e5e8ed]' : ''}`}>
-                {pageIdx > 0 && (
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <img src="/logo.svg" alt="Arpelio" className="h-6 w-6" />
-                    <span className="text-sm font-bold text-[#1a1d23]">Arpelio</span>
+              <div key={pageIdx} data-pdf-page className={`bg-white p-4 ${pageIdx > 0 ? 'mt-8 pt-6 border-t-2 border-dashed border-[#e5e8ed]' : ''}`}>
+                {/* Logo + header on every page */}
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <img src="/logo.svg" alt="Arpelio" className="h-10 w-10" />
+                  <span className="text-xl font-bold text-[#1a1d23]">Arpelio</span>
+                </div>
+                {pageIdx === 0 && (
+                  <div className="text-center mb-4 pb-3 border-b border-[#e5e8ed]">
+                    <h2 className="text-2xl font-extrabold text-[#1a1d23]">
+                      {title || `${instMeta?.name || ''} ${mode === 'reference' ? 'Fingering Chart' : mode === 'identify' ? 'Fingering Quiz — Identify the Note' : 'Fingering Quiz — Fill the Chart'}`}
+                    </h2>
+                    {schoolName && <p className="text-sm text-[#7a8294] mt-1">{schoolName}</p>}
+                    <p className="text-xs text-[#b0b5c0] mt-1">Name: __________________ Period: ____ Date: ________</p>
                   </div>
                 )}
                 <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
