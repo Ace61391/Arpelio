@@ -121,7 +121,7 @@ export default function InstrumentPage() {
                 <div className="text-3xl font-extrabold text-[#1a1d23]">{f.note.display}</div>
                 <StaffNote note={f.note.written} clef={clef} width={80} />
                 <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="md" />
-                <div className="font-mono text-base text-[#7a8294] text-center">{f.primary.text_notation}</div>
+                <div className="font-mono text-lg text-[#7a8294] text-center">{f.primary.text_notation}</div>
               </div>
             );
           })}
