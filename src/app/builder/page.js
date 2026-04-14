@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useEffect, Suspense } from 'react';
+import { useState, useMemo, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Nav from '@/components/Nav';
@@ -66,8 +66,64 @@ function BuilderInner() {
   const selectedFingerings = fingerings.filter(f => selectedNotes.has(f.note.written));
   const clef = instMeta?.clef || 'treble';
 
-  const handlePrint = () => {
-    window.print();
+  const previewRef = useRef(null);
+  const [generating, setGenerating] = useState(false);
+
+  const handleDownloadPDF = async () => {
+    if (!previewRef.current) return;
+    setGenerating(true);
+    try {
+      const html2canvas = (await import('html2canvas')).default;
+      const { jsPDF } = await import('jspdf');
+
+      const el = previewRef.current;
+      const canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+      const imgData = canvas.toDataURL('image/png');
+
+      const pageW = 8.5;
+      const pageH = 11;
+      const margin = 0.5;
+      const contentW = pageW - margin * 2;
+
+      const imgW = contentW;
+      const imgH = (canvas.height / canvas.width) * imgW;
+
+      const pdf = new jsPDF({ unit: 'in', format: 'letter', orientation: 'portrait' });
+      let yPos = margin;
+      let remainingH = imgH;
+      const pageContentH = pageH - margin * 2;
+
+      // If image fits on one page
+      if (imgH <= pageContentH) {
+        pdf.addImage(imgData, 'PNG', margin, margin, imgW, imgH);
+      } else {
+        // Multi-page: slice the canvas
+        const sliceH = Math.floor(canvas.height * (pageContentH / imgH));
+        let srcY = 0;
+        let page = 0;
+        while (srcY < canvas.height) {
+          if (page > 0) pdf.addPage();
+          const thisSliceH = Math.min(sliceH, canvas.height - srcY);
+          const sliceCanvas = document.createElement('canvas');
+          sliceCanvas.width = canvas.width;
+          sliceCanvas.height = thisSliceH;
+          const ctx = sliceCanvas.getContext('2d');
+          ctx.drawImage(canvas, 0, srcY, canvas.width, thisSliceH, 0, 0, canvas.width, thisSliceH);
+          const sliceImg = sliceCanvas.toDataURL('image/png');
+          const drawH = (thisSliceH / canvas.width) * imgW;
+          pdf.addImage(sliceImg, 'PNG', margin, margin, imgW, drawH);
+          srcY += thisSliceH;
+          page++;
+        }
+      }
+
+      const fileName = (title || `${instMeta?.name || 'Arpelio'} Fingering Chart`).replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '_');
+      pdf.save(`${fileName}.pdf`);
+    } catch (err) {
+      console.error('PDF generation failed:', err);
+    } finally {
+      setGenerating(false);
+    }
   };
 
   return (
@@ -180,9 +236,9 @@ function BuilderInner() {
                   Preview Worksheet
                 </button>
                 {showPreview && (
-                  <button onClick={handlePrint}
-                    className="bg-[#1a1d23] hover:bg-[#2a2d33] text-white rounded-lg px-6 py-3 text-sm font-bold transition-all">
-                    Print / Save as PDF
+                  <button onClick={handleDownloadPDF} disabled={generating}
+                    className="bg-[#1a1d23] hover:bg-[#2a2d33] text-white rounded-lg px-6 py-3 text-sm font-bold transition-all disabled:opacity-50">
+                    {generating ? 'Generating PDF...' : 'Download PDF'}
                   </button>
                 )}
               </div>
@@ -192,14 +248,14 @@ function BuilderInner() {
 
         {/* Preview area */}
         {showPreview && selectedFingerings.length > 0 && (
-          <div className="border border-[#e5e8ed] rounded-2xl p-8 bg-white print:border-none print:rounded-none print:p-0">
-            {/* Print header with logo */}
-            <div className="hidden print:flex items-center justify-center gap-2 mb-2">
+          <div ref={previewRef} className="border border-[#e5e8ed] rounded-2xl p-8 bg-white print:border-none print:rounded-none print:p-0">
+            {/* Logo header */}
+            <div className="flex items-center justify-center gap-2 mb-2">
               <img src="/logo.svg" alt="Arpelio" className="h-6 w-6" />
               <span className="text-sm font-bold text-[#1a1d23]">Arpelio</span>
             </div>
             {/* Header */}
-            <div className="text-center mb-6 pb-4 border-b border-[#e5e8ed] print:border-black">
+            <div className="text-center mb-6 pb-4 border-b border-[#e5e8ed]">
               <h2 className="text-2xl font-extrabold text-[#1a1d23]">
                 {title || `${instMeta?.name || ''} ${mode === 'reference' ? 'Fingering Chart' : mode === 'identify' ? 'Fingering Quiz — Identify the Note' : 'Fingering Quiz — Fill the Chart'}`}
               </h2>
