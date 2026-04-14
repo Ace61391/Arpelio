@@ -242,8 +242,8 @@ function BuilderInner() {
               <div key={pageIdx} data-pdf-page className={`bg-white p-4 ${pageIdx > 0 ? 'mt-8 pt-6 border-t-2 border-dashed border-[#e5e8ed]' : ''}`}>
                 {/* Logo + header on every page */}
                 <div className="flex items-center justify-center gap-3 mb-3">
-                  <img src="/logo.svg" alt="Arpelio" className="h-10 w-10" />
-                  <span className="text-xl font-bold text-[#1a1d23]">Arpelio</span>
+                  <img src="/logo.svg" alt="Arpelio" className="h-12 w-12 rounded-xl" />
+                  <span className="text-3xl font-extrabold text-[#1a1d23] tracking-tight">Arpelio</span>
                 </div>
                 {pageIdx === 0 && (
                   <div className="text-center mb-4 pb-3 border-b border-[#e5e8ed]">
