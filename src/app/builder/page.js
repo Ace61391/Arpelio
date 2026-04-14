@@ -126,7 +126,7 @@ function BuilderInner() {
           <div className="mb-8">
             <h2 className="text-sm font-bold text-[#7a8294] uppercase tracking-widest mb-3">1. Choose instrument</h2>
             <div className="flex flex-wrap gap-2">
-              {INSTRUMENTS.map(inst => (
+              {INSTRUMENTS.filter(i => !i.hidden).map(inst => (
                 <button key={inst.id} onClick={() => { setInstrumentId(inst.id); setShowPreview(false); }}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all border ${
                     instrumentId === inst.id

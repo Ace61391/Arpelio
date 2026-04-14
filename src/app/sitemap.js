@@ -3,7 +3,7 @@ import { INSTRUMENTS } from '@/data/instruments';
 const BASE_URL = 'https://arpelio.com';
 
 export default function sitemap() {
-  const instrumentPages = INSTRUMENTS.map(inst => ({
+  const instrumentPages = INSTRUMENTS.filter(i => !i.hidden).map(inst => ({
     url: `${BASE_URL}/instruments/${inst.id}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',

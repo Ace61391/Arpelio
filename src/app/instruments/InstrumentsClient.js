@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { INSTRUMENTS } from '@/data/instruments';
 
@@ -11,7 +12,10 @@ const FAMILIES = [
 
 export default function InstrumentsClient() {
   const [filter, setFilter] = useState('all');
-  const filtered = filter === 'all' ? INSTRUMENTS : INSTRUMENTS.filter(i => i.family === filter);
+  const searchParams = useSearchParams();
+  const preview = searchParams.get('preview') === 'true';
+  const visible = preview ? INSTRUMENTS : INSTRUMENTS.filter(i => !i.hidden);
+  const filtered = filter === 'all' ? visible : visible.filter(i => i.family === filter);
 
   return (
     <>

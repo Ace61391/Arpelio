@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import InstrumentsClient from './InstrumentsClient';
@@ -33,7 +34,9 @@ export default function InstrumentsPage() {
           Select an instrument to view its interactive fingering chart with every note and octave. Print PDF reference charts or create quiz worksheets — all free.
         </p>
 
-        <InstrumentsClient />
+        <Suspense fallback={<div className="text-center py-8 text-[#7a8294]">Loading instruments...</div>}>
+          <InstrumentsClient />
+        </Suspense>
       </div>
       <Footer />
     </>
