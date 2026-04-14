@@ -23,9 +23,9 @@ module.exports = {
         error: { DEFAULT: '#e5483e', light: '#fef0ef' },
       },
       fontFamily: {
-        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        body: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+        display: ['var(--font-plus-jakarta)', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        body: ['var(--font-plus-jakarta)', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-jetbrains-mono)', '"JetBrains Mono"', '"Fira Code"', 'monospace'],
       },
       borderRadius: {
         'card': '14px',

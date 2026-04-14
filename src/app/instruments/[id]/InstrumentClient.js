@@ -1,0 +1,101 @@
+'use client';
+import { useState, useMemo } from 'react';
+import Link from 'next/link';
+import StaffNote from '@/components/StaffNote';
+import FingeringDiagram from '@/components/FingeringDiagram';
+import KeyReference from '@/components/KeyReference';
+
+const OCTAVE_FILTERS = [
+  { id: 'all', label: 'All Notes' },
+  { id: 'beginner', label: 'Beginner' },
+  { id: '1', label: '1st Octave' },
+  { id: '2', label: '2nd Octave' },
+  { id: '3', label: '3rd Octave' },
+];
+
+export default function InstrumentClient({ id, instMeta, fingerings, clef }) {
+  const [octaveFilter, setOctaveFilter] = useState('beginner');
+  const [selectedNote, setSelectedNote] = useState(null);
+  const [holeStyle, setHoleStyle] = useState('simple');
+
+  const availableOctaves = useMemo(() => {
+    const octaves = new Set();
+    fingerings.forEach(f => {
+      const o = (f.octave || f.register || '').toLowerCase();
+      if (o.includes('1st') || o.includes('chalumeau') || o.includes('low')) octaves.add('1');
+      if (o.includes('2nd') || o.includes('clarion') || o.includes('mid') || o.includes('palm')) octaves.add('2');
+      if (o.includes('3rd') || o.includes('altissimo') || o.includes('high') || o.includes('upper')) octaves.add('3');
+    });
+    return octaves;
+  }, [fingerings]);
+
+  const filteredNotes = useMemo(() => {
+    return fingerings.filter(f => {
+      if (octaveFilter === 'all') return true;
+      if (octaveFilter === 'beginner') return f.pedagogy?.beginner_note;
+      const o = (f.octave || f.register || '').toLowerCase();
+      if (octaveFilter === '1') return o.includes('1st') || o.includes('chalumeau') || o.includes('low');
+      if (octaveFilter === '2') return o.includes('2nd') || o.includes('clarion') || o.includes('mid') || o.includes('palm');
+      if (octaveFilter === '3') return o.includes('3rd') || o.includes('altissimo') || o.includes('high') || o.includes('upper');
+      return true;
+    });
+  }, [fingerings, octaveFilter]);
+
+  return (
+    <>
+      <KeyReference instrumentId={id} />
+
+      <div className="flex flex-wrap items-center gap-1.5 mb-8">
+        {OCTAVE_FILTERS.filter(f => f.id === 'all' || f.id === 'beginner' || availableOctaves.has(f.id)).map(f => (
+          <button key={f.id} onClick={() => setOctaveFilter(f.id)}
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all border whitespace-nowrap ${
+              octaveFilter === f.id
+                ? 'border-accent bg-accent-light text-accent'
+                : 'border-[#e5e8ed] bg-white text-[#7a8294] hover:border-[#d0d4dc]'
+            }`}>
+            {f.label}
+          </button>
+        ))}
+        <span className="text-xs text-[#b0b5c0] self-center ml-2">{filteredNotes.length} notes</span>
+
+        {id === 'recorder' && (
+          <div className="flex items-center gap-2 ml-auto border border-[#e5e8ed] rounded-full px-3 py-1">
+            <button onClick={() => setHoleStyle('simple')}
+              className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-all ${holeStyle === 'simple' ? 'bg-accent text-white' : 'text-[#7a8294]'}`}>
+              Simple
+            </button>
+            <button onClick={() => setHoleStyle('baroque')}
+              className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-all ${holeStyle === 'baroque' ? 'bg-accent text-white' : 'text-[#7a8294]'}`}>
+              Baroque
+            </button>
+          </div>
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {filteredNotes.map(f => {
+          const isSelected = selectedNote === f.note.written;
+          return (
+            <div key={f.note.written}
+              onClick={() => setSelectedNote(isSelected ? null : f.note.written)}
+              className={`bg-white border rounded-card p-4 flex flex-col items-center gap-2 cursor-pointer transition-all hover:-translate-y-0.5 ${
+                isSelected ? 'border-accent shadow-md' : 'border-[#e5e8ed] hover:border-[#d0d4dc]'
+              }`}>
+              <div className="text-3xl font-extrabold text-[#1a1d23]">{f.note.display}</div>
+              <StaffNote note={f.note.written} clef={clef} width={110} />
+              <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="md" holeStyle={holeStyle} />
+              <div className="font-mono text-2xl text-[#4a5060] text-center">{f.primary.text_notation}</div>
+            </div>
+          );
+        })}
+      </div>
+
+      {filteredNotes.length === 0 && (
+        <div className="text-center py-16 text-[#7a8294]">
+          <p className="text-lg mb-2">No notes match this filter</p>
+          <button onClick={() => setOctaveFilter('all')} className="text-accent font-semibold">Show all notes</button>
+        </div>
+      )}
+    </>
+  );
+}

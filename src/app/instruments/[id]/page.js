@@ -1,56 +1,46 @@
-'use client';
-import { useState, useMemo } from 'react';
-import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import StaffNote from '@/components/StaffNote';
-import FingeringDiagram from '@/components/FingeringDiagram';
-import KeyReference from '@/components/KeyReference';
-import { getInstrument } from '@/data/instruments';
+import { INSTRUMENTS, getInstrument } from '@/data/instruments';
 import { getInstrumentData } from '@/data/loader';
+import InstrumentClient from './InstrumentClient';
 
-const OCTAVE_FILTERS = [
-  { id: 'all', label: 'All Notes' },
-  { id: 'beginner', label: 'Beginner' },
-  { id: '1', label: '1st Octave' },
-  { id: '2', label: '2nd Octave' },
-  { id: '3', label: '3rd Octave' },
-];
+export function generateStaticParams() {
+  return INSTRUMENTS.map(inst => ({ id: inst.id }));
+}
 
-export default function InstrumentPage() {
-  const params = useParams();
+export function generateMetadata({ params }) {
+  const inst = getInstrument(params.id);
+  if (!inst) return { title: 'Instrument Not Found' };
+
+  const title = `${inst.name} Fingering Chart — All Notes & Octaves`;
+  const description = `Free interactive ${inst.name.toLowerCase()} fingering chart with ${inst.notes} notes. ${inst.description} Browse all fingerings, print PDF reference charts, and create quiz worksheets.`;
+
+  return {
+    title,
+    description,
+    keywords: `${inst.name.toLowerCase()} fingering chart, ${inst.name.toLowerCase()} fingerings, ${inst.name.toLowerCase()} note chart, ${inst.name.toLowerCase()} fingering PDF, band instrument fingering chart`,
+    openGraph: {
+      title: `${inst.name} Fingering Chart | Arpelio`,
+      description,
+      url: `https://arpelio.com/instruments/${inst.id}`,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${inst.name} Fingering Chart | Arpelio`,
+      description,
+    },
+    alternates: {
+      canonical: `https://arpelio.com/instruments/${inst.id}`,
+    },
+  };
+}
+
+export default function InstrumentPage({ params }) {
   const id = params.id;
   const instMeta = getInstrument(id);
   const instData = getInstrumentData(id);
-  const [octaveFilter, setOctaveFilter] = useState('beginner');
-  const [selectedNote, setSelectedNote] = useState(null);
-  const [holeStyle, setHoleStyle] = useState('simple');
-
-  const fingerings = instData?.fingerings || [];
-
-  const availableOctaves = useMemo(() => {
-    const octaves = new Set();
-    fingerings.forEach(f => {
-      const o = (f.octave || f.register || '').toLowerCase();
-      if (o.includes('1st') || o.includes('chalumeau') || o.includes('low')) octaves.add('1');
-      if (o.includes('2nd') || o.includes('clarion') || o.includes('mid') || o.includes('palm')) octaves.add('2');
-      if (o.includes('3rd') || o.includes('altissimo') || o.includes('high') || o.includes('upper')) octaves.add('3');
-    });
-    return octaves;
-  }, [fingerings]);
-
-  const filteredNotes = useMemo(() => {
-    return fingerings.filter(f => {
-      if (octaveFilter === 'all') return true;
-      if (octaveFilter === 'beginner') return f.pedagogy?.beginner_note;
-      const o = (f.octave || f.register || '').toLowerCase();
-      if (octaveFilter === '1') return o.includes('1st') || o.includes('chalumeau') || o.includes('low');
-      if (octaveFilter === '2') return o.includes('2nd') || o.includes('clarion') || o.includes('mid') || o.includes('palm');
-      if (octaveFilter === '3') return o.includes('3rd') || o.includes('altissimo') || o.includes('high') || o.includes('upper');
-      return true;
-    });
-  }, [fingerings, octaveFilter]);
 
   if (!instMeta || !instData) {
     return (
@@ -58,14 +48,16 @@ export default function InstrumentPage() {
         <Nav />
         <div className="px-8 py-20 max-w-[1160px] mx-auto text-center">
           <h1 className="text-2xl font-bold text-[#1a1d23] mb-4">Instrument not found</h1>
-          <Link href="/instruments" className="text-accent font-semibold">← Back to instruments</Link>
+          <Link href="/instruments" className="text-accent font-semibold">&larr; Back to instruments</Link>
         </div>
         <Footer />
       </>
     );
   }
 
+  const fingerings = instData.fingerings || [];
   const clef = instMeta.clef;
+  const registers = instData.instrument?.registers || [];
 
   return (
     <>
@@ -77,10 +69,10 @@ export default function InstrumentPage() {
           <span className="text-[#1a1d23] font-medium">{instMeta.name}</span>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
           <div>
-            <h1 className="text-3xl font-extrabold text-[#1a1d23] tracking-tight mb-1">{instMeta.name}</h1>
-            <p className="text-sm text-[#4a5060]">{instMeta.description} · {instMeta.notes} notes</p>
+            <h1 className="text-3xl font-extrabold text-[#1a1d23] tracking-tight mb-1">{instMeta.name} Fingering Chart</h1>
+            <p className="text-sm text-[#4a5060]">{instMeta.description} &middot; {instMeta.notes} notes</p>
           </div>
           <div className="flex gap-2 flex-wrap">
             <Link href={`/builder?instrument=${id}&mode=reference`}
@@ -94,59 +86,44 @@ export default function InstrumentPage() {
           </div>
         </div>
 
-        <KeyReference instrumentId={id} />
-
-        <div className="flex flex-wrap items-center gap-1.5 mb-8">
-          {OCTAVE_FILTERS.filter(f => f.id === 'all' || f.id === 'beginner' || availableOctaves.has(f.id)).map(f => (
-            <button key={f.id} onClick={() => setOctaveFilter(f.id)}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all border whitespace-nowrap ${
-                octaveFilter === f.id
-                  ? 'border-accent bg-accent-light text-accent'
-                  : 'border-[#e5e8ed] bg-white text-[#7a8294] hover:border-[#d0d4dc]'
-              }`}>
-              {f.label}
-            </button>
-          ))}
-          <span className="text-xs text-[#b0b5c0] self-center ml-2">{filteredNotes.length} notes</span>
-
-          {id === 'recorder' && (
-            <div className="flex items-center gap-2 ml-auto border border-[#e5e8ed] rounded-full px-3 py-1">
-              <button onClick={() => setHoleStyle('simple')}
-                className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-all ${holeStyle === 'simple' ? 'bg-accent text-white' : 'text-[#7a8294]'}`}>
-                Simple
-              </button>
-              <button onClick={() => setHoleStyle('baroque')}
-                className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-all ${holeStyle === 'baroque' ? 'bg-accent text-white' : 'text-[#7a8294]'}`}>
-                Baroque
-              </button>
-            </div>
-          )}
+        {/* SEO-indexable intro text */}
+        <div className="mb-8 text-sm text-[#4a5060] leading-relaxed max-w-[720px]">
+          <p className="mb-2">
+            This interactive {instMeta.name.toLowerCase()} fingering chart covers {instMeta.notes} notes
+            {registers.length > 0 && ` across ${registers.length} registers`}.
+            {instMeta.transposition !== 'C' ? ` Transposing instrument in ${instMeta.transposition}, reading ${instMeta.clef} clef.` : ` Concert pitch, ${instMeta.clef} clef.`}
+          </p>
+          <p>
+            Every fingering is verified against professional sources. Use the filters below to browse by octave or beginner notes, or use the <Link href={`/builder?instrument=${id}&mode=reference`} className="text-accent font-semibold hover:underline">Worksheet Builder</Link> to generate a free print-ready PDF.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {filteredNotes.map(f => {
-            const isSelected = selectedNote === f.note.written;
-            return (
-              <div key={f.note.written}
-                onClick={() => setSelectedNote(isSelected ? null : f.note.written)}
-                className={`bg-white border rounded-card p-4 flex flex-col items-center gap-2 cursor-pointer transition-all hover:-translate-y-0.5 ${
-                  isSelected ? 'border-accent shadow-md' : 'border-[#e5e8ed] hover:border-[#d0d4dc]'
-                }`}>
-                <div className="text-3xl font-extrabold text-[#1a1d23]">{f.note.display}</div>
-                <StaffNote note={f.note.written} clef={clef} width={110} />
-                <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="md" holeStyle={holeStyle} />
-                <div className="font-mono text-2xl text-[#4a5060] text-center">{f.primary.text_notation}</div>
-              </div>
-            );
-          })}
-        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'EducationalResource',
+              name: `${instMeta.name} Fingering Chart`,
+              description: `Interactive ${instMeta.name.toLowerCase()} fingering chart with ${instMeta.notes} notes. ${instMeta.description}`,
+              url: `https://arpelio.com/instruments/${id}`,
+              provider: {
+                '@type': 'Organization',
+                name: 'Arpelio',
+                url: 'https://arpelio.com',
+              },
+              educationalLevel: 'Beginner to Advanced',
+              learningResourceType: 'Reference Chart',
+              about: {
+                '@type': 'Thing',
+                name: instMeta.name,
+              },
+              isAccessibleForFree: true,
+            }),
+          }}
+        />
 
-        {filteredNotes.length === 0 && (
-          <div className="text-center py-16 text-[#7a8294]">
-            <p className="text-lg mb-2">No notes match this filter</p>
-            <button onClick={() => setOctaveFilter('all')} className="text-accent font-semibold">Show all notes</button>
-          </div>
-        )}
+        <InstrumentClient id={id} instMeta={instMeta} fingerings={fingerings} clef={clef} />
       </div>
       <Footer />
     </>
