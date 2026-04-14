@@ -118,10 +118,10 @@ export default function InstrumentPage() {
                 className={`bg-white border rounded-card p-4 flex flex-col items-center gap-2 cursor-pointer transition-all hover:-translate-y-0.5 ${
                   isSelected ? 'border-accent shadow-md' : 'border-[#e5e8ed] hover:border-[#d0d4dc]'
                 }`}>
-                <div className="text-2xl font-extrabold text-[#1a1d23]">{f.note.display}</div>
-                <StaffNote note={f.note.written} clef={clef} width={52} />
+                <div className="text-3xl font-extrabold text-[#1a1d23]">{f.note.display}</div>
+                <StaffNote note={f.note.written} clef={clef} width={80} />
                 <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="md" />
-                <div className="font-mono text-sm text-[#7a8294] text-center">{f.primary.text_notation}</div>
+                <div className="font-mono text-base text-[#7a8294] text-center">{f.primary.text_notation}</div>
               </div>
             );
           })}
