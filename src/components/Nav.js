@@ -21,8 +21,11 @@ export default function Nav() {
         <Link href="/faq" className={`text-sm font-semibold transition-colors ${pathname?.startsWith('/faq') ? 'text-accent' : 'text-[#4a5060] hover:text-accent'}`}>
           Help
         </Link>
-        <Link href="/instruments" className="bg-accent hover:bg-accent-hover text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors hidden sm:block">
-          Get Started Free
+        <Link href="/contact" className={`text-sm font-semibold transition-colors ${pathname?.startsWith('/contact') ? 'text-accent' : 'text-[#4a5060] hover:text-accent'}`}>
+          Contact
+        </Link>
+        <Link href="/builder" className="bg-accent hover:bg-accent-hover text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors hidden sm:block">
+          Create Exercise
         </Link>
       </div>
     </nav>
