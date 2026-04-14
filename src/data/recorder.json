@@ -652,7 +652,7 @@
         ],
         "description": "No thumb! L1+L2 only",
         "valve_notation": null,
-        "text_notation": "12-|----"
+        "text_notation": "- 12-|----"
       },
       "alternates": [],
       "pedagogy": {
@@ -684,7 +684,7 @@
         ],
         "description": "Left middle finger only \u2014 no thumb",
         "valve_notation": null,
-        "text_notation": "-2-|----"
+        "text_notation": "- -2-|----"
       },
       "alternates": [],
       "pedagogy": {
@@ -718,7 +718,7 @@
         ],
         "description": "Fork with many lower holes closed",
         "valve_notation": null,
-        "text_notation": "-23|456-"
+        "text_notation": "- -23|456-"
       },
       "alternates": [],
       "pedagogy": {
@@ -1052,7 +1052,7 @@
         ],
         "description": "Cross-fingering + close bell end",
         "valve_notation": null,
-        "text_notation": "t 1-3|4-6- X"
+        "text_notation": "t 1-3|4-6-"
       },
       "alternates": [],
       "pedagogy": {
@@ -1079,14 +1079,11 @@
       "primary": {
         "elements": [
           "thumb-half",
-          "L1",
-          "L3",
-          "R1",
-          "R3"
+          "L2"
         ],
         "description": "Same as C#6 but without closing bell",
         "valve_notation": null,
-        "text_notation": "t 1-3|4-6-"
+        "text_notation": "t -2-|----"
       },
       "alternates": [],
       "pedagogy": {

@@ -6,6 +6,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import StaffNote from '@/components/StaffNote';
 import FingeringDiagram from '@/components/FingeringDiagram';
+import KeyReference from '@/components/KeyReference';
 import { getInstrument } from '@/data/instruments';
 import { getInstrumentData } from '@/data/loader';
 
@@ -91,6 +92,8 @@ export default function InstrumentPage() {
             </Link>
           </div>
         </div>
+
+        <KeyReference instrumentId={id} />
 
         <div className="flex gap-1.5 mb-8 overflow-x-auto">
           {OCTAVE_FILTERS.filter(f => f.id === 'all' || f.id === 'beginner' || availableOctaves.has(f.id)).map(f => (
