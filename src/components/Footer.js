@@ -21,6 +21,9 @@ export default function Footer() {
           <Link href="/faq" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
             FAQ & Help
           </Link>
+          <Link href="/contact" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
+            Contact
+          </Link>
         </div>
       </div>
       <div className="max-w-[1160px] mx-auto mt-6 pt-6 border-t border-[#2a2d35] flex justify-between flex-wrap gap-3">
