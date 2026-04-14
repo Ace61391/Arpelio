@@ -193,6 +193,11 @@ function BuilderInner() {
         {/* Preview area */}
         {showPreview && selectedFingerings.length > 0 && (
           <div className="border border-[#e5e8ed] rounded-2xl p-8 bg-white print:border-none print:rounded-none print:p-0">
+            {/* Print header with logo */}
+            <div className="hidden print:flex items-center justify-center gap-2 mb-2">
+              <img src="/logo.svg" alt="Arpelio" className="h-6 w-6" />
+              <span className="text-sm font-bold text-[#1a1d23]">Arpelio</span>
+            </div>
             {/* Header */}
             <div className="text-center mb-6 pb-4 border-b border-[#e5e8ed] print:border-black">
               <h2 className="text-2xl font-extrabold text-[#1a1d23]">
@@ -261,8 +266,8 @@ function BuilderInner() {
           nav, footer, .print\\:hidden { display: none !important; }
           body { background: white !important; margin: 0 !important; padding: 0 !important; }
           
-          /* Force page setup */
-          @page { margin: 0.5in; size: letter portrait; }
+          /* Force page setup — minimal margins suppress browser headers/footers */
+          @page { margin: 0.3in 0.5in; size: letter portrait; }
           
           /* Remove all screen-only styling */
           .border, .rounded-2xl, .shadow-lg { border: none !important; box-shadow: none !important; border-radius: 0 !important; }
