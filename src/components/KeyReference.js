@@ -145,7 +145,7 @@ function RecorderReference() {
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 220 440" style={{display:'block'}}>
       <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:2.5;stroke-linecap:round}`}</style>
 
-      <circle className="open" cx="60" cy="40" r="14"/>
+      <circle className="open" cx="60" cy="40" r="10"/>
       <line className="divider" x1="50" y1="68" x2="120" y2="68"/>
       <circle className="open" cx="90" cy="100" r="17"/>
       <circle className="open" cx="90" cy="148" r="17"/>
@@ -153,8 +153,8 @@ function RecorderReference() {
       <line className="divider" x1="50" y1="228" x2="120" y2="228"/>
       <circle className="open" cx="90" cy="260" r="16"/>
       <circle className="open" cx="90" cy="305" r="16"/>
-      <circle className="open" cx="90" cy="347" r="14"/>
-      <circle className="open" cx="90" cy="385" r="13"/>
+      <circle className="open" cx="90" cy="347" r="16"/>
+      <circle className="open" cx="90" cy="385" r="16"/>
 
       <text style={LABEL_STYLE} x="82" y="44" textAnchor="start">  Thumb</text>
       <text style={LABEL_STYLE} x="118" y="104" textAnchor="start">LH1</text>
