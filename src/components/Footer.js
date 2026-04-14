@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-[1160px] mx-auto flex justify-between items-center flex-wrap gap-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-7 h-7 rounded-[7px] bg-accent flex items-center justify-center text-white font-extrabold text-sm">A</div>
+            <img src="/logo.svg" alt="Arpelio" className="w-7 h-7 rounded-[7px]" />
             <span className="text-lg font-extrabold text-[#f0f1f4] tracking-tight">Arpelio</span>
           </div>
           <p className="text-sm text-[#7a8294]">Free fingering charts &amp; worksheets for every band instrument.</p>
