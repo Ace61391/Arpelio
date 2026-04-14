@@ -23,7 +23,6 @@ export const metadata = {
     template: '%s | Arpelio',
   },
   description: 'Free interactive fingering charts, print-ready reference PDFs, and quiz worksheets for 9 band instruments. Built by musicians, verified against professional sources.',
-  keywords: 'fingering chart, band instrument, trumpet fingering chart, clarinet fingering chart, flute fingering chart, saxophone fingering chart, recorder fingering chart, music education, band director, worksheet generator, free fingering chart',
   authors: [{ name: 'Arpelio' }],
   creator: 'Arpelio',
   openGraph: {

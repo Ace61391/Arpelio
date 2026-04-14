@@ -11,20 +11,22 @@ export default function Footer() {
           </div>
           <p className="text-sm text-[#7a8294]">Free fingering charts &amp; worksheets for every band instrument.</p>
         </div>
-        <div className="flex gap-8">
-          <Link href="/instruments" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
-            Instruments
-          </Link>
-          <Link href="/builder" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
-            Worksheet Builder
-          </Link>
-          <Link href="/faq" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
-            FAQ & Help
-          </Link>
-          <Link href="/contact" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
-            Contact
-          </Link>
-        </div>
+        <nav aria-label="Footer navigation">
+          <div className="flex gap-8">
+            <Link href="/instruments" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
+              Instruments
+            </Link>
+            <Link href="/builder" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
+              Worksheet Builder
+            </Link>
+            <Link href="/faq" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
+              FAQ & Help
+            </Link>
+            <Link href="/contact" className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
+              Contact
+            </Link>
+          </div>
+        </nav>
       </div>
       <div className="max-w-[1160px] mx-auto mt-6 pt-6 border-t border-[#2a2d35] flex justify-between flex-wrap gap-3">
         <span className="text-xs text-[#4a5060]">&copy; 2026 Arpelio &middot; arpelio.com</span>

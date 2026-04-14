@@ -6,16 +6,17 @@ import InstrumentsClient from './InstrumentsClient';
 export const metadata = {
   title: 'Band Instrument Fingering Charts — Flute, Clarinet, Trumpet & More',
   description: 'Free interactive fingering charts for 9 band instruments: flute, clarinet, saxophone, recorder, trumpet, French horn, trombone, euphonium, and tuba. Browse all notes and octaves, print PDF reference charts, and create quiz worksheets.',
-  keywords: 'band instrument fingering charts, flute fingering chart, clarinet fingering chart, trumpet fingering chart, saxophone fingering chart, recorder fingering chart, trombone slide positions, French horn fingering chart',
   openGraph: {
     title: 'Band Instrument Fingering Charts | Arpelio',
     description: 'Free interactive fingering charts for 9 band instruments. Browse, print, and quiz.',
     url: 'https://arpelio.com/instruments',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Arpelio — Fingering Charts for Every Band Instrument' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Band Instrument Fingering Charts | Arpelio',
     description: 'Free interactive fingering charts for 9 band instruments.',
+    images: ['/og-image.svg'],
   },
   alternates: {
     canonical: 'https://arpelio.com/instruments',

@@ -5,16 +5,17 @@ import Footer from '@/components/Footer';
 export const metadata = {
   title: 'FAQ & Help — Frequently Asked Questions',
   description: 'Answers to common questions about Arpelio fingering charts, the worksheet builder, PDF downloads, and supported instruments. Free music education resources for band directors and students.',
-  keywords: 'fingering chart FAQ, band instrument help, music worksheet help, fingering chart questions, Arpelio help',
   openGraph: {
     title: 'FAQ & Help | Arpelio',
     description: 'Answers to common questions about Arpelio fingering charts, worksheets, and supported instruments.',
     url: 'https://arpelio.com/faq',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Arpelio — Fingering Charts for Every Band Instrument' }],
   },
   twitter: {
     card: 'summary',
     title: 'FAQ & Help | Arpelio',
     description: 'Answers to common questions about Arpelio fingering charts and worksheets.',
+    images: ['/og-image.svg'],
   },
   alternates: {
     canonical: 'https://arpelio.com/faq',
@@ -48,7 +49,7 @@ const FAQS = [
       },
       {
         q: 'Are the fingerings accurate?',
-        a: 'Every fingering is verified against professional method books and manufacturer charts. Flute fingerings follow the standard Boehm system (closed G#). Brass instruments use standard valve combinations. Recorder uses English (Baroque) fingering. If you find an error, please let us know.',
+        a: <>Every fingering is verified against professional method books and manufacturer charts. Flute fingerings follow the standard Boehm system (closed G#). Brass instruments use standard valve combinations. Recorder uses English (Baroque) fingering. If you find an error, <Link href="/contact" className="text-accent font-semibold hover:underline">please let us know</Link>.</>,
       },
       {
         q: 'What fingering system does the recorder use?',
@@ -171,8 +172,8 @@ export default function FAQPage() {
           <h2 className="text-lg font-bold text-[#1a1d23] mb-2">Still have questions?</h2>
           <p className="text-sm text-[#4a5060] mb-4">We are always happy to help with instrument fingerings, worksheets, or anything else.</p>
           <div className="flex gap-3 justify-center">
-            <Link href="/instruments" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-6 py-2.5 text-sm font-bold transition-all">
-              Browse Instruments
+            <Link href="/contact" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-6 py-2.5 text-sm font-bold transition-all">
+              Contact Us
             </Link>
             <Link href="/builder" className="bg-white text-[#4a5060] border border-[#e5e8ed] hover:border-accent hover:text-accent rounded-lg px-6 py-2.5 text-sm font-semibold transition-all">
               Build a Worksheet

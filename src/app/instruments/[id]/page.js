@@ -6,7 +6,7 @@ import { getInstrumentData } from '@/data/loader';
 import InstrumentClient from './InstrumentClient';
 
 export function generateStaticParams() {
-  return INSTRUMENTS.map(inst => ({ id: inst.id }));
+  return INSTRUMENTS.filter(i => !i.hidden).map(inst => ({ id: inst.id }));
 }
 
 export function generateMetadata({ params }) {
@@ -19,17 +19,18 @@ export function generateMetadata({ params }) {
   return {
     title,
     description,
-    keywords: `${inst.name.toLowerCase()} fingering chart, ${inst.name.toLowerCase()} fingerings, ${inst.name.toLowerCase()} note chart, ${inst.name.toLowerCase()} fingering PDF, band instrument fingering chart`,
     openGraph: {
       title: `${inst.name} Fingering Chart | Arpelio`,
       description,
       url: `https://arpelio.com/instruments/${inst.id}`,
       type: 'article',
+      images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Arpelio — Fingering Charts for Every Band Instrument' }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${inst.name} Fingering Chart | Arpelio`,
       description,
+      images: ['/og-image.svg'],
     },
     alternates: {
       canonical: `https://arpelio.com/instruments/${inst.id}`,
@@ -124,6 +125,31 @@ export default function InstrumentPage({ params }) {
         />
 
         <InstrumentClient id={id} instMeta={instMeta} fingerings={fingerings} clef={clef} />
+
+        {/* More instruments in the same family */}
+        {(() => {
+          const related = INSTRUMENTS.filter(i => !i.hidden && i.family === instMeta.family && i.id !== id);
+          if (related.length === 0) return null;
+          return (
+            <div className="mt-16 pt-10 border-t border-[#e5e8ed]">
+              <h2 className="text-lg font-bold text-[#1a1d23] mb-4">More {instMeta.family} instruments</h2>
+              <div className="flex flex-wrap gap-3">
+                {related.map(r => (
+                  <Link key={r.id} href={`/instruments/${r.id}`}
+                    className="flex items-center gap-2.5 bg-white border border-[#e5e8ed] rounded-xl px-4 py-3 hover:border-accent hover:-translate-y-0.5 hover:shadow-md transition-all">
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold ${r.family === 'brass' ? 'bg-brass' : 'bg-woodwind'}`}>
+                      {r.shortName.charAt(0)}
+                    </div>
+                    <div>
+                      <span className="text-sm font-bold text-[#1a1d23]">{r.name}</span>
+                      <span className="block text-[11px] text-[#7a8294]">{r.notes} notes</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
       </div>
       <Footer />
     </>

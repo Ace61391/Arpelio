@@ -10,11 +10,13 @@ export const metadata = {
     title: 'Contact Us | Arpelio',
     description: 'Get in touch with the Arpelio team.',
     url: 'https://arpelio.com/contact',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Arpelio — Fingering Charts for Every Band Instrument' }],
   },
   twitter: {
     card: 'summary',
     title: 'Contact Us | Arpelio',
     description: 'Get in touch with the Arpelio team.',
+    images: ['/og-image.svg'],
   },
   alternates: {
     canonical: 'https://arpelio.com/contact',
