@@ -286,7 +286,7 @@ function BuilderInner() {
                           {showAnswerKey ? (
                             <div className="text-base font-bold text-accent">{f.note.display}</div>
                           ) : (
-                            <div className="border-b-2 border-[#b0b5c0] w-20 h-6 mt-1" />
+                            <div className="flex items-end gap-1 mt-1"><span className="text-sm font-semibold text-[#4a5060]">Note:</span><div className="border-b-2 border-[#b0b5c0] w-16 h-6" /></div>
                           )}
                         </>
                       )}
