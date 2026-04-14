@@ -263,24 +263,24 @@ function BuilderInner() {
               <p className="text-xs text-[#b0b5c0] mt-1">Name: __________________ Period: ____ Date: ________</p>
             </div>
 
-            {/* Notes grid — 3 per row for readability */}
-            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3">
+            {/* Notes grid — 3 per row, 6 per page */}
+            <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
               {selectedFingerings.map((f, idx) => (
-                <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-5 flex flex-col items-center gap-3 print:border-gray-400 print:rounded-lg print:p-4 overflow-hidden">
+                <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-3 flex flex-col items-center gap-1.5 overflow-hidden">
                   <span className="text-xs text-[#b0b5c0] font-mono">{idx + 1}.</span>
 
                   {mode === 'reference' && (
                     <>
                       <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
                       <StaffNote note={f.note.written} clef={clef} width={64} />
-                      <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
+                      <div className="w-full flex justify-center" style={{maxWidth: '120px'}}><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
                       <div className="font-mono text-sm text-[#4a5060]">{f.primary.text_notation}</div>
                     </>
                   )}
 
                   {mode === 'identify' && (
                     <>
-                      <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
+                      <div className="w-full flex justify-center" style={{maxWidth: '120px'}}><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
                       <div className="font-mono text-sm text-[#4a5060]">{f.primary.text_notation}</div>
                       {showAnswerKey ? (
                         <div className="text-base font-bold text-accent">{f.note.display}</div>
@@ -295,9 +295,9 @@ function BuilderInner() {
                       <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
                       <StaffNote note={f.note.written} clef={clef} width={64} />
                       {showAnswerKey ? (
-                        <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
+                        <div className="w-full flex justify-center" style={{maxWidth: '120px'}}><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
                       ) : (
-                        <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={[]} size="md" blank={true} /></div>
+                        <div className="w-full flex justify-center" style={{maxWidth: '120px'}}><FingeringDiagram instrumentId={instrumentId} elements={[]} size="md" blank={true} /></div>
                       )}
                     </>
                   )}
