@@ -25,6 +25,7 @@ export default function InstrumentPage() {
   const instData = getInstrumentData(id);
   const [octaveFilter, setOctaveFilter] = useState('beginner');
   const [selectedNote, setSelectedNote] = useState(null);
+  const [holeStyle, setHoleStyle] = useState('simple');
 
   const fingerings = instData?.fingerings || [];
 
@@ -95,7 +96,7 @@ export default function InstrumentPage() {
 
         <KeyReference instrumentId={id} />
 
-        <div className="flex gap-1.5 mb-8 overflow-x-auto">
+        <div className="flex flex-wrap items-center gap-1.5 mb-8">
           {OCTAVE_FILTERS.filter(f => f.id === 'all' || f.id === 'beginner' || availableOctaves.has(f.id)).map(f => (
             <button key={f.id} onClick={() => setOctaveFilter(f.id)}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all border whitespace-nowrap ${
@@ -107,6 +108,19 @@ export default function InstrumentPage() {
             </button>
           ))}
           <span className="text-xs text-[#b0b5c0] self-center ml-2">{filteredNotes.length} notes</span>
+
+          {id === 'recorder' && (
+            <div className="flex items-center gap-2 ml-auto border border-[#e5e8ed] rounded-full px-3 py-1">
+              <button onClick={() => setHoleStyle('simple')}
+                className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-all ${holeStyle === 'simple' ? 'bg-accent text-white' : 'text-[#7a8294]'}`}>
+                Simple
+              </button>
+              <button onClick={() => setHoleStyle('baroque')}
+                className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-all ${holeStyle === 'baroque' ? 'bg-accent text-white' : 'text-[#7a8294]'}`}>
+                Baroque
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -118,10 +132,10 @@ export default function InstrumentPage() {
                 className={`bg-white border rounded-card p-4 flex flex-col items-center gap-2 cursor-pointer transition-all hover:-translate-y-0.5 ${
                   isSelected ? 'border-accent shadow-md' : 'border-[#e5e8ed] hover:border-[#d0d4dc]'
                 }`}>
-                <div className="text-3xl font-extrabold text-[#1a1d23]">{f.note.display}</div>
-                <StaffNote note={f.note.written} clef={clef} width={110} />
-                <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="md" />
-                <div className="font-mono text-2xl text-[#7a8294] text-center">{f.primary.text_notation}</div>
+                <div className="text-lg font-bold text-[#1a1d23]">{f.note.display}</div>
+                <StaffNote note={f.note.written} clef={clef} width={52} />
+                <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="md" holeStyle={holeStyle} />
+                <div className="font-mono text-sm text-[#4a5060] text-center">{f.primary.text_notation}</div>
               </div>
             );
           })}

@@ -27,7 +27,7 @@ const COMPONENTS = {
   slide: SlideDiagram,
 };
 
-export default function FingeringDiagram({ instrumentId, elements = [], textNotation = '', size = 'md', blank = false }) {
+export default function FingeringDiagram({ instrumentId, elements = [], textNotation = '', size = 'md', blank = false, holeStyle }) {
   const type = DIAGRAM_MAP[instrumentId] || 'valve';
   const Component = COMPONENTS[type];
 
@@ -39,7 +39,7 @@ export default function FingeringDiagram({ instrumentId, elements = [], textNota
     );
   }
 
-  return <Component elements={elements} size={size} blank={blank} />;
+  return <Component elements={elements} size={size} blank={blank} style={holeStyle} />;
 }
 
 export function getDiagramType(instrumentId) {

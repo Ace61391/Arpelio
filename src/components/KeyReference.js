@@ -3,9 +3,9 @@
 // Labeled reference diagrams — shows all keys in "open" state with names
 // Uses exact geometry from locked templates, adds text labels
 
-const LABEL_STYLE = { fontSize: '10px', fontFamily: 'system-ui', fontWeight: 600, fill: '#4f46b8' };
-const SUB_STYLE = { fontSize: '8px', fontFamily: 'system-ui', fontWeight: 400, fill: '#888' };
-const LEAD_STYLE = { stroke: '#4f46b8', strokeWidth: 0.5, strokeDasharray: '2 2' };
+const LABEL_STYLE = 'font-size:10px;font-family:system-ui;font-weight:600;fill:#4f46b8';
+const SUB_STYLE = 'font-size:8px;font-family:system-ui;font-weight:400;fill:#888';
+const LEAD_STYLE = 'stroke:#4f46b8;stroke-width:0.5;stroke-dasharray:2 2';
 
 function FluteReference() {
   return (

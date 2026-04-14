@@ -1,13 +1,12 @@
 'use client';
 
 // LOCKED TEMPLATE from recorder_locked_template_v1.svg
-// FIX: Thumb hole now smaller than finger holes (matching real instrument)
-// FIX: All holes reduced ~20% for cleaner look with more whitespace
+// Supports two visual modes: "simple" (single circles) and "baroque" (double holes on RH3/RH4)
 
 const HOLE_MAP = { L1: 0, L2: 1, L3: 2, R1: 3, R2: 4, R3: 5, R4: 6 };
 const HALF_MAP = { 'R3-half': 5, 'R4-half': 6 };
 
-export default function RecorderDiagram({ elements = [], size = 'md', blank = false }) {
+export default function RecorderDiagram({ elements = [], size = 'md', blank = false, style: holeStyle = 'simple' }) {
   const holes = ['open','open','open','open','open','open','open'];
   let thumb = 'open';
   if (!blank) {
@@ -19,6 +18,19 @@ export default function RecorderDiagram({ elements = [], size = 'md', blank = fa
     });
   }
   const w = size === 'lg' ? 180 : size === 'sm' ? 55 : '100%';
+  const baroque = holeStyle === 'baroque';
+
+  // For baroque double holes:
+  // "pressed" = both circles filled
+  // "open" = both circles open
+  // "half" = left filled, right open (covering one of the double holes)
+  const dblCls = (state) => ({
+    left: state === 'pressed' || state === 'half' ? 'pressed' : 'open',
+    right: state === 'pressed' ? 'pressed' : 'open',
+  });
+
+  const rh3 = dblCls(holes[5]);
+  const rh4 = dblCls(holes[6]);
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 180 440" style={{display:'block'}}>
@@ -36,8 +48,20 @@ export default function RecorderDiagram({ elements = [], size = 'md', blank = fa
       <line className="divider" x1="50" y1="228" x2="120" y2="228"/>
       <circle className={holes[3]} cx="90" cy="260" r="16"/>
       <circle className={holes[4]} cx="90" cy="305" r="16"/>
-      <circle className={holes[5]} cx="90" cy="347" r="14"/>
-      <circle className={holes[6]} cx="90" cy="385" r="13"/>
+
+      {baroque ? (
+        <>
+          <circle className={rh3.left} cx="80" cy="350" r="9"/>
+          <circle className={rh3.right} cx="100" cy="350" r="9"/>
+          <circle className={rh4.left} cx="80" cy="388" r="8"/>
+          <circle className={rh4.right} cx="100" cy="388" r="8"/>
+        </>
+      ) : (
+        <>
+          <circle className={holes[5]} cx="90" cy="347" r="14"/>
+          <circle className={holes[6]} cx="90" cy="385" r="13"/>
+        </>
+      )}
     </svg>
   );
 }

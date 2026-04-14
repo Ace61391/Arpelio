@@ -213,14 +213,14 @@ function BuilderInner() {
                       <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
                       <StaffNote note={f.note.written} clef={clef} width={64} />
                       <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
-                      <div className="font-mono text-xs text-[#b0b5c0]">{f.primary.text_notation}</div>
+                      <div className="font-mono text-sm text-[#4a5060]">{f.primary.text_notation}</div>
                     </>
                   )}
 
                   {mode === 'identify' && (
                     <>
                       <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
-                      <div className="font-mono text-xs text-[#b0b5c0]">{f.primary.text_notation}</div>
+                      <div className="font-mono text-sm text-[#4a5060]">{f.primary.text_notation}</div>
                       {showAnswerKey ? (
                         <div className="text-base font-bold text-accent">{f.note.display}</div>
                       ) : (
