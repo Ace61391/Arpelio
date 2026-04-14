@@ -242,7 +242,18 @@ function BuilderInner() {
               <div key={pageIdx} data-pdf-page className={`bg-white p-4 ${pageIdx > 0 ? 'mt-8 pt-6 border-t-2 border-dashed border-[#e5e8ed]' : ''}`}>
                 {/* Logo + header on every page */}
                 <div className="flex items-center justify-center gap-3 mb-3">
-                  <img src="/logo.svg" alt="Arpelio" className="h-12 w-12 rounded-xl" />
+                  <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 rounded-xl">
+                    <rect width="140" height="140" rx="28" fill="#4F46B8"/>
+                    <circle cx="28" cy="99" r="6.5" fill="#fff" opacity="0.35"/>
+                    <circle cx="41" cy="77" r="7" fill="#fff" opacity="0.5"/>
+                    <circle cx="54" cy="55" r="7.5" fill="#fff" opacity="0.7"/>
+                    <circle cx="70" cy="33" r="8.5" fill="#fff" opacity="1"/>
+                    <circle cx="86" cy="55" r="7.5" fill="#fff" opacity="0.7"/>
+                    <circle cx="99" cy="77" r="7" fill="#fff" opacity="0.5"/>
+                    <circle cx="112" cy="99" r="6.5" fill="#fff" opacity="0.35"/>
+                    <circle cx="60" cy="77" r="4.5" fill="#fff" opacity="0.5"/>
+                    <circle cx="80" cy="77" r="4.5" fill="#fff" opacity="0.5"/>
+                  </svg>
                   <span className="text-3xl font-extrabold text-[#1a1d23] tracking-tight">Arpelio</span>
                 </div>
                 {pageIdx === 0 && (
