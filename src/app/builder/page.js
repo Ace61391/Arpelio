@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useEffect, useRef, Suspense } from 'react';
+import { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Nav from '@/components/Nav';
@@ -66,52 +66,8 @@ function BuilderInner() {
   const selectedFingerings = fingerings.filter(f => selectedNotes.has(f.note.written));
   const clef = instMeta?.clef || 'treble';
 
-  const previewRef = useRef(null);
-  const [generating, setGenerating] = useState(false);
-
-  // Group fingerings into pages of 6
-  const pages = useMemo(() => {
-    const result = [];
-    for (let i = 0; i < selectedFingerings.length; i += 6) {
-      result.push(selectedFingerings.slice(i, i + 6));
-    }
-    return result;
-  }, [selectedFingerings]);
-
-  const handleDownloadPDF = async () => {
-    if (!previewRef.current) return;
-    setGenerating(true);
-    try {
-      const html2canvas = (await import('html2canvas')).default;
-      const { jsPDF } = await import('jspdf');
-
-      const pageW = 8.5;
-      const pageH = 11;
-      const margin = 0.5;
-      const contentW = pageW - margin * 2;
-      const contentH = pageH - margin * 2;
-
-      const pdf = new jsPDF({ unit: 'in', format: 'letter', orientation: 'portrait' });
-
-      const pageDivs = previewRef.current.querySelectorAll('[data-pdf-page]');
-      for (let i = 0; i < pageDivs.length; i++) {
-        if (i > 0) pdf.addPage();
-        const canvas = await html2canvas(pageDivs[i], { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
-        const imgData = canvas.toDataURL('image/png');
-        const imgW = contentW;
-        const imgH = (canvas.height / canvas.width) * imgW;
-        // Center vertically if shorter than page
-        const yOffset = imgH < contentH ? margin : margin;
-        pdf.addImage(imgData, 'PNG', margin, yOffset, imgW, Math.min(imgH, contentH));
-      }
-
-      const fileName = (title || `${instMeta?.name || 'Arpelio'} Fingering Chart`).replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '_');
-      pdf.save(`${fileName}.pdf`);
-    } catch (err) {
-      console.error('PDF generation failed:', err);
-    } finally {
-      setGenerating(false);
-    }
+  const handlePrint = () => {
+    window.print();
   };
 
   return (
@@ -126,7 +82,7 @@ function BuilderInner() {
           <div className="mb-8">
             <h2 className="text-sm font-bold text-[#7a8294] uppercase tracking-widest mb-3">1. Choose instrument</h2>
             <div className="flex flex-wrap gap-2">
-              {INSTRUMENTS.filter(i => !i.hidden).map(inst => (
+              {INSTRUMENTS.map(inst => (
                 <button key={inst.id} onClick={() => { setInstrumentId(inst.id); setShowPreview(false); }}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all border ${
                     instrumentId === inst.id
@@ -224,9 +180,9 @@ function BuilderInner() {
                   Preview Worksheet
                 </button>
                 {showPreview && (
-                  <button onClick={handleDownloadPDF} disabled={generating}
-                    className="bg-[#1a1d23] hover:bg-[#2a2d33] text-white rounded-lg px-6 py-3 text-sm font-bold transition-all disabled:opacity-50">
-                    {generating ? 'Generating PDF...' : 'Download PDF'}
+                  <button onClick={handlePrint}
+                    className="bg-[#1a1d23] hover:bg-[#2a2d33] text-white rounded-lg px-6 py-3 text-sm font-bold transition-all">
+                    Print / Save as PDF
                   </button>
                 )}
               </div>
@@ -236,83 +192,65 @@ function BuilderInner() {
 
         {/* Preview area */}
         {showPreview && selectedFingerings.length > 0 && (
-          <div ref={previewRef} className="border border-[#e5e8ed] rounded-2xl p-8 bg-white print:border-none print:rounded-none print:p-0">
-            {/* Pages — 6 cards each (2 rows of 3) */}
-            {pages.map((pageCards, pageIdx) => (
-              <div key={pageIdx} data-pdf-page className={`bg-white p-4 ${pageIdx > 0 ? 'mt-8 pt-6 border-t-2 border-dashed border-[#e5e8ed]' : ''}`}>
-                {/* Logo + header on every page */}
-                <div className="flex items-center justify-center gap-3 mb-3">
-                  <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 rounded-xl">
-                    <rect width="140" height="140" rx="28" fill="#4F46B8"/>
-                    <circle cx="28" cy="99" r="6.5" fill="#fff" opacity="0.35"/>
-                    <circle cx="41" cy="77" r="7" fill="#fff" opacity="0.5"/>
-                    <circle cx="54" cy="55" r="7.5" fill="#fff" opacity="0.7"/>
-                    <circle cx="70" cy="33" r="8.5" fill="#fff" opacity="1"/>
-                    <circle cx="86" cy="55" r="7.5" fill="#fff" opacity="0.7"/>
-                    <circle cx="99" cy="77" r="7" fill="#fff" opacity="0.5"/>
-                    <circle cx="112" cy="99" r="6.5" fill="#fff" opacity="0.35"/>
-                    <circle cx="60" cy="77" r="4.5" fill="#fff" opacity="0.5"/>
-                    <circle cx="80" cy="77" r="4.5" fill="#fff" opacity="0.5"/>
-                  </svg>
-                  <span className="text-3xl font-extrabold text-[#1a1d23] tracking-tight">Arpelio</span>
-                </div>
-                {pageIdx === 0 && (
-                  <div className="text-center mb-4 pb-3 border-b border-[#e5e8ed]">
-                    <h2 className="text-2xl font-extrabold text-[#1a1d23]">
-                      {title || `${instMeta?.name || ''} ${mode === 'reference' ? 'Fingering Chart' : mode === 'identify' ? 'Fingering Quiz — Identify the Note' : 'Fingering Quiz — Fill the Chart'}`}
-                    </h2>
-                    {schoolName && <p className="text-sm text-[#7a8294] mt-1">{schoolName}</p>}
-                    <p className="text-xs text-[#b0b5c0] mt-1">Name: __________________ Period: ____ Date: ________</p>
-                  </div>
-                )}
-                <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                  {pageCards.map((f, idx) => (
-                    <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-3 flex flex-col items-center gap-1.5 overflow-hidden">
-                      <span className="text-xs text-[#b0b5c0] font-mono">{pageIdx * 6 + idx + 1}.</span>
+          <div className="border border-[#e5e8ed] rounded-2xl p-8 bg-white print:border-none print:rounded-none print:p-0">
+            {/* Header */}
+            <div className="text-center mb-6 pb-4 border-b border-[#e5e8ed] print:border-black">
+              <h2 className="text-2xl font-extrabold text-[#1a1d23]">
+                {title || `${instMeta?.name || ''} ${mode === 'reference' ? 'Fingering Chart' : mode === 'identify' ? 'Fingering Quiz — Identify the Note' : 'Fingering Quiz — Fill the Chart'}`}
+              </h2>
+              {schoolName && <p className="text-sm text-[#7a8294] mt-1">{schoolName}</p>}
+              <p className="text-xs text-[#b0b5c0] mt-1">Name: __________________ Period: ____ Date: ________</p>
+            </div>
 
-                      {mode === 'reference' && (
-                        <>
-                          <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
-                          <StaffNote note={f.note.written} clef={clef} width={64} />
-                          <div className="w-full flex justify-center" style={{maxWidth: '102px'}}><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
-                          <div className="font-mono text-sm text-[#4a5060]">{f.primary.text_notation}</div>
-                        </>
-                      )}
+            {/* Notes grid — 3 per row for readability */}
+            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3">
+              {selectedFingerings.map((f, idx) => (
+                <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-5 flex flex-col items-center gap-3 print:border-gray-400 print:rounded-lg print:p-4 overflow-hidden">
+                  <span className="text-xs text-[#b0b5c0] font-mono">{idx + 1}.</span>
 
-                      {mode === 'identify' && (
-                        <>
-                          <div className="w-full flex justify-center" style={{maxWidth: '102px'}}><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
-                          <div className="font-mono text-sm text-[#4a5060]">{f.primary.text_notation}</div>
-                          {showAnswerKey ? (
-                            <div className="text-base font-bold text-accent">{f.note.display}</div>
-                          ) : (
-                            <div className="flex items-end gap-1 mt-1"><span className="text-sm font-semibold text-[#4a5060]">Note:</span><div className="border-b-2 border-[#b0b5c0] w-16 h-6" /></div>
-                          )}
-                        </>
-                      )}
+                  {mode === 'reference' && (
+                    <>
+                      <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
+                      <StaffNote note={f.note.written} clef={clef} width={64} />
+                      <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
+                      <div className="font-mono text-sm text-[#4a5060]">{f.primary.text_notation}</div>
+                    </>
+                  )}
 
-                      {mode === 'fill' && (
-                        <>
-                          <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
-                          <StaffNote note={f.note.written} clef={clef} width={64} />
-                          {showAnswerKey ? (
-                            <div className="w-full flex justify-center" style={{maxWidth: '102px'}}><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
-                          ) : (
-                            <div className="w-full flex justify-center" style={{maxWidth: '102px'}}><FingeringDiagram instrumentId={instrumentId} elements={[]} size="md" blank={true} /></div>
-                          )}
-                        </>
+                  {mode === 'identify' && (
+                    <>
+                      <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
+                      <div className="font-mono text-sm text-[#4a5060]">{f.primary.text_notation}</div>
+                      {showAnswerKey ? (
+                        <div className="text-base font-bold text-accent">{f.note.display}</div>
+                      ) : (
+                        <div className="border-b-2 border-[#b0b5c0] w-20 h-6 mt-1" />
                       )}
-                    </div>
-                  ))}
+                    </>
+                  )}
+
+                  {mode === 'fill' && (
+                    <>
+                      <div className="text-xl font-bold text-[#1a1d23]">{f.note.display}</div>
+                      <StaffNote note={f.note.written} clef={clef} width={64} />
+                      {showAnswerKey ? (
+                        <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
+                      ) : (
+                        <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={[]} size="md" blank={true} /></div>
+                      )}
+                    </>
+                  )}
                 </div>
-                <div className="text-center mt-3">
-                  <p className="text-xs text-[#b0b5c0]">
-                    {showAnswerKey && '✓ ANSWER KEY — '}
-                    Generated by Arpelio · arpelio.com · Page {pageIdx + 1} of {pages.length}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Footer */}
+            <div className="text-center mt-6 pt-4 border-t border-[#e5e8ed] print:border-gray-300">
+              <p className="text-xs text-[#b0b5c0]">
+                {showAnswerKey && '✓ ANSWER KEY — '}
+                Generated by Arpelio · arpelio.com · {selectedFingerings.length} notes
+              </p>
+            </div>
           </div>
         )}
       </div>
@@ -323,8 +261,8 @@ function BuilderInner() {
           nav, footer, .print\\:hidden { display: none !important; }
           body { background: white !important; margin: 0 !important; padding: 0 !important; }
           
-          /* Force page setup — minimal margins suppress browser headers/footers */
-          @page { margin: 0.3in 0.5in; size: letter portrait; }
+          /* Force page setup */
+          @page { margin: 0.5in; size: letter portrait; }
           
           /* Remove all screen-only styling */
           .border, .rounded-2xl, .shadow-lg { border: none !important; box-shadow: none !important; border-radius: 0 !important; }

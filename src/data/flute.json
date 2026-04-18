@@ -713,13 +713,12 @@
       "octave": "1st octave",
       "primary": {
         "elements": [
-          "thumb",
           "L1",
           "Eb"
         ],
-        "description": "Thumb + left index + Eb lever",
+        "description": "Left index only + Eb (thumb OFF Bb lever)",
         "valve_notation": null,
-        "text_notation": "T 1--|--- Eb"
+        "text_notation": "1--|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
@@ -728,7 +727,7 @@
           "Confusing with Bb4 fingering"
         ],
         "practice_tips": [
-          "Thumb stays on. Only L1 and Eb key held. Different from Bb4 where R1 is also held."
+          "Thumb lifts OFF the Bb lever. Only L1 and Eb key held. Different from Bb4 where R1 is also held."
         ],
         "intonation_tendency": null
       }
@@ -747,20 +746,21 @@
       "octave": "1st octave",
       "primary": {
         "elements": [
-          "thumb"
+          "L1",
+          "Eb"
         ],
-        "description": "Thumb only — all fingers off",
+        "description": "Left index only (thumb OFF) + Eb",
         "valve_notation": null,
-        "text_notation": "T ---|---"
+        "text_notation": "1--|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [
-          "Accidentally holding L1 down"
+          "Forgetting to lift thumb off"
         ],
         "practice_tips": [
-          "Only the thumb key is held. All fingers lift off."
+          "Thumb comes OFF the Bb lever. Only L1 and Eb key held."
         ],
         "intonation_tendency": null
       }
@@ -779,11 +779,11 @@
       "octave": "1st octave",
       "primary": {
         "elements": [
-          "C#"
+          "Eb"
         ],
-        "description": "All keys open + C# foot joint key",
+        "description": "All keys open except Eb foot key",
         "valve_notation": null,
-        "text_notation": "- ---|--- C#"
+        "text_notation": "---|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
@@ -792,7 +792,7 @@
           "Tone can be thin with so many keys open"
         ],
         "practice_tips": [
-          "Highest note of the 1st octave. No thumb, no fingers — only the C# foot key."
+          "Highest note of the 1st octave. Focus on strong, supported air."
         ],
         "intonation_tendency": "sharp"
       }
@@ -1168,13 +1168,12 @@
       "octave": "2nd octave",
       "primary": {
         "elements": [
-          "thumb",
           "L1",
           "Eb"
         ],
-        "description": "Thumb + left index + Eb lever (overblown from B4)",
+        "description": "Left index only + Eb (thumb OFF, overblown from B4)",
         "valve_notation": null,
-        "text_notation": "T 1--|--- Eb"
+        "text_notation": "1--|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
@@ -1200,11 +1199,12 @@
       "octave": "2nd octave",
       "primary": {
         "elements": [
-          "thumb"
+          "L1",
+          "Eb"
         ],
-        "description": "Thumb only — all fingers off (overblown from C5)",
+        "description": "Same as C5 (overblown)",
         "valve_notation": null,
-        "text_notation": "T ---|---"
+        "text_notation": "1--|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
@@ -1230,11 +1230,11 @@
       "octave": "2nd octave",
       "primary": {
         "elements": [
-          "C#"
+          "Eb"
         ],
-        "description": "All keys open + C# foot joint key (overblown from C#5)",
+        "description": "All keys open except Eb (same as C#5, overblown)",
         "valve_notation": null,
-        "text_notation": "- ---|--- C#"
+        "text_notation": "---|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
@@ -1439,7 +1439,7 @@
         ],
         "description": "Left hand closed (no thumb) + Eb",
         "valve_notation": null,
-        "text_notation": "- 123|--- Eb"
+        "text_notation": "123|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
@@ -1472,7 +1472,7 @@
         ],
         "description": "L2 + L3 + G# lever + Eb (no thumb, no L1)",
         "valve_notation": null,
-        "text_notation": "- -23 G#|--- Eb"
+        "text_notation": "-23 G#|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
@@ -1530,28 +1530,19 @@
       "primary": {
         "elements": [
           "thumb",
-          "L1",
           "R1",
-          "Eb"
+          "D#-trill"
         ],
-        "description": "Thumb + L1 + R1 + Eb lever (standard high Bb)",
+        "description": "Thumb + R1 + D# trill key",
         "valve_notation": null,
-        "text_notation": "T 1--|1-- Eb"
+        "text_notation": "T ---|1 D#tr"
       },
-      "alternates": [
-        {
-          "elements": ["thumb", "R1", "D#-trill"],
-          "description": "Thumb + R1 + D# trill key (alternate)",
-          "valve_notation": null,
-          "text_notation": "T ---|1 D#tr",
-          "use_case": "alternate"
-        }
-      ],
+      "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Standard method book high Bb fingering."
+          "Uses the D# trill key — an unusual key for most students."
         ],
         "intonation_tendency": null
       }
@@ -1570,28 +1561,21 @@
       "octave": "3rd octave",
       "primary": {
         "elements": [
-          "thumb",
+          "Bb",
           "L1",
-          "Eb"
+          "L3",
+          "D#-trill"
         ],
-        "description": "Thumb + L1 + Eb lever (standard high B)",
+        "description": "Bb lever + L1 + L3 + D# trill key (no Eb foot key)",
         "valve_notation": null,
-        "text_notation": "T 1--|--- Eb"
+        "text_notation": "Bb 1-3|-- D#tr"
       },
-      "alternates": [
-        {
-          "elements": ["Bb", "L1", "L3", "D#-trill"],
-          "description": "Bb lever + L1 + L3 + D# trill key (alternate)",
-          "valve_notation": null,
-          "text_notation": "Bb 1-3|-- D#tr",
-          "use_case": "alternate"
-        }
-      ],
+      "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Standard method book high B fingering."
+          "Complex fingering. Very high register — advanced players only."
         ],
         "intonation_tendency": null
       }
@@ -1610,29 +1594,22 @@
       "octave": "3rd octave",
       "primary": {
         "elements": [
-          "thumb",
+          "L1",
           "L2",
           "L3",
-          "Eb"
+          "G#",
+          "R1"
         ],
-        "description": "Thumb + L2 + L3 + Eb lever (standard high C)",
+        "description": "L1+L2+L3+G#+R1 (C-foot version)",
         "valve_notation": null,
-        "text_notation": "T -23|--- Eb"
+        "text_notation": "123 G#|1--"
       },
-      "alternates": [
-        {
-          "elements": ["L1", "L2", "L3", "G#", "R1"],
-          "description": "L1+L2+L3+G#+R1 (C-foot alternate)",
-          "valve_notation": null,
-          "text_notation": "- 123 G#|1--",
-          "use_case": "alternate"
-        }
-      ],
+      "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Highest standard note. Requires very fast, focused air stream."
+          "Highest standard note. Requires very fast, focused air stream. B-foot flutes may use a slightly different fingering."
         ],
         "intonation_tendency": null
       }

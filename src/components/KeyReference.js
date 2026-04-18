@@ -3,9 +3,9 @@
 // Labeled reference diagrams — shows all keys in "open" state with names
 // Uses exact geometry from locked templates, adds text labels
 
-const LABEL_STYLE = { fontSize: '10px', fontFamily: 'system-ui', fontWeight: 600, fill: '#4f46b8' };
-const SUB_STYLE = { fontSize: '8px', fontFamily: 'system-ui', fontWeight: 400, fill: '#888' };
-const LEAD_STYLE = { stroke: '#4f46b8', strokeWidth: 0.5, strokeDasharray: '2 2' };
+const LABEL_STYLE = 'font-size:10px;font-family:system-ui;font-weight:600;fill:#4f46b8';
+const SUB_STYLE = 'font-size:8px;font-family:system-ui;font-weight:400;fill:#888';
+const LEAD_STYLE = 'stroke:#4f46b8;stroke-width:0.5;stroke-dasharray:2 2';
 
 function FluteReference() {
   return (
@@ -145,7 +145,7 @@ function RecorderReference() {
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 220 440" style={{display:'block'}}>
       <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:2.5;stroke-linecap:round}`}</style>
 
-      <circle className="open" cx="60" cy="40" r="10"/>
+      <circle className="open" cx="60" cy="40" r="14"/>
       <line className="divider" x1="50" y1="68" x2="120" y2="68"/>
       <circle className="open" cx="90" cy="100" r="17"/>
       <circle className="open" cx="90" cy="148" r="17"/>
@@ -153,8 +153,8 @@ function RecorderReference() {
       <line className="divider" x1="50" y1="228" x2="120" y2="228"/>
       <circle className="open" cx="90" cy="260" r="16"/>
       <circle className="open" cx="90" cy="305" r="16"/>
-      <circle className="open" cx="90" cy="350" r="16"/>
-      <circle className="open" cx="90" cy="395" r="16"/>
+      <circle className="open" cx="90" cy="347" r="14"/>
+      <circle className="open" cx="90" cy="385" r="13"/>
 
       <text style={LABEL_STYLE} x="82" y="44" textAnchor="start">  Thumb</text>
       <text style={LABEL_STYLE} x="118" y="104" textAnchor="start">LH1</text>
@@ -162,8 +162,8 @@ function RecorderReference() {
       <text style={LABEL_STYLE} x="118" y="200" textAnchor="start">LH3</text>
       <text style={LABEL_STYLE} x="118" y="264" textAnchor="start">RH1</text>
       <text style={LABEL_STYLE} x="118" y="309" textAnchor="start">RH2</text>
-      <text style={LABEL_STYLE} x="118" y="354" textAnchor="start">RH3</text>
-      <text style={LABEL_STYLE} x="118" y="399" textAnchor="start">RH4</text>
+      <text style={LABEL_STYLE} x="118" y="351" textAnchor="start">RH3</text>
+      <text style={LABEL_STYLE} x="118" y="389" textAnchor="start">RH4</text>
     </svg>
   );
 }
@@ -225,7 +225,7 @@ export default function KeyReference({ instrumentId }) {
   return (
     <div className="border border-[#e5e8ed] rounded-card p-5 mb-8 bg-white">
       <h3 className="text-sm font-bold text-[#4a5060] mb-3 text-center">Key Reference</h3>
-      <div className="max-w-xs mx-auto">
+      <div className="max-w-lg mx-auto">
         <Component />
       </div>
     </div>

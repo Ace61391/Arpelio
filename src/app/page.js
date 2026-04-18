@@ -42,9 +42,8 @@ function InstrumentCard({ inst }) {
 }
 
 export default function Home() {
-  const visible = INSTRUMENTS.filter(i => !i.hidden);
-  const woodwinds = visible.filter(i => i.family === 'woodwind');
-  const brass = visible.filter(i => i.family === 'brass');
+  const woodwinds = INSTRUMENTS.filter(i => i.family === 'woodwind');
+  const brass = INSTRUMENTS.filter(i => i.family === 'brass');
 
   return (
     <>
@@ -129,7 +128,7 @@ export default function Home() {
           <div className="text-center mb-10">
             <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">Ready in 60 seconds</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-8">
             {[
               { n: '1', t: 'Pick instrument', d: 'Select from 9 band instruments' },
               { n: '2', t: 'Choose notes', d: 'By octave, scale, or custom selection' },
