@@ -42,8 +42,9 @@ function InstrumentCard({ inst }) {
 }
 
 export default function Home() {
-  const woodwinds = INSTRUMENTS.filter(i => i.family === 'woodwind');
-  const brass = INSTRUMENTS.filter(i => i.family === 'brass');
+  const visible = INSTRUMENTS.filter(i => !i.hidden);
+  const woodwinds = visible.filter(i => i.family === 'woodwind');
+  const brass = visible.filter(i => i.family === 'brass');
 
   return (
     <>

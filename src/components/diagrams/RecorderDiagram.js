@@ -6,7 +6,7 @@
 const HOLE_MAP = { L1: 0, L2: 1, L3: 2, R1: 3, R2: 4, R3: 5, R4: 6 };
 const HALF_MAP = { 'R3-half': 5, 'R4-half': 6 };
 
-export default function RecorderDiagram({ elements = [], size = 'md', blank = false, style: holeStyle = 'simple' }) {
+export default function RecorderDiagram({ elements = [], size = 'md', blank = false, holeStyle = 'simple' }) {
   const holes = ['open','open','open','open','open','open','open'];
   let thumb = 'open';
   if (!blank) {

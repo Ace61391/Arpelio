@@ -18,7 +18,8 @@ const FAMILY_COLORS = {
 
 export default function InstrumentsPage() {
   const [filter, setFilter] = useState('all');
-  const filtered = filter === 'all' ? INSTRUMENTS : INSTRUMENTS.filter(i => i.family === filter);
+  const visible = INSTRUMENTS.filter(i => !i.hidden);
+  const filtered = filter === 'all' ? visible : visible.filter(i => i.family === filter);
 
   return (
     <>

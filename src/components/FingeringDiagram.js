@@ -39,7 +39,7 @@ export default function FingeringDiagram({ instrumentId, elements = [], textNota
     );
   }
 
-  return <Component elements={elements} size={size} blank={blank} style={holeStyle} />;
+  return <Component elements={elements} size={size} blank={blank} holeStyle={holeStyle} />;
 }
 
 export function getDiagramType(instrumentId) {
