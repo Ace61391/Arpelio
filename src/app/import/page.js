@@ -3,6 +3,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import FingeringDiagram from '@/components/FingeringDiagram';
+import InlineFingering from '@/components/InlineFingering';
 import { INSTRUMENTS, getInstrument } from '@/data/instruments';
 import { getInstrumentData } from '@/data/loader';
 
@@ -108,8 +109,8 @@ export default function ImportPage() {
       try {
         const r = osmd.EngravingRules;
         // Note spacing — give notes room to breathe (more than compact default)
-        r.VoiceSpacingMultiplierVexflow = 1.0;   // horizontal note spacing factor
-        r.VoiceSpacingAddendVexflow = 3.5;       // extra spacing addend
+        r.VoiceSpacingMultiplierVexflow = 1.3;   // horizontal note spacing factor
+        r.VoiceSpacingAddendVexflow = 5.0;       // extra spacing addend
         // Leave generous room below the staff for our fingering diagrams
         r.MinSkyBottomDistBetweenSystems = 12;
         r.BetweenStaffDistance = 8;
@@ -296,17 +297,15 @@ export default function ImportPage() {
               <h2 className="text-lg font-bold text-[#1a1d23]">{fileName.replace(/\.(xml|musicxml)$/i,'')}</h2>
               <span className="text-xs text-[#b0b5c0]">{instMeta?.name} — fingerings</span>
             </div>
-            <div ref={wrapperRef} className="relative overflow-x-auto" style={{ paddingBottom: 90 }}>
+            <div ref={wrapperRef} className="relative overflow-x-auto" style={{ paddingBottom: 150 }}>
               <div ref={containerRef} />
               {rendered && overlayData.map((o, i) => (
                 <div key={i} className="absolute flex flex-col items-center"
-                  style={{ left: o.x - 16, top: o.y, width: 32 }}>
+                  style={{ left: o.x - 12, top: o.y, width: 24 }}>
                   {o.fingering ? (
                     <>
-                      <div style={{ width: 28 }}>
-                        <FingeringDiagram instrumentId={instrumentId} elements={o.fingering.primary.elements} size="sm" />
-                      </div>
-                      <div className="text-[9px] font-mono text-[#7a8294] mt-0.5 leading-none">{o.writtenNote.replace(/(\d)/,'')}</div>
+                      <div className="text-[9px] font-mono font-semibold text-[#4a5060] mb-0.5 leading-none">{o.writtenNote.replace(/\d/,'')}</div>
+                      <InlineFingering instrumentId={instrumentId} elements={o.fingering.primary.elements} width={18} />
                     </>
                   ) : (
                     <div className="text-[8px] text-[#c0392b] text-center leading-tight mt-1">out of<br/>range</div>
