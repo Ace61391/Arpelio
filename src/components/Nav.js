@@ -12,17 +12,17 @@ export default function Nav() {
         <span className="text-xl font-extrabold text-[#1a1d23] tracking-tight">Arpelio</span>
       </Link>
       <div className="flex items-center gap-5 md:gap-7">
+        <Link href="/import" className={`text-sm font-semibold transition-colors ${pathname?.startsWith('/import') ? 'text-accent' : 'text-[#4a5060] hover:text-accent'}`}>
+          Import a score
+        </Link>
         <Link href="/instruments" className={`text-sm font-semibold transition-colors ${pathname?.startsWith('/instruments') ? 'text-accent' : 'text-[#4a5060] hover:text-accent'}`}>
           Instruments
         </Link>
         <Link href="/builder" className={`text-sm font-semibold transition-colors ${pathname?.startsWith('/builder') ? 'text-accent' : 'text-[#4a5060] hover:text-accent'}`}>
           Builder
         </Link>
-        <Link href="/viewer" className={`text-sm font-semibold transition-colors ${pathname?.startsWith('/viewer') ? 'text-accent' : 'text-[#4a5060] hover:text-accent'}`}>
-          Viewer
-        </Link>
-        <Link href="/instruments" className="bg-accent hover:bg-accent-hover text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors hidden sm:block">
-          Get Started Free
+        <Link href="/import" className="bg-accent hover:bg-accent-hover text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors hidden sm:block">
+          Import a score
         </Link>
       </div>
     </nav>

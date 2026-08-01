@@ -1,339 +1,269 @@
 'use client';
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import FingeringDiagram from '@/components/FingeringDiagram';
-import { INSTRUMENTS } from '@/data/instruments';
+import { INSTRUMENTS, getInstrument } from '@/data/instruments';
 import { getInstrumentData } from '@/data/loader';
 
+// Semitone offset from CONCERT pitch to WRITTEN pitch for each instrument.
+const TRANSPOSE_TO_WRITTEN = {
+  'recorder': 0, 'flute': 0, 'clarinet': 2, 'saxophone': 9,
+  'bb-trumpet': 2, 'french-horn': 7, 'trombone': 0, 'euphonium': 0, 'bb-tuba': 0,
+};
+
+const NOTE_TO_PC = { C:0,'C#':1,Db:1,D:2,'D#':3,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,'G#':8,Ab:8,A:9,'A#':10,Bb:10,B:11 };
+const PC_TO_SHARP = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+const PC_TO_FLAT  = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
+
+function noteToAbs(step, alter, octave) {
+  const base = { C:0, D:2, E:4, F:5, G:7, A:9, B:11 }[step];
+  return (octave + 1) * 12 + base + alter;
+}
+function absToNote(abs, preferFlat) {
+  const pc = ((abs % 12) + 12) % 12;
+  const octave = Math.floor(abs / 12) - 1;
+  const name = preferFlat ? PC_TO_FLAT[pc] : PC_TO_SHARP[pc];
+  return `${name}${octave}`;
+}
+
 export default function ImportPage() {
+  const [instrumentId, setInstrumentId] = useState('flute');
   const [xmlContent, setXmlContent] = useState(null);
   const [fileName, setFileName] = useState('');
-  const [instrumentId, setInstrumentId] = useState('flute');
-  const [notes, setNotes] = useState([]);
-  const [maxMeasures, setMaxMeasures] = useState(4);
   const [osmdReady, setOsmdReady] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const osmdContainerRef = useRef(null);
+  const [rendered, setRendered] = useState(false);
+  const [stats, setStats] = useState({ total: 0, matched: 0 });
+  const [overlayData, setOverlayData] = useState([]);
+
+  const containerRef = useRef(null);
   const osmdRef = useRef(null);
 
-  // Load OSMD dynamically (it's a large library, only load when needed)
   useEffect(() => {
     import('opensheetmusicdisplay').then(mod => {
       osmdRef.current = mod.OpenSheetMusicDisplay;
       setOsmdReady(true);
-    }).catch(err => {
-      console.error('Failed to load OSMD:', err);
-      setError('Failed to load notation engine');
-    });
+    }).catch(() => setError('Failed to load notation engine'));
   }, []);
 
-  // Parse MusicXML to extract notes
-  const parseNotes = useCallback((xmlString, measures) => {
-    try {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(xmlString, 'text/xml');
+  const instData = getInstrumentData(instrumentId);
+  const instMeta = getInstrument(instrumentId);
 
-      // Check for parse errors
-      const parseError = doc.querySelector('parsererror');
-      if (parseError) {
-        setError('Invalid XML file');
-        return [];
-      }
+  const buildFingeringLookup = useCallback(() => {
+    const map = {};
+    if (instData) instData.fingerings.forEach(f => { map[f.note.written] = f; });
+    return map;
+  }, [instData]);
 
-      const measureEls = doc.querySelectorAll('measure');
-      const extracted = [];
-      const limit = Math.min(measureEls.length, measures);
-
-      for (let m = 0; m < limit; m++) {
-        const noteEls = measureEls[m].querySelectorAll('note');
-        for (const noteEl of noteEls) {
-          // Skip rests
-          if (noteEl.querySelector('rest')) {
-            extracted.push({ type: 'rest', measure: m + 1 });
-            continue;
-          }
-
-          const pitchEl = noteEl.querySelector('pitch');
-          if (!pitchEl) continue;
-
-          // Skip notes that are tied (continuation) — only show the first
-          const tieEl = noteEl.querySelector('tie');
-          if (tieEl && tieEl.getAttribute('type') === 'stop') continue;
-
-          const step = pitchEl.querySelector('step')?.textContent || '';
-          const octave = pitchEl.querySelector('octave')?.textContent || '';
-          const alterEl = pitchEl.querySelector('alter');
-          const alter = alterEl ? parseInt(alterEl.textContent) : 0;
-
-          let noteName = step;
-          if (alter === 1) noteName += '#';
-          else if (alter === -1) noteName += 'b';
-          else if (alter === 2) noteName += '##';
-          else if (alter === -2) noteName += 'bb';
-
-          const written = noteName + octave;
-          extracted.push({ type: 'note', written, step, octave: parseInt(octave), alter, measure: m + 1 });
-        }
-      }
-
-      return extracted;
-    } catch (e) {
-      setError('Error parsing MusicXML: ' + e.message);
-      return [];
+  const lookupFingering = useCallback((writtenNote, map) => {
+    if (map[writtenNote]) return map[writtenNote];
+    const m = writtenNote.match(/^([A-G][#b]?)(\d+)$/);
+    if (m) {
+      const pc = NOTE_TO_PC[m[1]];
+      const oct = parseInt(m[2]);
+      const abs = (oct + 1) * 12 + pc;
+      const sharpName = absToNote(abs, false);
+      const flatName = absToNote(abs, true);
+      if (map[sharpName]) return map[sharpName];
+      if (map[flatName]) return map[flatName];
     }
-  }, []);
-
-  // Look up fingering for a note
-  const lookupFingering = useCallback((written, instId) => {
-    const data = getInstrumentData(instId);
-    if (!data) return null;
-
-    // Direct match
-    const match = data.fingerings.find(f => f.note.written === written);
-    if (match) return match;
-
-    // Try enharmonic equivalents
-    const enharmonics = {
-      'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#',
-      'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb',
-    };
-    // Extract note name and octave
-    const noteMatch = written.match(/^([A-G][#b]?)(\d+)$/);
-    if (noteMatch) {
-      const [, name, oct] = noteMatch;
-      const altName = enharmonics[name];
-      if (altName) {
-        const altWritten = altName + oct;
-        const altMatch = data.fingerings.find(f => f.note.written === altWritten);
-        if (altMatch) return altMatch;
-      }
-    }
-
     return null;
   }, []);
 
-  // Handle file upload
   const handleFileUpload = useCallback((e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    setError(null);
-    setLoading(true);
-    setFileName(file.name);
-
+    setError(null); setLoading(true); setRendered(false); setFileName(file.name);
     const reader = new FileReader();
-    reader.onload = (evt) => {
-      const content = evt.target.result;
-      setXmlContent(content);
-      const parsed = parseNotes(content, maxMeasures);
-      setNotes(parsed);
-      setLoading(false);
-    };
-    reader.onerror = () => {
-      setError('Failed to read file');
-      setLoading(false);
-    };
+    reader.onload = (evt) => { setXmlContent(evt.target.result); setLoading(false); };
+    reader.onerror = () => { setError('Failed to read file'); setLoading(false); };
     reader.readAsText(file);
-  }, [maxMeasures, parseNotes]);
+  }, []);
 
-  // Render OSMD when we have XML content
   useEffect(() => {
-    if (!xmlContent || !osmdReady || !osmdContainerRef.current) return;
-
-    const container = osmdContainerRef.current;
+    if (!xmlContent || !osmdReady || !containerRef.current) return;
+    let cancelled = false;
+    setRendered(false);
+    const container = containerRef.current;
     container.innerHTML = '';
 
     const OSMD = osmdRef.current;
     const osmd = new OSMD(container, {
-      autoResize: true,
-      drawTitle: false,
-      drawSubtitle: false,
-      drawComposer: false,
-      drawCredits: false,
-      drawPartNames: false,
-      drawPartAbbreviations: false,
+      autoResize: false, backend: 'svg',
+      drawTitle: false, drawSubtitle: false, drawComposer: false,
+      drawLyricist: false, drawCredits: false, drawPartNames: false,
       drawMeasureNumbers: true,
-      drawingParameters: 'compact',
+      drawingParameters: 'default',
     });
 
     osmd.load(xmlContent).then(() => {
-      // Limit to N measures
-      if (osmd.Sheet && osmd.Sheet.SourceMeasures) {
-        const total = osmd.Sheet.SourceMeasures.length;
-        if (total > maxMeasures) {
-          osmd.setOptions({ drawFromMeasureNumber: 1, drawUpToMeasureNumber: maxMeasures });
-        }
+      if (cancelled) return;
+
+      // --- Engraving-quality settings ---
+      // Applied after load, before render. These tune spacing, sizing, and
+      // layout so the notation looks professionally engraved.
+      try {
+        const r = osmd.EngravingRules;
+        // Note spacing — give notes room to breathe (more than compact default)
+        r.VoiceSpacingMultiplierVexflow = 1.0;   // horizontal note spacing factor
+        r.VoiceSpacingAddendVexflow = 3.5;       // extra spacing addend
+        // Leave generous room below the staff for our fingering diagrams
+        r.MinSkyBottomDistBetweenSystems = 12;
+        r.BetweenStaffDistance = 8;
+        r.StaffDistance = 8;
+        // Larger measure numbers, positioned cleanly
+        r.MeasureNumberLabelHeight = 1.2;
+        r.MeasureNumberLabelOffset = 2;
+        // Consistent page margins
+        r.PageLeftMargin = 1.5;
+        r.PageRightMargin = 1.5;
+        r.PageTopMargin = 1.0;
+        // Slightly thicker staff lines read better on screen and print
+        r.StaffLineWidth = 0.12;
+        r.SheetTitleHeight = 0;
+        // Render whole notes/rests cleanly, avoid collisions
+        r.RenderMeasureNumbersOnlyAtSystemStart = false;
+      } catch (e) {
+        console.warn('Engraving rules partial:', e);
       }
+
+      osmd.zoom = 1.0;
       osmd.render();
+
+      const offset = TRANSPOSE_TO_WRITTEN[instrumentId] ?? 0;
+      const map = buildFingeringLookup();
+      const preferFlat = ['clarinet','bb-trumpet','french-horn','saxophone'].includes(instrumentId);
+      const overlays = [];
+      let total = 0, matched = 0;
+
+      try {
+        const sheet = osmd.GraphicalMusicSheet;
+        const zoom = osmd.zoom || 1;
+        const unitToPx = 10 * zoom;
+        for (const page of sheet.MusicPages || []) {
+          for (const system of page.MusicSystems || []) {
+            for (const line of system.StaffLines || []) {
+              const lineAbs = line.PositionAndShape.AbsolutePosition;
+              const lineBottom = (lineAbs.y + line.PositionAndShape.BorderBottom) * unitToPx;
+              for (const measure of line.Measures || []) {
+                for (const staffEntry of measure.staffEntries || []) {
+                  for (const gve of staffEntry.graphicalVoiceEntries || []) {
+                    for (const gnote of gve.notes || []) {
+                      const srcNote = gnote.sourceNote;
+                      if (!srcNote || !srcNote.Pitch) continue;
+                      const pitch = srcNote.Pitch;
+                      const stepNames = ['C','D','E','F','G','A','B'];
+                      const step = stepNames[pitch.FundamentalNote];
+                      const octave = pitch.Octave + 3;
+                      const concertAbs = noteToAbs(step, pitch.AccidentalHalfTones || 0, octave);
+                      const writtenAbs = concertAbs + offset;
+                      const writtenNote = absToNote(writtenAbs, preferFlat);
+                      total++;
+                      const fingering = lookupFingering(writtenNote, map);
+                      if (fingering) matched++;
+                      const pos = gnote.PositionAndShape?.AbsolutePosition;
+                      if (!pos) continue;
+                      overlays.push({ x: pos.x * unitToPx, y: lineBottom, writtenNote, fingering });
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      } catch (err) { console.error('Overlay walk error:', err); }
+
+      if (cancelled) return;
+      setStats({ total, matched });
+      setOverlayData(overlays);
+      setRendered(true);
     }).catch(err => {
-      console.error('OSMD render error:', err);
-      setError('Could not render this MusicXML file. It may be in an unsupported format.');
+      console.error('OSMD error:', err);
+      if (!cancelled) setError('Could not render this file. Make sure it is valid, uncompressed MusicXML (.xml or .musicxml).');
     });
-  }, [xmlContent, osmdReady, maxMeasures]);
 
-  // Re-parse when maxMeasures changes
-  useEffect(() => {
-    if (xmlContent) {
-      const parsed = parseNotes(xmlContent, maxMeasures);
-      setNotes(parsed);
-    }
-  }, [maxMeasures, xmlContent, parseNotes]);
+    return () => { cancelled = true; };
+  }, [xmlContent, osmdReady, instrumentId, buildFingeringLookup, lookupFingering]);
 
-  // Export / Print
-  const handleExport = () => {
-    window.print();
-  };
-
-  const noteItems = notes.filter(n => n.type === 'note');
-  const matchedNotes = noteItems.map(n => ({
-    ...n,
-    fingering: lookupFingering(n.written, instrumentId),
-  }));
-
-  const matchCount = matchedNotes.filter(n => n.fingering).length;
+  const handleExport = () => window.print();
 
   return (
     <>
       <Nav />
       <div className="px-6 md:px-8 py-8 max-w-[1160px] mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-extrabold text-[#1a1d23] tracking-tight mb-2">
-            Score Import
-          </h1>
+        <div className="mb-6">
+          <h1 className="text-3xl font-extrabold text-[#1a1d23] tracking-tight mb-2">Score Import</h1>
           <p className="text-sm text-[#4a5060]">
-            Upload a MusicXML file and get fingering diagrams for every note. Export the result as a PDF study guide.
+            Upload a concert-pitch score. We transpose it for your instrument and print fingering diagrams under every note — ready to hand to students.
           </p>
         </div>
 
-        {/* Controls */}
         <div className="bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 print:hidden">
           <div className="flex flex-col sm:flex-row gap-4 mb-4">
-            {/* Instrument picker */}
             <div className="flex-1">
-              <label className="block text-xs font-semibold text-[#7a8294] mb-1">Instrument</label>
-              <select
-                value={instrumentId}
-                onChange={e => setInstrumentId(e.target.value)}
-                className="w-full border border-[#e5e8ed] rounded-lg px-3 py-2 text-sm text-[#1a1d23] bg-white"
-              >
-                {INSTRUMENTS.map(inst => (
+              <label className="block text-xs font-semibold text-[#7a8294] mb-1">Instrument (we transpose from concert pitch)</label>
+              <select value={instrumentId} onChange={e => setInstrumentId(e.target.value)}
+                className="w-full border border-[#e5e8ed] rounded-lg px-3 py-2 text-sm text-[#1a1d23] bg-white">
+                {INSTRUMENTS.filter(i => !i.hidden).map(inst => (
                   <option key={inst.id} value={inst.id}>{inst.name}</option>
                 ))}
               </select>
             </div>
-
-            {/* Measures */}
-            <div>
-              <label className="block text-xs font-semibold text-[#7a8294] mb-1">Measures</label>
-              <select
-                value={maxMeasures}
-                onChange={e => setMaxMeasures(parseInt(e.target.value))}
-                className="border border-[#e5e8ed] rounded-lg px-3 py-2 text-sm text-[#1a1d23] bg-white"
-              >
-                {[2, 4, 8, 16].map(n => (
-                  <option key={n} value={n}>{n} measures</option>
-                ))}
-              </select>
-            </div>
           </div>
-
-          {/* File upload */}
           <div className="flex flex-col sm:flex-row gap-4 items-start">
             <label className="flex-1 border-2 border-dashed border-[#d0d4dc] rounded-xl p-6 text-center cursor-pointer hover:border-accent hover:bg-accent-light/30 transition-all">
-              <input
-                type="file"
-                accept=".xml,.musicxml,.mxl"
-                onChange={handleFileUpload}
-                className="hidden"
-              />
-              <div className="text-sm font-semibold text-[#4a5060]">
-                {fileName ? fileName : 'Click to upload MusicXML file'}
-              </div>
-              <div className="text-xs text-[#b0b5c0] mt-1">
-                .xml or .musicxml files from MuseScore, Finale, Sibelius, Flat, Noteflight
-              </div>
+              <input type="file" accept=".xml,.musicxml" onChange={handleFileUpload} className="hidden" />
+              <div className="text-sm font-semibold text-[#4a5060]">{fileName || 'Click to upload a MusicXML file'}</div>
+              <div className="text-xs text-[#b0b5c0] mt-1">Concert-pitch .xml or .musicxml from MuseScore, Finale, Sibelius, Flat, Noteflight</div>
             </label>
-
-            {noteItems.length > 0 && (
-              <button
-                onClick={handleExport}
-                className="bg-accent hover:bg-accent-hover text-white text-sm font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap"
-              >
-                Export PDF
+            {rendered && (
+              <button onClick={handleExport}
+                className="bg-accent hover:bg-accent-hover text-white text-sm font-bold px-6 py-3 rounded-lg transition-colors whitespace-nowrap">
+                Print / Export PDF
               </button>
             )}
           </div>
-
-          {error && (
-            <div className="mt-3 text-sm text-red-600 bg-red-50 rounded-lg px-4 py-2">{error}</div>
-          )}
-
-          {loading && (
-            <div className="mt-3 text-sm text-[#7a8294]">Loading score...</div>
+          {error && <div className="mt-3 text-sm text-red-600 bg-red-50 rounded-lg px-4 py-2">{error}</div>}
+          {loading && <div className="mt-3 text-sm text-[#7a8294]">Loading…</div>}
+          {rendered && (
+            <div className="mt-3 text-xs text-[#7a8294]">
+              {instMeta?.name} · {stats.matched}/{stats.total} notes matched
+              {stats.total > stats.matched && <span className="text-[#b0b5c0]"> · {stats.total - stats.matched} out of range</span>}
+            </div>
           )}
         </div>
 
-        {/* Score display */}
         {xmlContent && (
           <div className="bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 print:border-none print:p-0 print:rounded-none">
-            <h2 className="text-lg font-bold text-[#1a1d23] mb-4 print:text-center">
-              {fileName.replace(/\.(xml|musicxml|mxl)$/i, '')}
-            </h2>
-
-            {/* OSMD notation render */}
-            <div ref={osmdContainerRef} className="mb-6 overflow-x-auto" />
-
-            {/* Stats */}
-            {noteItems.length > 0 && (
-              <div className="text-xs text-[#b0b5c0] mb-4 print:hidden">
-                {noteItems.length} notes found · {matchCount} fingerings matched · {noteItems.length - matchCount} not in range
-              </div>
-            )}
-
-            {/* Fingering diagrams grid */}
-            {matchedNotes.length > 0 && (
-              <>
-                <h3 className="text-sm font-bold text-[#4a5060] mb-3">
-                  Fingerings — {INSTRUMENTS.find(i => i.id === instrumentId)?.name}
-                </h3>
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 print:grid-cols-8">
-                  {matchedNotes.map((n, i) => (
-                    <div key={i} className="border border-[#e5e8ed] rounded-lg p-2 flex flex-col items-center gap-1 print:border-gray-300">
-                      <span className="text-xs font-bold text-[#1a1d23]">{n.written}</span>
-                      {n.fingering ? (
-                        <>
-                          <FingeringDiagram
-                            instrumentId={instrumentId}
-                            elements={n.fingering.primary.elements}
-                            size="sm"
-                          />
-                          <span className="font-mono text-[9px] text-[#b0b5c0]">
-                            {n.fingering.primary.text_notation}
-                          </span>
-                        </>
-                      ) : (
-                        <span className="text-[10px] text-[#b0b5c0] italic py-4">
-                          Out of range
-                        </span>
-                      )}
+            <div className="flex items-baseline justify-between mb-4 print:mb-6">
+              <h2 className="text-lg font-bold text-[#1a1d23]">{fileName.replace(/\.(xml|musicxml)$/i,'')}</h2>
+              <span className="text-xs text-[#b0b5c0]">{instMeta?.name} — fingerings</span>
+            </div>
+            <div className="relative overflow-x-auto" style={{ paddingBottom: 90 }}>
+              <div ref={containerRef} />
+              {rendered && overlayData.map((o, i) => (
+                <div key={i} className="absolute flex flex-col items-center"
+                  style={{ left: o.x - 16, top: o.y + 6, width: 32 }}>
+                  {o.fingering ? (
+                    <div style={{ width: 28 }}>
+                      <FingeringDiagram instrumentId={instrumentId} elements={o.fingering.primary.elements} size="sm" />
                     </div>
-                  ))}
+                  ) : (
+                    <div className="text-[8px] text-[#c0392b] text-center leading-tight mt-1">out of<br/>range</div>
+                  )}
                 </div>
-              </>
-            )}
+              ))}
+            </div>
           </div>
         )}
 
-        {/* Empty state */}
         {!xmlContent && !loading && (
           <div className="text-center py-20 text-[#7a8294]">
-            <div className="text-4xl mb-4">🎵</div>
-            <p className="text-lg mb-2">Upload a MusicXML file to get started</p>
-            <p className="text-sm text-[#b0b5c0]">
-              Export from MuseScore, Finale, Sibelius, Flat.io, or Noteflight as MusicXML
-            </p>
+            <div className="text-4xl mb-4">🎼</div>
+            <p className="text-lg mb-2">Upload a concert-pitch score to get started</p>
+            <p className="text-sm text-[#b0b5c0]">We handle the transposition — you get a print-ready part with fingerings under each note.</p>
           </div>
         )}
       </div>
@@ -347,10 +277,6 @@ export default function ImportPage() {
           .print\\:border-none { border: none !important; }
           .print\\:p-0 { padding: 0 !important; }
           .print\\:rounded-none { border-radius: 0 !important; }
-          .print\\:text-center { text-align: center !important; }
-          .print\\:grid-cols-8 { grid-template-columns: repeat(8, 1fr) !important; }
-          .print\\:border-gray-300 { border: 1px solid #ccc !important; }
-          svg { max-width: 100% !important; height: auto !important; }
         }
       `}</style>
     </>

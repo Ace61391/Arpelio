@@ -50,33 +50,61 @@ export default function Home() {
     <>
       <Nav />
 
-      {/* Hero */}
+      {/* Hero — spotlight import */}
       <section className="px-8 pt-16 pb-14 text-center max-w-[1160px] mx-auto">
         <div className="inline-block bg-accent-light rounded-full px-4 py-1.5 text-sm font-semibold text-accent mb-6">
-          9 instruments · 300+ verified fingerings · 100% free
+          For band &amp; elementary music teachers · 100% free
         </div>
-        <h1 className="text-4xl md:text-[48px] font-extrabold leading-[1.12] tracking-tight text-[#1a1d23] max-w-[680px] mx-auto mb-5">
-          Fingering charts and worksheets for every band instrument
+        <h1 className="text-4xl md:text-[48px] font-extrabold leading-[1.12] tracking-tight text-[#1a1d23] max-w-[720px] mx-auto mb-5">
+          Turn any song into a fingering guide for your students
         </h1>
-        <p className="text-lg text-[#4a5060] leading-relaxed max-w-[540px] mx-auto mb-9">
-          Browse interactive charts, generate print-ready reference PDFs, and create fingering quizzes. Free for every teacher.
+        <p className="text-lg text-[#4a5060] leading-relaxed max-w-[560px] mx-auto mb-9">
+          Upload a concert-pitch score. We transpose it for each instrument and print a fingering diagram under every note — ready to hand out in 60 seconds.
         </p>
-        <div className="flex gap-3 justify-center flex-wrap">
-          <Link href="/instruments" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-8 py-3.5 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5">
-            Browse Instruments
+        <div className="flex gap-3 justify-center flex-wrap items-center">
+          <Link href="/import" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-8 py-3.5 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5">
+            Import a score
           </Link>
-          <Link href="/builder" className="bg-white text-[#4a5060] border border-[#e5e8ed] hover:border-accent hover:text-accent rounded-lg px-8 py-3.5 text-base font-semibold transition-all">
-            Build a Worksheet
+          <Link href="/builder" className="text-[#4a5060] hover:text-accent px-4 py-3.5 text-base font-semibold transition-all underline underline-offset-4 decoration-[#d0d4dc] hover:decoration-accent">
+            or build a practice worksheet
           </Link>
         </div>
       </section>
 
-      {/* Instruments with sample charts */}
+      {/* How import works — 3 steps */}
+      <section className="bg-[#f8f9fb] px-8 py-16">
+        <div className="max-w-[900px] mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">From score to student handout in three steps</h2>
+            <p className="text-base text-[#4a5060] max-w-[520px] mx-auto">No account. No hand-writing note names. Works with MuseScore, Finale, Sibelius, Flat, and Noteflight exports.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { n: '1', t: 'Upload a concert-pitch score', d: 'Any MusicXML file — the actual piece your class is playing.' },
+              { n: '2', t: 'Pick the instrument', d: 'We transpose automatically — Bb, Eb, F, concert pitch, all handled.' },
+              { n: '3', t: 'Print the part', d: 'A fingering diagram sits under every note, ready to hand out.' },
+            ].map(s => (
+              <div key={s.n} className="text-center">
+                <div className="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center text-xl font-extrabold text-accent mx-auto mb-4">{s.n}</div>
+                <h3 className="text-base font-bold text-[#1a1d23] mb-1">{s.t}</h3>
+                <p className="text-sm text-[#4a5060]">{s.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link href="/import" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-8 py-3.5 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5 inline-block">
+              Try it with your score
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Instruments — browsable reference layer */}
       <section className="bg-[#f8f9fb] px-8 py-16">
         <div className="max-w-[1160px] mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">Every instrument in the band room</h2>
-            <p className="text-base text-[#4a5060] max-w-[500px] mx-auto">Click any instrument to see all fingerings. Each card shows sample charts so you can see the quality.</p>
+            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">Or just browse the fingering charts</h2>
+            <p className="text-base text-[#4a5060] max-w-[520px] mx-auto">Every note for every instrument, verified against professional sources. Click any instrument to see all fingerings and alternates.</p>
           </div>
 
           <h3 className="text-xs font-bold text-[#7a8294] uppercase tracking-widest mb-3">Woodwinds</h3>
@@ -91,70 +119,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Two builders */}
+      {/* Secondary: worksheet builder */}
       <section className="px-8 py-20">
-        <div className="max-w-[1000px] mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">Two tools, zero cost</h2>
-            <p className="text-base text-[#4a5060]">Generate professional materials in seconds. No account needed.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <Link href="/builder?mode=reference" className="bg-white border border-[#e5e8ed] rounded-2xl p-8 hover:border-accent hover:-translate-y-1 hover:shadow-lg transition-all group">
-              <div className="text-3xl mb-4">📖</div>
-              <h3 className="text-xl font-bold text-[#1a1d23] mb-2 group-hover:text-accent">Reference Chart Builder</h3>
-              <p className="text-sm text-[#4a5060] leading-relaxed mb-4">Pick an instrument, select which notes and octaves to include, and download a print-ready PDF with filled diagrams.</p>
-              <ul className="text-sm text-[#4a5060] space-y-1.5">
-                <li className="flex gap-2 items-start"><span className="text-accent">✓</span> Choose notes by octave, scale, or custom</li>
-                <li className="flex gap-2 items-start"><span className="text-accent">✓</span> Add school name, title, class period</li>
-                <li className="flex gap-2 items-start"><span className="text-accent">✓</span> Print-ready black &amp; white PDF</li>
-              </ul>
-            </Link>
-            <Link href="/builder?mode=quiz" className="bg-white border border-[#e5e8ed] rounded-2xl p-8 hover:border-accent hover:-translate-y-1 hover:shadow-lg transition-all group">
-              <div className="text-3xl mb-4">✏️</div>
-              <h3 className="text-xl font-bold text-[#1a1d23] mb-2 group-hover:text-accent">Quiz Worksheet Builder</h3>
-              <p className="text-sm text-[#4a5060] leading-relaxed mb-4">Create print quizzes your students complete by hand. Two quiz modes for different skill levels.</p>
-              <ul className="text-sm text-[#4a5060] space-y-1.5">
-                <li className="flex gap-2 items-start"><span className="text-accent">✓</span> <strong>Identify the note:</strong> see diagram, write the name</li>
-                <li className="flex gap-2 items-start"><span className="text-accent">✓</span> <strong>Fill the chart:</strong> see note on staff, fill blank diagram</li>
-                <li className="flex gap-2 items-start"><span className="text-accent">✓</span> Auto-generated answer key for teachers</li>
-              </ul>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="bg-[#f8f9fb] px-8 py-16">
         <div className="max-w-[900px] mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">Ready in 60 seconds</h2>
+            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">Need a worksheet instead?</h2>
+            <p className="text-base text-[#4a5060] max-w-[520px] mx-auto">When you just want a blank quiz or a reference chart for a specific set of notes — build one by hand, no song required.</p>
           </div>
-          <div className="grid grid-cols-3 gap-8">
-            {[
-              { n: '1', t: 'Pick instrument', d: 'Select from 9 band instruments' },
-              { n: '2', t: 'Choose notes', d: 'By octave, scale, or custom selection' },
-              { n: '3', t: 'Download PDF', d: 'Reference chart or quiz worksheet' },
-            ].map(s => (
-              <div key={s.n} className="text-center">
-                <div className="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center text-xl font-extrabold text-accent mx-auto mb-4">{s.n}</div>
-                <h3 className="text-base font-bold text-[#1a1d23] mb-1">{s.t}</h3>
-                <p className="text-sm text-[#4a5060]">{s.d}</p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <Link href="/builder?mode=reference" className="bg-white border border-[#e5e8ed] rounded-2xl p-7 hover:border-accent hover:-translate-y-1 hover:shadow-lg transition-all group">
+              <h3 className="text-lg font-bold text-[#1a1d23] mb-2 group-hover:text-accent">Reference chart</h3>
+              <p className="text-sm text-[#4a5060] leading-relaxed">Pick notes and octaves, download a print-ready PDF with filled diagrams. Add your school name and class period.</p>
+            </Link>
+            <Link href="/builder?mode=quiz" className="bg-white border border-[#e5e8ed] rounded-2xl p-7 hover:border-accent hover:-translate-y-1 hover:shadow-lg transition-all group">
+              <h3 className="text-lg font-bold text-[#1a1d23] mb-2 group-hover:text-accent">Quiz worksheet</h3>
+              <p className="text-sm text-[#4a5060] leading-relaxed">Print quizzes students complete by hand — identify the note or fill the blank diagram. Auto-generated answer key.</p>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-8 py-20 text-center">
-        <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-4 tracking-tight">Stop hand-drawing fingering charts</h2>
-        <p className="text-base text-[#4a5060] mb-8 max-w-[500px] mx-auto">Every chart is verified against professional sources. Every PDF is print-ready. Every tool is free.</p>
-        <div className="flex gap-3 justify-center">
-          <Link href="/instruments" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-10 py-4 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5">
-            Browse All Instruments
+        <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-4 tracking-tight">Stop hand-writing note names under every part</h2>
+        <p className="text-base text-[#4a5060] mb-8 max-w-[520px] mx-auto">Upload the piece your class is playing. Every instrument gets a transposed part with fingerings under each note — free, no account.</p>
+        <div className="flex gap-3 justify-center items-center flex-wrap">
+          <Link href="/import" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-10 py-4 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5">
+            Import a score
           </Link>
-          <Link href="/builder" className="bg-white text-[#4a5060] border border-[#e5e8ed] hover:border-accent hover:text-accent rounded-lg px-10 py-4 text-base font-semibold transition-all">
-            Build a Worksheet
+          <Link href="/instruments" className="text-[#4a5060] hover:text-accent px-4 py-4 text-base font-semibold transition-all underline underline-offset-4 decoration-[#d0d4dc] hover:decoration-accent">
+            or browse fingering charts
           </Link>
         </div>
       </section>

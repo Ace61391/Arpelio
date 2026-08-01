@@ -375,7 +375,33 @@
         "valve_notation": null,
         "text_notation": "T 123|4-67"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "L3",
+            "R1"
+          ],
+          "text_notation": "T 123|4---",
+          "description": "German-model fingering",
+          "type": "alternate"
+        },
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "L3",
+            "R1",
+            "R3"
+          ],
+          "text_notation": "T 123|4-6-",
+          "description": "Good for tremolos with D4",
+          "type": "alternate"
+        }
+      ],
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [
@@ -412,7 +438,22 @@
         "valve_notation": null,
         "text_notation": "T 123|-56-"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "L3",
+            "R2",
+            "R3",
+            "R4"
+          ],
+          "text_notation": "T 123|-567",
+          "description": "German-model fingering",
+          "type": "alternate"
+        }
+      ],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [
@@ -447,7 +488,20 @@
         "valve_notation": null,
         "text_notation": "T 123|----"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "L3",
+            "R3"
+          ],
+          "text_notation": "T 123|--6-",
+          "description": "Flat \u2014 good for tremolos",
+          "type": "alternate"
+        }
+      ],
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [],
@@ -482,7 +536,31 @@
         "valve_notation": null,
         "text_notation": "T 12-|456-"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "R1",
+            "R2"
+          ],
+          "text_notation": "T 12-|45--",
+          "description": "Alternate for some instruments",
+          "type": "alternate"
+        },
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "R1"
+          ],
+          "text_notation": "T 12-|4---",
+          "description": "German-model fingering",
+          "type": "alternate"
+        }
+      ],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
@@ -512,7 +590,21 @@
         "valve_notation": null,
         "text_notation": "T 12-|----"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L3",
+            "R1",
+            "R2",
+            "R3"
+          ],
+          "text_notation": "T 1-3|456-",
+          "description": "Use with similar Bb4 fingering",
+          "type": "alternate"
+        }
+      ],
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [],
@@ -545,7 +637,31 @@
         "valve_notation": null,
         "text_notation": "T 1-3|4---"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L3",
+            "R1",
+            "R3"
+          ],
+          "text_notation": "T 1-3|4-6-",
+          "description": "Use with similar A4 fingering",
+          "type": "alternate"
+        },
+        {
+          "elements": [
+            "thumb",
+            "L2",
+            "L3",
+            "R1"
+          ],
+          "text_notation": "T -23|4---",
+          "description": "Use with C5/D5 fingerings",
+          "type": "alternate"
+        }
+      ],
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [
@@ -581,14 +697,13 @@
       "alternates": [
         {
           "elements": [
+            "thumb",
             "L2",
             "L3"
           ],
-          "description": "Alternate: skip L1, cover L2+L3",
-          "valve_notation": null,
           "text_notation": "T -23|----",
-          "use_case": "facility",
-          "trill_from": "C5"
+          "description": "Use in combination with C5",
+          "type": "alternate"
         }
       ],
       "pedagogy": {
@@ -1020,7 +1135,21 @@
         "valve_notation": null,
         "text_notation": "t 1--|45--"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb-half",
+            "L1",
+            "L2",
+            "L3",
+            "R1",
+            "R2"
+          ],
+          "text_notation": "t 123|45--",
+          "description": "Alternate \u2014 different tone/pitch",
+          "type": "alternate"
+        }
+      ],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
@@ -1054,7 +1183,20 @@
         "valve_notation": null,
         "text_notation": "t 1-3|4-6-"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb-half",
+            "L1",
+            "L3",
+            "R1",
+            "R3"
+          ],
+          "text_notation": "t 1-3|4-6-",
+          "description": "In tune on most recorders",
+          "type": "alternate"
+        }
+      ],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
@@ -1085,7 +1227,20 @@
         "valve_notation": null,
         "text_notation": "t -2-|----"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb-half",
+            "L1",
+            "L3",
+            "R1",
+            "R3"
+          ],
+          "text_notation": "t 1-3|4-6-",
+          "description": "Alternate D \u2014 check tuning",
+          "type": "alternate"
+        }
+      ],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],

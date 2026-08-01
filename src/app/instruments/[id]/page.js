@@ -126,16 +126,41 @@ export default function InstrumentPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {filteredNotes.map(f => {
             const isSelected = selectedNote === f.note.written;
+            const altCount = (f.alternates || []).length;
             return (
               <div key={f.note.written}
                 onClick={() => setSelectedNote(isSelected ? null : f.note.written)}
                 className={`bg-white border rounded-card p-4 flex flex-col items-center gap-2 cursor-pointer transition-all hover:-translate-y-0.5 ${
                   isSelected ? 'border-accent shadow-md' : 'border-[#e5e8ed] hover:border-[#d0d4dc]'
                 }`}>
-                <div className="text-lg font-bold text-[#1a1d23]">{f.note.display}</div>
+                <div className="flex items-center gap-2">
+                  <div className="text-lg font-bold text-[#1a1d23]">{f.note.display}</div>
+                  {altCount > 0 && (
+                    <span className="text-[10px] font-semibold text-accent bg-accent-light px-1.5 py-0.5 rounded-full">
+                      +{altCount} alt
+                    </span>
+                  )}
+                </div>
                 <StaffNote note={f.note.written} clef={clef} width={52} />
                 <FingeringDiagram instrumentId={id} elements={f.primary.elements} size="md" holeStyle={holeStyle} />
                 <div className="font-mono text-sm text-[#4a5060] text-center">{f.primary.text_notation}</div>
+
+                {isSelected && altCount > 0 && (
+                  <div className="w-full mt-2 pt-3 border-t border-[#e5e8ed]">
+                    <div className="text-xs font-semibold text-[#7a8294] mb-2 text-center">Alternate fingerings</div>
+                    <div className="flex flex-col gap-3">
+                      {f.alternates.map((alt, i) => (
+                        <div key={i} className="flex flex-col items-center gap-1">
+                          <FingeringDiagram instrumentId={id} elements={alt.elements} size="md" holeStyle={holeStyle} />
+                          <div className="font-mono text-xs text-[#4a5060]">{alt.text_notation}</div>
+                          {alt.description && (
+                            <div className="text-[10px] text-[#b0b5c0] text-center italic">{alt.description}</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
