@@ -210,14 +210,28 @@ export default function ImportPage() {
 
       console.log('[import] notes found:', raw.length, 'first pitches:', debugFirst);
 
-      // Cluster notes into rows by vertical band, so all diagrams in a system
-      // share one clean baseline below the staff.
-      const rowBaseline = {};
-      raw.forEach(o => {
-        const rowKey = Math.round(o.noteTop / 70);
-        o.rowKey = rowKey;
-        rowBaseline[rowKey] = Math.max(rowBaseline[rowKey] ?? 0, o.noteBottom);
+      // Group notes into staff-line "systems" by detecting large vertical gaps.
+      // All notes in one system share ONE baseline, so their columns form a
+      // uniform row (higher/lower pitches don't stagger the fingerings).
+      const sortedBottoms = [...new Set(raw.map(o => Math.round(o.noteBottom)))].sort((a, b) => a - b);
+      const systems = []; // each: { minTop, maxBottom }
+      let cur = null;
+      raw.slice().sort((a, b) => a.noteBottom - b.noteBottom).forEach(o => {
+        if (!cur || o.noteBottom - cur.maxBottom > 55) {
+          cur = { maxBottom: o.noteBottom, notes: [o] };
+          systems.push(cur);
+        } else {
+          cur.maxBottom = Math.max(cur.maxBottom, o.noteBottom);
+          cur.notes.push(o);
+        }
       });
+      // Assign each note the baseline of the system it belongs to
+      const baselineFor = (o) => {
+        for (const sys of systems) {
+          if (o.noteBottom <= sys.maxBottom + 1) return sys.maxBottom;
+        }
+        return systems.length ? systems[systems.length - 1].maxBottom : o.noteBottom;
+      };
 
       const overlays = raw.map(o => {
         total++;
@@ -225,7 +239,7 @@ export default function ImportPage() {
         if (fingering) matched++;
         return {
           x: o.xCenter,
-          y: rowBaseline[o.rowKey] + 12,
+          y: baselineFor(o) + 12,
           writtenNote: o.writtenNote,
           fingering,
         };
