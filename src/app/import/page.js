@@ -270,7 +270,7 @@ export default function ImportPage() {
           </p>
         </div>
 
-        <div className="bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 print:hidden">
+        <div className="no-print bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 print:hidden">
           <div className="flex flex-col sm:flex-row gap-4 mb-4">
             <div className="flex-1">
               <label className="block text-xs font-semibold text-[#7a8294] mb-1">Instrument (we transpose from concert pitch)</label>
@@ -306,20 +306,20 @@ export default function ImportPage() {
         </div>
 
         {xmlContent && (
-          <div className="bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 print:border-none print:p-0 print:rounded-none">
+          <div className="print-page bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 mx-auto" style={{ maxWidth: 720 }}>
             <div className="flex items-baseline justify-between mb-4 print:mb-6">
               <h2 className="text-lg font-bold text-[#1a1d23]">{fileName.replace(/\.(xml|musicxml)$/i,'')}</h2>
               <span className="text-xs text-[#b0b5c0]">{instMeta?.name} — fingerings</span>
             </div>
-            <div ref={wrapperRef} className="relative overflow-x-auto" style={{ paddingBottom: 150 }}>
-              <div ref={containerRef} />
+            <div ref={wrapperRef} className="relative overflow-x-auto" style={{ paddingBottom: 120 }}>
+              <div ref={containerRef} style={{ width: 672 }} />
               {rendered && overlayData.map((o, i) => (
                 <div key={i} className="absolute flex flex-col items-center"
                   style={{ left: o.x - 12, top: o.y, width: 24 }}>
                   {o.fingering ? (
                     <>
-                      <div className="text-[9px] font-mono font-semibold text-[#4a5060] mb-0.5 leading-none">{o.writtenNote.replace(/\d/,'')}</div>
-                      <InlineFingering instrumentId={instrumentId} elements={o.fingering.primary.elements} width={18} />
+                      <div className="text-[10px] font-bold text-[#3a3f4a] mb-1 leading-none tracking-tight">{o.writtenNote.replace(/\d/,'')}</div>
+                      <InlineFingering instrumentId={instrumentId} elements={o.fingering.primary.elements} width={16} />
                     </>
                   ) : (
                     <div className="text-[8px] text-[#c0392b] text-center leading-tight mt-1">out of<br/>range</div>
@@ -339,17 +339,6 @@ export default function ImportPage() {
         )}
       </div>
       <Footer />
-
-      <style jsx global>{`
-        @media print {
-          nav, footer, .print\\:hidden { display: none !important; }
-          body { background: white !important; }
-          @page { margin: 0.5in; size: letter portrait; }
-          .print\\:border-none { border: none !important; }
-          .print\\:p-0 { padding: 0 !important; }
-          .print\\:rounded-none { border-radius: 0 !important; }
-        }
-      `}</style>
     </>
   );
 }

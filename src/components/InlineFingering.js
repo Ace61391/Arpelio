@@ -14,16 +14,17 @@ const COLUMN_SLOTS = {
 };
 
 const INK = '#1a1d23';
+const OPEN = '#c2c7d0'; // light gray for un-pressed holes
 
-export default function InlineFingering({ instrumentId, elements = [], width = 18 }) {
+export default function InlineFingering({ instrumentId, elements = [], width = 16 }) {
   // Trombone: slide position number (circles can't represent a position)
   if (instrumentId === 'trombone') {
     const posEl = elements.find(e => e.startsWith('pos-'));
     const pos = posEl ? posEl.replace('pos-', '') : '–';
     return (
-      <svg viewBox="0 0 22 22" width={width + 4} style={{ display: 'block' }}>
-        <circle cx="11" cy="11" r="9.5" fill="none" stroke={INK} strokeWidth="1.2" />
-        <text x="11" y="15" textAnchor="middle" fontSize="13" fontWeight="700"
+      <svg viewBox="0 0 20 20" width={width + 3} style={{ display: 'block' }}>
+        <circle cx="10" cy="10" r="8.5" fill="none" stroke={INK} strokeWidth="1.1" />
+        <text x="10" y="14" textAnchor="middle" fontSize="12" fontWeight="700"
           fontFamily="system-ui" fill={INK}>{pos}</text>
       </svg>
     );
@@ -31,7 +32,7 @@ export default function InlineFingering({ instrumentId, elements = [], width = 1
 
   const slots = COLUMN_SLOTS[instrumentId] || ['L1', 'L2', 'L3', 'R1', 'R2', 'R3'];
   const set = new Set(elements);
-  const r = 5, gap = 13, padX = 4, padY = 4;
+  const r = 4, gap = 10, padX = 3, padY = 3;
   const w = padX * 2 + r * 2;
   const h = padY * 2 + (slots.length - 1) * gap + r * 2;
 
@@ -45,7 +46,7 @@ export default function InlineFingering({ instrumentId, elements = [], width = 1
         if (half) {
           return (
             <g key={slot}>
-              <circle cx={cx} cy={cy} r={r} fill="none" stroke={INK} strokeWidth="1.2" />
+              <circle cx={cx} cy={cy} r={r} fill="none" stroke={INK} strokeWidth="1" />
               <path d={`M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx} ${cy + r} Z`} fill={INK} />
             </g>
           );
@@ -53,7 +54,7 @@ export default function InlineFingering({ instrumentId, elements = [], width = 1
         return (
           <circle key={slot} cx={cx} cy={cy} r={r}
             fill={pressed ? INK : 'none'}
-            stroke={INK} strokeWidth={pressed ? 0 : 1.2} />
+            stroke={pressed ? INK : OPEN} strokeWidth={pressed ? 0 : 1.2} />
         );
       })}
     </svg>
