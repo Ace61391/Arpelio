@@ -38,14 +38,17 @@ export default function ImportPage() {
   const [rendered, setRendered] = useState(false);
   const [stats, setStats] = useState({ total: 0, matched: 0 });
   const [overlayData, setOverlayData] = useState([]);
+  const [printMode, setPrintMode] = useState(false);
 
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
   const osmdRef = useRef(null);
+  const osmdModRef = useRef(null);
 
   useEffect(() => {
     import('opensheetmusicdisplay').then(mod => {
       osmdRef.current = mod.OpenSheetMusicDisplay;
+      osmdModRef.current = mod;
       setOsmdReady(true);
     }).catch(() => setError('Failed to load notation engine'));
   }, []);
@@ -93,12 +96,18 @@ export default function ImportPage() {
 
     const OSMD = osmdRef.current;
     const osmd = new OSMD(container, {
-      autoResize: false, backend: 'svg',
+      autoResize: true, backend: 'svg',
       drawTitle: false, drawSubtitle: false, drawComposer: false,
       drawLyricist: false, drawCredits: false, drawPartNames: false,
       drawMeasureNumbers: true,
       drawingParameters: 'default',
     });
+    // Enable native, key-aware transposition
+    try {
+      if (osmdModRef.current?.TransposeCalculator) {
+        osmd.TransposeCalculator = new osmdModRef.current.TransposeCalculator();
+      }
+    } catch (e) { console.warn('TransposeCalculator unavailable:', e); }
 
     osmd.load(xmlContent).then(() => {
       if (cancelled) return;
@@ -131,37 +140,34 @@ export default function ImportPage() {
         console.warn('Engraving rules partial:', e);
       }
 
+      // Transpose the whole sheet for this instrument (concert -> written).
+      // OSMD handles key signature + enharmonic spelling correctly.
+      const offset = TRANSPOSE_TO_WRITTEN[instrumentId] ?? 0;
+      try {
+        if (offset !== 0 && osmd.Sheet && osmd.TransposeCalculator) {
+          osmd.Sheet.Transpose = offset;
+          osmd.updateGraphic();
+        }
+      } catch (e) { console.warn('Transpose failed:', e); }
+
       osmd.zoom = 1.0;
       osmd.render();
 
-      const offset = TRANSPOSE_TO_WRITTEN[instrumentId] ?? 0;
       const map = buildFingeringLookup();
-      const preferFlat = ['clarinet','bb-trumpet','french-horn','saxophone'].includes(instrumentId);
       let total = 0, matched = 0;
 
-      // Convert an OSMD Pitch to a MIDI number (robustly, with fallbacks)
-      const pitchToMidi = (pitch) => {
-        try {
-          if (typeof pitch.getHalfTone === 'function') {
-            // getHalfTone: semitones from C0. MIDI C0 = 12.
-            return pitch.getHalfTone() + 12;
-          }
-        } catch (e) {}
-        // Fallback: FundamentalNote (semitone offset) + Octave
-        const semi = pitch.fundamentalNote ?? pitch.FundamentalNote ?? 0;
-        const oct = pitch.octave ?? pitch.Octave ?? 0;
-        const acc = pitch.accidentalHalfTones ?? pitch.AccidentalHalfTones ?? 0;
-        // OSMD NoteEnum semitone map fallback (C=0,D=2,E=4,F=5,G=7,A=9,B=11)
-        const semiMap = [0,2,4,5,7,9,11];
-        const s = (semi >= 0 && semi < 7) ? semiMap[semi] : semi;
-        return (oct + 4) * 12 + s + acc + 12;
-      };
-
-      const midiToNote = (midi, preferFlat) => {
-        const pc = ((midi % 12) + 12) % 12;
-        const octave = Math.floor(midi / 12) - 1;
-        const name = preferFlat ? PC_TO_FLAT[pc] : PC_TO_SHARP[pc];
-        return `${name}${octave}`;
+      // Spell an OSMD pitch using its natural letter + accidental, exactly as
+      // rendered (respects the transposed key signature). Returns e.g. "Eb5".
+      const LETTER = { 0:'C', 2:'D', 4:'E', 5:'F', 7:'G', 9:'A', 11:'B' };
+      const spellPitch = (pitch) => {
+        const fund = pitch.FundamentalNote ?? pitch.fundamentalNote ?? 0;
+        const letter = LETTER[fund] ?? 'C';
+        const alter = pitch.AccidentalHalfTones ?? pitch.accidentalHalfTones ?? 0;
+        const octave = (pitch.Octave ?? pitch.octave ?? 0) + 3; // OSMD octave -> scientific
+        let acc = '';
+        if (alter > 0) acc = '#'.repeat(alter);
+        else if (alter < 0) acc = 'b'.repeat(-alter);
+        return `${letter}${acc}${octave}`;
       };
 
       // Collect (pitch, svg element) pairs by walking the cursor through the score.
@@ -182,21 +188,20 @@ export default function ImportPage() {
             for (const gn of gnotes) {
               const sn = gn.sourceNote;
               if (!sn || sn.isRestFlag || (typeof sn.isRest === 'function' && sn.isRest())) continue;
-              const pitch = sn.Pitch || sn.pitch;
+              // Use the transposed pitch when present, else the (untransposed) pitch
+              const pitch = sn.TransposedPitch || sn.transposedPitch || sn.Pitch || sn.pitch;
               if (!pitch) continue;
               let el = null;
               try { el = gn.getSVGGElement(); } catch (e) {}
               if (!el) continue;
               const r = el.getBoundingClientRect();
               if (r.width === 0 && r.height === 0) continue;
-              const concertMidi = pitchToMidi(pitch);
-              const writtenMidi = concertMidi + offset;
-              const writtenNote = midiToNote(writtenMidi, preferFlat);
+              const writtenNote = spellPitch(pitch);
               const xCenter = r.left - wrapperRect.left + wrapper.scrollLeft + r.width / 2;
               const noteTop = r.top - wrapperRect.top + wrapper.scrollTop;
               const noteBottom = noteTop + r.height;
-              if (debugFirst.length < 3) {
-                debugFirst.push({ concertMidi, writtenMidi, writtenNote, x: Math.round(xCenter) });
+              if (debugFirst.length < 4) {
+                debugFirst.push({ writtenNote });
               }
               raw.push({ writtenNote, xCenter, noteTop, noteBottom });
             }
@@ -257,11 +262,20 @@ export default function ImportPage() {
     return () => { cancelled = true; };
   }, [xmlContent, osmdReady, instrumentId, buildFingeringLookup, lookupFingering]);
 
-  const handleExport = () => window.print();
+  const handleExport = () => setPrintMode(true);
+
+  useEffect(() => {
+    if (!printMode) return;
+    const t = setTimeout(() => {
+      window.print();
+      setPrintMode(false);
+    }, 150);
+    return () => clearTimeout(t);
+  }, [printMode]);
 
   return (
     <>
-      <Nav />
+      {!printMode && <Nav />}
       <div className="px-6 md:px-8 py-8 max-w-[1160px] mx-auto">
         <div className="mb-6">
           <h1 className="text-3xl font-extrabold text-[#1a1d23] tracking-tight mb-2">Score Import</h1>
@@ -270,6 +284,7 @@ export default function ImportPage() {
           </p>
         </div>
 
+        {!printMode && (
         <div className="no-print bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 print:hidden">
           <div className="flex flex-col sm:flex-row gap-4 mb-4">
             <div className="flex-1">
@@ -304,6 +319,7 @@ export default function ImportPage() {
             </div>
           )}
         </div>
+        )}
 
         {xmlContent && (
           <div className="print-page bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 mx-auto" style={{ maxWidth: 720 }}>
@@ -338,7 +354,7 @@ export default function ImportPage() {
           </div>
         )}
       </div>
-      <Footer />
+      {!printMode && <Footer />}
     </>
   );
 }
