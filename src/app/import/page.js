@@ -39,6 +39,7 @@ export default function ImportPage() {
   const [overlayData, setOverlayData] = useState([]);
 
   const containerRef = useRef(null);
+  const wrapperRef = useRef(null);
   const osmdRef = useRef(null);
 
   useEffect(() => {
@@ -135,45 +136,99 @@ export default function ImportPage() {
       const offset = TRANSPOSE_TO_WRITTEN[instrumentId] ?? 0;
       const map = buildFingeringLookup();
       const preferFlat = ['clarinet','bb-trumpet','french-horn','saxophone'].includes(instrumentId);
-      const overlays = [];
       let total = 0, matched = 0;
 
-      try {
-        const sheet = osmd.GraphicalMusicSheet;
-        const zoom = osmd.zoom || 1;
-        const unitToPx = 10 * zoom;
-        for (const page of sheet.MusicPages || []) {
-          for (const system of page.MusicSystems || []) {
-            for (const line of system.StaffLines || []) {
-              const lineAbs = line.PositionAndShape.AbsolutePosition;
-              const lineBottom = (lineAbs.y + line.PositionAndShape.BorderBottom) * unitToPx;
-              for (const measure of line.Measures || []) {
-                for (const staffEntry of measure.staffEntries || []) {
-                  for (const gve of staffEntry.graphicalVoiceEntries || []) {
-                    for (const gnote of gve.notes || []) {
-                      const srcNote = gnote.sourceNote;
-                      if (!srcNote || !srcNote.Pitch) continue;
-                      const pitch = srcNote.Pitch;
-                      const stepNames = ['C','D','E','F','G','A','B'];
-                      const step = stepNames[pitch.FundamentalNote];
-                      const octave = pitch.Octave + 3;
-                      const concertAbs = noteToAbs(step, pitch.AccidentalHalfTones || 0, octave);
-                      const writtenAbs = concertAbs + offset;
-                      const writtenNote = absToNote(writtenAbs, preferFlat);
-                      total++;
-                      const fingering = lookupFingering(writtenNote, map);
-                      if (fingering) matched++;
-                      const pos = gnote.PositionAndShape?.AbsolutePosition;
-                      if (!pos) continue;
-                      overlays.push({ x: pos.x * unitToPx, y: lineBottom, writtenNote, fingering });
-                    }
-                  }
-                }
-              }
-            }
+      // Convert an OSMD Pitch to a MIDI number (robustly, with fallbacks)
+      const pitchToMidi = (pitch) => {
+        try {
+          if (typeof pitch.getHalfTone === 'function') {
+            // getHalfTone: semitones from C0. MIDI C0 = 12.
+            return pitch.getHalfTone() + 12;
           }
+        } catch (e) {}
+        // Fallback: FundamentalNote (semitone offset) + Octave
+        const semi = pitch.fundamentalNote ?? pitch.FundamentalNote ?? 0;
+        const oct = pitch.octave ?? pitch.Octave ?? 0;
+        const acc = pitch.accidentalHalfTones ?? pitch.AccidentalHalfTones ?? 0;
+        // OSMD NoteEnum semitone map fallback (C=0,D=2,E=4,F=5,G=7,A=9,B=11)
+        const semiMap = [0,2,4,5,7,9,11];
+        const s = (semi >= 0 && semi < 7) ? semiMap[semi] : semi;
+        return (oct + 4) * 12 + s + acc + 12;
+      };
+
+      const midiToNote = (midi, preferFlat) => {
+        const pc = ((midi % 12) + 12) % 12;
+        const octave = Math.floor(midi / 12) - 1;
+        const name = preferFlat ? PC_TO_FLAT[pc] : PC_TO_SHARP[pc];
+        return `${name}${octave}`;
+      };
+
+      // Collect (pitch, svg element) pairs by walking the cursor through the score.
+      const wrapper = wrapperRef.current;
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const raw = [];
+      let debugFirst = [];
+
+      try {
+        if (osmd.cursor) {
+          osmd.cursor.reset();
+          const it = osmd.cursor.Iterator;
+          let guard = 0;
+          while (it && !it.EndReached && guard < 10000) {
+            guard++;
+            let gnotes = [];
+            try { gnotes = osmd.cursor.GNotesUnderCursor() || []; } catch (e) {}
+            for (const gn of gnotes) {
+              const sn = gn.sourceNote;
+              if (!sn || sn.isRestFlag || (typeof sn.isRest === 'function' && sn.isRest())) continue;
+              const pitch = sn.Pitch || sn.pitch;
+              if (!pitch) continue;
+              let el = null;
+              try { el = gn.getSVGGElement(); } catch (e) {}
+              if (!el) continue;
+              const r = el.getBoundingClientRect();
+              if (r.width === 0 && r.height === 0) continue;
+              const concertMidi = pitchToMidi(pitch);
+              const writtenMidi = concertMidi + offset;
+              const writtenNote = midiToNote(writtenMidi, preferFlat);
+              const xCenter = r.left - wrapperRect.left + wrapper.scrollLeft + r.width / 2;
+              const noteTop = r.top - wrapperRect.top + wrapper.scrollTop;
+              const noteBottom = noteTop + r.height;
+              if (debugFirst.length < 3) {
+                debugFirst.push({ concertMidi, writtenMidi, writtenNote, x: Math.round(xCenter) });
+              }
+              raw.push({ writtenNote, xCenter, noteTop, noteBottom });
+            }
+            it.moveToNext();
+          }
+          try { osmd.cursor.hide(); } catch (e) {}
         }
-      } catch (err) { console.error('Overlay walk error:', err); }
+      } catch (err) {
+        console.error('Cursor walk error:', err);
+      }
+
+      console.log('[import] notes found:', raw.length, 'first pitches:', debugFirst);
+
+      // Cluster notes into rows by vertical band, so all diagrams in a system
+      // share one clean baseline below the staff.
+      const rowBaseline = {};
+      raw.forEach(o => {
+        const rowKey = Math.round(o.noteTop / 70);
+        o.rowKey = rowKey;
+        rowBaseline[rowKey] = Math.max(rowBaseline[rowKey] ?? 0, o.noteBottom);
+      });
+
+      const overlays = raw.map(o => {
+        total++;
+        const fingering = lookupFingering(o.writtenNote, map);
+        if (fingering) matched++;
+        return {
+          x: o.xCenter,
+          y: rowBaseline[o.rowKey] + 12,
+          writtenNote: o.writtenNote,
+          fingering,
+        };
+      });
 
       if (cancelled) return;
       setStats({ total, matched });
@@ -241,15 +296,18 @@ export default function ImportPage() {
               <h2 className="text-lg font-bold text-[#1a1d23]">{fileName.replace(/\.(xml|musicxml)$/i,'')}</h2>
               <span className="text-xs text-[#b0b5c0]">{instMeta?.name} — fingerings</span>
             </div>
-            <div className="relative overflow-x-auto" style={{ paddingBottom: 90 }}>
+            <div ref={wrapperRef} className="relative overflow-x-auto" style={{ paddingBottom: 90 }}>
               <div ref={containerRef} />
               {rendered && overlayData.map((o, i) => (
                 <div key={i} className="absolute flex flex-col items-center"
-                  style={{ left: o.x - 16, top: o.y + 6, width: 32 }}>
+                  style={{ left: o.x - 16, top: o.y, width: 32 }}>
                   {o.fingering ? (
-                    <div style={{ width: 28 }}>
-                      <FingeringDiagram instrumentId={instrumentId} elements={o.fingering.primary.elements} size="sm" />
-                    </div>
+                    <>
+                      <div style={{ width: 28 }}>
+                        <FingeringDiagram instrumentId={instrumentId} elements={o.fingering.primary.elements} size="sm" />
+                      </div>
+                      <div className="text-[9px] font-mono text-[#7a8294] mt-0.5 leading-none">{o.writtenNote.replace(/(\d)/,'')}</div>
+                    </>
                   ) : (
                     <div className="text-[8px] text-[#c0392b] text-center leading-tight mt-1">out of<br/>range</div>
                   )}
