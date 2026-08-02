@@ -39,6 +39,9 @@ export default function ImportPage() {
   const [stats, setStats] = useState({ total: 0, matched: 0 });
   const [overlayData, setOverlayData] = useState([]);
   const [printMode, setPrintMode] = useState(false);
+  const [parts, setParts] = useState([]); // [{id, name}]
+  const [activePartId, setActivePartId] = useState(null);
+  const [partInstrument, setPartInstrument] = useState({}); // { partId: instrumentId }
 
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
@@ -53,8 +56,15 @@ export default function ImportPage() {
     }).catch(() => setError('Failed to load notation engine'));
   }, []);
 
-  const instData = getInstrumentData(instrumentId);
-  const instMeta = getInstrument(instrumentId);
+  const isMultiPart = parts.length > 1;
+  // Which instrument's fingerings to show, and which part to render.
+  // Single-part: instrument dropdown + whole file. Multi-part: active part + its chosen instrument.
+  const effectiveInstrument = isMultiPart ? (partInstrument[activePartId] || null) : instrumentId;
+  const effectivePartId = isMultiPart ? activePartId : null;
+  const readyToRender = isMultiPart ? Boolean(activePartId && partInstrument[activePartId]) : Boolean(xmlContent);
+
+  const instData = effectiveInstrument ? getInstrumentData(effectiveInstrument) : null;
+  const instMeta = effectiveInstrument ? getInstrument(effectiveInstrument) : null;
 
   const buildFingeringLookup = useCallback(() => {
     const map = {};
@@ -81,14 +91,53 @@ export default function ImportPage() {
     const file = e.target.files?.[0];
     if (!file) return;
     setError(null); setLoading(true); setRendered(false); setFileName(file.name);
+    setParts([]); setActivePartId(null); setPartInstrument({});
     const reader = new FileReader();
-    reader.onload = (evt) => { setXmlContent(evt.target.result); setLoading(false); };
+    reader.onload = (evt) => {
+      const text = evt.target.result;
+      setXmlContent(text);
+      // Detect parts from the MusicXML part-list
+      try {
+        const doc = new DOMParser().parseFromString(text, 'application/xml');
+        const scoreParts = Array.from(doc.querySelectorAll('part-list > score-part'));
+        const detected = scoreParts.map(sp => ({
+          id: sp.getAttribute('id'),
+          name: (sp.querySelector('part-name')?.textContent || sp.getAttribute('id') || 'Part').trim(),
+        }));
+        setParts(detected);
+        // Single-part file: nothing to pick — it renders via the instrument dropdown.
+        setActivePartId(null);
+      } catch (err) {
+        setParts([]); setActivePartId(null);
+      }
+      setLoading(false);
+    };
     reader.onerror = () => { setError('Failed to read file'); setLoading(false); };
     reader.readAsText(file);
   }, []);
 
+  // Build a MusicXML string containing only the selected part (for isolation).
+  const filterToPart = useCallback((xml, partId) => {
+    if (!partId) return xml;
+    try {
+      const doc = new DOMParser().parseFromString(xml, 'application/xml');
+      // Remove other <part> elements
+      doc.querySelectorAll('score-partwise > part').forEach(p => {
+        if (p.getAttribute('id') !== partId) p.remove();
+      });
+      // Remove other <score-part> entries and any part-group brackets
+      doc.querySelectorAll('part-list > score-part').forEach(sp => {
+        if (sp.getAttribute('id') !== partId) sp.remove();
+      });
+      doc.querySelectorAll('part-list > part-group').forEach(pg => pg.remove());
+      return new XMLSerializer().serializeToString(doc);
+    } catch (err) {
+      return xml;
+    }
+  }, []);
+
   useEffect(() => {
-    if (!xmlContent || !osmdReady || !containerRef.current) return;
+    if (!xmlContent || !osmdReady || !containerRef.current || !readyToRender) return;
     let cancelled = false;
     setRendered(false);
     const container = containerRef.current;
@@ -109,7 +158,8 @@ export default function ImportPage() {
       }
     } catch (e) { console.warn('TransposeCalculator unavailable:', e); }
 
-    osmd.load(xmlContent).then(() => {
+    const xmlToLoad = isMultiPart ? filterToPart(xmlContent, effectivePartId) : xmlContent;
+    osmd.load(xmlToLoad).then(() => {
       if (cancelled) return;
 
       // --- Engraving-quality settings ---
@@ -140,9 +190,9 @@ export default function ImportPage() {
         console.warn('Engraving rules partial:', e);
       }
 
-      // Transpose the whole sheet for this instrument (concert -> written).
-      // OSMD handles key signature + enharmonic spelling correctly.
-      const offset = TRANSPOSE_TO_WRITTEN[instrumentId] ?? 0;
+      // Concert-melody mode: transpose concert -> written for the chosen instrument.
+      // Full-score mode: the selected part is already written, so DON'T re-transpose.
+      const offset = isMultiPart ? 0 : (TRANSPOSE_TO_WRITTEN[effectiveInstrument] ?? 0);
       try {
         if (offset !== 0 && osmd.Sheet && osmd.TransposeCalculator) {
           osmd.Sheet.Transpose = offset;
@@ -260,7 +310,7 @@ export default function ImportPage() {
     });
 
     return () => { cancelled = true; };
-  }, [xmlContent, osmdReady, instrumentId, buildFingeringLookup, lookupFingering]);
+  }, [xmlContent, osmdReady, effectiveInstrument, effectivePartId, isMultiPart, readyToRender, filterToPart, buildFingeringLookup, lookupFingering]);
 
   const handleExport = () => setPrintMode(true);
 
@@ -286,22 +336,11 @@ export default function ImportPage() {
 
         {!printMode && (
         <div className="no-print bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 print:hidden">
-          <div className="flex flex-col sm:flex-row gap-4 mb-4">
-            <div className="flex-1">
-              <label className="block text-xs font-semibold text-[#7a8294] mb-1">Instrument (we transpose from concert pitch)</label>
-              <select value={instrumentId} onChange={e => setInstrumentId(e.target.value)}
-                className="w-full border border-[#e5e8ed] rounded-lg px-3 py-2 text-sm text-[#1a1d23] bg-white">
-                {INSTRUMENTS.filter(i => !i.hidden).map(inst => (
-                  <option key={inst.id} value={inst.id}>{inst.name}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 items-start">
+          <div className="flex flex-col sm:flex-row gap-4 items-start mb-4">
             <label className="flex-1 border-2 border-dashed border-[#d0d4dc] rounded-xl p-6 text-center cursor-pointer hover:border-accent hover:bg-accent-light/30 transition-all">
               <input type="file" accept=".xml,.musicxml" onChange={handleFileUpload} className="hidden" />
               <div className="text-sm font-semibold text-[#4a5060]">{fileName || 'Click to upload a MusicXML file'}</div>
-              <div className="text-xs text-[#b0b5c0] mt-1">Concert-pitch .xml or .musicxml from MuseScore, Finale, Sibelius, Flat, Noteflight</div>
+              <div className="text-xs text-[#b0b5c0] mt-1">.xml or .musicxml from MuseScore, Finale, Sibelius, Flat, Noteflight</div>
             </label>
             {rendered && (
               <button onClick={handleExport}
@@ -310,6 +349,71 @@ export default function ImportPage() {
               </button>
             )}
           </div>
+
+          {/* Single-part file: simple instrument picker (concert-pitch mode) */}
+          {xmlContent && !isMultiPart && (
+            <div className="max-w-xs">
+              <label className="block text-xs font-semibold text-[#7a8294] mb-1">Instrument (we transpose from concert pitch)</label>
+              <select value={instrumentId} onChange={e => setInstrumentId(e.target.value)}
+                className="w-full border border-[#e5e8ed] rounded-lg px-3 py-2 text-sm text-[#1a1d23] bg-white">
+                {INSTRUMENTS.filter(i => !i.hidden).map(inst => (
+                  <option key={inst.id} value={inst.id}>{inst.name}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {/* Multi-part score: clean part list, each row picks its own fingerings */}
+          {isMultiPart && (
+            <div>
+              <div className="flex items-baseline gap-2 mb-1">
+                <span className="text-sm font-bold text-[#1a1d23]">{parts.length} parts in your score</span>
+                <span className="text-xs text-[#b0b5c0]">— pick the fingerings for any part to view it (shown as written, no transposition)</span>
+              </div>
+              <div className="flex flex-col gap-1.5 mt-3">
+                {parts.map(p => {
+                  const chosen = partInstrument[p.id];
+                  const isActive = activePartId === p.id;
+                  return (
+                    <div key={p.id}
+                      className={`flex items-center gap-3 rounded-lg border px-3 py-2 transition-all ${
+                        isActive ? 'border-accent bg-accent-light/40' : 'border-[#e5e8ed] bg-white'
+                      }`}>
+                      <i className={`text-lg ${chosen ? 'text-accent' : 'text-[#c8ccd4]'}`}>
+                        {chosen ? '●' : '○'}
+                      </i>
+                      <span className="text-sm font-semibold text-[#1a1d23] flex-1 min-w-0 truncate">{p.name}</span>
+                      <select
+                        value={chosen || ''}
+                        onChange={e => {
+                          const inst = e.target.value || undefined;
+                          setPartInstrument(prev => {
+                            const next = { ...prev };
+                            if (inst) next[p.id] = inst; else delete next[p.id];
+                            return next;
+                          });
+                          if (inst) setActivePartId(p.id);
+                          else if (activePartId === p.id) setActivePartId(null);
+                        }}
+                        className="border border-[#e5e8ed] rounded-md px-2 py-1.5 text-xs text-[#1a1d23] bg-white w-44">
+                        <option value="">Choose fingerings…</option>
+                        {INSTRUMENTS.filter(i => !i.hidden).map(inst => (
+                          <option key={inst.id} value={inst.id}>{inst.name}</option>
+                        ))}
+                      </select>
+                      {chosen && !isActive && (
+                        <button onClick={() => setActivePartId(p.id)}
+                          className="text-xs font-semibold text-accent hover:underline whitespace-nowrap">
+                          View
+                        </button>
+                      )}
+                      {isActive && <span className="text-xs font-semibold text-accent whitespace-nowrap">Viewing</span>}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
           {error && <div className="mt-3 text-sm text-red-600 bg-red-50 rounded-lg px-4 py-2">{error}</div>}
           {loading && <div className="mt-3 text-sm text-[#7a8294]">Loading…</div>}
           {rendered && (
@@ -321,10 +425,15 @@ export default function ImportPage() {
         </div>
         )}
 
-        {xmlContent && (
+        {readyToRender && (
           <div className="print-page bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 mx-auto" style={{ maxWidth: 720 }}>
             <div className="flex items-baseline justify-between mb-4 print:mb-6">
-              <h2 className="text-lg font-bold text-[#1a1d23]">{fileName.replace(/\.(xml|musicxml)$/i,'')}</h2>
+              <h2 className="text-lg font-bold text-[#1a1d23]">
+                {fileName.replace(/\.(xml|musicxml)$/i,'')}
+                {isMultiPart && activePartId && (
+                  <span className="text-[#7a8294] font-semibold"> — {parts.find(p => p.id === activePartId)?.name}</span>
+                )}
+              </h2>
               <span className="text-xs text-[#b0b5c0]">{instMeta?.name} — fingerings</span>
             </div>
             <div ref={wrapperRef} className="relative overflow-x-auto" style={{ paddingBottom: 120 }}>
@@ -335,7 +444,7 @@ export default function ImportPage() {
                   {o.fingering ? (
                     <>
                       <div className="text-[10px] font-bold text-[#3a3f4a] mb-1 leading-none tracking-tight">{o.writtenNote.replace(/\d/,'')}</div>
-                      <InlineFingering instrumentId={instrumentId} elements={o.fingering.primary.elements} width={16} />
+                      <InlineFingering instrumentId={effectiveInstrument} elements={o.fingering.primary.elements} width={16} />
                     </>
                   ) : (
                     <div className="text-[8px] text-[#c0392b] text-center leading-tight mt-1">out of<br/>range</div>
