@@ -71,8 +71,44 @@ export default function Home() {
   const instrumentCount = visible.length;
   const noteCount = visible.reduce((sum, i) => sum + (i.notes || 0), 0);
 
+  // Structured data — claims only what the site actually provides.
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': 'https://arpelio.com/#website',
+        url: 'https://arpelio.com',
+        name: 'Arpelio',
+        description: `Free fingering charts and printable quiz worksheets for band instruments. ${noteCount} verified fingerings across ${instrumentCount} instruments.`,
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'WebApplication',
+        '@id': 'https://arpelio.com/#builder',
+        url: 'https://arpelio.com/builder',
+        name: 'Arpelio Worksheet Builder',
+        description: 'Pick an instrument and a set of notes, then print a fingering reference chart or a quiz worksheet with an optional answer key.',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Any modern web browser',
+        browserRequirements: 'Requires JavaScript',
+        isAccessibleForFree: true,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        audience: {
+          '@type': 'EducationalAudience',
+          educationalRole: 'teacher',
+          audienceType: 'Band directors and music teachers',
+        },
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <Nav />
 
       {/* Hero */}

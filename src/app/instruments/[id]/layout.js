@@ -36,6 +36,42 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function InstrumentLayout({ children }) {
-  return children;
+export default function InstrumentLayout({ children, params }) {
+  const inst = getInstrument(params.id);
+  if (!inst) return children;
+
+  const url = `https://arpelio.com/instruments/${inst.id}`;
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Arpelio', item: 'https://arpelio.com' },
+          { '@type': 'ListItem', position: 2, name: 'Fingering charts', item: 'https://arpelio.com/instruments' },
+          { '@type': 'ListItem', position: 3, name: `${inst.name} fingering chart`, item: url },
+        ],
+      },
+      {
+        '@type': 'WebPage',
+        '@id': url,
+        url,
+        name: `${inst.name} Fingering Chart`,
+        description: `Complete ${inst.name.toLowerCase()} fingering chart: all ${inst.notes} notes with primary fingerings, alternates, and teaching notes.`,
+        inLanguage: 'en',
+        isPartOf: { '@id': 'https://arpelio.com/#website' },
+        isAccessibleForFree: true,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      {children}
+    </>
+  );
 }

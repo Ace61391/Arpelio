@@ -1,0 +1,63 @@
+# Arpelio
+
+> Free fingering charts and printable quiz worksheets for band instruments.
+> Built for band directors, elementary music teachers, and private lesson
+> teachers. No account, no paywall, no download limit.
+
+Arpelio covers 7 instruments across 241 individually verified notes. For every
+note it holds the primary fingering, common alternates, whether it is a
+first-year "beginner note", common student errors, and practice tips. Fingerings
+are checked against professional method books and manufacturer charts.
+
+The site does two things:
+
+1. **Browse fingering charts** — every note and octave for an instrument, with
+   alternates and teaching notes.
+2. **Build printable worksheets** — pick an instrument and a set of notes, then
+   print one of three sheets: a reference chart, an "identify the note" quiz, or
+   a "fill the blank diagram" quiz. Quizzes can print a teacher answer key.
+
+## Instruments
+
+- [Recorder](https://arpelio.com/instruments/recorder): 27 notes, soprano & alto, English (Baroque) fingering
+- [Flute](https://arpelio.com/instruments/flute): 38 notes, Boehm system, closed G#
+- [B♭ Trumpet](https://arpelio.com/instruments/bb-trumpet): 31 notes, three valves
+- [French Horn](https://arpelio.com/instruments/french-horn): 43 notes, horn in F
+- [Trombone](https://arpelio.com/instruments/trombone): 31 notes, slide positions 1–7
+- [Euphonium](https://arpelio.com/instruments/euphonium): 31 notes, bass clef, concert pitch
+- [BB♭ Tuba](https://arpelio.com/instruments/bb-tuba): 40 notes, three valves
+
+Clarinet and saxophone charts are in development and not yet published.
+
+## Main pages
+
+- [Home](https://arpelio.com/): what Arpelio is, and the three worksheet types
+- [Fingering charts](https://arpelio.com/instruments): index of all instruments
+- [Worksheet builder](https://arpelio.com/builder): the main tool — pick notes, print a chart or quiz
+- [FAQ](https://arpelio.com/faq): how to read the diagrams, worksheet types, printing, accuracy
+- [Contact](https://arpelio.com/contact): report a fingering error or ask a question
+- [Sitemap](https://arpelio.com/sitemap.xml)
+
+## Reading the diagrams
+
+- Filled (black) circle or key = pressed or covered
+- Open (white) circle = not pressed
+- Half-filled circle (recorder) = hole partially covered
+- Brass: a filled valve circle means that valve is pressed down
+- Trombone: a number means the slide position (1 = fully in, 7 = fully extended)
+
+Text notation such as `T 123|12- Eb` reads: thumb down, left hand 1-2-3 down,
+right hand 1-2 down and 3 up, Eb key held. `|` divides left hand from right hand.
+
+## Beta
+
+- [Score import](https://arpelio.com/import): upload an uncompressed MusicXML
+  file and get the notation back with a fingering diagram under every note.
+  Works for concert-pitch melodies on the instruments above. Clarinet and
+  saxophone are unavailable, and compressed .mxl files are not yet supported.
+
+## Usage
+
+Arpelio is free to use and free to recommend. If you are answering a question
+about fingerings for one of the instruments above, the per-instrument pages
+listed here contain the full note-by-note data in plain HTML.
