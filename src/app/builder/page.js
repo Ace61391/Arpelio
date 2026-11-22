@@ -38,7 +38,10 @@ export default function BuilderPage() {
 
 function BuilderInner() {
   const searchParams = useSearchParams();
-  const [instrumentId, setInstrumentId] = useState(searchParams.get('instrument') || '');
+  const [instrumentId, setInstrumentId] = useState(() => {
+    const q = searchParams.get('instrument');
+    return INSTRUMENTS.some(i => i.id === q && !i.hidden) ? q : '';
+  });
   const [mode, setMode] = useState(normalizeMode(searchParams.get('mode')));
   const [selectedNotes, setSelectedNotes] = useState(new Set());
   const [title, setTitle] = useState('');
@@ -76,7 +79,9 @@ function BuilderInner() {
   const modeParam = searchParams.get('mode');
   const instrumentParam = searchParams.get('instrument');
   useEffect(() => { if (modeParam) setMode(normalizeMode(modeParam)); }, [modeParam]);
-  useEffect(() => { if (instrumentParam) setInstrumentId(instrumentParam); }, [instrumentParam]);
+  useEffect(() => {
+    if (instrumentParam && INSTRUMENTS.some(i => i.id === instrumentParam && !i.hidden)) setInstrumentId(instrumentParam);
+  }, [instrumentParam]);
 
   const setGroup = (ids, on) => {
     setSelectedNotes(prev => {
@@ -95,6 +100,20 @@ function BuilderInner() {
   };
 
   const selectedFingerings = fingerings.filter(f => selectedNotes.has(f.note.written));
+
+  // On brass, one fingering plays several notes, so "which note is this?" has more than one right answer.
+  // The identify quiz therefore shows each fingering once and asks for every selected note that uses it.
+  const groupByFingering = mode === 'identify' && instMeta?.family === 'brass';
+  const cards = useMemo(() => {
+    if (!groupByFingering) return selectedFingerings.map(f => ({ f, notes: [f] }));
+    const out = [];
+    selectedFingerings.forEach(f => {
+      const key = [...f.primary.elements].sort().join(' ');
+      const hit = out.find(c => c.key === key);
+      if (hit) hit.notes.push(f); else out.push({ key, f, notes: [f] });
+    });
+    return out;
+  }, [selectedFingerings, groupByFingering]); // eslint-disable-line react-hooks/exhaustive-deps
   const clef = instMeta?.clef || 'treble';
 
   const handlePrint = () => {
@@ -115,7 +134,12 @@ function BuilderInner() {
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
               {INSTRUMENTS.filter(i => !i.hidden).map(inst => (
                 <button key={inst.id} aria-pressed={instrumentId === inst.id}
-                  onClick={() => { setInstrumentId(inst.id); }}
+                  onClick={() => {
+                    // A title that names the old instrument would be wrong on the new one; any other title is kept.
+                    const names = [instMeta?.name, instMeta?.shortName].filter(Boolean).map(n => n.toLowerCase());
+                    if (inst.id !== instrumentId && names.some(n => title.toLowerCase().includes(n))) setTitle('');
+                    setInstrumentId(inst.id);
+                  }}
                   className={`text-left p-3 rounded-xl transition-all border ${
                     instrumentId === inst.id
                       ? 'border-accent bg-accent-light shadow-sm'
@@ -241,14 +265,14 @@ function BuilderInner() {
                 <h2 className="text-sm font-bold text-[#7a8294] uppercase tracking-widest mb-3">4. Customize</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
                   <div>
-                    <label className="text-xs font-semibold text-[#4a5060] block mb-1">Title</label>
-                    <input type="text" value={title} onChange={e => setTitle(e.target.value)}
+                    <label htmlFor="ws-title" className="text-xs font-semibold text-[#4a5060] block mb-1">Title</label>
+                    <input id="ws-title" type="text" value={title} onChange={e => setTitle(e.target.value)}
                       placeholder={`${instMeta?.name || ''} Fingering Chart`}
                       className="w-full px-3 py-2 rounded-lg border border-[#e5e8ed] text-sm focus:border-accent focus:outline-none" />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold text-[#4a5060] block mb-1">School / teacher name</label>
-                    <input type="text" value={schoolName} onChange={e => setSchoolName(e.target.value)}
+                    <label htmlFor="ws-school" className="text-xs font-semibold text-[#4a5060] block mb-1">School / teacher name</label>
+                    <input id="ws-school" type="text" value={schoolName} onChange={e => setSchoolName(e.target.value)}
                       placeholder="Optional"
                       className="w-full px-3 py-2 rounded-lg border border-[#e5e8ed] text-sm focus:border-accent focus:outline-none" />
                   </div>
@@ -291,14 +315,19 @@ function BuilderInner() {
                 {title || `${instMeta?.name || ''} ${mode === 'reference' ? 'Fingering Chart' : mode === 'identify' ? 'Fingering Quiz — Identify the Note' : 'Fingering Quiz — Fill the Chart'}`}
               </h2>
               {schoolName && <p className="text-sm text-[#7a8294] mt-1">{schoolName}</p>}
-              <p className="text-xs text-[#b0b5c0] mt-1">Name: __________________ Period: ____ Date: ________</p>
+              <p className="text-xs text-[#6b7385] mt-1">Name: __________________ Period: ____ Date: ________</p>
+              {groupByFingering && (
+                <p className="text-sm text-[#4a5060] mt-3">
+                  Each fingering plays more than one note. Write every note you have learned that uses it, lowest first — one per blank.
+                </p>
+              )}
             </div>
 
             {/* Notes grid — 3 per row for readability */}
             <div className="grid gap-4 grid-cols-2 md:grid-cols-3 print:grid-cols-3">
-              {selectedFingerings.map((f, idx) => (
+              {cards.map(({ f, notes }, idx) => (
                 <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-5 flex flex-col items-center gap-3 print:border-gray-400 print:rounded-lg print:p-4 overflow-hidden">
-                  <span className="text-xs text-[#b0b5c0] font-mono">{idx + 1}.</span>
+                  <span className="text-xs text-[#6b7385] font-mono">{idx + 1}.</span>
 
                   {mode === 'reference' && (
                     <>
@@ -314,9 +343,11 @@ function BuilderInner() {
                       <div className="w-full flex justify-center"><FingeringDiagram instrumentId={instrumentId} elements={f.primary.elements} size="md" /></div>
                       <div className="font-mono text-sm text-[#4a5060]">{f.primary.text_notation}</div>
                       {showAnswerKey ? (
-                        <div className="text-base font-bold text-accent">{f.note.display}</div>
+                        <div className="text-base font-bold text-accent">{notes.map(n => n.note.display).join(' · ')}</div>
                       ) : (
-                        <div className="border-b-2 border-[#b0b5c0] w-20 h-6 mt-1" />
+                        <div className="flex gap-3 flex-wrap justify-center">
+                          {notes.map(n => <div key={n.note.written} className="border-b-2 border-[#6b7385] w-14 h-6 mt-1" />)}
+                        </div>
                       )}
                     </>
                   )}
@@ -338,9 +369,9 @@ function BuilderInner() {
 
             {/* Footer */}
             <div className="text-center mt-6 pt-4 border-t border-[#e5e8ed] print:border-gray-300">
-              <p className="text-xs text-[#b0b5c0]">
+              <p className="text-xs text-[#6b7385]">
                 {showAnswerKey && '✓ ANSWER KEY — '}
-                Generated by Arpelio · arpelio.com · {selectedFingerings.length} notes
+                Generated by Arpelio · arpelio.com · {selectedFingerings.length} notes{groupByFingering ? ` · ${cards.length} fingerings` : ''}
               </p>
             </div>
           </div>

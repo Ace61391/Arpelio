@@ -49,23 +49,23 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="border border-[#e5e8ed] rounded-xl p-8 bg-white">
       <div className="mb-5">
-        <label className="text-xs font-semibold text-[#4a5060] block mb-1.5">Your name</label>
-        <input type="text" required value={name} onChange={e => setName(e.target.value)}
+        <label htmlFor="contact-name" className="text-xs font-semibold text-[#4a5060] block mb-1.5">Your name</label>
+        <input type="text" id="contact-name" required value={name} onChange={e => setName(e.target.value)}
           placeholder="Jane Smith"
           className="w-full px-4 py-2.5 rounded-lg border border-[#e5e8ed] text-sm focus:border-accent focus:outline-none" />
       </div>
 
       <div className="mb-5">
-        <label className="text-xs font-semibold text-[#4a5060] block mb-1.5">Your email</label>
-        <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
+        <label htmlFor="contact-email" className="text-xs font-semibold text-[#4a5060] block mb-1.5">Your email</label>
+        <input type="email" id="contact-email" required value={email} onChange={e => setEmail(e.target.value)}
           placeholder="jane@school.edu"
           className="w-full px-4 py-2.5 rounded-lg border border-[#e5e8ed] text-sm focus:border-accent focus:outline-none" />
       </div>
 
       <div className="mb-5">
-        <label className="text-xs font-semibold text-[#4a5060] block mb-1.5">Topic</label>
-        <select required value={topic} onChange={e => setTopic(e.target.value)}
-          className={`w-full px-4 py-2.5 rounded-lg border border-[#e5e8ed] text-sm focus:border-accent focus:outline-none ${topic ? 'text-[#1a1d23]' : 'text-[#b0b5c0]'}`}>
+        <label htmlFor="contact-topic" className="text-xs font-semibold text-[#4a5060] block mb-1.5">Topic</label>
+        <select id="contact-topic" required value={topic} onChange={e => setTopic(e.target.value)}
+          className={`w-full px-4 py-2.5 rounded-lg border border-[#e5e8ed] text-sm focus:border-accent focus:outline-none ${topic ? 'text-[#1a1d23]' : 'text-[#6b7385]'}`}>
           <option value="" disabled>Select a topic...</option>
           {TOPICS.map(t => (
             <option key={t.id} value={t.id}>{t.label}</option>
@@ -74,8 +74,8 @@ export default function ContactForm() {
       </div>
 
       <div className="mb-6">
-        <label className="text-xs font-semibold text-[#4a5060] block mb-1.5">Message</label>
-        <textarea required value={message} onChange={e => setMessage(e.target.value)}
+        <label htmlFor="contact-message" className="text-xs font-semibold text-[#4a5060] block mb-1.5">Message</label>
+        <textarea id="contact-message" required value={message} onChange={e => setMessage(e.target.value)}
           rows={5}
           placeholder="Tell us what's on your mind..."
           className="w-full px-4 py-2.5 rounded-lg border border-[#e5e8ed] text-sm focus:border-accent focus:outline-none resize-none" />
@@ -86,7 +86,7 @@ export default function ContactForm() {
         Send Message
       </button>
 
-      <p className="text-xs text-[#b0b5c0] text-center mt-3">
+      <p className="text-xs text-[#6b7385] text-center mt-3">
         This will open your email client with the message pre-filled.
       </p>
     </form>
