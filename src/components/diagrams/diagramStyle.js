@@ -19,3 +19,21 @@ export const divider = { style: { stroke: INK, strokeWidth: 1.6, strokeLinecap: 
 const font = 'system-ui, sans-serif';
 export const nameLabel = { style: { fontFamily: font, fontWeight: 700, fill: INK } };
 export const noteLabel = { style: { fontFamily: font, fontWeight: 600, fill: LABEL } };
+
+// Makes a key or hole tappable when a diagram is given `onKey` (online quizzes). Without `onKey` it adds nothing.
+// `hit` is an invisible, larger shape so small keys are still easy to tap on a phone.
+export function Tap({ onKey, element, label, on = false, hit = null, children }) {
+  if (!onKey) return children;
+  const fire = () => onKey(element);
+  return (
+    <g role="button" tabIndex={0} aria-label={label} aria-pressed={on} data-key={element} className="diagram-key"
+      style={{ cursor: 'pointer' }}
+      onClick={fire}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fire(); } }}>
+      {hit}
+      {children}
+    </g>
+  );
+}
+
+export const HIT = { fill: 'transparent', stroke: 'none' };

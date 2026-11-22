@@ -1,5 +1,5 @@
 'use client';
-import { INK, EDGE, SOFT, key, nameLabel, noteLabel } from './diagramStyle';
+import { INK, EDGE, SOFT, key, nameLabel, noteLabel, Tap, HIT } from './diagramStyle';
 
 // Trombone slide, mouthpiece to the left. Redrawn November 2026; treat the geometry as locked.
 // The slide is drawn out to the position; its full travel shows faintly behind, and the seven positions are numbered markers.
@@ -9,7 +9,7 @@ const X0 = 70;
 const STEP = 40;
 const posX = p => X0 + (p - 1) * STEP;
 
-export default function SlideDiagram({ elements = [], size = 'md', blank = false, labels = false }) {
+export default function SlideDiagram({ elements = [], size = 'md', blank = false, labels = false, onKey }) {
   let pos = null;
   if (!blank) {
     elements.forEach(e => {
@@ -37,8 +37,10 @@ export default function SlideDiagram({ elements = [], size = 'md', blank = false
         return (
           <g key={p}>
             <path d={`M${posX(p)} 54 V60`} style={{ stroke: EDGE, strokeWidth: 1.5 }} />
-            <circle {...key(on)} cx={posX(p)} cy="72" r="10" />
-            <text x={posX(p)} y="76" textAnchor="middle" fontSize="11" style={{ ...nameLabel.style, fill: on ? '#fff' : INK }}>{p}</text>
+            <Tap onKey={onKey} element={`pos-${p}`} label={`Position ${p}`} on={on} hit={<rect x={posX(p) - 19} y="20" width="38" height="66" style={HIT} />}>
+              <circle {...key(on)} cx={posX(p)} cy="72" r="10" />
+              <text x={posX(p)} y="76" textAnchor="middle" fontSize="11" style={{ ...nameLabel.style, fill: on ? '#fff' : INK, pointerEvents: 'none' }}>{p}</text>
+            </Tap>
           </g>
         );
       })}

@@ -1,12 +1,12 @@
 'use client';
-import { INK, EDGE, key, body, nameLabel, noteLabel } from './diagramStyle';
+import { INK, EDGE, key, body, nameLabel, noteLabel, Tap, HIT } from './diagramStyle';
 
 // Three piston valves on a valve block: trumpet, horn, euphonium, tuba. Redrawn November 2026; treat the geometry as locked.
 // A pressed valve is filled and sits lower, so the picture reads even in a poor photocopy.
 
 const STEPS = ['whole step', 'half step', '1½ steps'];
 
-export default function ValveDiagram({ elements = [], size = 'md', blank = false, labels = false }) {
+export default function ValveDiagram({ elements = [], size = 'md', blank = false, labels = false, onKey }) {
   const s = new Set(blank ? [] : elements);
   const h = labels ? 124 : 90;
   const w = labels ? '100%' : size === 'lg' ? 260 : size === 'sm' ? 110 : '100%';
@@ -20,9 +20,11 @@ export default function ValveDiagram({ elements = [], size = 'md', blank = false
         const cy = on ? 40 : 30;
         return (
           <g key={i}>
-            <rect x={x - 5} y={cy} width="10" height={58 - cy} style={{ fill: '#fff', stroke: EDGE, strokeWidth: 1.5 }} />
-            <circle {...key(on)} cx={x} cy={cy} r="17" />
-            <text x={x} y={cy + 5.5} textAnchor="middle" fontSize="15" style={{ ...nameLabel.style, fill: on ? '#fff' : INK }}>{i}</text>
+            <Tap onKey={onKey} element={`valve-${i}`} label={`Valve ${i}`} on={on} hit={<rect x={x - 24} y="6" width="48" height="74" style={HIT} />}>
+              <rect x={x - 5} y={cy} width="10" height={58 - cy} style={{ fill: '#fff', stroke: EDGE, strokeWidth: 1.5 }} />
+              <circle {...key(on)} cx={x} cy={cy} r="17" />
+              <text x={x} y={cy + 5.5} textAnchor="middle" fontSize="15" style={{ ...nameLabel.style, fill: on ? '#fff' : INK, pointerEvents: 'none' }}>{i}</text>
+            </Tap>
             {labels && (
               <>
                 <text {...nameLabel} x={x} y="94" textAnchor="middle" fontSize="8.5">{['1st', '2nd', '3rd'][i - 1]} valve</text>
