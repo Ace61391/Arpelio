@@ -43,7 +43,7 @@ export default function Nav() {
             <span className={`text-[10px] transition-transform ${toolsOpen ? 'rotate-180' : ''}`}>▾</span>
           </button>
           {toolsOpen && (
-            <div className="absolute right-0 mt-2 w-72 bg-white border border-[#e5e8ed] rounded-xl shadow-lg p-1.5 z-50">
+            <div onClick={() => setToolsOpen(false)} className="absolute right-0 mt-2 w-72 bg-white border border-[#e5e8ed] rounded-xl shadow-lg p-1.5 z-50">
               <Link href="/builder?mode=reference" className="block px-3 py-2.5 rounded-lg hover:bg-[#f8f9fb] transition-colors">
                 <div className="text-sm font-semibold text-[#1a1d23]">Reference chart</div>
                 <div className="text-xs text-[#7a8294]">Pick notes → print a study guide</div>
