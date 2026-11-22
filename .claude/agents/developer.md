@@ -20,10 +20,12 @@ The diagram components in `src/components/diagrams/` contain locked SVG template
 
 Which data element lights which shape is set in ONE place: `src/components/diagrams/keymaps.mjs`. The components and `scripts/validate-fingerings.mjs` both read it. Change a binding there, never in a component.
 
-One addition exists on top of a template: the recorder draws a small bell marker, only when a fingering includes `bell` (high C♯). No template shape was moved or resized for it.
+The recorder, flute, valve and slide diagrams were redrawn in November 2026 at the owner's request (instrument outline behind the keys, double holes on the recorder, a slide that extends to its position). Their geometry is frozen again: do not move or resize a shape unless the owner asks. Their colours are set inline through `diagramStyle.js`, and each key still carries class `open`, `pressed` or `half`. Clarinet and saxophone still use the original templates.
+
+Each of those four components takes `labels`. The key reference at the top of a chart page is the same component with `labels` on, so there is no second copy of the geometry to keep in step.
 
 ### Rule 2: Flute thumb and G# mapping
-- `thumb` in data → `THUMB_B` in SVG: the long key under L1–L2 (B natural key, the primary thumb key). Same shape as before; the id was `LH_AUX_2`.
+- `thumb` in data → `THUMB_B` in SVG: the long key under L1–L2 (B natural key, the primary thumb key).
 - `Bb` in data → `THUMB_Bb` in SVG: the small key beside the thumb key (Briccialdi Bb lever). The two thumb keys sit side by side on a real flute.
 - `G#` in data → `G_SHARP` in SVG: the key beside L3 (left little finger).
 - `Bb-lever` → the small key left of R1. `D-trill` → between R1 and R2. `D#-trill` → between R2 and R3.

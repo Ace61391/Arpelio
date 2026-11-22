@@ -71,6 +71,27 @@ each other's shapes.
 4. **Alto recorder** is listed as an instrument but has no chart of its own. The same fingerings give different note names on an F instrument.
 5. **Double horn (B♭ side), F-attachment trombone and 4-valve low brass** are not covered.
 
+## Diagram conventions
+
+The recorder, flute, valve and slide diagrams were redrawn in November 2026. What they show, and where each convention comes from:
+
+**Recorder** (front view, as someone facing the player sees it)
+- The thumb hole is hole 0 and the front holes are 1–7, the numbering recorder tutor books use. The key reference prints the numbers.
+- The thumb hole is on the back, so it is drawn as its own circle beside the body, slightly above hole 1 (the CTAN `recorder-fingering` package draws it the same way by default).
+- Holes 6 and 7 are pairs. Seen from the front the larger hole is on the left, and a half-hole covers the larger one. This follows the CTAN package's default, front-view drawing; the American Recorder Society chart describes the same thing as covering the outer hole. **Not yet confirmed on an instrument by a recorder teacher.**
+- A pinched thumb is a half-filled circle. A closed bell is a bar under the foot.
+- "Single holes" on the chart page draws holes 6 and 7 as one hole each, for instruments built that way.
+
+**Flute** (head joint to the left)
+- Key order follows the Woodwind Fingering Guide scheme: thumb B♭ and B, then 1 2 3, G♯, then the B♭ lever, 1, D trill, 2, D♯ trill, 3, E♭, and the foot keys.
+- The B thumb key is nearer the foot than the B♭ lever (WFG).
+- The B♭ lever and both trill keys are drawn on the thumb-key side, between and before the right-hand keys, as in the reference diagram set used for the audit (instrumentbible/Woodwind-Fingerings).
+- The three foot keys lie side by side across the tube: C♯ nearest the player, then C, then B.
+
+**Valves** — a pressed valve is filled and drawn lower. All four valved instruments share this picture; the horn is not drawn with rotary valves.
+
+**Trombone** — the slide is drawn out to the position, with the seven positions as numbered markers. Raised positions (♯2, ♯3) are stated in the text under the diagram and are not drawn differently.
+
 ## Keeping it correct
 
 `npm run validate` (which also runs before `npm run build`) fails if:
