@@ -231,21 +231,22 @@ function BuilderInner() {
                             {allOn ? 'Clear' : 'Select all'}
                           </button>
                         </div>
-                        <div className="flex flex-wrap gap-1.5">
+                        {/* A fixed grid so every chip is the same size, whatever its label */}
+                        <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 lg:grid-cols-6 gap-1.5">
                           {g.notes.map(f => {
                             const on = selectedNotes.has(f.note.written);
                             return (
                               <button key={f.note.written} onClick={() => toggleNote(f.note.written)}
                                 aria-pressed={on}
                                 title={f.pedagogy?.beginner_note ? 'Beginner note' : undefined}
-                                className={`relative min-w-[40px] px-3 py-2 rounded-md text-sm font-semibold border transition-all ${
+                                className={`relative w-full h-10 px-0 rounded-md text-[13px] font-semibold border transition-all whitespace-nowrap ${
                                   on
                                     ? 'border-accent bg-accent text-white'
                                     : 'border-[#e5e8ed] bg-white text-[#7a8294] hover:border-[#d0d4dc]'
                                 }`}>
                                 {f.note.display}
                                 {f.pedagogy?.beginner_note && (
-                                  <span className={`absolute top-1 right-1 w-1.5 h-1.5 rounded-full ${on ? 'bg-white' : 'bg-accent'}`} />
+                                  <span className={`absolute top-[3px] right-[3px] w-[5px] h-[5px] rounded-full ${on ? 'bg-white' : 'bg-accent'}`} />
                                 )}
                               </button>
                             );
