@@ -41,7 +41,6 @@ function BuilderInner() {
   const [instrumentId, setInstrumentId] = useState(searchParams.get('instrument') || '');
   const [mode, setMode] = useState(normalizeMode(searchParams.get('mode')));
   const [selectedNotes, setSelectedNotes] = useState(new Set());
-  const [selectMode, setSelectMode] = useState('beginner');
   const [title, setTitle] = useState('');
   const [schoolName, setSchoolName] = useState('');
   const [showAnswerKey, setShowAnswerKey] = useState(false);
@@ -49,23 +48,43 @@ function BuilderInner() {
   const instMeta = instrumentId ? getInstrument(instrumentId) : null;
   const fingerings = instrumentId ? getFingeringsForInstrument(instrumentId) : [];
 
-  const filteredNotes = useMemo(() => {
-    if (selectMode === 'all') return fingerings;
-    if (selectMode === 'beginner') return fingerings.filter(f => f.pedagogy?.beginner_note);
-    if (selectMode === '1st') return fingerings.filter(f => {
-      const o = (f.octave || f.register || '').toLowerCase();
-      return o.includes('1st') || o.includes('chalumeau') || o.includes('low');
+  // Notes grouped by octave/register, in the order they appear in the data.
+  const groups = useMemo(() => {
+    const out = [];
+    fingerings.forEach(f => {
+      const label = f.octave || f.register || 'Notes';
+      let g = out.find(x => x.label === label);
+      if (!g) { g = { label, notes: [] }; out.push(g); }
+      g.notes.push(f);
     });
-    if (selectMode === '2nd') return fingerings.filter(f => {
-      const o = (f.octave || f.register || '').toLowerCase();
-      return o.includes('2nd') || o.includes('clarion') || o.includes('mid');
-    });
-    return fingerings;
-  }, [fingerings, selectMode]);
+    return out;
+  }, [fingerings]);
 
+  const beginnerIds = useMemo(
+    () => fingerings.filter(f => f.pedagogy?.beginner_note).map(f => f.note.written),
+    [fingerings]
+  );
+
+  // The selection belongs to the instrument. It starts on the beginner notes and is only reset when the
+  // instrument changes — never when the worksheet type, title or answer key changes.
   useEffect(() => {
-    setSelectedNotes(new Set(filteredNotes.map(f => f.note.written)));
-  }, [filteredNotes, instrumentId, selectMode]);
+    if (!instrumentId) { setSelectedNotes(new Set()); return; }
+    setSelectedNotes(new Set(beginnerIds.length ? beginnerIds : fingerings.map(f => f.note.written)));
+  }, [instrumentId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Links such as /builder?mode=fill reach this page without remounting it; follow them, and keep the notes.
+  const modeParam = searchParams.get('mode');
+  const instrumentParam = searchParams.get('instrument');
+  useEffect(() => { if (modeParam) setMode(normalizeMode(modeParam)); }, [modeParam]);
+  useEffect(() => { if (instrumentParam) setInstrumentId(instrumentParam); }, [instrumentParam]);
+
+  const setGroup = (ids, on) => {
+    setSelectedNotes(prev => {
+      const next = new Set(prev);
+      ids.forEach(id => (on ? next.add(id) : next.delete(id)));
+      return next;
+    });
+  };
 
   const toggleNote = (noteId) => {
     setSelectedNotes(prev => {
@@ -152,31 +171,69 @@ function BuilderInner() {
               {/* Step 3: Select notes */}
               <div className="mb-8">
                 <h2 className="text-sm font-bold text-[#7a8294] uppercase tracking-widest mb-3">3. Select notes</h2>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {['beginner', '1st', '2nd', 'all'].map(s => (
-                    <button key={s} onClick={() => { setSelectMode(s); }}
-                      className={`px-4 py-2 rounded-full text-sm font-semibold border ${
-                        selectMode === s
-                          ? 'border-accent bg-accent-light text-accent'
-                          : 'border-[#e5e8ed] text-[#7a8294]'
-                      }`}>
-                      {s === 'beginner' ? 'Beginner' : s === 'all' ? 'All notes' : `${s} octave`}
+                {/* Quick picks replace the selection; the groups below add to or trim it */}
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span className="text-xs text-[#7a8294] mr-1">Quick pick:</span>
+                  {beginnerIds.length > 0 && (
+                    <button onClick={() => setSelectedNotes(new Set(beginnerIds))}
+                      className="px-3 py-2 rounded-full text-sm font-semibold border border-[#e5e8ed] text-[#4a5060] hover:border-accent hover:text-accent">
+                      Beginner
                     </button>
-                  ))}
+                  )}
+                  <button onClick={() => setSelectedNotes(new Set(fingerings.map(f => f.note.written)))}
+                    className="px-3 py-2 rounded-full text-sm font-semibold border border-[#e5e8ed] text-[#4a5060] hover:border-accent hover:text-accent">
+                    All notes
+                  </button>
+                  <button onClick={() => setSelectedNotes(new Set())}
+                    className="px-3 py-2 rounded-full text-sm font-semibold border border-[#e5e8ed] text-[#4a5060] hover:border-accent hover:text-accent">
+                    Clear
+                  </button>
                 </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {filteredNotes.map(f => (
-                    <button key={f.note.written} onClick={() => toggleNote(f.note.written)}
-                      className={`min-w-[40px] px-3 py-2 rounded-md text-sm font-semibold border transition-all ${
-                        selectedNotes.has(f.note.written)
-                          ? 'border-accent bg-accent text-white'
-                          : 'border-[#e5e8ed] bg-white text-[#7a8294] hover:border-[#d0d4dc]'
-                      }`}>
-                      {f.note.display}
-                    </button>
-                  ))}
+
+                <div className="flex flex-col gap-4">
+                  {groups.map(g => {
+                    const ids = g.notes.map(f => f.note.written);
+                    const picked = ids.filter(id => selectedNotes.has(id)).length;
+                    const allOn = picked === ids.length;
+                    return (
+                      <div key={g.label} role="group" aria-label={g.label}>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <div className="text-sm font-bold text-[#1a1d23]">
+                            {g.label} <span className="font-normal text-[#7a8294]">· {picked} of {ids.length}</span>
+                          </div>
+                          <button onClick={() => setGroup(ids, !allOn)}
+                            aria-label={`${allOn ? 'Clear' : 'Select all of'} ${g.label}`}
+                            className="text-sm font-semibold text-accent hover:underline px-2 py-1">
+                            {allOn ? 'Clear' : 'Select all'}
+                          </button>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {g.notes.map(f => {
+                            const on = selectedNotes.has(f.note.written);
+                            return (
+                              <button key={f.note.written} onClick={() => toggleNote(f.note.written)}
+                                aria-pressed={on}
+                                title={f.pedagogy?.beginner_note ? 'Beginner note' : undefined}
+                                className={`relative min-w-[40px] px-3 py-2 rounded-md text-sm font-semibold border transition-all ${
+                                  on
+                                    ? 'border-accent bg-accent text-white'
+                                    : 'border-[#e5e8ed] bg-white text-[#7a8294] hover:border-[#d0d4dc]'
+                                }`}>
+                                {f.note.display}
+                                {f.pedagogy?.beginner_note && (
+                                  <span className={`absolute top-1 right-1 w-1.5 h-1.5 rounded-full ${on ? 'bg-white' : 'bg-accent'}`} />
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                <p className="text-xs text-[#7a8294] mt-2">{selectedNotes.size} notes selected</p>
+                <p className="text-xs text-[#7a8294] mt-3">
+                  {selectedNotes.size} notes selected · <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent align-middle" /> marks a beginner note
+                </p>
               </div>
 
               {/* Step 4: Customize */}
