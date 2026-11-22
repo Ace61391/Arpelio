@@ -57,6 +57,8 @@ export default function InlineFingering({ instrumentId, elements = [], width = 1
             stroke={pressed ? INK : OPEN} strokeWidth={pressed ? 0 : 1.2} />
         );
       })}
+      {/* Recorder: bell closed against the knee (high C♯). Sits in the bottom padding, so the column keeps its size. */}
+      {set.has('bell') && <rect x={padX} y={h - 2.4} width={r * 2} height={1.8} rx={0.9} fill={INK} />}
     </svg>
   );
 }

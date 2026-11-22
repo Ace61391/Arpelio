@@ -57,7 +57,7 @@ Use this exact structure for every audit:
 - 🟢 Minor: Polish, spacing, nice-to-haves
 
 ## Data Validation Checks
-Run these checks on instrument JSON files:
+Start with `npm run validate` (harmonic series for brass, every key drawable, no two notes with the same picture, no gaps). Then run these checks on instrument JSON files:
 
 1. **No duplicate fingerings:** Two different notes must not have identical elements arrays
 2. **Text notation matches elements:** Every element in the array should appear in the text notation
@@ -68,7 +68,7 @@ Run these checks on instrument JSON files:
 
 ## Code Checks
 1. **SVG rendering:** Every diagram component should have .open and .pressed CSS classes
-2. **Data mapping:** DATA_TO_ID in diagram components must map every data element name to a template ID
+2. **Data mapping:** `src/components/diagrams/keymaps.mjs` must map every data element name to a template ID (`npm run validate` checks this)
 3. **Size prop:** All diagrams must handle sm/md/lg sizes
 4. **Blank mode:** blank={true} must render all keys open
 5. **Print CSS:** @media print rules must hide controls, force grid columns
