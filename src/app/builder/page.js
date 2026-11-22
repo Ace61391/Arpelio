@@ -8,11 +8,13 @@ import StaffNote from '@/components/StaffNote';
 import FingeringDiagram from '@/components/FingeringDiagram';
 import { INSTRUMENTS, getInstrument } from '@/data/instruments';
 import { getFingeringsForInstrument } from '@/data/loader';
+import InstrumentTile from '@/components/InstrumentTile';
+import WorksheetIcon from '@/components/WorksheetIcon';
 
 const MODES = [
-  { id: 'reference', label: 'Reference Chart', desc: 'Study guide — filled diagrams with note names', icon: '📖' },
-  { id: 'identify', label: 'Quiz: Identify Note', desc: 'See filled diagram → write the note name', icon: '🔍' },
-  { id: 'fill', label: 'Quiz: Fill Chart', desc: 'See note on staff → fill blank diagram by hand', icon: '✏️' },
+  { id: 'reference', label: 'Reference Chart', desc: 'Study guide — filled diagrams with note names' },
+  { id: 'identify', label: 'Quiz: Identify Note', desc: 'See filled diagram → write the note name' },
+  { id: 'fill', label: 'Quiz: Fill Chart', desc: 'See note on staff → fill blank diagram by hand' },
 ];
 
 const MODE_IDS = MODES.map(m => m.id);
@@ -92,19 +94,36 @@ function BuilderInner() {
           {/* Step 1: Choose instrument */}
           <div className="mb-8">
             <h2 className="text-sm font-bold text-[#7a8294] uppercase tracking-widest mb-3">1. Choose instrument</h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
               {INSTRUMENTS.filter(i => !i.hidden).map(inst => (
-                <button key={inst.id} onClick={() => { setInstrumentId(inst.id); setShowPreview(false); }}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all border ${
+                <button key={inst.id} aria-pressed={instrumentId === inst.id}
+                  onClick={() => { setInstrumentId(inst.id); setShowPreview(false); }}
+                  className={`text-left p-3 rounded-xl transition-all border ${
                     instrumentId === inst.id
-                      ? 'border-accent bg-accent-light text-accent'
-                      : 'border-[#e5e8ed] bg-white text-[#4a5060] hover:border-[#d0d4dc]'
+                      ? 'border-accent bg-accent-light shadow-sm'
+                      : 'border-[#e5e8ed] bg-white hover:border-accent hover:-translate-y-0.5 hover:shadow-md'
                   }`}>
-                  {inst.shortName}
+                  <InstrumentTile inst={inst} compact selected={instrumentId === inst.id} />
                 </button>
               ))}
             </div>
           </div>
+
+          {/* Before an instrument is picked, show what comes next so the page does not read as empty */}
+          {!instrumentId && (
+            <ol className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 text-sm" aria-label="Next steps">
+              {[
+                ['2', 'Choose a worksheet type', 'Reference chart, identify-the-note quiz, or fill-the-chart quiz.'],
+                ['3', 'Select notes', 'Start from beginner notes or one octave, then untick what you have not taught.'],
+                ['4', 'Print', 'Add a title, tick the answer key if you want one, and print or save as PDF.'],
+              ].map(([n, t, d]) => (
+                <li key={n} className="border border-dashed border-[#d0d4dc] rounded-xl p-4 bg-[#f8f9fb]">
+                  <div className="text-xs font-bold text-[#7a8294] uppercase tracking-widest mb-1">{n}. {t}</div>
+                  <div className="text-[#4a5060]">{d}</div>
+                </li>
+              ))}
+            </ol>
+          )}
 
           {instrumentId && (
             <>
@@ -119,7 +138,7 @@ function BuilderInner() {
                           ? 'border-accent bg-accent-light'
                           : 'border-[#e5e8ed] bg-white hover:border-[#d0d4dc]'
                       }`}>
-                      <div className="text-xl mb-1">{m.icon}</div>
+                      <div className={`mb-2 ${mode === m.id ? 'text-accent' : 'text-[#4a5060]'}`}><WorksheetIcon mode={m.id} /></div>
                       <div className={`text-sm font-bold ${mode === m.id ? 'text-accent' : 'text-[#1a1d23]'}`}>{m.label}</div>
                       <div className="text-xs text-[#7a8294] mt-1">{m.desc}</div>
                     </button>
@@ -130,10 +149,10 @@ function BuilderInner() {
               {/* Step 3: Select notes */}
               <div className="mb-8">
                 <h2 className="text-sm font-bold text-[#7a8294] uppercase tracking-widest mb-3">3. Select notes</h2>
-                <div className="flex gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {['beginner', '1st', '2nd', 'all'].map(s => (
                     <button key={s} onClick={() => { setSelectMode(s); setShowPreview(false); }}
-                      className={`px-4 py-1.5 rounded-full text-xs font-semibold border ${
+                      className={`px-4 py-2 rounded-full text-sm font-semibold border ${
                         selectMode === s
                           ? 'border-accent bg-accent-light text-accent'
                           : 'border-[#e5e8ed] text-[#7a8294]'
@@ -145,7 +164,7 @@ function BuilderInner() {
                 <div className="flex flex-wrap gap-1.5">
                   {filteredNotes.map(f => (
                     <button key={f.note.written} onClick={() => toggleNote(f.note.written)}
-                      className={`px-3 py-1 rounded-md text-xs font-semibold border transition-all ${
+                      className={`min-w-[40px] px-3 py-2 rounded-md text-sm font-semibold border transition-all ${
                         selectedNotes.has(f.note.written)
                           ? 'border-accent bg-accent text-white'
                           : 'border-[#e5e8ed] bg-white text-[#7a8294] hover:border-[#d0d4dc]'

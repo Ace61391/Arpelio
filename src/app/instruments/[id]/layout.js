@@ -11,7 +11,7 @@ export function generateMetadata({ params }) {
   if (!inst) return { title: 'Instrument Not Found' };
 
   const title = `${inst.name} Fingering Chart — All Notes & Octaves`;
-  const description = `Free ${inst.name.toLowerCase()} fingering chart covering all ${inst.notes} notes. ${inst.description} Browse every fingering with alternates, then print a reference chart or quiz worksheet.`;
+  const description = `Free ${inst.shortName.toLowerCase()} fingering chart covering all ${inst.notes} notes. ${inst.description} Browse every fingering with alternates, then print a reference chart or quiz worksheet.`;
   const url = `https://arpelio.com/instruments/${inst.id}`;
 
   return {
@@ -22,13 +22,13 @@ export function generateMetadata({ params }) {
       description,
       url,
       type: 'article',
-      images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: `${inst.name} fingering chart — Arpelio` }],
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: `${inst.name} fingering chart — Arpelio` }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${inst.name} Fingering Chart | Arpelio`,
       description,
-      images: ['/og-image.svg'],
+      images: ['/og-image.png'],
     },
     alternates: {
       canonical: url,
@@ -57,7 +57,7 @@ export default function InstrumentLayout({ children, params }) {
         '@id': url,
         url,
         name: `${inst.name} Fingering Chart`,
-        description: `Complete ${inst.name.toLowerCase()} fingering chart: all ${inst.notes} notes with primary fingerings, alternates, and teaching notes.`,
+        description: `Complete ${inst.shortName.toLowerCase()} fingering chart: all ${inst.notes} notes with primary fingerings, alternates, and teaching notes.`,
         inLanguage: 'en',
         isPartOf: { '@id': 'https://arpelio.com/#website' },
         isAccessibleForFree: true,

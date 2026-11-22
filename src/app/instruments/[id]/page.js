@@ -79,7 +79,7 @@ export default function InstrumentPage() {
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-extrabold text-[#1a1d23] tracking-tight mb-1">{instMeta.name}</h1>
+            <h1 className="text-3xl font-extrabold text-[#1a1d23] tracking-tight mb-1">{instMeta.name} Fingering Chart</h1>
             <p className="text-sm text-[#4a5060]">{instMeta.description} · {instMeta.notes} notes</p>
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -99,7 +99,7 @@ export default function InstrumentPage() {
         <div className="flex flex-wrap items-center gap-1.5 mb-8">
           {OCTAVE_FILTERS.filter(f => f.id === 'all' || f.id === 'beginner' || availableOctaves.has(f.id)).map(f => (
             <button key={f.id} onClick={() => setOctaveFilter(f.id)}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all border whitespace-nowrap ${
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all border whitespace-nowrap ${
                 octaveFilter === f.id
                   ? 'border-accent bg-accent-light text-accent'
                   : 'border-[#e5e8ed] bg-white text-[#7a8294] hover:border-[#d0d4dc]'
@@ -165,6 +165,45 @@ export default function InstrumentPage() {
             );
           })}
         </div>
+
+        {/* Every note in plain text: readable without the filters, and by search engines and screen readers */}
+        <section className="mt-14" aria-labelledby="all-notes">
+          <h2 id="all-notes" className="text-2xl font-extrabold text-[#1a1d23] tracking-tight mb-2">
+            All {fingerings.length} {instMeta.shortName.toLowerCase()} fingerings
+          </h2>
+          <p className="text-sm text-[#4a5060] mb-5">
+            The complete written range, lowest to highest, with alternates and teaching notes.
+          </p>
+          <div className="overflow-x-auto border border-[#e5e8ed] rounded-card bg-white">
+            <table className="w-full text-sm text-left">
+              <thead className="bg-[#f8f9fb] text-xs uppercase tracking-wide text-[#7a8294]">
+                <tr>
+                  <th scope="col" className="px-4 py-3 font-bold">Note</th>
+                  <th scope="col" className="px-4 py-3 font-bold">Fingering</th>
+                  <th scope="col" className="px-4 py-3 font-bold">Alternates</th>
+                  <th scope="col" className="px-4 py-3 font-bold">Teaching notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fingerings.map(f => {
+                  const notes = [...(f.pedagogy?.practice_tips || []), ...(f.pedagogy?.common_errors || []).map(e => `Common error: ${e}`)];
+                  return (
+                    <tr key={f.note.written} className="border-t border-[#e5e8ed] align-top">
+                      <th scope="row" className="px-4 py-3 font-bold text-[#1a1d23] whitespace-nowrap">
+                        {f.note.display_with_octave || f.note.written}
+                      </th>
+                      <td className="px-4 py-3 font-mono text-[#1a1d23] whitespace-nowrap">{f.primary.text_notation}</td>
+                      <td className="px-4 py-3 font-mono text-[#4a5060]">
+                        {(f.alternates || []).map(a => a.text_notation).join(' · ') || '—'}
+                      </td>
+                      <td className="px-4 py-3 text-[#4a5060] min-w-[220px]">{notes.join(' ') || '—'}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
 
         {filteredNotes.length === 0 && (
           <div className="text-center py-16 text-[#7a8294]">

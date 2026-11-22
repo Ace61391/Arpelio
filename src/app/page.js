@@ -4,23 +4,26 @@ import Footer from '@/components/Footer';
 import { INSTRUMENTS } from '@/data/instruments';
 import { getFingeringsForInstrument } from '@/data/loader';
 import FingeringDiagram from '@/components/FingeringDiagram';
+import InstrumentTile from '@/components/InstrumentTile';
+import WorksheetIcon from '@/components/WorksheetIcon';
+
+export const metadata = {
+  alternates: { canonical: 'https://arpelio.com' },
+};
 
 const WORKSHEET_TYPES = [
   {
     mode: 'reference',
-    icon: '📖',
     title: 'Reference chart',
     desc: 'Every note you pick, with its diagram, staff position, and fingering shorthand. The handout students tape inside their folder.',
   },
   {
     mode: 'identify',
-    icon: '🔍',
     title: 'Quiz: identify the note',
     desc: 'Students see a filled diagram and write the note name. Tick one box to print the answer key for yourself.',
   },
   {
     mode: 'fill',
-    icon: '✏️',
     title: 'Quiz: fill the chart',
     desc: 'Students see a note on the staff and fill in the blank diagram by hand. The same note set, tested the other direction.',
   },
@@ -35,15 +38,7 @@ function InstrumentCard({ inst }) {
   return (
     <Link href={`/instruments/${inst.id}`}
       className="bg-white border border-[#e5e8ed] rounded-card p-5 hover:border-accent hover:-translate-y-1 hover:shadow-lg transition-all duration-200 group flex flex-col">
-      <div className="flex items-center gap-2.5 mb-3">
-        <div className={`w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm font-bold ${inst.family === 'brass' ? 'bg-brass' : 'bg-woodwind'}`}>
-          {inst.shortName.charAt(0)}
-        </div>
-        <div>
-          <h3 className="text-base font-bold text-[#1a1d23] group-hover:text-accent transition-colors leading-tight">{inst.name}</h3>
-          <span className="text-[11px] text-[#7a8294]">{inst.notes} notes</span>
-        </div>
-      </div>
+      <InstrumentTile inst={inst} compact />
       {samples.length > 0 && (
         <div className={`${isHorizontal ? 'flex flex-col gap-3' : 'flex gap-4 justify-center'} items-center my-2 flex-1`}>
           {samples.map((f, i) => (
@@ -64,8 +59,6 @@ function InstrumentCard({ inst }) {
 
 export default function Home() {
   const visible = INSTRUMENTS.filter(i => !i.hidden);
-  const woodwinds = visible.filter(i => i.family === 'woodwind');
-  const brass = visible.filter(i => i.family === 'brass');
 
   // Derived from the data so the marketing copy can never drift from reality.
   const instrumentCount = visible.length;
@@ -139,7 +132,7 @@ export default function Home() {
       <section className="px-8 pb-4 max-w-[1000px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[
-            { t: 'Fingerings you can trust', d: 'Every note verified against professional method books and manufacturer charts — primary fingerings, common alternates, and the mistakes beginners actually make.' },
+            { t: 'Fingerings you can trust', d: 'Every primary fingering is checked against at least two independent published charts, and every brass fingering against the harmonic series. Sources are listed in the FAQ.' },
             { t: 'Charts and quizzes from one list', d: 'Choose your notes once. Print them as a study guide, as a name-the-note quiz, or as blank diagrams to fill in.' },
             { t: 'An answer key in one click', d: 'Tick a box and you get the teacher copy with every answer filled in. Grade a stack of these in a couple of minutes.' },
           ].map(v => (
@@ -164,7 +157,7 @@ export default function Home() {
             {WORKSHEET_TYPES.map(w => (
               <Link key={w.mode} href={`/builder?mode=${w.mode}`}
                 className="bg-white border border-[#e5e8ed] rounded-2xl p-6 hover:border-accent hover:-translate-y-1 hover:shadow-lg transition-all duration-200 group flex flex-col">
-                <div className="text-2xl mb-3">{w.icon}</div>
+                <div className="mb-3 text-accent"><WorksheetIcon mode={w.mode} className="w-8 h-8" /></div>
                 <h3 className="text-base font-bold text-[#1a1d23] mb-2 group-hover:text-accent transition-colors">{w.title}</h3>
                 <p className="text-sm text-[#4a5060] leading-relaxed flex-1">{w.desc}</p>
                 <span className="text-xs text-accent font-semibold mt-4">Build this one →</span>
@@ -184,14 +177,9 @@ export default function Home() {
             </p>
           </div>
 
-          <h3 className="text-xs font-bold text-[#7a8294] uppercase tracking-widest mb-3">Woodwinds</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
-            {woodwinds.map(inst => <InstrumentCard key={inst.id} inst={inst} />)}
-          </div>
-
-          <h3 className="text-xs font-bold text-[#7a8294] uppercase tracking-widest mb-3">Brass</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {brass.map(inst => <InstrumentCard key={inst.id} inst={inst} />)}
+          {/* One grid for all instruments: 4 + 3 on desktop, no orphaned rows */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {visible.map(inst => <InstrumentCard key={inst.id} inst={inst} />)}
           </div>
 
           <p className="text-sm text-[#7a8294] text-center mt-8">
@@ -203,8 +191,7 @@ export default function Home() {
       {/* Score import — honest beta placement */}
       <section className="px-8 py-14">
         <div className="max-w-[760px] mx-auto bg-white border border-[#e5e8ed] rounded-2xl p-7 flex flex-col sm:flex-row items-start sm:items-center gap-5">
-          <div className="text-3xl">🎼</div>
-          <div className="flex-1">
+                    <div className="flex-1">
             <h3 className="text-base font-bold text-[#1a1d23] mb-1 flex items-center gap-2 flex-wrap">
               Also in the works: score import
               <span className="text-[10px] font-bold uppercase tracking-wide text-accent bg-accent-light rounded px-1.5 py-0.5">Beta</span>
