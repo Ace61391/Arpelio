@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
+import { QUIZZES_ON } from '@/lib/quiz/flag';
 
 export default function Nav() {
   const pathname = usePathname();
@@ -67,6 +68,12 @@ export default function Nav() {
             </div>
           )}
         </div>
+
+        {QUIZZES_ON && (
+          <Link href="/dashboard" className={`hidden md:block ${linkCls(pathname?.startsWith('/dashboard') || pathname === '/login')}`}>
+            Online quizzes
+          </Link>
+        )}
 
         <Link href="/builder" className="bg-accent hover:bg-accent-hover text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors hidden sm:block">
           Build a worksheet

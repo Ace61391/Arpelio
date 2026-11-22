@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useEffect, Suspense } from 'react';
+import { useState, useMemo, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Nav from '@/components/Nav';
@@ -10,6 +10,8 @@ import { INSTRUMENTS, getInstrument } from '@/data/instruments';
 import { getFingeringsForInstrument } from '@/data/loader';
 import InstrumentTile from '@/components/InstrumentTile';
 import WorksheetIcon from '@/components/WorksheetIcon';
+import ShareOnline from '@/components/quiz/ShareOnline';
+import { QUIZZES_ON } from '@/lib/quiz/flag';
 
 const MODES = [
   { id: 'reference', label: 'Reference Chart', desc: 'Study guide — filled diagrams with note names' },
@@ -44,7 +46,10 @@ function BuilderInner() {
   });
   const [mode, setMode] = useState(normalizeMode(searchParams.get('mode')));
   const [selectedNotes, setSelectedNotes] = useState(new Set());
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(() => (searchParams.get('title') || '').slice(0, 120));
+  // A link back from sign-in carries the quiz that was being set up: ?notes=C4,D4&online=1
+  const pendingNotes = useRef((searchParams.get('notes') || '').split(',').filter(Boolean));
+  const resumeOnline = searchParams.get('online') === '1';
   const [schoolName, setSchoolName] = useState('');
   const [showAnswerKey, setShowAnswerKey] = useState(false);
 
@@ -72,6 +77,10 @@ function BuilderInner() {
   // instrument changes — never when the worksheet type, title or answer key changes.
   useEffect(() => {
     if (!instrumentId) { setSelectedNotes(new Set()); return; }
+    const known = new Set(fingerings.map(f => f.note.written));
+    const carried = pendingNotes.current.filter(n => known.has(n));
+    pendingNotes.current = [];
+    if (carried.length) { setSelectedNotes(new Set(carried)); return; }
     setSelectedNotes(new Set(beginnerIds.length ? beginnerIds : fingerings.map(f => f.note.written)));
   }, [instrumentId]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -287,6 +296,10 @@ function BuilderInner() {
                 )}
               </div>
 
+              {QUIZZES_ON && (
+                <ShareOnline instrumentId={instrumentId} mode={mode} title={title} resume={resumeOnline}
+                  notes={selectedFingerings.map(f => f.note.written)} />
+              )}
             </div>
 
             {/* Live preview — always shown, updates as notes are ticked */}

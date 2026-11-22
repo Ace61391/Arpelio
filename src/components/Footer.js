@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { QUIZZES_ON } from '@/lib/quiz/flag';
 
 export default function Footer() {
   return (
@@ -17,6 +18,7 @@ export default function Footer() {
             { label: 'Worksheet builder', href: '/builder' },
             { label: 'FAQ', href: '/faq' },
             { label: 'Contact', href: '/contact' },
+            ...(QUIZZES_ON ? [{ label: 'Teacher sign in', href: '/dashboard' }] : []),
           ].map(item => (
             <Link key={item.href} href={item.href} className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
               {item.label}
