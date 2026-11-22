@@ -45,7 +45,6 @@ function BuilderInner() {
   const [title, setTitle] = useState('');
   const [schoolName, setSchoolName] = useState('');
   const [showAnswerKey, setShowAnswerKey] = useState(false);
-  const [showPreview, setShowPreview] = useState(false);
 
   const instMeta = instrumentId ? getInstrument(instrumentId) : null;
   const fingerings = instrumentId ? getFingeringsForInstrument(instrumentId) : [];
@@ -97,7 +96,7 @@ function BuilderInner() {
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
               {INSTRUMENTS.filter(i => !i.hidden).map(inst => (
                 <button key={inst.id} aria-pressed={instrumentId === inst.id}
-                  onClick={() => { setInstrumentId(inst.id); setShowPreview(false); }}
+                  onClick={() => { setInstrumentId(inst.id); }}
                   className={`text-left p-3 rounded-xl transition-all border ${
                     instrumentId === inst.id
                       ? 'border-accent bg-accent-light shadow-sm'
@@ -125,14 +124,18 @@ function BuilderInner() {
             </ol>
           )}
 
-          {instrumentId && (
-            <>
+        </div>
+
+        {instrumentId && (
+          <div className="lg:grid lg:grid-cols-[380px_minmax(0,1fr)] lg:gap-8 lg:items-start print:block">
+            {/* Controls — stay in view on desktop while the worksheet updates beside them */}
+            <div className="print:hidden lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-2">
               {/* Step 2: Choose mode */}
               <div className="mb-8">
                 <h2 className="text-sm font-bold text-[#7a8294] uppercase tracking-widest mb-3">2. Choose worksheet type</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
                   {MODES.map(m => (
-                    <button key={m.id} onClick={() => { setMode(m.id); setShowPreview(false); }}
+                    <button key={m.id} onClick={() => { setMode(m.id); }}
                       className={`text-left p-4 rounded-xl border transition-all ${
                         mode === m.id
                           ? 'border-accent bg-accent-light'
@@ -151,7 +154,7 @@ function BuilderInner() {
                 <h2 className="text-sm font-bold text-[#7a8294] uppercase tracking-widest mb-3">3. Select notes</h2>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {['beginner', '1st', '2nd', 'all'].map(s => (
-                    <button key={s} onClick={() => { setSelectMode(s); setShowPreview(false); }}
+                    <button key={s} onClick={() => { setSelectMode(s); }}
                       className={`px-4 py-2 rounded-full text-sm font-semibold border ${
                         selectMode === s
                           ? 'border-accent bg-accent-light text-accent'
@@ -179,7 +182,7 @@ function BuilderInner() {
               {/* Step 4: Customize */}
               <div className="mb-8">
                 <h2 className="text-sm font-bold text-[#7a8294] uppercase tracking-widest mb-3">4. Customize</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-[600px]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
                   <div>
                     <label className="text-xs font-semibold text-[#4a5060] block mb-1">Title</label>
                     <input type="text" value={title} onChange={e => setTitle(e.target.value)}
@@ -202,27 +205,29 @@ function BuilderInner() {
                 )}
               </div>
 
-              {/* Preview / Download */}
-              <div className="flex gap-3 mb-8">
-                <button onClick={() => setShowPreview(true)}
-                  className="bg-accent hover:bg-accent-hover text-white rounded-lg px-6 py-3 text-sm font-bold transition-all"
-                  disabled={selectedNotes.size === 0}>
-                  Preview Worksheet
-                </button>
-                {showPreview && (
-                  <button onClick={handlePrint}
-                    className="bg-[#1a1d23] hover:bg-[#2a2d33] text-white rounded-lg px-6 py-3 text-sm font-bold transition-all">
-                    Print / Save as PDF
-                  </button>
-                )}
-              </div>
-            </>
-          )}
-        </div>
+            </div>
 
-        {/* Preview area */}
-        {showPreview && selectedFingerings.length > 0 && (
-          <div className="border border-[#e5e8ed] rounded-2xl p-8 bg-white print:border-none print:rounded-none print:p-0">
+            {/* Live preview — always shown, updates as notes are ticked */}
+            <div className="min-w-0">
+              <div className="print:hidden flex items-center justify-between gap-3 mb-3 flex-wrap">
+                <div className="text-sm text-[#7a8294]">
+                  <span className="font-bold text-[#1a1d23]">Live preview</span> · {selectedFingerings.length} {selectedFingerings.length === 1 ? 'note' : 'notes'}
+                  {showAnswerKey && mode !== 'reference' ? ' · answer key' : ''}
+                </div>
+                <button onClick={handlePrint} disabled={selectedFingerings.length === 0}
+                  className="bg-accent hover:bg-accent-hover disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-lg px-6 py-3 text-sm font-bold transition-all">
+                  Print / Save as PDF
+                </button>
+              </div>
+
+              {selectedFingerings.length === 0 && (
+                <div className="print:hidden border border-dashed border-[#d0d4dc] rounded-2xl p-10 text-center text-[#7a8294] bg-[#f8f9fb]">
+                  Select at least one note to see the worksheet.
+                </div>
+              )}
+
+              {selectedFingerings.length > 0 && (
+          <div className="border border-[#e5e8ed] rounded-2xl p-5 md:p-8 bg-white print:border-none print:rounded-none print:p-0">
             {/* Header */}
             <div className="text-center mb-6 pb-4 border-b border-[#e5e8ed] print:border-black">
               <h2 className="text-2xl font-extrabold text-[#1a1d23]">
@@ -233,7 +238,7 @@ function BuilderInner() {
             </div>
 
             {/* Notes grid — 3 per row for readability */}
-            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3">
+            <div className="grid gap-4 grid-cols-2 md:grid-cols-3 print:grid-cols-3">
               {selectedFingerings.map((f, idx) => (
                 <div key={f.note.written} className="border border-[#e5e8ed] rounded-xl p-5 flex flex-col items-center gap-3 print:border-gray-400 print:rounded-lg print:p-4 overflow-hidden">
                   <span className="text-xs text-[#b0b5c0] font-mono">{idx + 1}.</span>
@@ -280,6 +285,9 @@ function BuilderInner() {
                 {showAnswerKey && '✓ ANSWER KEY — '}
                 Generated by Arpelio · arpelio.com · {selectedFingerings.length} notes
               </p>
+            </div>
+          </div>
+              )}
             </div>
           </div>
         )}

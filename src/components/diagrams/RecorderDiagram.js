@@ -20,7 +20,8 @@ export default function RecorderDiagram({ elements = [], size = 'md', blank = fa
       if (HALF_MAP[e] !== undefined) holes[HALF_MAP[e]] = 'half';
     });
   }
-  const w = size === 'lg' ? 180 : size === 'sm' ? 55 : '100%';
+  // md is a fixed width: the recorder is tall and narrow, so filling a card's width made it enormous.
+  const w = size === 'lg' ? 180 : size === 'sm' ? 55 : 80;
   const baroque = holeStyle === 'baroque';
 
   // For baroque double holes:
