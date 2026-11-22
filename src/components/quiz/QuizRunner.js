@@ -241,7 +241,7 @@ export default function QuizRunner({ code }) {
         {question.kind === 'identify-all' && (
           <>
             <h1 className="text-xl md:text-2xl font-extrabold text-[#1a1d23] mb-1">Which notes use this fingering?</h1>
-            <p className="text-[#4a5060] mb-5">Choose {question.prompt.count === 1 ? 'the one note' : `all ${question.prompt.count} notes`} that use it.</p>
+            <p className="text-[#4a5060] mb-5">Choose {question.prompt.count === 1 ? 'the one note that uses it' : `all ${question.prompt.count} notes that use it`}.</p>
             <div className="py-3" role="img" aria-label={`Fingering: ${question.prompt.text}`}>
               <QuizDiagram instrumentId={quiz.instrument.id} elements={question.prompt.elements} />
             </div>
