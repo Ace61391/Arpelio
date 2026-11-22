@@ -713,12 +713,13 @@
       "octave": "1st octave",
       "primary": {
         "elements": [
+          "thumb",
           "L1",
           "Eb"
         ],
-        "description": "Left index only + Eb (thumb OFF Bb lever)",
+        "description": "Thumb (B natural key) + left index + Eb",
         "valve_notation": null,
-        "text_notation": "1--|--- Eb"
+        "text_notation": "T 1--|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
@@ -727,7 +728,8 @@
           "Confusing with Bb4 fingering"
         ],
         "practice_tips": [
-          "Thumb lifts OFF the Bb lever. Only L1 and Eb key held. Different from Bb4 where R1 is also held."
+          "Thumb stays down on the B natural key — it comes off the Bb lever, not off the flute. The thumb only lifts entirely for C and C#.",
+          "Differs from Bb4, where the thumb moves to the Bb lever (or R1 is added for the 1-and-1 fingering)."
         ],
         "intonation_tendency": null
       }
@@ -1168,12 +1170,13 @@
       "octave": "2nd octave",
       "primary": {
         "elements": [
+          "thumb",
           "L1",
           "Eb"
         ],
-        "description": "Left index only + Eb (thumb OFF, overblown from B4)",
+        "description": "Thumb (B natural key) + left index + Eb, overblown from B4",
         "valve_notation": null,
-        "text_notation": "1--|--- Eb"
+        "text_notation": "T 1--|--- Eb"
       },
       "alternates": [],
       "pedagogy": {
