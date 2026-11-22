@@ -112,7 +112,14 @@
         "type": "thumb_key",
         "label": "T",
         "hand": "left",
-        "description": "Left thumb — Bb thumb key lever"
+        "description": "Left thumb on the B (B-natural) thumb key"
+      },
+      {
+        "id": "Bb",
+        "type": "lever_key",
+        "label": "Bb",
+        "hand": "left",
+        "description": "Thumb B♭ lever (Briccialdi) — sits beside the B thumb key, nearer the headjoint"
       },
       {
         "id": "L1",
@@ -143,6 +150,13 @@
         "description": "G# lever key (left pinky)"
       },
       {
+        "id": "Bb-lever",
+        "type": "lever_key",
+        "label": "Bb",
+        "hand": "right",
+        "description": "B♭ side lever (right index finger, just above R1)"
+      },
+      {
         "id": "R1",
         "type": "covered_key",
         "label": "1",
@@ -150,11 +164,25 @@
         "description": "Right index finger key"
       },
       {
+        "id": "D-trill",
+        "type": "lever_key",
+        "label": "Dtr",
+        "hand": "right",
+        "description": "D trill key (first trill key, between R1 and R2)"
+      },
+      {
         "id": "R2",
         "type": "covered_key",
         "label": "2",
         "hand": "right",
         "description": "Right middle finger key"
+      },
+      {
+        "id": "D#-trill",
+        "type": "lever_key",
+        "label": "D#tr",
+        "hand": "right",
+        "description": "D# trill key (second trill key, between R2 and R3)"
       },
       {
         "id": "R3",
@@ -175,49 +203,21 @@
         "type": "lever_key",
         "label": "C#",
         "hand": "right",
-        "description": "C# foot key"
+        "description": "Low C# foot key (pinky paddle)"
       },
       {
         "id": "C",
         "type": "lever_key",
         "label": "C",
         "hand": "right",
-        "description": "Low C foot key"
+        "description": "Low C foot key (roller; pressed together with C#)"
       },
       {
         "id": "B",
         "type": "lever_key",
         "label": "B",
         "hand": "right",
-        "description": "Low B foot key (B-foot only)"
-      },
-      {
-        "id": "Bb",
-        "type": "lever_key",
-        "label": "Bb",
-        "hand": "left",
-        "description": "Bb side lever (thumb Bb)"
-      },
-      {
-        "id": "trill1",
-        "type": "lever_key",
-        "label": "Tr1",
-        "hand": "left",
-        "description": "First trill key (between L1 and L2)"
-      },
-      {
-        "id": "trill2",
-        "type": "lever_key",
-        "label": "Tr2",
-        "hand": "left",
-        "description": "Second trill key (between L2 and L3)"
-      },
-      {
-        "id": "D#-trill",
-        "type": "lever_key",
-        "label": "D#tr",
-        "hand": "right",
-        "description": "D# trill key"
+        "description": "Low B foot key (roller, B-foot only; pressed together with C# and C)"
       }
     ]
   },
@@ -243,9 +243,11 @@
           "R1",
           "R2",
           "R3",
+          "C#",
+          "C",
           "B"
         ],
-        "description": "All keys closed + B foot key",
+        "description": "All keys closed + low B (pinky holds the C#, C and B foot keys)",
         "valve_notation": null,
         "text_notation": "T 123|123 B"
       },
@@ -282,9 +284,10 @@
           "R1",
           "R2",
           "R3",
+          "C#",
           "C"
         ],
-        "description": "All keys closed + C foot key",
+        "description": "All keys closed + low C (pinky holds the C# and C foot keys)",
         "valve_notation": null,
         "text_notation": "T 123|123 C"
       },
@@ -668,7 +671,7 @@
             "L1",
             "Eb"
           ],
-          "description": "Bb thumb lever + L1",
+          "description": "Thumb B♭ lever + L1",
           "valve_notation": null,
           "text_notation": "Bb 1--|--- Eb",
           "use_case": "facility",
@@ -678,10 +681,10 @@
           "elements": [
             "thumb",
             "L1",
-            "Bb",
+            "Bb-lever",
             "Eb"
           ],
-          "description": "Thumb Bb lever trill fingering",
+          "description": "B♭ side lever (right index) — trill fingering with B4",
           "valve_notation": null,
           "text_notation": "T 1--|Bb--- Eb",
           "use_case": "trill",
@@ -1127,7 +1130,7 @@
             "L1",
             "Eb"
           ],
-          "description": "Bb lever alternate",
+          "description": "Thumb B♭ lever + L1",
           "valve_notation": null,
           "text_notation": "Bb 1--|--- Eb",
           "use_case": "facility",
@@ -1137,10 +1140,10 @@
           "elements": [
             "thumb",
             "L1",
-            "Bb",
+            "Bb-lever",
             "Eb"
           ],
-          "description": "Trill fingering with B5",
+          "description": "B♭ side lever (right index) — trill fingering with B5",
           "valve_notation": null,
           "text_notation": "T 1--|Bb--- Eb",
           "use_case": "trill",
@@ -1401,22 +1404,22 @@
       "octave": "3rd octave",
       "primary": {
         "elements": [
-          "Bb",
+          "thumb",
           "L1",
           "L3",
           "R3",
           "Eb"
         ],
-        "description": "Bb thumb lever + L1 + L3 + R3 + Eb",
+        "description": "Thumb (B key) + L1 + L3 + R3 + Eb",
         "valve_notation": null,
-        "text_notation": "Bb 1-3|--3 Eb"
+        "text_notation": "T 1-3|--3 Eb"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Uses Bb thumb lever instead of regular thumb key."
+          "Thumb must be on the B key, not the B♭ lever."
         ],
         "intonation_tendency": null
       }
@@ -1534,18 +1537,18 @@
         "elements": [
           "thumb",
           "R1",
-          "D#-trill"
+          "D-trill"
         ],
-        "description": "Thumb + R1 + D# trill key",
+        "description": "Thumb + R1 + D trill key (first trill key)",
         "valve_notation": null,
-        "text_notation": "T ---|1 D#tr"
+        "text_notation": "T ---|1 Dtr"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Uses the D# trill key — an unusual key for most students."
+          "Uses the D trill key (the first trill key, between R1 and R2)."
         ],
         "intonation_tendency": null
       }
@@ -1564,14 +1567,14 @@
       "octave": "3rd octave",
       "primary": {
         "elements": [
-          "Bb",
+          "thumb",
           "L1",
           "L3",
           "D#-trill"
         ],
-        "description": "Bb lever + L1 + L3 + D# trill key (no Eb foot key)",
+        "description": "Thumb (B key) + L1 + L3 + D# trill key (no Eb foot key)",
         "valve_notation": null,
-        "text_notation": "Bb 1-3|-- D#tr"
+        "text_notation": "T 1-3|-- D#tr"
       },
       "alternates": [],
       "pedagogy": {

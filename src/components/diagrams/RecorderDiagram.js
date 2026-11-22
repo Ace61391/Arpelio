@@ -2,6 +2,7 @@
 
 // LOCKED TEMPLATE from recorder_locked_template_v1.svg
 // Supports two visual modes: "simple" (single circles) and "baroque" (double holes on RH3/RH4)
+// One addition to the template: an optional bell-closed marker, drawn only for fingerings that include 'bell' (X).
 
 const HOLE_MAP = { L1: 0, L2: 1, L3: 2, R1: 3, R2: 4, R3: 5, R4: 6 };
 const HALF_MAP = { 'R3-half': 5, 'R4-half': 6 };
@@ -9,10 +10,12 @@ const HALF_MAP = { 'R3-half': 5, 'R4-half': 6 };
 export default function RecorderDiagram({ elements = [], size = 'md', blank = false, holeStyle = 'simple' }) {
   const holes = ['open','open','open','open','open','open','open'];
   let thumb = 'open';
+  let bell = false;
   if (!blank) {
     elements.forEach(e => {
       if (e === 'thumb') thumb = 'pressed';
       if (e === 'thumb-half') thumb = 'half';
+      if (e === 'bell') bell = true;
       if (HOLE_MAP[e] !== undefined) holes[HOLE_MAP[e]] = 'pressed';
       if (HALF_MAP[e] !== undefined) holes[HALF_MAP[e]] = 'half';
     });
@@ -61,6 +64,14 @@ export default function RecorderDiagram({ elements = [], size = 'md', blank = fa
           <circle className={holes[5]} cx="90" cy="347" r="14"/>
           <circle className={holes[6]} cx="90" cy="385" r="13"/>
         </>
+      )}
+
+      {/* Bell closed against the knee (X in the fingering). Drawn only when a fingering calls for it. */}
+      {bell && (
+        <g>
+          <rect className="pressed" x="62" y="414" width="56" height="9" rx="4.5"/>
+          <text x="132" y="423" fontSize="13" fontWeight="700" fontFamily="system-ui" fill="#000">X</text>
+        </g>
       )}
     </svg>
   );

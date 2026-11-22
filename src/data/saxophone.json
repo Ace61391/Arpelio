@@ -115,6 +115,13 @@
         "description": "Octave key (left thumb)"
       },
       {
+        "id": "front-F",
+        "type": "lever_key",
+        "label": "f",
+        "hand": "left",
+        "description": "Front F key (topmost left-hand key, above the B key; left index finger)"
+      },
+      {
         "id": "L1",
         "type": "covered_key",
         "label": "1",
@@ -203,21 +210,21 @@
         "type": "lever_key",
         "label": "Bb",
         "hand": "right",
-        "description": "Side Bb key"
+        "description": "Side Bb key (lower side key)"
       },
       {
         "id": "side-C",
         "type": "lever_key",
         "label": "C",
         "hand": "right",
-        "description": "Side C key (high)"
+        "description": "Side C key (middle side key)"
       },
       {
         "id": "side-E",
         "type": "lever_key",
         "label": "E",
         "hand": "right",
-        "description": "Side E key"
+        "description": "Side E key (upper side key)"
       },
       {
         "id": "R2",
@@ -225,13 +232,6 @@
         "label": "2",
         "hand": "right",
         "description": "Right middle (E key)"
-      },
-      {
-        "id": "side-F#",
-        "type": "lever_key",
-        "label": "F#",
-        "hand": "right",
-        "description": "Side F# key"
       },
       {
         "id": "R3",
@@ -1331,22 +1331,20 @@
       "primary": {
         "elements": [
           "octave",
-          "palm-Eb",
-          "palm-D",
-          "palm-F",
-          "side-E",
-          "side-F#"
+          "front-F",
+          "L2",
+          "side-Bb"
         ],
-        "description": "All palm keys + side E + side F#",
+        "description": "Octave key + front F + L2 + side Bb",
         "valve_notation": null,
-        "text_notation": "O Eb D F--|E F#---"
+        "text_notation": "O f -2-|Bb---"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Highest standard note. Some models have a dedicated high F# key."
+          "Front-F fingering. On horns with a high F# key the usual fingering is all three palm keys + side E + the high F# key (that key is not in this diagram)."
         ],
         "intonation_tendency": null
       }

@@ -26,7 +26,7 @@ Arpelio renders the notation with a fingering diagram under each note. See
 - **Styling:** Tailwind CSS
 - **Notation (beta import only):** OpenSheetMusicDisplay
 - **Hosting:** Vercel
-- **Data:** hand-verified instrument JSON in `src/data/`
+- **Data:** instrument JSON in `src/data/`, checked note by note against published charts — sources in [`docs/fingering-sources.md`](docs/fingering-sources.md), ledger in [`docs/fingering-verification.md`](docs/fingering-verification.md)
 
 ## Getting Started
 
@@ -35,6 +35,7 @@ Requires [Node.js](https://nodejs.org) 18 or newer.
 ```bash
 npm install
 npm run dev
+npm run validate   # check every fingering; also runs automatically before `npm run build`
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -44,7 +45,7 @@ the only other place this code runs.
 
 ## Instruments
 
-Seven instruments are live, covering 241 notes. Each has a primary fingering per
+Seven instruments are live, covering 239 notes. Each has a primary fingering per
 note, plus alternates, beginner flags, common errors, and practice tips.
 
 | Instrument | Notes | Family | Diagram type |
@@ -55,12 +56,13 @@ note, plus alternates, beginner flags, common errors, and practice tips.
 | French Horn | 43 | Brass | Valves |
 | Trombone | 31 | Brass | Slide positions 1–7 |
 | Euphonium | 31 | Brass | Valves |
-| BB♭ Tuba | 40 | Brass | Valves |
+| BB♭ Tuba | 38 | Brass | Valves |
 
 Clarinet (40 notes) and saxophone (33 notes) have complete data and diagram
 components but are **not public** — they are flagged `hidden: true` in
-`src/data/instruments.js` pending a visual check of their diagrams. Unhiding
-them is a one-word change per instrument once the charts have been eyeballed.
+`src/data/instruments.js`. Their data and key bindings were corrected in the
+November 2026 audit; what still needs a check on a real instrument before
+unhiding is listed under "Still open" in `docs/fingering-sources.md`.
 
 ## Project layout
 
@@ -76,13 +78,18 @@ src/
   components/
     FingeringDiagram.js     dispatches to the right diagram by instrument
     InlineFingering.js      compact column used by score import
-    diagrams/               one SVG renderer per mechanism type
+    diagrams/               one SVG renderer per mechanism type; keymaps.mjs binds keys to shapes
     StaffNote.js            note on a staff
     KeyReference.js         labelled diagram legend
   data/
     instruments.js          instrument metadata + visibility
     loader.js               JSON access
     *.json                  per-instrument fingering data
+scripts/
+  validate-fingerings.mjs   data checks (npm run validate, runs before every build)
+docs/
+  fingering-sources.md      what each chart was checked against, and what is still open
+  fingering-verification.md note-by-note comparison with each source
 ```
 
 ## Score import status

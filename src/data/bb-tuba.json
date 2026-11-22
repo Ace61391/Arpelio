@@ -12,8 +12,8 @@
     "clef_alternates": [],
     "range": {
       "low": {
-        "written": "D1",
-        "concert": "D1"
+        "written": "E1",
+        "concert": "E1"
       },
       "high": {
         "written": "F4",
@@ -32,7 +32,7 @@
       {
         "name": "Low",
         "range": [
-          "D1",
+          "E1",
           "Bb1"
         ],
         "description": "Below staff. Deep pedal range. Requires strong air."
@@ -58,10 +58,10 @@
       {
         "name": "Low register",
         "range": [
-          "D1",
+          "E1",
           "Bb1"
         ],
-        "label": "D1 to B♭1"
+        "label": "E1 to B♭1"
       },
       {
         "name": "Mid register",
@@ -83,7 +83,7 @@
     "chart_types": {
       "basic": {
         "status": "complete",
-        "notes": "Bass clef, concert pitch, 3-valve, BBb tuba. 28 notes."
+        "notes": "Bass clef, concert pitch, 3-valve, BBb tuba. 38 notes."
       },
       "alternates": {
         "status": "not_started",
@@ -130,13 +130,45 @@
   "fingerings": [
     {
       "note": {
-        "written": "D1",
-        "concert": "D1",
-        "midi": 26,
-        "frequency": 36.71,
+        "written": "E1",
+        "concert": "E1",
+        "midi": 28,
+        "frequency": 41.2,
         "enharmonic": null,
-        "display": "D",
-        "display_with_octave": "D1"
+        "display": "E",
+        "display_with_octave": "E1"
+      },
+      "register": "Low",
+      "octave": "Low register",
+      "primary": {
+        "elements": [
+          "valve-1",
+          "valve-2",
+          "valve-3"
+        ],
+        "description": "All three valves",
+        "valve_notation": "123",
+        "text_notation": "1-2-3"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Lowest valved note on a 3-valve BB♭ tuba. Very sharp — pull the 3rd slide."
+        ],
+        "intonation_tendency": "sharp"
+      }
+    },
+    {
+      "note": {
+        "written": "F1",
+        "concert": "F1",
+        "midi": 29,
+        "frequency": 43.65,
+        "enharmonic": null,
+        "display": "F",
+        "display_with_octave": "F1"
       },
       "register": "Low",
       "octave": "Low register",
@@ -153,21 +185,19 @@
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [
-          "Extremely low. Advanced players only."
-        ],
+        "practice_tips": [],
         "intonation_tendency": "sharp"
       }
     },
     {
       "note": {
-        "written": "D#1",
-        "concert": "D#1",
-        "midi": 27,
-        "frequency": 38.89,
-        "enharmonic": "Eb1",
-        "display": "D♯/E♭",
-        "display_with_octave": "D♯1/E♭1"
+        "written": "F#1",
+        "concert": "F#1",
+        "midi": 30,
+        "frequency": 46.25,
+        "enharmonic": "Gb1",
+        "display": "F♯/G♭",
+        "display_with_octave": "F♯1/G♭1"
       },
       "register": "Low",
       "octave": "Low register",
@@ -190,91 +220,6 @@
     },
     {
       "note": {
-        "written": "E1",
-        "concert": "E1",
-        "midi": 28,
-        "frequency": 41.2,
-        "enharmonic": null,
-        "display": "E",
-        "display_with_octave": "E1"
-      },
-      "register": "Low",
-      "octave": "Low register",
-      "primary": {
-        "elements": [
-          "valve-1",
-          "valve-2"
-        ],
-        "description": "First and second valves",
-        "valve_notation": "12",
-        "text_notation": "1-2"
-      },
-      "alternates": [],
-      "pedagogy": {
-        "beginner_note": false,
-        "common_errors": [],
-        "practice_tips": [],
-        "intonation_tendency": null
-      }
-    },
-    {
-      "note": {
-        "written": "F1",
-        "concert": "F1",
-        "midi": 29,
-        "frequency": 43.65,
-        "enharmonic": null,
-        "display": "F",
-        "display_with_octave": "F1"
-      },
-      "register": "Low",
-      "octave": "Low register",
-      "primary": {
-        "elements": [
-          "valve-1"
-        ],
-        "description": "First valve only",
-        "valve_notation": "1",
-        "text_notation": "1"
-      },
-      "alternates": [],
-      "pedagogy": {
-        "beginner_note": false,
-        "common_errors": [],
-        "practice_tips": [],
-        "intonation_tendency": null
-      }
-    },
-    {
-      "note": {
-        "written": "F#1",
-        "concert": "F#1",
-        "midi": 30,
-        "frequency": 46.25,
-        "enharmonic": "Gb1",
-        "display": "F♯/G♭",
-        "display_with_octave": "F♯1/G♭1"
-      },
-      "register": "Low",
-      "octave": "Low register",
-      "primary": {
-        "elements": [
-          "valve-2"
-        ],
-        "description": "Second valve only",
-        "valve_notation": "2",
-        "text_notation": "2"
-      },
-      "alternates": [],
-      "pedagogy": {
-        "beginner_note": false,
-        "common_errors": [],
-        "practice_tips": [],
-        "intonation_tendency": null
-      }
-    },
-    {
-      "note": {
         "written": "G1",
         "concert": "G1",
         "midi": 31,
@@ -286,10 +231,13 @@
       "register": "Low",
       "octave": "Low register",
       "primary": {
-        "elements": [],
-        "description": "Open (no valves)",
-        "valve_notation": "0",
-        "text_notation": "Open"
+        "elements": [
+          "valve-1",
+          "valve-2"
+        ],
+        "description": "First and second valves",
+        "valve_notation": "12",
+        "text_notation": "1-2"
       },
       "alternates": [],
       "pedagogy": {
@@ -937,11 +885,12 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-2"
+          "valve-2",
+          "valve-3"
         ],
-        "description": "Second valve only",
-        "valve_notation": "2",
-        "text_notation": "2"
+        "description": "Second and third valves",
+        "valve_notation": "23",
+        "text_notation": "2-3"
       },
       "alternates": [],
       "pedagogy": {
@@ -964,10 +913,13 @@
       "register": "Mid",
       "octave": "Mid register",
       "primary": {
-        "elements": [],
-        "description": "Open (no valves)",
-        "valve_notation": "0",
-        "text_notation": "Open"
+        "elements": [
+          "valve-1",
+          "valve-2"
+        ],
+        "description": "First and second valves",
+        "valve_notation": "12",
+        "text_notation": "1-2"
       },
       "alternates": [],
       "pedagogy": {
@@ -991,12 +943,11 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-2",
-          "valve-3"
+          "valve-1"
         ],
-        "description": "Second and third valves",
-        "valve_notation": "23",
-        "text_notation": "2-3"
+        "description": "First valve only",
+        "valve_notation": "1",
+        "text_notation": "1"
       },
       "alternates": [],
       "pedagogy": {
@@ -1020,12 +971,11 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-1",
           "valve-2"
         ],
-        "description": "First and second valves",
-        "valve_notation": "12",
-        "text_notation": "1-2"
+        "description": "Second valve only",
+        "valve_notation": "2",
+        "text_notation": "2"
       },
       "alternates": [],
       "pedagogy": {
@@ -1083,7 +1033,19 @@
         "valve_notation": "2",
         "text_notation": "2"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "valve-1",
+            "valve-2"
+          ],
+          "description": "First and second valves",
+          "valve_notation": "12",
+          "text_notation": "1-2",
+          "use_case": "facility",
+          "trill_from": null
+        }
+      ],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
@@ -1109,7 +1071,18 @@
         "valve_notation": "0",
         "text_notation": "Open"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "valve-1"
+          ],
+          "description": "First valve only",
+          "valve_notation": "1",
+          "text_notation": "1",
+          "use_case": "facility",
+          "trill_from": null
+        }
+      ],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
@@ -1131,12 +1104,11 @@
       "octave": "High register",
       "primary": {
         "elements": [
-          "valve-1",
           "valve-2"
         ],
-        "description": "First and second valves",
-        "valve_notation": "12",
-        "text_notation": "1-2"
+        "description": "Second valve only",
+        "valve_notation": "2",
+        "text_notation": "2"
       },
       "alternates": [],
       "pedagogy": {
@@ -1159,12 +1131,10 @@
       "register": "High",
       "octave": "High register",
       "primary": {
-        "elements": [
-          "valve-1"
-        ],
-        "description": "First valve only",
-        "valve_notation": "1",
-        "text_notation": "1"
+        "elements": [],
+        "description": "Open (no valves)",
+        "valve_notation": "0",
+        "text_notation": "Open"
       },
       "alternates": [],
       "pedagogy": {
@@ -1188,11 +1158,11 @@
       "octave": "High register",
       "primary": {
         "elements": [
-          "valve-2"
+          "valve-1"
         ],
-        "description": "Second valve only",
-        "valve_notation": "2",
-        "text_notation": "2"
+        "description": "First valve only",
+        "valve_notation": "1",
+        "text_notation": "1"
       },
       "alternates": [],
       "pedagogy": {
@@ -1215,10 +1185,12 @@
       "register": "High",
       "octave": "High register",
       "primary": {
-        "elements": [],
-        "description": "Open (no valves)",
-        "valve_notation": "0",
-        "text_notation": "Open"
+        "elements": [
+          "valve-2"
+        ],
+        "description": "Second valve only",
+        "valve_notation": "2",
+        "text_notation": "2"
       },
       "alternates": [],
       "pedagogy": {

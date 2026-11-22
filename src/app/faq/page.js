@@ -45,7 +45,7 @@ const FAQS = [
     questions: [
       {
         q: 'Which instruments are supported?',
-        a: 'Arpelio currently covers 7 band instruments across 241 notes: Recorder, Flute, Trumpet (B♭), French Horn (F), Trombone, Euphonium, and Tuba (BB♭). Clarinet and Saxophone are in development.',
+        a: 'Arpelio currently covers 7 band instruments across 239 notes: Recorder, Flute, Trumpet (B♭), French Horn (F), Trombone, Euphonium, and Tuba (BB♭). Clarinet and Saxophone are in development.',
       },
       {
         q: 'Are the fingerings accurate?',
