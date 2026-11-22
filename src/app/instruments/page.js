@@ -26,10 +26,10 @@ export default function InstrumentsPage() {
       <Nav />
       <div className="px-6 md:px-8 py-10 max-w-[1160px] mx-auto">
         <h1 className="text-3xl md:text-4xl font-extrabold text-[#1a1d23] mb-2 tracking-tight">
-          Choose Your Instrument
+          Band Instrument Fingering Charts
         </h1>
         <p className="text-base text-[#4a5060] mb-8">
-          Select an instrument to view its interactive fingering chart, study with flashcards, or take a quiz.
+          Pick an instrument to see every note, its fingering, and common alternates — then turn any selection into a printable chart or quiz worksheet.
         </p>
 
         {/* Family filter */}

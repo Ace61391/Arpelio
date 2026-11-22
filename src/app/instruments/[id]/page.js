@@ -85,11 +85,11 @@ export default function InstrumentPage() {
           <div className="flex gap-2 flex-wrap">
             <Link href={`/builder?instrument=${id}&mode=reference`}
               className="text-xs font-bold px-4 py-2 rounded-lg bg-accent text-white hover:bg-accent-hover transition-colors">
-              Build PDF Chart
+              Build a printable chart
             </Link>
-            <Link href={`/builder?instrument=${id}&mode=quiz`}
+            <Link href={`/builder?instrument=${id}&mode=identify`}
               className="text-xs font-bold px-4 py-2 rounded-lg border border-accent text-accent hover:bg-accent-light transition-colors">
-              Create Quiz
+              Create a quiz
             </Link>
           </div>
         </div>

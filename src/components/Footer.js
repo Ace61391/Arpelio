@@ -9,12 +9,17 @@ export default function Footer() {
             <div className="w-7 h-7 rounded-[7px] bg-accent flex items-center justify-center text-white font-extrabold text-sm">A</div>
             <span className="text-lg font-extrabold text-[#f0f1f4] tracking-tight">Arpelio</span>
           </div>
-          <p className="text-sm text-[#7a8294]">Interactive fingering charts & assessments for every band instrument.</p>
+          <p className="text-sm text-[#7a8294]">Fingering charts and printable quiz worksheets for band instruments. Free.</p>
         </div>
-        <div className="flex gap-8">
-          {['Instruments', 'Features', 'Pricing', 'Contact'].map(item => (
-            <Link key={item} href={item === 'Instruments' ? '/instruments' : `/#${item.toLowerCase()}`} className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
-              {item}
+        <div className="flex gap-8 flex-wrap">
+          {[
+            { label: 'Fingering charts', href: '/instruments' },
+            { label: 'Worksheet builder', href: '/builder' },
+            { label: 'FAQ', href: '/faq' },
+            { label: 'Contact', href: '/contact' },
+          ].map(item => (
+            <Link key={item.href} href={item.href} className="text-sm text-[#7a8294] hover:text-[#f0f1f4] transition-colors">
+              {item.label}
             </Link>
           ))}
         </div>

@@ -327,12 +327,21 @@ export default function ImportPage() {
     <>
       {!printMode && <Nav />}
       <div className="px-6 md:px-8 py-8 max-w-[1160px] mx-auto">
-        <div className="mb-6">
-          <h1 className="text-3xl font-extrabold text-[#1a1d23] tracking-tight mb-2">Score Import</h1>
-          <p className="text-sm text-[#4a5060]">
-            Upload a concert-pitch score. We transpose it for your instrument and print fingering diagrams under every note — ready to hand to students.
-          </p>
-        </div>
+        {/* Page chrome — hidden while printing so the handout is just the music */}
+        {!printMode && (
+          <div className="no-print mb-6">
+            <h1 className="text-3xl font-extrabold text-[#1a1d23] tracking-tight mb-2 flex items-center gap-3 flex-wrap">
+              Score Import
+              <span className="text-[11px] font-bold uppercase tracking-wide text-accent bg-accent-light rounded px-2 py-1">Beta</span>
+            </h1>
+            <p className="text-sm text-[#4a5060]">
+              Upload a concert-pitch score. We transpose it for your instrument and print fingering diagrams under every note — ready to hand to students.
+            </p>
+            <p className="text-xs text-[#7a8294] mt-2 max-w-[640px]">
+              Still rough: upload an <strong className="font-semibold">uncompressed</strong> .xml or .musicxml file (in MuseScore, choose &ldquo;Uncompressed MusicXML&rdquo; when exporting). Clarinet and saxophone are not available yet, and multi-part scores are shown as written, so pick the fingerings that match the part. Always check a page before handing it out.
+            </p>
+          </div>
+        )}
 
         {!printMode && (
         <div className="no-print bg-white border border-[#e5e8ed] rounded-2xl p-6 mb-6 print:hidden">

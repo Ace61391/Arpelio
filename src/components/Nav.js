@@ -29,38 +29,47 @@ export default function Nav() {
         <span className="text-xl font-extrabold text-[#1a1d23] tracking-tight">Arpelio</span>
       </Link>
       <div className="flex items-center gap-5 md:gap-7">
-        <Link href="/import" className={linkCls(pathname?.startsWith('/import'))}>
-          Import a score
-        </Link>
         <Link href="/instruments" className={linkCls(pathname?.startsWith('/instruments'))}>
-          Instruments
+          Fingering charts
         </Link>
 
-        {/* More tools dropdown */}
+        {/* Worksheet builder — the primary tool, with its three types one click away */}
         <div className="relative" ref={menuRef}>
           <button
             onClick={() => setToolsOpen(o => !o)}
             className={`flex items-center gap-1 ${linkCls(pathname?.startsWith('/builder'))}`}
             aria-haspopup="true" aria-expanded={toolsOpen}>
-            More tools
+            Worksheets
             <span className={`text-[10px] transition-transform ${toolsOpen ? 'rotate-180' : ''}`}>▾</span>
           </button>
           {toolsOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-white border border-[#e5e8ed] rounded-xl shadow-lg p-1.5 z-50">
+            <div className="absolute right-0 mt-2 w-72 bg-white border border-[#e5e8ed] rounded-xl shadow-lg p-1.5 z-50">
               <Link href="/builder?mode=reference" className="block px-3 py-2.5 rounded-lg hover:bg-[#f8f9fb] transition-colors">
-                <div className="text-sm font-semibold text-[#1a1d23]">Reference chart builder</div>
-                <div className="text-xs text-[#7a8294]">Pick notes → print a fingering chart</div>
+                <div className="text-sm font-semibold text-[#1a1d23]">Reference chart</div>
+                <div className="text-xs text-[#7a8294]">Pick notes → print a study guide</div>
               </Link>
-              <Link href="/builder?mode=quiz" className="block px-3 py-2.5 rounded-lg hover:bg-[#f8f9fb] transition-colors">
-                <div className="text-sm font-semibold text-[#1a1d23]">Quiz worksheet builder</div>
-                <div className="text-xs text-[#7a8294]">Blank charts with an answer key</div>
+              <Link href="/builder?mode=identify" className="block px-3 py-2.5 rounded-lg hover:bg-[#f8f9fb] transition-colors">
+                <div className="text-sm font-semibold text-[#1a1d23]">Quiz: identify the note</div>
+                <div className="text-xs text-[#7a8294]">Diagram shown → students name the note</div>
+              </Link>
+              <Link href="/builder?mode=fill" className="block px-3 py-2.5 rounded-lg hover:bg-[#f8f9fb] transition-colors">
+                <div className="text-sm font-semibold text-[#1a1d23]">Quiz: fill the chart</div>
+                <div className="text-xs text-[#7a8294]">Note shown → students fill a blank diagram</div>
+              </Link>
+              <div className="border-t border-[#eef0f4] my-1.5" />
+              <Link href="/import" className="block px-3 py-2.5 rounded-lg hover:bg-[#f8f9fb] transition-colors">
+                <div className="text-sm font-semibold text-[#1a1d23] flex items-center gap-2">
+                  Score import
+                  <span className="text-[10px] font-bold uppercase tracking-wide text-accent bg-accent-light rounded px-1.5 py-0.5">Beta</span>
+                </div>
+                <div className="text-xs text-[#7a8294]">Fingerings under every note of a MusicXML file</div>
               </Link>
             </div>
           )}
         </div>
 
-        <Link href="/import" className="bg-accent hover:bg-accent-hover text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors hidden sm:block">
-          Import a score
+        <Link href="/builder" className="bg-accent hover:bg-accent-hover text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors hidden sm:block">
+          Build a worksheet
         </Link>
       </div>
     </nav>

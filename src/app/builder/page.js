@@ -15,6 +15,17 @@ const MODES = [
   { id: 'fill', label: 'Quiz: Fill Chart', desc: 'See note on staff → fill blank diagram by hand', icon: '✏️' },
 ];
 
+const MODE_IDS = MODES.map(m => m.id);
+
+// Links elsewhere in the app used ?mode=quiz before the quiz split into
+// identify/fill. Map old values forward instead of rendering an empty sheet.
+const LEGACY_MODES = { quiz: 'identify' };
+
+function normalizeMode(raw) {
+  if (raw && MODE_IDS.includes(raw)) return raw;
+  return LEGACY_MODES[raw] || 'reference';
+}
+
 export default function BuilderPage() {
   return (
     <Suspense fallback={<div className="px-8 py-20 text-center text-[#7a8294]">Loading builder...</div>}>
@@ -26,7 +37,7 @@ export default function BuilderPage() {
 function BuilderInner() {
   const searchParams = useSearchParams();
   const [instrumentId, setInstrumentId] = useState(searchParams.get('instrument') || '');
-  const [mode, setMode] = useState(searchParams.get('mode') || 'reference');
+  const [mode, setMode] = useState(normalizeMode(searchParams.get('mode')));
   const [selectedNotes, setSelectedNotes] = useState(new Set());
   const [selectMode, setSelectMode] = useState('beginner');
   const [title, setTitle] = useState('');

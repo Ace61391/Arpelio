@@ -5,11 +5,32 @@ import { INSTRUMENTS } from '@/data/instruments';
 import { getFingeringsForInstrument } from '@/data/loader';
 import FingeringDiagram from '@/components/FingeringDiagram';
 
+const WORKSHEET_TYPES = [
+  {
+    mode: 'reference',
+    icon: '📖',
+    title: 'Reference chart',
+    desc: 'Every note you pick, with its diagram, staff position, and fingering shorthand. The handout students tape inside their folder.',
+  },
+  {
+    mode: 'identify',
+    icon: '🔍',
+    title: 'Quiz: identify the note',
+    desc: 'Students see a filled diagram and write the note name. Tick one box to print the answer key for yourself.',
+  },
+  {
+    mode: 'fill',
+    icon: '✏️',
+    title: 'Quiz: fill the chart',
+    desc: 'Students see a note on the staff and fill in the blank diagram by hand. The same note set, tested the other direction.',
+  },
+];
+
 function InstrumentCard({ inst }) {
   const fingerings = getFingeringsForInstrument(inst.id);
   const beginner = fingerings.filter(f => f.pedagogy?.beginner_note);
   const samples = (beginner.length >= 2 ? beginner : fingerings).slice(0, 2);
-  const isHorizontal = inst.id === 'flute' || inst.id === 'piccolo' || inst.id === 'trombone';
+  const isHorizontal = inst.id === 'flute' || inst.id === 'trombone';
 
   return (
     <Link href={`/instruments/${inst.id}`}
@@ -46,41 +67,45 @@ export default function Home() {
   const woodwinds = visible.filter(i => i.family === 'woodwind');
   const brass = visible.filter(i => i.family === 'brass');
 
+  // Derived from the data so the marketing copy can never drift from reality.
+  const instrumentCount = visible.length;
+  const noteCount = visible.reduce((sum, i) => sum + (i.notes || 0), 0);
+
   return (
     <>
       <Nav />
 
-      {/* Hero — explicit value prop */}
+      {/* Hero */}
       <section className="px-8 pt-16 pb-12 text-center max-w-[1160px] mx-auto">
         <div className="inline-block bg-accent-light rounded-full px-4 py-1.5 text-sm font-semibold text-accent mb-6">
           For band &amp; elementary music teachers · 100% free
         </div>
-        <h1 className="text-4xl md:text-[48px] font-extrabold leading-[1.12] tracking-tight text-[#1a1d23] max-w-[720px] mx-auto mb-5">
-          Turn any song into a fingering guide for your students
+        <h1 className="text-4xl md:text-[48px] font-extrabold leading-[1.12] tracking-tight text-[#1a1d23] max-w-[760px] mx-auto mb-5">
+          Fingering charts and quiz worksheets, ready to print
         </h1>
-        <p className="text-lg text-[#4a5060] leading-relaxed max-w-[600px] mx-auto mb-4">
-          Upload the score your class is playing. Arpelio transposes it for each instrument and prints a fingering diagram under every note — a ready-to-hand-out part in under a minute. No more writing note names by hand.
+        <p className="text-lg text-[#4a5060] leading-relaxed max-w-[620px] mx-auto mb-4">
+          Pick an instrument, pick the notes you are teaching this week, and print a reference chart or a quiz — with an answer key. {noteCount} verified fingerings across {instrumentCount} instruments.
         </p>
         <p className="text-sm text-[#7a8294] mb-9">
-          Works with MusicXML files from <span className="font-semibold text-[#4a5060]">MuseScore, Finale, Sibelius, Flat</span> &amp; <span className="font-semibold text-[#4a5060]">Noteflight</span>.
+          No account, nothing to install, no limit on how much you print.
         </p>
         <div className="flex gap-3 justify-center flex-wrap items-center">
-          <Link href="/import" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-8 py-3.5 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5">
-            Import a score
+          <Link href="/builder" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-8 py-3.5 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5">
+            Build a worksheet
           </Link>
           <Link href="/instruments" className="text-[#4a5060] hover:text-accent px-4 py-3.5 text-base font-semibold transition-all underline underline-offset-4 decoration-[#d0d4dc] hover:decoration-accent">
-            or browse fingering charts
+            or browse the fingering charts
           </Link>
         </div>
       </section>
 
-      {/* Value props — make the "why" explicit */}
+      {/* Value props */}
       <section className="px-8 pb-4 max-w-[1000px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[
-            { t: 'Automatic transposition', d: 'One concert score in — correct written parts out for Bb, Eb, F, and C instruments. Right key signature, right fingerings.' },
-            { t: 'A fingering under every note', d: 'Each note gets its diagram inline on the staff, in reading order — so beginners can play straight from the page.' },
-            { t: 'Print-ready in a click', d: 'Clean, letter-size parts you can print or save as PDF and hand out. No account, nothing to install.' },
+            { t: 'Fingerings you can trust', d: 'Every note verified against professional method books and manufacturer charts — primary fingerings, common alternates, and the mistakes beginners actually make.' },
+            { t: 'Charts and quizzes from one list', d: 'Choose your notes once. Print them as a study guide, as a name-the-note quiz, or as blank diagrams to fill in.' },
+            { t: 'An answer key in one click', d: 'Tick a box and you get the teacher copy with every answer filled in. Grade a stack of these in a couple of minutes.' },
           ].map(v => (
             <div key={v.t} className="bg-white border border-[#e5e8ed] rounded-2xl p-6">
               <h3 className="text-base font-bold text-[#1a1d23] mb-2">{v.t}</h3>
@@ -90,40 +115,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How import works — 3 steps */}
+      {/* Three worksheet types */}
       <section className="px-8 py-16">
         <div className="max-w-[900px] mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">From score to student handout in three steps</h2>
-            <p className="text-base text-[#4a5060] max-w-[520px] mx-auto">Export a MusicXML file from your notation software, and Arpelio does the rest.</p>
+            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">Three worksheets from the same note list</h2>
+            <p className="text-base text-[#4a5060] max-w-[560px] mx-auto">
+              Filter to beginner notes or a single octave, uncheck anything you have not taught yet, and print.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { n: '1', t: 'Upload your score', d: 'A MusicXML file of the piece your class is playing — concert score or a full multi-part arrangement.' },
-              { n: '2', t: 'Pick the instrument', d: 'For a concert score we transpose automatically. For a full score, choose the part and its fingerings.' },
-              { n: '3', t: 'Print the part', d: 'A fingering diagram sits under every note, correctly transposed — ready to hand out.' },
-            ].map(s => (
-              <div key={s.n} className="text-center">
-                <div className="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center text-xl font-extrabold text-accent mx-auto mb-4">{s.n}</div>
-                <h3 className="text-base font-bold text-[#1a1d23] mb-1">{s.t}</h3>
-                <p className="text-sm text-[#4a5060]">{s.d}</p>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {WORKSHEET_TYPES.map(w => (
+              <Link key={w.mode} href={`/builder?mode=${w.mode}`}
+                className="bg-white border border-[#e5e8ed] rounded-2xl p-6 hover:border-accent hover:-translate-y-1 hover:shadow-lg transition-all duration-200 group flex flex-col">
+                <div className="text-2xl mb-3">{w.icon}</div>
+                <h3 className="text-base font-bold text-[#1a1d23] mb-2 group-hover:text-accent transition-colors">{w.title}</h3>
+                <p className="text-sm text-[#4a5060] leading-relaxed flex-1">{w.desc}</p>
+                <span className="text-xs text-accent font-semibold mt-4">Build this one →</span>
+              </Link>
             ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link href="/import" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-8 py-3.5 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5 inline-block">
-              Try it with your score
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Instruments — browsable reference layer */}
+      {/* Instruments */}
       <section className="bg-[#f8f9fb] px-8 py-16">
         <div className="max-w-[1160px] mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">Or just browse the fingering charts</h2>
-            <p className="text-base text-[#4a5060] max-w-[520px] mx-auto">Every note for every instrument, verified against professional sources. Click any instrument to see all fingerings and alternates.</p>
+            <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-3 tracking-tight">Every note for every instrument</h2>
+            <p className="text-base text-[#4a5060] max-w-[560px] mx-auto">
+              Click an instrument to see its full range with alternates, common errors, and practice notes — then send any selection straight to the builder.
+            </p>
           </div>
 
           <h3 className="text-xs font-bold text-[#7a8294] uppercase tracking-widest mb-3">Woodwinds</h3>
@@ -135,19 +157,44 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {brass.map(inst => <InstrumentCard key={inst.id} inst={inst} />)}
           </div>
+
+          <p className="text-sm text-[#7a8294] text-center mt-8">
+            Clarinet and saxophone charts are in development.
+          </p>
+        </div>
+      </section>
+
+      {/* Score import — honest beta placement */}
+      <section className="px-8 py-14">
+        <div className="max-w-[760px] mx-auto bg-white border border-[#e5e8ed] rounded-2xl p-7 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <div className="text-3xl">🎼</div>
+          <div className="flex-1">
+            <h3 className="text-base font-bold text-[#1a1d23] mb-1 flex items-center gap-2 flex-wrap">
+              Also in the works: score import
+              <span className="text-[10px] font-bold uppercase tracking-wide text-accent bg-accent-light rounded px-1.5 py-0.5">Beta</span>
+            </h3>
+            <p className="text-sm text-[#4a5060] leading-relaxed">
+              Upload a MusicXML file and Arpelio prints a fingering diagram under every note. It works for concert-pitch melodies on the instruments above — still rough, and worth a look if you are curious.
+            </p>
+          </div>
+          <Link href="/import" className="text-sm font-bold text-accent hover:underline whitespace-nowrap">
+            Try the beta →
+          </Link>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="px-8 py-20 text-center">
-        <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-4 tracking-tight">Stop hand-writing note names under every part</h2>
-        <p className="text-base text-[#4a5060] mb-8 max-w-[520px] mx-auto">Upload the piece your class is playing. Every instrument gets a correctly transposed part with fingerings under each note — free, no account.</p>
+      <section className="px-8 pb-20 pt-6 text-center">
+        <h2 className="text-3xl font-extrabold text-[#1a1d23] mb-4 tracking-tight">Stop drawing fingering charts on the whiteboard</h2>
+        <p className="text-base text-[#4a5060] mb-8 max-w-[520px] mx-auto">
+          Pick your instrument and this week&apos;s notes. You will have something to hand out in about a minute — free, no account.
+        </p>
         <div className="flex gap-3 justify-center items-center flex-wrap">
-          <Link href="/import" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-10 py-4 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5">
-            Import a score
+          <Link href="/builder" className="bg-accent hover:bg-accent-hover text-white rounded-lg px-10 py-4 text-base font-bold transition-all shadow-[0_4px_14px_rgba(79,109,245,0.3)] hover:-translate-y-0.5">
+            Build a worksheet
           </Link>
           <Link href="/instruments" className="text-[#4a5060] hover:text-accent px-4 py-4 text-base font-semibold transition-all underline underline-offset-4 decoration-[#d0d4dc] hover:decoration-accent">
-            or browse fingering charts
+            or browse the fingering charts
           </Link>
         </div>
       </section>
