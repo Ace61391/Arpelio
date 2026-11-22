@@ -12,6 +12,13 @@ export const metadata = {
     url: 'https://arpelio.com',
     siteName: 'Arpelio',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Arpelio — fingering charts and printable quiz worksheets for band' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Arpelio — Fingering Charts & Printable Quiz Worksheets',
+    description: 'Free fingering charts for 7 band instruments, plus printable reference charts and quiz worksheets with answer keys.',
+    images: ['/og-image.png'],
   },
 };
 

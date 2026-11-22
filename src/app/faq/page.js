@@ -9,13 +9,13 @@ export const metadata = {
     title: 'FAQ & Help | Arpelio',
     description: 'Answers to common questions about Arpelio fingering charts, worksheets, and supported instruments.',
     url: 'https://arpelio.com/faq',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Arpelio — Fingering Charts for Every Band Instrument' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Arpelio — Fingering Charts for Every Band Instrument' }],
   },
   twitter: {
     card: 'summary',
     title: 'FAQ & Help | Arpelio',
     description: 'Answers to common questions about Arpelio fingering charts and worksheets.',
-    images: ['/og-image.svg'],
+    images: ['/og-image.png'],
   },
   alternates: {
     canonical: 'https://arpelio.com/faq',
@@ -28,7 +28,7 @@ const FAQS = [
     questions: [
       {
         q: 'What is Arpelio?',
-        a: 'Arpelio is a free music education tool that provides interactive fingering charts and printable worksheets for band instruments. Every chart is verified against professional sources like Trevor Wye, Taffanel & Gaubert, and manufacturer references.',
+        a: 'Arpelio is a free music education tool that provides interactive fingering charts and printable worksheets for band instruments. Fingerings are checked against independent published charts.',
       },
       {
         q: 'Is Arpelio really free?',
@@ -49,9 +49,9 @@ const FAQS = [
       },
       {
         q: 'Are the fingerings accurate?',
-        a: <>Every fingering is verified against professional method books and manufacturer charts. Flute fingerings follow the standard Boehm system (closed G#). Brass instruments use standard valve combinations. Recorder uses English (Baroque) fingering. If you find an error, <Link href="/contact" className="text-accent font-semibold hover:underline">please let us know</Link>.</>,
+        a: <>Every primary fingering is checked against at least two independent published charts (the Woodwind Fingering Guide, the Dolmetsch recorder chart and others), and every brass fingering is checked against the harmonic series. Flute fingerings follow the standard Boehm system (closed G#). Brass instruments use standard valve combinations. Recorder uses English (Baroque) fingering. If you find an error, <Link href="/contact" className="text-accent font-semibold hover:underline">please let us know</Link>.</>,
         // Plain-text copy for structured data — JSON.stringify cannot serialize the JSX above.
-        text: 'Every fingering is verified against professional method books and manufacturer charts. Flute fingerings follow the standard Boehm system (closed G#). Brass instruments use standard valve combinations. Recorder uses English (Baroque) fingering. If you find an error, please let us know.',
+        text: 'Every primary fingering is checked against at least two independent published charts (the Woodwind Fingering Guide, the Dolmetsch recorder chart and others), and every brass fingering is checked against the harmonic series. Flute fingerings follow the standard Boehm system (closed G#). Brass instruments use standard valve combinations. Recorder uses English (Baroque) fingering. If you find an error, please let us know.',
       },
       {
         q: 'What fingering system does the recorder use?',

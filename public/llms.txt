@@ -6,8 +6,9 @@
 
 Arpelio covers 7 instruments across 239 individually verified notes. For every
 note it holds the primary fingering, common alternates, whether it is a
-first-year "beginner note", common student errors, and practice tips. Fingerings
-are checked against professional method books and manufacturer charts.
+first-year "beginner note", common student errors, and practice tips. Primary
+fingerings are checked against at least two independent published charts, and
+brass fingerings against the harmonic series.
 
 The site does two things:
 
@@ -36,6 +37,7 @@ Clarinet and saxophone charts are in development and not yet published.
 - [Worksheet builder](https://arpelio.com/builder): the main tool — pick notes, print a chart or quiz
 - [FAQ](https://arpelio.com/faq): how to read the diagrams, worksheet types, printing, accuracy
 - [Contact](https://arpelio.com/contact): report a fingering error or ask a question
+- [Privacy](https://arpelio.com/privacy): what the site collects (very little)
 - [Sitemap](https://arpelio.com/sitemap.xml)
 
 ## Reading the diagrams

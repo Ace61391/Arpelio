@@ -8,13 +8,13 @@ export const metadata = {
     title: 'Score Import (Beta) | Arpelio',
     description: DESCRIPTION,
     url: 'https://arpelio.com/import',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Arpelio — Fingering Charts for Every Band Instrument' }],
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Arpelio — Fingering Charts for Every Band Instrument' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Score Import (Beta) | Arpelio',
     description: DESCRIPTION,
-    images: ['/og-image.svg'],
+    images: ['/og-image.png'],
   },
   alternates: {
     canonical: 'https://arpelio.com/import',
