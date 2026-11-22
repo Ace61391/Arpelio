@@ -47,7 +47,7 @@ function InstrumentCard({ inst }) {
               <div className={isHorizontal ? 'overflow-x-auto max-w-full' : ''}>
                 <FingeringDiagram instrumentId={inst.id} elements={f.primary.elements} size="sm" />
               </div>
-              <span className="text-[9px] text-[#b0b5c0] font-mono">{f.primary.text_notation}</span>
+              <span className="text-[11px] text-[#6b7385] font-mono">{f.primary.text_notation}</span>
             </div>
           ))}
         </div>

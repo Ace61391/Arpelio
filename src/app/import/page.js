@@ -349,7 +349,7 @@ export default function ImportPage() {
             <label className="flex-1 border-2 border-dashed border-[#d0d4dc] rounded-xl p-6 text-center cursor-pointer hover:border-accent hover:bg-accent-light/30 transition-all">
               <input type="file" accept=".xml,.musicxml" onChange={handleFileUpload} className="hidden" />
               <div className="text-sm font-semibold text-[#4a5060]">{fileName || 'Click to upload a MusicXML file'}</div>
-              <div className="text-xs text-[#b0b5c0] mt-1">.xml or .musicxml from MuseScore, Finale, Sibelius, Flat, Noteflight</div>
+              <div className="text-xs text-[#6b7385] mt-1">.xml or .musicxml from MuseScore, Finale, Sibelius, Flat, Noteflight</div>
             </label>
             {rendered && (
               <button onClick={handleExport}
@@ -377,7 +377,7 @@ export default function ImportPage() {
             <div>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="text-sm font-bold text-[#1a1d23]">{parts.length} parts in your score</span>
-                <span className="text-xs text-[#b0b5c0]">— pick the fingerings for any part to view it (shown as written, no transposition)</span>
+                <span className="text-xs text-[#6b7385]">— pick the fingerings for any part to view it (shown as written, no transposition)</span>
               </div>
               <div className="flex flex-col gap-1.5 mt-3">
                 {parts.map(p => {
@@ -428,7 +428,7 @@ export default function ImportPage() {
           {rendered && (
             <div className="mt-3 text-xs text-[#7a8294]">
               {instMeta?.name} · {stats.matched}/{stats.total} notes matched
-              {stats.total > stats.matched && <span className="text-[#b0b5c0]"> · {stats.total - stats.matched} out of range</span>}
+              {stats.total > stats.matched && <span className="text-[#6b7385]"> · {stats.total - stats.matched} out of range</span>}
             </div>
           )}
         </div>
@@ -443,7 +443,7 @@ export default function ImportPage() {
                   <span className="text-[#7a8294] font-semibold"> — {parts.find(p => p.id === activePartId)?.name}</span>
                 )}
               </h2>
-              <span className="text-xs text-[#b0b5c0]">{instMeta?.name} — fingerings</span>
+              <span className="text-xs text-[#6b7385]">{instMeta?.name} — fingerings</span>
             </div>
             <div ref={wrapperRef} className="relative overflow-x-auto" style={{ paddingBottom: 120 }}>
               <div ref={containerRef} style={{ width: 672 }} />
@@ -468,7 +468,7 @@ export default function ImportPage() {
           <div className="text-center py-20 text-[#7a8294]">
             <div className="text-4xl mb-4">🎼</div>
             <p className="text-lg mb-2">Upload a concert-pitch score to get started</p>
-            <p className="text-sm text-[#b0b5c0]">We handle the transposition — you get a print-ready part with fingerings under each note.</p>
+            <p className="text-sm text-[#6b7385]">We handle the transposition — you get a print-ready part with fingerings under each note.</p>
           </div>
         )}
       </div>

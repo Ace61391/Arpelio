@@ -2,6 +2,9 @@ import { INSTRUMENTS, getInstrument } from '@/data/instruments';
 
 // Pre-render a route for each public instrument so these pages ship as static
 // HTML with their own title — they are the pages teachers arrive on from search.
+// Only the instruments listed below exist as pages. Hidden ones (not yet verified) return 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return INSTRUMENTS.filter(i => !i.hidden).map(inst => ({ id: inst.id }));
 }

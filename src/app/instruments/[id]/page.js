@@ -107,7 +107,7 @@ export default function InstrumentPage() {
               {f.label}
             </button>
           ))}
-          <span className="text-xs text-[#b0b5c0] self-center ml-2">{filteredNotes.length} notes</span>
+          <span className="text-xs text-[#6b7385] self-center ml-2">{filteredNotes.length} notes</span>
 
           {id === 'recorder' && (
             <div className="flex items-center gap-2 ml-auto border border-[#e5e8ed] rounded-full px-3 py-1">
@@ -154,7 +154,7 @@ export default function InstrumentPage() {
                           <FingeringDiagram instrumentId={id} elements={alt.elements} size="md" holeStyle={holeStyle} />
                           <div className="font-mono text-xs text-[#4a5060]">{alt.text_notation}</div>
                           {alt.description && (
-                            <div className="text-[10px] text-[#b0b5c0] text-center italic">{alt.description}</div>
+                            <div className="text-[10px] text-[#6b7385] text-center italic">{alt.description}</div>
                           )}
                         </div>
                       ))}
