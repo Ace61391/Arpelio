@@ -113,6 +113,22 @@ for (const file of fs.readdirSync(DATA).filter((f) => f.endsWith('.json')).sort(
   }
 }
 
+// public/llms.txt states note counts as plain text; keep them in step with the data.
+const llmsPath = path.join(ROOT, 'public', 'llms.txt');
+if (fs.existsSync(llmsPath)) {
+  const llms = fs.readFileSync(llmsPath, 'utf8');
+  const hidden = new Set([...instrumentsJs.matchAll(/id: '([^']+)'[^}]*?hidden: true/g)].map((m) => m[1]));
+  let visibleTotal = 0;
+  for (const [id, count] of Object.entries(declaredCounts)) {
+    if (hidden.has(id)) continue;
+    visibleTotal += count;
+    const m = new RegExp(`/instruments/${id}\\): (\\d+) notes`).exec(llms);
+    if (m && Number(m[1]) !== count) err(id, '(llms.txt)', `llms.txt says ${m[1]} notes, data has ${count}`);
+  }
+  const t = /across (\d+) individually verified notes/.exec(llms);
+  if (t && Number(t[1]) !== visibleTotal) err('llms.txt', '(total)', `says ${t[1]} notes, published instruments have ${visibleTotal}`);
+}
+
 if (errors.length) {
   console.error(`Fingering validation FAILED — ${errors.length} problem(s):`);
   for (const e of errors) console.error('  ✗ ' + e);
