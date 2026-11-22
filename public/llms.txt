@@ -4,7 +4,7 @@
 > Built for band directors, elementary music teachers, and private lesson
 > teachers. No account, no paywall, no download limit.
 
-Arpelio covers 7 instruments across 241 individually verified notes. For every
+Arpelio covers 7 instruments across 239 individually verified notes. For every
 note it holds the primary fingering, common alternates, whether it is a
 first-year "beginner note", common student errors, and practice tips. Fingerings
 are checked against professional method books and manufacturer charts.
@@ -25,7 +25,7 @@ The site does two things:
 - [French Horn](https://arpelio.com/instruments/french-horn): 43 notes, horn in F
 - [Trombone](https://arpelio.com/instruments/trombone): 31 notes, slide positions 1–7
 - [Euphonium](https://arpelio.com/instruments/euphonium): 31 notes, bass clef, concert pitch
-- [BB♭ Tuba](https://arpelio.com/instruments/bb-tuba): 40 notes, three valves
+- [BB♭ Tuba](https://arpelio.com/instruments/bb-tuba): 38 notes, three valves
 
 Clarinet and saxophone charts are in development and not yet published.
 

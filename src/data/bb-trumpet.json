@@ -262,6 +262,7 @@
           ],
           "description": "Third valve alone",
           "valve_notation": "3",
+          "text_notation": "3",
           "use_case": "facility",
           "trill_from": null
         }
@@ -486,6 +487,7 @@
           ],
           "description": "Third valve alone",
           "valve_notation": "3",
+          "text_notation": "3",
           "use_case": "facility",
           "trill_from": null
         }
@@ -640,6 +642,7 @@
           ],
           "description": "Third valve alone",
           "valve_notation": "3",
+          "text_notation": "3",
           "use_case": "facility",
           "trill_from": null
         }
@@ -767,6 +770,7 @@
           ],
           "description": "Third valve alone",
           "valve_notation": "3",
+          "text_notation": "3",
           "use_case": "facility",
           "trill_from": null
         }
@@ -803,10 +807,12 @@
       "alternates": [
         {
           "elements": [
+            "valve-1",
             "valve-3"
           ],
-          "description": "Third valve alone",
-          "valve_notation": "3",
+          "description": "First and third valves (sharp; extend 3rd slide)",
+          "valve_notation": "13",
+          "text_notation": "1-3",
           "use_case": "facility",
           "trill_from": null
         }
@@ -985,24 +991,11 @@
         "valve_notation": "23",
         "text_notation": "2-3"
       },
-      "alternates": [
-        {
-          "elements": [
-            "valve-1",
-            "valve-2"
-          ],
-          "description": "First and second valves",
-          "valve_notation": "12",
-          "use_case": "intonation",
-          "trill_from": null
-        }
-      ],
+      "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [
-          "Alt fingering 12 may have better intonation on some horns."
-        ],
+        "practice_tips": [],
         "intonation_tendency": null
       },
       "octave": "High register"

@@ -40,11 +40,13 @@ You are a Music Education Specialist for the Arpelio project — a fingering cha
 - French Horn: B2-F6 (F transposing)
 - Trombone: E2-Bb4 (concert pitch, bass clef, slide positions 1-7)
 - Euphonium: E2-Bb4 (concert pitch, bass clef, 3 valves)
-- Tuba: D1-Bb3 (concert pitch, bass clef, 3 valves)
+- Tuba: E1-F4 (concert pitch, bass clef, 3 valves; D1 and E♭1 need a 4th valve and are not charted)
 
 ## Critical Known Issues (already fixed, don't re-report)
-- Flute thumb key: 'thumb' in data = B natural key (LH_AUX_2), 'Bb' = Briccialdi lever (THUMB)
-- Recorder D6: was identical to C#6, corrected to thumb-half + LH2
+- Flute thumb key: 'thumb' in data = B natural key (shape THUMB_B, the long key), 'Bb' = Briccialdi lever (shape THUMB_Bb, the small key beside it), 'G#' = the key beside L3 (shape G_SHARP)
+- Recorder D6 is t 1-3|4-6-. C#6 is the same fingers with the bell closed ('bell' element). The earlier "thumb-half + LH2" D6 is not a D6 fingering in WFG or Dolmetsch; do not restore it.
+- French horn is charted as single F horn. Do not use B-flat-horn fingerings.
+- Sources used and what is still open: docs/fingering-sources.md. Note-by-note check: docs/fingering-verification.md.
 - Recorder C#5, D5, D#5: text labels were missing thumb indicator
 
 ## Output Format

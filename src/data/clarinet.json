@@ -122,18 +122,25 @@
         "description": "Thumb hole (left thumb, back)"
       },
       {
+        "id": "A-key",
+        "type": "lever_key",
+        "label": "A",
+        "hand": "left",
+        "description": "Throat A key (left index finger rolls up)"
+      },
+      {
+        "id": "throat-G#",
+        "type": "lever_key",
+        "label": "G#",
+        "hand": "left",
+        "description": "Throat G# key (side of left index finger)"
+      },
+      {
         "id": "L1",
         "type": "tone_hole",
         "label": "1",
         "hand": "left",
         "description": "Left index finger hole"
-      },
-      {
-        "id": "A-key",
-        "type": "lever_key",
-        "label": "A",
-        "hand": "left",
-        "description": "A key (left index side lever)"
       },
       {
         "id": "L2",
@@ -143,6 +150,13 @@
         "description": "Left middle finger hole"
       },
       {
+        "id": "L-sliver",
+        "type": "lever_key",
+        "label": "Eb",
+        "hand": "left",
+        "description": "Eb/Bb sliver key (between L2 and L3, left ring finger)"
+      },
+      {
         "id": "L3",
         "type": "tone_hole",
         "label": "3",
@@ -150,32 +164,60 @@
         "description": "Left ring finger hole"
       },
       {
-        "id": "L4-Eb",
+        "id": "C#-key",
         "type": "lever_key",
-        "label": "Eb",
+        "label": "C#",
         "hand": "left",
-        "description": "Left pinky Ab/Eb spatula key"
+        "description": "C#/G# key (left pinky)"
       },
       {
         "id": "L4-C",
         "type": "lever_key",
-        "label": "C",
+        "label": "F",
         "hand": "left",
-        "description": "Left pinky F/C spatula key"
-      },
-      {
-        "id": "L4-Cs",
-        "type": "lever_key",
-        "label": "C#",
-        "hand": "left",
-        "description": "Left pinky F#/C# spatula key"
+        "description": "Left pinky F/C lever"
       },
       {
         "id": "L4-E",
         "type": "lever_key",
         "label": "E",
         "hand": "left",
-        "description": "Left pinky E/B spatula key"
+        "description": "Left pinky E/B lever"
+      },
+      {
+        "id": "L4-Cs",
+        "type": "lever_key",
+        "label": "F#",
+        "hand": "left",
+        "description": "Left pinky F#/C# lever"
+      },
+      {
+        "id": "side-1",
+        "type": "lever_key",
+        "label": "sk1",
+        "hand": "right",
+        "description": "Side key 1 (top trill key, side of right index finger)"
+      },
+      {
+        "id": "side-2",
+        "type": "lever_key",
+        "label": "sk2",
+        "hand": "right",
+        "description": "Side key 2"
+      },
+      {
+        "id": "side-3",
+        "type": "lever_key",
+        "label": "sk3",
+        "hand": "right",
+        "description": "Side key 3"
+      },
+      {
+        "id": "side-4",
+        "type": "lever_key",
+        "label": "sk4",
+        "hand": "right",
+        "description": "Side key 4 (bottom side key \u2014 side Eb/Bb)"
       },
       {
         "id": "R1",
@@ -192,6 +234,13 @@
         "description": "Right middle finger hole"
       },
       {
+        "id": "R-sliver",
+        "type": "lever_key",
+        "label": "B",
+        "hand": "right",
+        "description": "B/F# sliver key (between R2 and R3, right ring finger)"
+      },
+      {
         "id": "R3",
         "type": "tone_hole",
         "label": "3",
@@ -201,23 +250,23 @@
       {
         "id": "R4-Eb",
         "type": "lever_key",
-        "label": "Eb",
+        "label": "G#",
         "hand": "right",
-        "description": "Right pinky Ab/Eb key"
-      },
-      {
-        "id": "R4-C",
-        "type": "lever_key",
-        "label": "C",
-        "hand": "right",
-        "description": "Right pinky F/C key"
+        "description": "Right pinky G#/D# (Ab/Eb) key"
       },
       {
         "id": "R4-Cs",
         "type": "lever_key",
-        "label": "C#",
+        "label": "F#",
         "hand": "right",
         "description": "Right pinky F#/C# key"
+      },
+      {
+        "id": "R4-C",
+        "type": "lever_key",
+        "label": "F",
+        "hand": "right",
+        "description": "Right pinky F/C key"
       },
       {
         "id": "R4-E",
@@ -225,13 +274,6 @@
         "label": "E",
         "hand": "right",
         "description": "Right pinky E/B key"
-      },
-      {
-        "id": "G#",
-        "type": "lever_key",
-        "label": "G#",
-        "hand": "right",
-        "description": "G#/Ab key (right hand)"
       }
     ]
   },
@@ -366,14 +408,14 @@
           "L1",
           "L2",
           "L3",
-          "R4-Cs",
           "R1",
           "R2",
-          "R3"
+          "R3",
+          "R4-Cs"
         ],
         "description": "All holes + right F#/C# key",
         "valve_notation": null,
-        "text_notation": "T 123 F#|123"
+        "text_notation": "T 123|123 F#"
       },
       "alternates": [],
       "pedagogy": {
@@ -442,7 +484,7 @@
           "R1",
           "R2",
           "R3",
-          "G#"
+          "R4-Eb"
         ],
         "description": "All holes + G# key",
         "valve_notation": null,
@@ -610,7 +652,7 @@
           "L1",
           "L2",
           "L3",
-          "L4-Cs"
+          "C#-key"
         ],
         "description": "Left hand closed + left C# key",
         "valve_notation": null,
@@ -673,20 +715,46 @@
           "thumb",
           "L1",
           "L2",
-          "R1"
+          "side-4"
         ],
-        "description": "D4 + right index finger (side Eb mechanism)",
+        "description": "D4 + bottom side key (side Eb/Bb, side of right index finger)",
         "valve_notation": null,
-        "text_notation": "T 12-|1--"
+        "text_notation": "T 12-|sk4 ---"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "L-sliver"
+          ],
+          "description": "Left sliver key \u2014 chromatic and trill fingering",
+          "valve_notation": null,
+          "text_notation": "T 12 Eb-|---",
+          "use_case": "facility",
+          "trill_from": null
+        },
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "R1"
+          ],
+          "description": "\"One and one\" fork \u2014 slightly sharp; use with right-index fingerings",
+          "valve_notation": null,
+          "text_notation": "T 1--|1--",
+          "use_case": "facility",
+          "trill_from": null
+        }
+      ],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [
-          "Confusing with the A-key Eb trill fingering"
+          "Pressing the wrong side key \u2014 it is the bottom one of the four"
         ],
         "practice_tips": [
-          "WFG notation: T 12-|4--- indicates the side key mechanism."
+          "The side key is pressed with the side of the right index finger."
         ],
         "intonation_tendency": null
       }
@@ -826,9 +894,9 @@
       "octave": "Chalumeau",
       "primary": {
         "elements": [
-          "G#"
+          "throat-G#"
         ],
-        "description": "G# side key only",
+        "description": "Throat G# key only (side of left index finger)",
         "valve_notation": null,
         "text_notation": "G# ---|---"
       },
@@ -880,8 +948,8 @@
         "display": "B\u266d/A\u266f",
         "display_with_octave": "B\u266d4/A\u266f4"
       },
-      "register": "Clarion",
-      "octave": "Clarion",
+      "register": "Chalumeau",
+      "octave": "Chalumeau",
       "primary": {
         "elements": [
           "register",
@@ -1000,14 +1068,14 @@
           "L1",
           "L2",
           "L3",
-          "R4-Cs",
           "R1",
           "R2",
-          "R3"
+          "R3",
+          "R4-Cs"
         ],
         "description": "Register key + chalumeau F#3 fingering",
         "valve_notation": null,
-        "text_notation": "R T 123 F#|123"
+        "text_notation": "R T 123|123 F#"
       },
       "alternates": [],
       "pedagogy": {
@@ -1078,7 +1146,7 @@
           "R1",
           "R2",
           "R3",
-          "G#"
+          "R4-Eb"
         ],
         "description": "Register key + G#3 fingering",
         "valve_notation": null,
@@ -1253,7 +1321,7 @@
           "L1",
           "L2",
           "L3",
-          "L4-Cs"
+          "C#-key"
         ],
         "description": "Register key + C#4 fingering",
         "valve_notation": null,
@@ -1320,13 +1388,41 @@
           "thumb",
           "L1",
           "L2",
-          "R1"
+          "side-4"
         ],
-        "description": "Register key + Eb4 fingering",
+        "description": "Register key + Eb4 fingering (bottom side key)",
         "valve_notation": null,
-        "text_notation": "R T 12-|1--"
+        "text_notation": "R T 12-|sk4 ---"
       },
-      "alternates": [],
+      "alternates": [
+        {
+          "elements": [
+            "register",
+            "thumb",
+            "L1",
+            "L2",
+            "L-sliver"
+          ],
+          "description": "Left sliver key \u2014 chromatic and trill fingering",
+          "valve_notation": null,
+          "text_notation": "R T 12 Eb-|---",
+          "use_case": "facility",
+          "trill_from": null
+        },
+        {
+          "elements": [
+            "register",
+            "thumb",
+            "L1",
+            "R1"
+          ],
+          "description": "\"One and one\" fork \u2014 use with right-index fingerings",
+          "valve_notation": null,
+          "text_notation": "R T 1--|1--",
+          "use_case": "facility",
+          "trill_from": null
+        }
+      ],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
@@ -1414,14 +1510,15 @@
       "primary": {
         "elements": [
           "register",
+          "thumb",
           "L2",
           "L3",
           "R1",
           "R2"
         ],
-        "description": "Skip L1, add R1+R2",
+        "description": "Thumb + register, skip L1, add R1+R2",
         "valve_notation": null,
-        "text_notation": "R -23|12-"
+        "text_notation": "R T -23|12-"
       },
       "alternates": [],
       "pedagogy": {
@@ -1448,14 +1545,15 @@
       "primary": {
         "elements": [
           "register",
+          "thumb",
           "L2",
           "L3",
           "R1",
-          "G#"
+          "R4-Eb"
         ],
-        "description": "Skip L1, R1+G# key",
+        "description": "Thumb + register, skip L1, R1 + right-pinky G# key",
         "valve_notation": null,
-        "text_notation": "R -23|1-- G#"
+        "text_notation": "R T -23|1-- G#"
       },
       "alternates": [],
       "pedagogy": {
@@ -1480,15 +1578,16 @@
       "primary": {
         "elements": [
           "register",
+          "thumb",
           "L2",
           "L3",
           "R1",
-          "R3",
-          "G#"
+          "R-sliver",
+          "R4-Eb"
         ],
-        "description": "R1+R3+G# (skip R2)",
+        "description": "Thumb + register, L2+L3, R1 + B sliver key + right-pinky G# key",
         "valve_notation": null,
-        "text_notation": "R -23|1-3 G#"
+        "text_notation": "R T -23|1 B - G#"
       },
       "alternates": [],
       "pedagogy": {
@@ -1513,13 +1612,14 @@
       "primary": {
         "elements": [
           "register",
+          "thumb",
           "L2",
           "L3",
-          "G#"
+          "R4-Eb"
         ],
-        "description": "L2+L3+G#, no right hand",
+        "description": "Thumb + register, L2+L3 + right-pinky G# key",
         "valve_notation": null,
-        "text_notation": "R -23|--- G#"
+        "text_notation": "R T -23|--- G#"
       },
       "alternates": [],
       "pedagogy": {
@@ -1544,14 +1644,15 @@
       "primary": {
         "elements": [
           "register",
+          "thumb",
           "L2",
           "L3",
-          "L4-Cs",
-          "G#"
+          "C#-key",
+          "R4-Eb"
         ],
-        "description": "L2+L3+C# key+G#",
+        "description": "Thumb + register, L2+L3 + C#/G# key + right-pinky G# key",
         "valve_notation": null,
-        "text_notation": "R -23 C#|--- G#"
+        "text_notation": "R T -23 C#|--- G#"
       },
       "alternates": [],
       "pedagogy": {
@@ -1576,12 +1677,13 @@
       "primary": {
         "elements": [
           "register",
+          "thumb",
           "L2",
-          "G#"
+          "R4-Eb"
         ],
-        "description": "L2+G# only",
+        "description": "Thumb + register, L2 + right-pinky G# key",
         "valve_notation": null,
-        "text_notation": "R -2-|--- G#"
+        "text_notation": "R T -2-|--- G#"
       },
       "alternates": [],
       "pedagogy": {
@@ -1606,14 +1708,15 @@
       "primary": {
         "elements": [
           "register",
+          "thumb",
           "L2",
           "R1",
           "R2",
-          "G#"
+          "R4-Eb"
         ],
-        "description": "L2+R1+R2+G#",
+        "description": "Thumb + register, L2, R1+R2 + right-pinky G# key",
         "valve_notation": null,
-        "text_notation": "R -2-|12- G#"
+        "text_notation": "R T -2-|12- G#"
       },
       "alternates": [],
       "pedagogy": {

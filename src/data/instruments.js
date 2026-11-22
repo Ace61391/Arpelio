@@ -7,7 +7,7 @@ export const INSTRUMENTS = [
   { id: 'french-horn', name: 'French Horn', shortName: 'French Horn', family: 'brass', familyColor: 'brass', clef: 'treble', transposition: 'F', audience: 'Band / Orchestra', notes: 43, description: 'Horn in F. Left-hand valves. Wide range.' },
   { id: 'trombone', name: 'Trombone', shortName: 'Trombone', family: 'brass', familyColor: 'brass', clef: 'bass', transposition: 'C', audience: 'Band / Jazz', notes: 31, description: 'Slide positions 1–7. Reads concert pitch in bass clef.' },
   { id: 'euphonium', name: 'Euphonium', shortName: 'Euphonium', family: 'brass', familyColor: 'brass', clef: 'bass', transposition: 'C', audience: 'Band', notes: 31, description: 'Three valves. Bass clef, concert pitch.' },
-  { id: 'bb-tuba', name: 'BB♭ Tuba', shortName: 'Tuba', family: 'brass', familyColor: 'brass', clef: 'bass', transposition: 'C', audience: 'Band', notes: 40, description: 'Three valves. Lowest standard band instrument.' },
+  { id: 'bb-tuba', name: 'BB♭ Tuba', shortName: 'Tuba', family: 'brass', familyColor: 'brass', clef: 'bass', transposition: 'C', audience: 'Band', notes: 38, description: 'Three valves. Lowest standard band instrument.' },
 ];
 
 export function getInstrument(id) {

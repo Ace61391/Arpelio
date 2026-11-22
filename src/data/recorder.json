@@ -162,6 +162,13 @@
         "label": "7",
         "hand": "right",
         "description": "Right pinky double hole"
+      },
+      {
+        "id": "bell",
+        "type": "bell",
+        "label": "X",
+        "hand": "right",
+        "description": "Bell (foot end) closed against the knee. X in the fingering."
       }
     ]
   },
@@ -530,13 +537,26 @@
           "L2",
           "R1",
           "R2",
-          "R3"
+          "R3-half"
         ],
-        "description": "L3 open, fork to R1+R2+R3",
+        "description": "L3 open; R1 + R2 + half of hole 6 (lower small hole only)",
         "valve_notation": null,
-        "text_notation": "T 12-|456-"
+        "text_notation": "T 12-|45(6)-"
       },
       "alternates": [
+        {
+          "elements": [
+            "thumb",
+            "L1",
+            "L2",
+            "R1",
+            "R2",
+            "R3"
+          ],
+          "text_notation": "T 12-|456-",
+          "description": "Hole 6 fully covered \u2014 the basic fingering on many instruments; use whichever is better in tune",
+          "type": "alternate"
+        },
         {
           "elements": [
             "thumb",
@@ -564,7 +584,9 @@
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [],
+        "practice_tips": [
+          "Instruments differ: use the half-hole or the full fork, whichever is in tune on yours."
+        ],
         "intonation_tendency": null
       }
     },
@@ -1143,10 +1165,11 @@
             "L2",
             "L3",
             "R1",
-            "R2"
+            "R2",
+            "bell"
           ],
-          "text_notation": "t 123|45--",
-          "description": "Alternate \u2014 different tone/pitch",
+          "text_notation": "t 123|45-- X",
+          "description": "Alternate \u2014 bell closed against the knee",
           "type": "alternate"
         }
       ],
@@ -1177,31 +1200,19 @@
           "L1",
           "L3",
           "R1",
-          "R3"
+          "R3",
+          "bell"
         ],
-        "description": "Cross-fingering + close bell end",
+        "description": "Thumb pinched + L1 + L3 + R1 + R3, with the bell closed against the knee",
         "valve_notation": null,
-        "text_notation": "t 1-3|4-6-"
+        "text_notation": "t 1-3|4-6- X"
       },
-      "alternates": [
-        {
-          "elements": [
-            "thumb-half",
-            "L1",
-            "L3",
-            "R1",
-            "R3"
-          ],
-          "text_notation": "t 1-3|4-6-",
-          "description": "In tune on most recorders",
-          "type": "alternate"
-        }
-      ],
+      "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "WFG indicates closing the bell end (X) with the knee or a finger."
+          "Close the bell end (X) against the knee. Same fingers as D6."
         ],
         "intonation_tendency": null
       }
@@ -1221,31 +1232,21 @@
       "primary": {
         "elements": [
           "thumb-half",
-          "L2"
+          "L1",
+          "L3",
+          "R1",
+          "R3"
         ],
-        "description": "Same as C#6 but without closing bell",
+        "description": "Thumb pinched + L1 + L3 + R1 + R3",
         "valve_notation": null,
-        "text_notation": "t -2-|----"
+        "text_notation": "t 1-3|4-6-"
       },
-      "alternates": [
-        {
-          "elements": [
-            "thumb-half",
-            "L1",
-            "L3",
-            "R1",
-            "R3"
-          ],
-          "text_notation": "t 1-3|4-6-",
-          "description": "Alternate D \u2014 check tuning",
-          "type": "alternate"
-        }
-      ],
+      "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Highest basic note. Same fingering as C#6 but without closing the bell end."
+          "Highest basic note. Same fingers as C#6 but with the bell open."
         ],
         "intonation_tendency": null
       }

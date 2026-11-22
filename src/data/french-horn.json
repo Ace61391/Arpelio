@@ -83,7 +83,7 @@
     "chart_types": {
       "basic": {
         "status": "complete",
-        "notes": "F side fingerings, standard written-in-F transposition. 32 notes."
+        "notes": "F side fingerings, standard written-in-F transposition. 43 notes."
       },
       "alternates": {
         "status": "not_started",
@@ -142,6 +142,62 @@
       "octave": "Low register",
       "primary": {
         "elements": [
+          "valve-2"
+        ],
+        "description": "Second valve only",
+        "valve_notation": "2",
+        "text_notation": "2"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C3",
+        "concert": "F2",
+        "midi": 48,
+        "frequency": 87.31,
+        "enharmonic": "B#2",
+        "display": "C",
+        "display_with_octave": "C3"
+      },
+      "register": "Low",
+      "octave": "Low register",
+      "primary": {
+        "elements": [],
+        "description": "Open (no valves)",
+        "valve_notation": "0",
+        "text_notation": "Open"
+      },
+      "alternates": [],
+      "pedagogy": {
+        "beginner_note": false,
+        "common_errors": [],
+        "practice_tips": [
+          "Lowest open note on the F horn (2nd partial)."
+        ],
+        "intonation_tendency": null
+      }
+    },
+    {
+      "note": {
+        "written": "C#3",
+        "concert": "F#2",
+        "midi": 49,
+        "frequency": 92.5,
+        "enharmonic": "Db3",
+        "display": "C♯/D♭",
+        "display_with_octave": "C♯3/D♭3"
+      },
+      "register": "Low",
+      "octave": "Low register",
+      "primary": {
+        "elements": [
           "valve-1",
           "valve-2",
           "valve-3"
@@ -154,21 +210,19 @@
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [
-          "Lowest practical note on F horn."
-        ],
+        "practice_tips": [],
         "intonation_tendency": "sharp"
       }
     },
     {
       "note": {
-        "written": "C3",
-        "concert": "F2",
-        "midi": 48,
-        "frequency": 87.31,
-        "enharmonic": "B#2",
-        "display": "C",
-        "display_with_octave": "C3"
+        "written": "D3",
+        "concert": "G2",
+        "midi": 50,
+        "frequency": 98.0,
+        "enharmonic": null,
+        "display": "D",
+        "display_with_octave": "D3"
       },
       "register": "Low",
       "octave": "Low register",
@@ -191,64 +245,6 @@
     },
     {
       "note": {
-        "written": "C#3",
-        "concert": "F#2",
-        "midi": 49,
-        "frequency": 92.5,
-        "enharmonic": "Db3",
-        "display": "C♯/D♭",
-        "display_with_octave": "C♯3/D♭3"
-      },
-      "register": "Low",
-      "octave": "Low register",
-      "primary": {
-        "elements": [
-          "valve-2",
-          "valve-3"
-        ],
-        "description": "Second and third valves",
-        "valve_notation": "23",
-        "text_notation": "2-3"
-      },
-      "alternates": [],
-      "pedagogy": {
-        "beginner_note": false,
-        "common_errors": [],
-        "practice_tips": [],
-        "intonation_tendency": null
-      }
-    },
-    {
-      "note": {
-        "written": "D3",
-        "concert": "G2",
-        "midi": 50,
-        "frequency": 98.0,
-        "enharmonic": null,
-        "display": "D",
-        "display_with_octave": "D3"
-      },
-      "register": "Low",
-      "octave": "Low register",
-      "primary": {
-        "elements": [
-          "valve-1",
-          "valve-2"
-        ],
-        "description": "First and second valves",
-        "valve_notation": "12",
-        "text_notation": "1-2"
-      },
-      "alternates": [],
-      "pedagogy": {
-        "beginner_note": false,
-        "common_errors": [],
-        "practice_tips": [],
-        "intonation_tendency": null
-      }
-    },
-    {
-      "note": {
         "written": "D#3",
         "concert": "G#2",
         "midi": 51,
@@ -261,11 +257,12 @@
       "octave": "Low register",
       "primary": {
         "elements": [
-          "valve-1"
+          "valve-2",
+          "valve-3"
         ],
-        "description": "First valve only",
-        "valve_notation": "1",
-        "text_notation": "1"
+        "description": "Second and third valves",
+        "valve_notation": "23",
+        "text_notation": "2-3"
       },
       "alternates": [],
       "pedagogy": {
@@ -289,11 +286,12 @@
       "octave": "Low register",
       "primary": {
         "elements": [
+          "valve-1",
           "valve-2"
         ],
-        "description": "Second valve only",
-        "valve_notation": "2",
-        "text_notation": "2"
+        "description": "First and second valves",
+        "valve_notation": "12",
+        "text_notation": "1-2"
       },
       "alternates": [],
       "pedagogy": {
@@ -316,18 +314,18 @@
       "register": "Low",
       "octave": "Low register",
       "primary": {
-        "elements": [],
-        "description": "Open (no valves)",
-        "valve_notation": "0",
-        "text_notation": "Open"
+        "elements": [
+          "valve-1"
+        ],
+        "description": "First valve only",
+        "valve_notation": "1",
+        "text_notation": "1"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [
-          "Lowest open note (2nd partial of F fundamental)."
-        ],
+        "practice_tips": [],
         "intonation_tendency": null
       }
     },
@@ -345,20 +343,18 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-1",
-          "valve-2",
-          "valve-3"
+          "valve-2"
         ],
-        "description": "All three valves",
-        "valve_notation": "123",
-        "text_notation": "1-2-3"
+        "description": "Second valve only",
+        "valve_notation": "2",
+        "text_notation": "2"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [],
-        "intonation_tendency": "sharp"
+        "intonation_tendency": null
       }
     },
     {
@@ -374,13 +370,10 @@
       "register": "Mid",
       "octave": "Mid register",
       "primary": {
-        "elements": [
-          "valve-1",
-          "valve-3"
-        ],
-        "description": "First and third valves",
-        "valve_notation": "13",
-        "text_notation": "1-3"
+        "elements": [],
+        "description": "Open (no valves)",
+        "valve_notation": "0",
+        "text_notation": "Open"
       },
       "alternates": [],
       "pedagogy": {
@@ -389,7 +382,7 @@
         "practice_tips": [
           "Often the first note beginners learn, along with C4."
         ],
-        "intonation_tendency": "sharp"
+        "intonation_tendency": null
       }
     },
     {
@@ -530,10 +523,10 @@
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [
-          "Can accidentally play F3 (lower partial) with same fingering"
+          "Can accidentally play G3 (the next open partial down) with the same fingering"
         ],
         "practice_tips": [
-          "3rd partial of open F series. Written C = concert F."
+          "4th partial of the open F series. Written C = concert F."
         ],
         "intonation_tendency": null
       }
@@ -552,12 +545,12 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-2",
-          "valve-3"
+          "valve-1",
+          "valve-2"
         ],
-        "description": "Second and third valves",
-        "valve_notation": "23",
-        "text_notation": "2-3"
+        "description": "First and second valves",
+        "valve_notation": "12",
+        "text_notation": "1-2"
       },
       "alternates": [],
       "pedagogy": {
@@ -581,12 +574,11 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-1",
-          "valve-2"
+          "valve-1"
         ],
-        "description": "First and second valves",
-        "valve_notation": "12",
-        "text_notation": "1-2"
+        "description": "First valve only",
+        "valve_notation": "1",
+        "text_notation": "1"
       },
       "alternates": [],
       "pedagogy": {
@@ -610,11 +602,11 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-1"
+          "valve-2"
         ],
-        "description": "First valve only",
-        "valve_notation": "1",
-        "text_notation": "1"
+        "description": "Second valve only",
+        "valve_notation": "2",
+        "text_notation": "2"
       },
       "alternates": [],
       "pedagogy": {
@@ -637,12 +629,10 @@
       "register": "Mid",
       "octave": "Mid register",
       "primary": {
-        "elements": [
-          "valve-2"
-        ],
-        "description": "Second valve only",
-        "valve_notation": "2",
-        "text_notation": "2"
+        "elements": [],
+        "description": "Open (no valves)",
+        "valve_notation": "0",
+        "text_notation": "Open"
       },
       "alternates": [],
       "pedagogy": {
@@ -665,17 +655,19 @@
       "register": "Mid",
       "octave": "Mid register",
       "primary": {
-        "elements": [],
-        "description": "Open (no valves)",
-        "valve_notation": "0",
-        "text_notation": "Open"
+        "elements": [
+          "valve-1"
+        ],
+        "description": "First valve only",
+        "valve_notation": "1",
+        "text_notation": "1"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [],
         "practice_tips": [
-          "4th partial open. Concert Bb."
+          "Concert B♭."
         ],
         "intonation_tendency": null
       }
@@ -757,25 +749,11 @@
         "valve_notation": "23",
         "text_notation": "2-3"
       },
-      "alternates": [
-        {
-          "elements": [
-            "valve-1",
-            "valve-2"
-          ],
-          "description": "1-2 alternate",
-          "valve_notation": "12",
-          "text_notation": "1-2",
-          "use_case": "intonation",
-          "trill_from": null
-        }
-      ],
+      "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [
-          "Multiple fingering options. Choose based on context."
-        ],
+        "practice_tips": [],
         "intonation_tendency": null
       }
     },
@@ -793,11 +771,12 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-1"
+          "valve-1",
+          "valve-2"
         ],
-        "description": "First valve only",
-        "valve_notation": "1",
-        "text_notation": "1"
+        "description": "First and second valves",
+        "valve_notation": "12",
+        "text_notation": "1-2"
       },
       "alternates": [],
       "pedagogy": {
@@ -821,20 +800,20 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-2"
+          "valve-1"
         ],
-        "description": "Second valve only",
-        "valve_notation": "2",
-        "text_notation": "2"
+        "description": "First valve only",
+        "valve_notation": "1",
+        "text_notation": "1"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": true,
         "common_errors": [
-          "7th partial open Bb is very flat — always use valve 2"
+          "The open 7th-partial B♭ is very flat — use 1st valve"
         ],
         "practice_tips": [
-          "Do NOT play open — 7th partial is extremely flat. Always use 2nd valve."
+          "Do NOT play open — the 7th partial is extremely flat. Use 1st valve."
         ],
         "intonation_tendency": null
       }
@@ -853,11 +832,11 @@
       "octave": "Mid register",
       "primary": {
         "elements": [
-          "valve-1"
+          "valve-2"
         ],
-        "description": "First valve only",
-        "valve_notation": "1",
-        "text_notation": "1"
+        "description": "Second valve only",
+        "valve_notation": "2",
+        "text_notation": "2"
       },
       "alternates": [],
       "pedagogy": {
@@ -1052,7 +1031,7 @@
         "elements": [
           "valve-2"
         ],
-        "description": "valve 2",
+        "description": "Second valve only",
         "valve_notation": "2",
         "text_notation": "2"
       },
@@ -1107,7 +1086,7 @@
           "valve-2",
           "valve-3"
         ],
-        "description": "valve 2, valve 3",
+        "description": "Second and third valves",
         "valve_notation": "23",
         "text_notation": "2-3"
       },
@@ -1136,7 +1115,7 @@
           "valve-1",
           "valve-2"
         ],
-        "description": "valve 1, valve 2",
+        "description": "First and second valves",
         "valve_notation": "12",
         "text_notation": "1-2"
       },
@@ -1164,7 +1143,7 @@
         "elements": [
           "valve-1"
         ],
-        "description": "valve 1",
+        "description": "First valve only",
         "valve_notation": "1",
         "text_notation": "1"
       },
@@ -1192,7 +1171,7 @@
         "elements": [
           "valve-2"
         ],
-        "description": "valve 2",
+        "description": "Second valve only",
         "valve_notation": "2",
         "text_notation": "2"
       },
@@ -1247,7 +1226,7 @@
           "valve-1",
           "valve-2"
         ],
-        "description": "valve 1, valve 2",
+        "description": "First and second valves",
         "valve_notation": "12",
         "text_notation": "1-2"
       },
@@ -1255,7 +1234,9 @@
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [],
+        "practice_tips": [
+          "Above the range of most published single-F charts; fingering follows the harmonic series."
+        ],
         "intonation_tendency": null
       }
     },
@@ -1275,7 +1256,7 @@
         "elements": [
           "valve-1"
         ],
-        "description": "valve 1",
+        "description": "First valve only",
         "valve_notation": "1",
         "text_notation": "1"
       },
@@ -1283,7 +1264,9 @@
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [],
+        "practice_tips": [
+          "Above the range of most published single-F charts; fingering follows the harmonic series."
+        ],
         "intonation_tendency": null
       }
     },
@@ -1303,7 +1286,7 @@
         "elements": [
           "valve-2"
         ],
-        "description": "valve 2",
+        "description": "Second valve only",
         "valve_notation": "2",
         "text_notation": "2"
       },
@@ -1311,7 +1294,9 @@
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [],
+        "practice_tips": [
+          "Above the range of most published single-F charts; fingering follows the harmonic series."
+        ],
         "intonation_tendency": null
       }
     },
@@ -1337,7 +1322,9 @@
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
-        "practice_tips": [],
+        "practice_tips": [
+          "Above the range of most published single-F charts; fingering follows the harmonic series."
+        ],
         "intonation_tendency": null
       }
     },
@@ -1354,17 +1341,20 @@
       "register": "High",
       "octave": "High register",
       "primary": {
-        "elements": [],
-        "description": "Open (no valves)",
-        "valve_notation": "0",
-        "text_notation": "Open"
+        "elements": [
+          "valve-1"
+        ],
+        "description": "First valve only",
+        "valve_notation": "1",
+        "text_notation": "1"
       },
       "alternates": [],
       "pedagogy": {
         "beginner_note": false,
         "common_errors": [],
         "practice_tips": [
-          "Extreme upper register. Professional level."
+          "Extreme upper register. Professional level.",
+          "Above the range of most published single-F charts; fingering follows the harmonic series."
         ],
         "intonation_tendency": null
       }
