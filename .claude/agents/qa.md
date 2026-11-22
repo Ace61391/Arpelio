@@ -67,7 +67,7 @@ Start with `npm run validate` (harmonic series for brass, every key drawable, no
 6. **Enharmonic consistency:** If Bb exists, check whether A# should also exist (or vice versa)
 
 ## Code Checks
-1. **SVG rendering:** Every diagram component should have .open and .pressed CSS classes
+1. **SVG rendering:** Every key or hole carries class `open`, `pressed` or `half` (colours are inline in the redrawn diagrams, from a style block in clarinet and saxophone)
 2. **Data mapping:** `src/components/diagrams/keymaps.mjs` must map every data element name to a template ID (`npm run validate` checks this)
 3. **Size prop:** All diagrams must handle sm/md/lg sizes
 4. **Blank mode:** blank={true} must render all keys open

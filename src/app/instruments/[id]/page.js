@@ -25,7 +25,7 @@ export default function InstrumentPage() {
   const instData = getInstrumentData(id);
   const [octaveFilter, setOctaveFilter] = useState('beginner');
   const [selectedNote, setSelectedNote] = useState(null);
-  const [holeStyle, setHoleStyle] = useState('simple');
+  const [holeStyle, setHoleStyle] = useState('double');
 
   const fingerings = instData?.fingerings || [];
 
@@ -111,13 +111,13 @@ export default function InstrumentPage() {
 
           {id === 'recorder' && (
             <div className="flex items-center gap-2 ml-auto border border-[#e5e8ed] rounded-full px-3 py-1">
-              <button onClick={() => setHoleStyle('simple')}
-                className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-all ${holeStyle === 'simple' ? 'bg-accent text-white' : 'text-[#7a8294]'}`}>
-                Simple
+              <button onClick={() => setHoleStyle('double')} aria-pressed={holeStyle === 'double'}
+                className={`text-xs font-semibold px-2 py-1 rounded-full transition-all ${holeStyle === 'double' ? 'bg-accent text-white' : 'text-[#6b7385]'}`}>
+                Double holes
               </button>
-              <button onClick={() => setHoleStyle('baroque')}
-                className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-all ${holeStyle === 'baroque' ? 'bg-accent text-white' : 'text-[#7a8294]'}`}>
-                Baroque
+              <button onClick={() => setHoleStyle('single')} aria-pressed={holeStyle === 'single'}
+                className={`text-xs font-semibold px-2 py-1 rounded-full transition-all ${holeStyle === 'single' ? 'bg-accent text-white' : 'text-[#6b7385]'}`}>
+                Single holes
               </button>
             </div>
           )}

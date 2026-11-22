@@ -4,18 +4,18 @@
 // (wfg.woodwind.org/*/..._fing.html) — see docs/fingering-sources.md.
 
 export const FLUTE_KEYS = {
-  'thumb': 'THUMB_B',        // long pill under L1–L2: B (B-natural) thumb key
-  'Bb': 'THUMB_Bb',          // small oval under L1: thumb B♭ (Briccialdi) lever
+  'thumb': 'THUMB_B',        // long key below L1–L2: B (B-natural) thumb key
+  'Bb': 'THUMB_Bb',          // small key beside it, toward the head: thumb B♭ (Briccialdi) lever
   'L1': 'LH1', 'L2': 'LH2', 'L3': 'LH3',
-  'G#': 'G_SHARP',           // shape above L2–L3: G♯ lever (left pinky)
-  'Bb-lever': 'Bb_LEVER',    // small ellipse just left of R1: B♭ side lever
+  'G#': 'G_SHARP',           // lever above, just past L3: G♯ (left little finger)
+  'Bb-lever': 'Bb_LEVER',    // small key below, just before R1: B♭ side lever
   'R1': 'RH1', 'R2': 'RH2', 'R3': 'RH3',
   'D-trill': 'D_TRILL',      // between R1 and R2
   'D#-trill': 'DS_TRILL',    // between R2 and R3
   'Eb': 'Eb',
-  'C#': 'FOOT_Cs',           // large paddle
-  'C': 'FOOT_C',             // roller next to the paddle
-  'B': 'FOOT_B',             // outer roller (B foot)
+  'C#': 'FOOT_Cs',           // largest foot key, nearest the player
+  'C': 'FOOT_C',             // middle foot key
+  'B': 'FOOT_B',             // farthest foot key (B foot)
 };
 
 // Front view (as someone facing the player sees it): thumb hole + register key in the left column,

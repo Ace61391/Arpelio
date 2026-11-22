@@ -1,78 +1,89 @@
 'use client';
+import { INK, key, body, guide, divider, nameLabel, noteLabel } from './diagramStyle';
 
-// LOCKED TEMPLATE from recorder_locked_template_v1.svg
-// Supports two visual modes: "simple" (single circles) and "baroque" (double holes on RH3/RH4)
-// One addition to the template: an optional bell-closed marker, drawn only for fingerings that include 'bell' (X).
+// Recorder, front view (as someone facing the player sees it). Redrawn November 2026; treat the geometry as locked.
+//
+// Conventions, each checked against published charts (docs/fingering-sources.md):
+//   - hole 0, the thumb hole, is on the back, so it is drawn beside the body, a little above hole 1
+//   - holes 1-3 left hand, 4-7 right hand, with a divider between the hands
+//   - holes 6 and 7 are pairs: the larger hole on the left, the smaller on the right; a half-hole covers the larger one
+//   - a pinched thumb is a half-filled circle; a closed bell is a bar under the foot
+// holeStyle "single" draws holes 6 and 7 as one hole each, for instruments built that way.
 
-const HOLE_MAP = { L1: 0, L2: 1, L3: 2, R1: 3, R2: 4, R3: 5, R4: 6 };
-const HALF_MAP = { 'R3-half': 5, 'R4-half': 6 };
+const CX = 60;
+const HOLES = { L1: 62, L2: 86, L3: 110, R1: 142, R2: 166 };
+const PAIRS = { R3: 188, R4: 220 };
 
-export default function RecorderDiagram({ elements = [], size = 'md', blank = false, holeStyle = 'simple' }) {
-  const holes = ['open','open','open','open','open','open','open'];
-  let thumb = 'open';
-  let bell = false;
-  if (!blank) {
-    elements.forEach(e => {
-      if (e === 'thumb') thumb = 'pressed';
-      if (e === 'thumb-half') thumb = 'half';
-      if (e === 'bell') bell = true;
-      if (HOLE_MAP[e] !== undefined) holes[HOLE_MAP[e]] = 'pressed';
-      if (HALF_MAP[e] !== undefined) holes[HALF_MAP[e]] = 'half';
-    });
-  }
-  // md is a fixed width: the recorder is tall and narrow, so filling a card's width made it enormous.
-  const w = size === 'lg' ? 180 : size === 'sm' ? 55 : 80;
-  const baroque = holeStyle === 'baroque';
+function HalfCircle({ cx, cy, r }) {
+  return (
+    <>
+      <circle {...key(false)} cx={cx} cy={cy} r={r} />
+      <path className="half" d={`M${cx - r} ${cy} A${r} ${r} 0 0 1 ${cx + r} ${cy} Z`} style={{ fill: INK, stroke: INK, strokeWidth: 2, strokeLinejoin: 'round' }} />
+    </>
+  );
+}
 
-  // For baroque double holes:
-  // "pressed" = both circles filled
-  // "open" = both circles open
-  // "half" = left filled, right open (covering one of the double holes)
-  const dblCls = (state) => ({
-    left: state === 'pressed' || state === 'half' ? 'pressed' : 'open',
-    right: state === 'pressed' ? 'pressed' : 'open',
-  });
-
-  const rh3 = dblCls(holes[5]);
-  const rh4 = dblCls(holes[6]);
+export default function RecorderDiagram({ elements = [], size = 'md', blank = false, holeStyle = 'double', labels = false }) {
+  const s = new Set(blank ? [] : elements);
+  const single = holeStyle === 'single' || holeStyle === 'simple';
+  const vbW = labels ? 215 : 100;
+  const scale = size === 'lg' ? 1.3 : size === 'sm' ? 0.46 : 0.7;
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 180 440" style={{display:'block'}}>
-      <defs>
-        <style>{`.open{fill:none;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.pressed{fill:#000;stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.half{fill:url(#hg);stroke:#000;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.divider{stroke:#000;stroke-width:2.5;stroke-linecap:round}`}</style>
-        <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="50%" stopColor="#000"/><stop offset="50%" stopColor="#fff"/>
-        </linearGradient>
-      </defs>
-      <circle className={thumb} cx="60" cy="40" r="14"/>
-      <line className="divider" x1="50" y1="68" x2="120" y2="68"/>
-      <circle className={holes[0]} cx="90" cy="100" r="17"/>
-      <circle className={holes[1]} cx="90" cy="148" r="17"/>
-      <circle className={holes[2]} cx="90" cy="196" r="17"/>
-      <line className="divider" x1="50" y1="228" x2="120" y2="228"/>
-      <circle className={holes[3]} cx="90" cy="260" r="16"/>
-      <circle className={holes[4]} cx="90" cy="305" r="16"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width={Math.round(vbW * scale)} viewBox={`0 0 ${vbW} 250`} style={{ display: 'block' }}>
+      {/* instrument: beak and head, body tapering toward the foot, flared foot joint */}
+      <path {...body} d="M52 5 Q60 2 68 5 C71 13 79 20 80 31 L80 40 H40 L40 31 C41 20 49 13 52 5 Z" />
+      <rect x="54" y="16" width="12" height="6" rx="1.5" style={{ fill: '#fff', stroke: '#aab1bd', strokeWidth: 1.2 }} />
+      <path {...guide} d="M55 25 H65" />
+      <path {...body} d="M41 45 H79 L77 198 H43 Z" />
+      <rect {...body} x="38" y="40" width="44" height="5" rx="2.5" />
+      <path {...body} d="M43 203 C42 214 39 224 36 234 Q60 242 84 234 C81 224 78 214 77 203 Z" />
+      <rect {...body} x="40" y="198" width="40" height="5" rx="2.5" />
 
-      {baroque ? (
-        <>
-          <circle className={rh3.left} cx="80" cy="350" r="9"/>
-          <circle className={rh3.right} cx="100" cy="350" r="9"/>
-          <circle className={rh4.left} cx="80" cy="388" r="8"/>
-          <circle className={rh4.right} cx="100" cy="388" r="8"/>
-        </>
-      ) : (
-        <>
-          <circle className={holes[5]} cx="90" cy="347" r="14"/>
-          <circle className={holes[6]} cx="90" cy="385" r="13"/>
-        </>
-      )}
+      {/* left hand / right hand */}
+      <path {...divider} d="M46 126 H74" />
 
-      {/* Bell closed against the knee (X in the fingering). Drawn only when a fingering calls for it. */}
-      {bell && (
-        <g>
-          <rect className="pressed" x="62" y="414" width="56" height="9" rx="4.5"/>
-          <text x="132" y="423" fontSize="13" fontWeight="700" fontFamily="system-ui" fill="#000">X</text>
-        </g>
+      {/* hole 0: thumb */}
+      <path {...guide} d="M24 52 H41" strokeDasharray="2 2" />
+      {s.has('thumb-half')
+        ? <HalfCircle cx={15} cy={52} r={9} />
+        : <circle {...key(s.has('thumb'))} cx="15" cy="52" r="9" />}
+
+      {Object.entries(HOLES).map(([k, y]) => <circle key={k} {...key(s.has(k))} cx={CX} cy={y} r="10" />)}
+
+      {/* holes 6 and 7 */}
+      {Object.entries(PAIRS).map(([k, y]) => {
+        const full = s.has(k);
+        const half = s.has(`${k}-half`);
+        if (single) {
+          return half
+            ? <HalfCircle key={k} cx={CX} cy={y} r={8} />
+            : <circle key={k} {...key(full)} cx={CX} cy={y} r="8" />;
+        }
+        return (
+          <g key={k}>
+            <circle {...key(full || half)} cx="53.5" cy={y + 1.5} r="5.6" />
+            <circle {...key(full)} cx="67" cy={y - 1.5} r="4.6" />
+          </g>
+        );
+      })}
+
+      {/* bell closed against the knee */}
+      {s.has('bell') && <rect className="pressed" x="40" y="243" width="40" height="5.5" rx="2.75" style={{ fill: INK }} />}
+
+      {labels && (
+        <>
+          <text {...nameLabel} x="15" y="73" textAnchor="middle" fontSize="10">0</text>
+          <text {...noteLabel} x="15" y="82" textAnchor="middle" fontSize="7">thumb</text>
+          {[...Object.values(HOLES), ...Object.values(PAIRS)].map((y, i) => (
+            <text key={i} {...nameLabel} x="92" y={y + 3.5} fontSize="10">{i + 1}</text>
+          ))}
+          <path {...guide} d="M108 54 V118 M108 134 V228" />
+          <text {...noteLabel} x="113" y="89" fontSize="8">left hand</text>
+          <text {...noteLabel} x="113" y="184" fontSize="8">right hand</text>
+          <rect x="40" y="243" width="40" height="5.5" rx="2.75" style={{ fill: 'none', stroke: '#aab1bd', strokeWidth: 1.2, strokeDasharray: '2 2' }} />
+          <text {...noteLabel} x="92" y="248.5" fontSize="7">bell (closed for high C♯)</text>
+        </>
       )}
     </svg>
   );
